@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.medicalproj.common.dao.MedicalCaseResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.medicalproj.common.domain.MedicalCaseResource" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="OWNER_MEDICAL_CASE_ID" property="ownerMedicalCaseId" jdbcType="INTEGER" />
+    <result column="UPLOAD_ID" property="uploadId" jdbcType="INTEGER" />
+    <result column="BODY_PARTS" property="bodyParts" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OWNER_MEDICAL_CASE_ID, UPLOAD_ID, BODY_PARTS, USER_NAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.MedicalCaseResourceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_medical_case_resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_medical_case_resource
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_medical_case_resource
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.medicalproj.common.domain.MedicalCaseResourceExample" >
+    delete from tbl_medical_case_resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.medicalproj.common.domain.MedicalCaseResource" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tbl_medical_case_resource (OWNER_MEDICAL_CASE_ID, UPLOAD_ID, BODY_PARTS, 
+      USER_NAME)
+    values (#{ownerMedicalCaseId,jdbcType=INTEGER}, #{uploadId,jdbcType=INTEGER}, #{bodyParts,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.medicalproj.common.domain.MedicalCaseResource" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tbl_medical_case_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ownerMedicalCaseId != null" >
+        OWNER_MEDICAL_CASE_ID,
+      </if>
+      <if test="uploadId != null" >
+        UPLOAD_ID,
+      </if>
+      <if test="bodyParts != null" >
+        BODY_PARTS,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ownerMedicalCaseId != null" >
+        #{ownerMedicalCaseId,jdbcType=INTEGER},
+      </if>
+      <if test="uploadId != null" >
+        #{uploadId,jdbcType=INTEGER},
+      </if>
+      <if test="bodyParts != null" >
+        #{bodyParts,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.medicalproj.common.domain.MedicalCaseResourceExample" resultType="java.lang.Integer" >
+    select count(*) from tbl_medical_case_resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_medical_case_resource
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.ownerMedicalCaseId != null" >
+        OWNER_MEDICAL_CASE_ID = #{record.ownerMedicalCaseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.uploadId != null" >
+        UPLOAD_ID = #{record.uploadId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bodyParts != null" >
+        BODY_PARTS = #{record.bodyParts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null" >
+        USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_medical_case_resource
+    set ID = #{record.id,jdbcType=INTEGER},
+      OWNER_MEDICAL_CASE_ID = #{record.ownerMedicalCaseId,jdbcType=INTEGER},
+      UPLOAD_ID = #{record.uploadId,jdbcType=INTEGER},
+      BODY_PARTS = #{record.bodyParts,jdbcType=VARCHAR},
+      USER_NAME = #{record.userName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.medicalproj.common.domain.MedicalCaseResource" >
+    update tbl_medical_case_resource
+    <set >
+      <if test="ownerMedicalCaseId != null" >
+        OWNER_MEDICAL_CASE_ID = #{ownerMedicalCaseId,jdbcType=INTEGER},
+      </if>
+      <if test="uploadId != null" >
+        UPLOAD_ID = #{uploadId,jdbcType=INTEGER},
+      </if>
+      <if test="bodyParts != null" >
+        BODY_PARTS = #{bodyParts,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.medicalproj.common.domain.MedicalCaseResource" >
+    update tbl_medical_case_resource
+    set OWNER_MEDICAL_CASE_ID = #{ownerMedicalCaseId,jdbcType=INTEGER},
+      UPLOAD_ID = #{uploadId,jdbcType=INTEGER},
+      BODY_PARTS = #{bodyParts,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.MedicalCaseResourceExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_medical_case_resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
