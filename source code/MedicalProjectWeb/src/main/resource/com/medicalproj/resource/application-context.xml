@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:tx="http://www.springframework.org/schema/tx" 
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-2.5.xsd 
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop-2.5.xsd 
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+						http://www.springframework.org/schema/mvc 
+        				http://www.springframework.org/schema/mvc/spring-mvc.xsd"> 
+	
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:/com/medicalproj/resource/jdbc-config.properties" />
+	</bean>
+	
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">	
+		<property name="driverClassName"><value>${APP.Driver}</value></property>
+		<property name="url" ><value>${APP.URL}</value></property>
+		<property name="username" ><value>${APP.Username}</value></property>
+		<property name="password" ><value>${APP.Password}</value></property>		
+		<property name="initialSize" value="10" />
+		<property name="maxIdle" value="20" />
+		<property name="minIdle" value="5" />
+		<property name="maxActive" value="50" />
+		<property name="logAbandoned" value="true" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="180" />
+		<property name="maxWait" value="1000" />
+		<property name="validationQuery" value="select 1"/>
+		<property name="testOnBorrow" value="false"/>
+		<property name="testOnReturn" value="false"/>
+        <property name="poolPreparedStatements" value="true"/>        
+        <property name="maxOpenPreparedStatements" value="50"/>        
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/> 
+        建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于
+             timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。                
+        <property name="testWhileIdle" value="true"/>
+	</bean> -->
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">	
+		<property name="driverClassName"><value>${APP.Driver}</value></property>
+		<property name="url" ><value>${APP.URL}</value></property>
+		<property name="username" ><value>${APP.Username}</value></property>
+		<property name="password" ><value>${APP.Password}</value></property>		
+		<property name="initialSize" value="10" />
+		<property name="maxIdle" value="50" />
+		<property name="minIdle" value="5" />
+		<property name="maxActive" value="50" />
+		<property name="logAbandoned" value="true" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="180" />
+		<property name="maxWait" value="1000" />
+		<!-- <property name="validationQuery"><value>select 1 from dbo.SYS_User</value></property> -->
+		<property name="testOnBorrow"><value>true</value></property>
+	</bean>
+	
+	<!-- MyBatis sqlSessionFactory 配置 mybatis --> 
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource" />  
+        <!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->  
+        <property name="mapperLocations" value="classpath:com/medicalproj/**/dao/mapper/*.xml" />  
+    </bean>  
+    
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="com.medicalproj.common.dao" />  
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />  
+    </bean>
+    
+    <!-- 事务相关控制 -->
+    <bean id="transactionManager" 
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
+        <property name="dataSource" ref="dataSource" /> 
+    </bean> 
+    <tx:advice id="txAdvice" transaction-manager="transactionManager"> 
+        <tx:attributes> 
+            <tx:method name="*" propagation="REQUIRED" read-only="false" 
+                rollback-for="java.lang.Exception"/> 
+        </tx:attributes> 
+    </tx:advice> 
+    <aop:config> 
+        <aop:pointcut id="pc" 
+            expression="execution(* com.medicalproj.*.service.*.*(..))" /> 
+        <!-- 把事务控制在Business层 -->
+        <aop:advisor pointcut-ref="pc" advice-ref="txAdvice" /> 
+    </aop:config> 
+    
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+	    <property name="securityManager" ref="securityManager"/>
+	    <property name="loginUrl" value="/modules/web/login.jsp"/>
+	    <!-- override these for application-specific URLs if you like:
+	    
+	    <property name="successUrl" value="/home.jsp"/>
+	    <property name="unauthorizedUrl" value="/unauthorized.jsp"/> -->
+	    <!-- The 'filters' property is not necessary since any declared javax.servlet.Filter bean  -->
+	    <!-- defined will be automatically acquired and available via its beanName in chain        -->
+	    <!-- definitions, but you can perform instance overrides or name aliases here if you like: -->
+	    <!-- <property name="filters">
+	        <util:map>
+	            <entry key="anAlias" value-ref="someFilter"/>
+	        </util:map>
+	    </property> -->
+	    <property name="filterChainDefinitions">
+	        <value>
+	            # some example chain definitions:
+	            #/admin/** = authc, roles[admin]
+	            #/docs/** = authc, perms[document:read]
+	            #/** = authc
+	            # more URL-to-FilterChain definitions here
+	            /modules/web/login.jsp = anon
+	            /modules/web/index.jsp = anon
+	            /modules/web/assets/** = anon
+	            /** = authc
+	        </value>
+	    </property>
+	</bean>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+	    <!-- Single realm app.  If you have multiple realms, use the 'realms' property instead. -->
+	    <property name="realm" ref="loginRealm"/>
+	    <!-- By default the servlet container sessions will be used.  Uncomment this line
+	         to use shiro's native sessions (see the JavaDoc for more): -->
+	    <!-- <property name="sessionMode" value="native"/> -->
+	</bean>
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	
+	<!-- Define the Shiro Realm implementation you want to use to connect to your back-end -->
+	<!-- security datasource: -->
+	<bean id="loginRealm" class="com.medicalproj.common.realm.LoginRealm">
+	</bean>
+	
+    <!-- <mvc:interceptors>  
+        <mvc:interceptor>  
+            <mvc:mapping path="/**/*.do"/>  
+            <bean class="com.haijianzhi.common.interceptor.LoginInterceptor"></bean>  
+        </mvc:interceptor>  
+    </mvc:interceptors>  --> 
+</beans>
