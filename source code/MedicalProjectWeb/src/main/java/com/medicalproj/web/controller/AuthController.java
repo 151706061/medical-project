@@ -12,4 +12,5 @@ public class AuthController extends BaseController{
 	@Autowired
 	private IAuthService authService;
 	
+	
 }

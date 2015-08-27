@@ -1,16 +1,9 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title>Faceboot - A Facebook style template for Bootstrap</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href='<c:url value="/assets/libs/bootstrap-3.3.5/css/bootstrap.css"/>' rel="stylesheet">
-		<link href='<c:url value="/assets/css/fbstyles.css"/>' rel="stylesheet">
+		<title>医疗项目</title>
+		<%@include file="/include/common-head.jsp" %>
 	</head>
 	<body>
 <div class="wrapper">
@@ -247,7 +240,7 @@
                           </div>
                           <div class="col-sm-6">
                             <p>
-                            <a href="#" class="pull-right">�Copyright 2013</a>
+                            <a href="#" class="pull-right">©Copyright 2013</a>
                             </p>
                           </div>
                         </div>
@@ -276,7 +269,7 @@
   <div class="modal-dialog">
   <div class="modal-content">
       <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			Update Status
       </div>
       <div class="modal-body">
@@ -295,9 +288,6 @@
   </div>
   </div>
 </div>
-	<!-- script references -->
-		<script src='<c:url value="/assets/libs/jquery/jquery-1.11.3.min.js"/>'></script>
-		<script src='<c:url value="/assets/libs/bootstrap-3.3.5/js/bootstrap.js"/>'></script>
-		<script src='<c:url value="/assets/js/fbscripts.js"/>'></script>
+	<%@include file="/include/common-footer.jsp" %>
 	</body>
 </html>
