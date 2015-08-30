@@ -9,3 +9,5 @@
 <![endif]-->
 <link href='<c:url value="/modules/web/assets/libs/bootstrap-3.3.5/css/bootstrap.css"/>' rel="stylesheet">
 <link href='<c:url value="/modules/web/assets/css/fbstyles.css"/>' rel="stylesheet">
+<link href='<c:url value="/modules/web/assets/css/style.css"/>' rel="stylesheet">
+

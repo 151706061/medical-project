@@ -19,10 +19,10 @@
             	</ul>
                
                 <ul class="nav hidden-xs" id="lg-menu">
-                    <li class="active"><a href="#featured"><i class="glyphicon glyphicon-list-alt"></i> Featured</a></li>
-                    <li><a href="#stories"><i class="glyphicon glyphicon-list"></i> Stories</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Saved</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Refresh</a></li>
+                    <li><a href="#stories"><i class="glyphicon glyphicon-list"></i> 我的请求</a></li>
+                    <li class="active"><a href="#featured"><i class="glyphicon glyphicon-yen"></i> 预存诊费</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> 交易记录</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> 资格申请</a></li>
                 </ul>
                 <ul class="list-unstyled hidden-xs" id="sidebar-footer">
                     <li>
@@ -79,11 +79,8 @@
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
                         <ul class="dropdown-menu">
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
+                          <li><a href="">我的设置</a></li>
+                          <li><a href="">退出</a></li>
                         </ul>
                       </li>
                     </ul>
@@ -91,6 +88,7 @@
                 </div>
                 <!-- /top nav -->
               
+              	<%-- 内容部分 --%>
                 <div class="padding">
                     <div class="full col-sm-9">
                       
@@ -178,84 +176,16 @@
                                   </div>
                                </div>
                             
-                               <div class="panel panel-default">
-                                 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Stackoverflow</h4></div>
-                                  <div class="panel-body">
-                                    <img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">Keyword: Bootstrap</a>
-                                    <div class="clearfix"></div>
-                                    <hr>
-                                    
-                                    <p>If you're looking for help with Bootstrap code, the <code>twitter-bootstrap</code> tag at <a href="http://stackoverflow.com/questions/tagged/twitter-bootstrap">Stackoverflow</a> is a good place to find answers.</p>
-                                    
-                                    <hr>
-                                    <form>
-                                    <div class="input-group">
-                                      <div class="input-group-btn">
-                                      <button class="btn btn-default">+1</button><button class="btn btn-default"><i class="glyphicon glyphicon-share"></i></button>
-                                      </div>
-                                      <input type="text" class="form-control" placeholder="Add a comment..">
-                                    </div>
-                                    </form>
-                                    
-                                  </div>
-                               </div>
 
-                               <div class="panel panel-default">
-                                 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Portlet Heading</h4></div>
-                                  <div class="panel-body">
-                                    <ul class="list-group">
-                                    <li class="list-group-item">Modals</li>
-                                    <li class="list-group-item">Sliders / Carousel</li>
-                                    <li class="list-group-item">Thumbnails</li>
-                                    </ul>
-                                  </div>
-                               </div>
                             
-                               <div class="panel panel-default">
-                                <div class="panel-thumbnail"><img src="/assets/example/bg_4.jpg" class="img-responsive"></div>
-                                <div class="panel-body">
-                                  <p class="lead">Social Good</p>
-                                  <p>1,200 Followers, 83 Posts</p>
-                                  
-                                  <p>
-                                    <img src="https://lh6.googleusercontent.com/-5cTTMHjjnzs/AAAAAAAAAAI/AAAAAAAAAFk/vgza68M4p2s/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                                    <img src="https://lh4.googleusercontent.com/-6aFMDiaLg5M/AAAAAAAAAAI/AAAAAAAABdM/XjnG8z60Ug0/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                                    <img src="https://lh4.googleusercontent.com/-9Yw2jNffJlE/AAAAAAAAAAI/AAAAAAAAAAA/u3WcFXvK-g8/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                                  </p>
-                                </div>
-                              </div>
                             
                           </div>
                        </div><!--/row-->
                       
-                        <div class="row">
-                          <div class="col-sm-6">
-                            <a href="#">Twitter</a> <small class="text-muted">|</small> <a href="#">Facebook</a> <small class="text-muted">|</small> <a href="#">Google+</a>
-                          </div>
-                        </div>
-                      
-                        <div class="row" id="footer">    
-                          <div class="col-sm-6">
-                            
-                          </div>
-                          <div class="col-sm-6">
-                            <p>
-                            <a href="#" class="pull-right">©Copyright 2013</a>
-                            </p>
-                          </div>
-                        </div>
-                      
-                      <hr>
-                      
-                      <h4 class="text-center">
-                      <a href="http://bootply.com/96266" target="ext">Download this Template @Bootply</a>
-                      </h4>
-                        
-                      <hr>
-                        
-                      
                     </div><!-- /col-9 -->
                 </div><!-- /padding -->
+                
+                <%-- END 内容部分 --%>
             </div>
             <!-- /main -->
           

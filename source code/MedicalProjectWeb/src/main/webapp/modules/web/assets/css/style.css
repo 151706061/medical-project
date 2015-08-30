@@ -1,0 +1,74 @@
+.dropdown-menu a > i.glyphicon{
+	vertical-align: -2px;
+	padding: 0 5px 0 0;
+}
+
+nav li.dropdown a .badge{
+  	position: relative;
+	top: -10px;
+}
+
+#sidebar .userinfo{
+	padding:10px;
+}
+#sidebar .userinfo-col{
+	margin-top:-20px;
+	border-bottom: 1px solid #cccccc;
+}
+#sidebar .userinfo{
+}
+
+#sidebar .userinfo img.user-head{
+	display:inline-block;
+	width:35px;
+	height:35px;
+}
+
+#sidebar .userinfo h3.username{
+	display:inline-block;
+	vertical-align: -4px; 
+}
+
+#sidebar .userinfo ul.user-info-extra{
+	color: #cccccc;
+	font-size: 0.8em;
+  	padding-top: 0.5em;	
+}
+
+
+#sidebar{
+	padding-left:0; 
+}
+
+#lg-menu {
+}
+#lg-menu > li > a{
+	padding-left:15px; 
+}
+
+#sidebar-footer{
+	width: 100%;
+	text-align:center;
+}
+
+#my-notification-wrap{
+	
+}
+#notification-list-ul{
+	border:1px solid #cccccc;
+	background-color:#fafafa; 
+}
+#notification-list-ul > li{
+	padding:1.4em;
+	border-bottom : 1px solid #cccccc;
+}
+
+.lfpadding10{
+	padding-left:10px;
+}
+
+@media screen and (max-width: 768px){
+	#xs-menu{
+		padding-left:10px;
+	}
+}
