@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>首页</title>
+		<title>我的设置</title>
 		<%@include file="/modules/web/include/common-head.jsp" %>
 	</head>
 	<body>
@@ -21,9 +21,54 @@
               
               	<%-- 内容部分 --%>
                 <div class="padding">
-                    <div class="full col-sm-9">
-                      
-                    </div><!-- /col-9 -->
+                    <div class="full col-sm-12">
+						<div class="page-header">
+						  <h1>我的设置<small></small></h1>
+						</div>
+						
+						<div class="col-sm-8" id="settings-wrap">
+				
+							<form class="form-horizontal">
+								<div class="form-group">
+									<label for="inputUserName" class="col-sm-2 control-label">姓名</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="inputUserName"
+											placeholder="姓名">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputMobile" class="col-sm-2 control-label">手机号</label>
+									<div class="col-sm-10">
+										<input type="tel" class="form-control"
+											id="inputMobile" placeholder="手机号">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
+									<div class="col-sm-10">
+										<input type="email" class="form-control" id="inputEmail"
+											placeholder="邮箱">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<div class="checkbox">
+											<label> <input type="checkbox">  有新消息时，是否短信/邮件通知
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<button type="submit" class="btn btn-success">保存设置</button>
+									</div>
+								</div>
+							</form>
+
+						</div>
+						
+					</div>
                 </div><!-- /padding -->
                 
                 <%-- END 内容部分 --%>

@@ -1,3 +1,5 @@
+*{font-family:Verdana, "ºÚÌå", Arial,Sans;} 
+
 .dropdown-menu a > i.glyphicon{
 	vertical-align: -2px;
 	padding: 0 5px 0 0;
@@ -56,17 +58,42 @@ nav li.dropdown a .badge{
 }
 #notification-list-ul{
 	border:1px solid #cccccc;
-	background-color:#fafafa; 
+	background-color:#ffffff; 
 }
 #notification-list-ul > li{
 	padding:1.4em;
 	border-bottom : 1px solid #cccccc;
 }
-
+#notification-list-ul > li:hover{
+	background-color:#eeeeee ;
+}
 .lfpadding10{
 	padding-left:10px;
 }
 
+.page-header{
+	border-top:none;
+	border-bottom:2px solid #fafafa;
+	margin-top:0;
+}
+
+.full{
+	padding-top:50px;
+}
+
+#yszgz-img{
+	width:280px;
+	height:280px;
+	margin:10px 0 ;
+}
+
+#upload-yszgz-btn{
+	display:block;	
+}
+
+#trans-table{
+	background-color:#fafafa;
+}
 @media screen and (max-width: 768px){
 	#xs-menu{
 		padding-left:10px;
