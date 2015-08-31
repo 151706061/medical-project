@@ -94,6 +94,27 @@ nav li.dropdown a .badge{
 #trans-table{
 	background-color:#fafafa;
 }
+
+#sidebar a{
+	text-shadow:none;
+}
+.btn-default{
+	text-shadow:none;
+}
+
+#recharge-form-wrap{
+	margin-top:90px;
+}
+
+#recharge-form-wrap .recharge-btn{
+	width:100%;	
+}
+
+#transactions-wrap .trans-period-groupbtn{
+	padding-top:20px;
+	padding-bottom:20px; 
+	
+}
 @media screen and (max-width: 768px){
 	#xs-menu{
 		padding-left:10px;

@@ -27,78 +27,92 @@
 								</div>
 								
 								<div id="transactions-wrap">
-								<table class="table table-hover" id="trans-table">
-									<thead>
-								        <tr>
-								          <th>时间</th>
-								          <th>金额</th>
-								          <th>描述</th>
-								          <th>类型</th>
-								        </tr>
-								      </thead>
-								      <tbody>
-								        <tr>
-								          <td>2015-08-05</td>
-								          <td>￥280</td>
-								          <td>医生Mark看片费用</td>
-								          <td>个人</td>
-								        </tr>
-								        <tr>
-								          <td>2015-08-05</td>
-								          <td>￥280</td>
-								          <td>医生Mark看片费用</td>
-								          <td>个人</td>
-								        </tr>
-								        <tr>
-								          <td>2015-08-05</td>
-								          <td>￥280</td>
-								          <td>医生Mark看片费用</td>
-								          <td>个人</td>
-								        </tr>
-								        <tr>
-								          <td>2015-08-05</td>
-								          <td>￥280</td>
-								          <td>医生Mark看片费用</td>
-								          <td>个人</td>
-								        </tr>
-								        <tr>
-								          <td>2015-08-05</td>
-								          <td>￥280</td>
-								          <td>医生Mark看片费用</td>
-								          <td>个人</td>
-								        </tr>
-								        <tr>
-								          <td>2015-08-05</td>
-								          <td>￥280</td>
-								          <td>医生Mark看片费用</td>
-								          <td>个人</td>
-								        </tr>
-								        <tr>
-								          <td>2015-08-05</td>
-								          <td>￥280</td>
-								          <td>医生Mark看片费用</td>
-								          <td>个人</td>
-								        </tr>
-								        <tr>
-								          <td>2015-08-05</td>
-								          <td>￥280</td>
-								          <td>医生Mark看片费用</td>
-								          <td>个人</td>
-								        </tr>
-								        <tr>
-								          <td>2015-08-05</td>
-								          <td>￥280</td>
-								          <td>医生Mark看片费用</td>
-								          <td>个人</td>
-								        </tr>
-								        <tr>
-								          <td>2015-08-05</td>
-								          <td>￥280</td>
-								          <td>医生Mark看片费用</td>
-								          <td>个人</td>
-								        </tr>
-								      </tbody>
-								</table>
+									<div class="col-sm-6  col-sm-offset-3 trans-period-groupbtn">
+										<div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
+									      <a href="#" class="btn btn-success" role="button">所有</a>
+									      <a href="#" class="btn btn-default" role="button">一周内</a>
+									      <a href="#" class="btn btn-default" role="button">一个月内</a>
+									      <a href="#" class="btn btn-default" role="button">三个月内</a>
+									      <a href="#" class="btn btn-default" role="button">半年内</a>
+									      <a href="#" class="btn btn-default" role="button">一年内</a>
+									      
+									    </div>
+									</div>
+									<div class="col-sm-12">
+										<table class="table table-hover" id="trans-table">
+											<thead>
+										        <tr>
+										          <th>时间</th>
+										          <th>金额</th>
+										          <th>描述</th>
+										          <th>类型</th>
+										        </tr>
+										      </thead>
+										      <tbody>
+										        <tr>
+										          <td>2015-08-05</td>
+										          <td>￥280</td>
+										          <td>医生Mark看片费用</td>
+										          <td>个人</td>
+										        </tr>
+										        <tr>
+										          <td>2015-08-05</td>
+										          <td>￥280</td>
+										          <td>医生Mark看片费用</td>
+										          <td>个人</td>
+										        </tr>
+										        <tr>
+										          <td>2015-08-05</td>
+										          <td>￥280</td>
+										          <td>医生Mark看片费用</td>
+										          <td>个人</td>
+										        </tr>
+										        <tr>
+										          <td>2015-08-05</td>
+										          <td>￥280</td>
+										          <td>医生Mark看片费用</td>
+										          <td>个人</td>
+										        </tr>
+										        <tr>
+										          <td>2015-08-05</td>
+										          <td>￥280</td>
+										          <td>医生Mark看片费用</td>
+										          <td>个人</td>
+										        </tr>
+										        <tr>
+										          <td>2015-08-05</td>
+										          <td>￥280</td>
+										          <td>医生Mark看片费用</td>
+										          <td>个人</td>
+										        </tr>
+										        <tr>
+										          <td>2015-08-05</td>
+										          <td>￥280</td>
+										          <td>医生Mark看片费用</td>
+										          <td>个人</td>
+										        </tr>
+										        <tr>
+										          <td>2015-08-05</td>
+										          <td>￥280</td>
+										          <td>医生Mark看片费用</td>
+										          <td>个人</td>
+										        </tr>
+										        <tr>
+										          <td>2015-08-05</td>
+										          <td>￥280</td>
+										          <td>医生Mark看片费用</td>
+										          <td>个人</td>
+										        </tr>
+										        <tr>
+										          <td>2015-08-05</td>
+										          <td>￥280</td>
+										          <td>医生Mark看片费用</td>
+										          <td>个人</td>
+										        </tr>
+										      </tbody>
+										</table>
+									</div>
+								
 								<nav>
 								  <ul class="pager">
 								    <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> 上一页</a></li>
