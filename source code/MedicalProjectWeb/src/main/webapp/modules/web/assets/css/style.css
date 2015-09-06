@@ -115,6 +115,102 @@ nav li.dropdown a .badge{
 	padding-bottom:20px; 
 	
 }
+
+.panel-heading .title-left{
+	text-align:left;
+}
+
+.panel-heading .title-center{
+	text-align:center;
+	font-weight:bold;
+}
+
+.panel-heading .title-right{
+	text-align:right;
+}
+
+.tab-wrap{
+	margin-bottom:20px;
+}
+.case-item-wrap .case-img{
+	width:100%;
+}
+.panel-footer .left{
+	text-align:left;
+}
+
+.panel-footer .right{
+	text-align:right;
+}
+.panel-primary .glyphicon{
+	color:#ffffff;
+}
+.panel-primary .glyphicon:hover{
+	color:#cccccc;
+}
+/* sign in and register */
+.form-signin,.form-reg {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox,
+.form-reg .form-reg-heading,
+.form-reg .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox,
+.form-reg .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control,
+.form-reg .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus,
+.form-reg .form-control:focus {
+  z-index: 2;
+}
+.form-signin input#inputAccount
+{
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input#inputPassword{
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.form-reg input#inputUsername,
+.form-reg input#inputMobile,
+.form-reg input#inputEmail,
+.form-reg input#inputPassword{
+	margin-bottom: -1px;
+ 	border-bottom-right-radius: 0;
+  	border-bottom-left-radius: 0;
+  	border-top-left-radius: 0;
+  	border-top-right-radius: 0;
+}
+
+.form-reg select{
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+  	border-bottom-left-radius: 0;
+}
+.form-reg input#inputPasswordAgain{
+	border-top-left-radius: 0;
+  	border-top-right-radius: 0;
+}
+
+/* END - sign in and register*/
 @media screen and (max-width: 768px){
 	#xs-menu{
 		padding-left:10px;
