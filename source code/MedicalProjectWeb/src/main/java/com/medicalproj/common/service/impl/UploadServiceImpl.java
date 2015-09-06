@@ -1,6 +1,5 @@
 package com.medicalproj.common.service.impl;
 
-import java.awt.Image;
 import java.util.Date;
 
 import org.springframework.stereotype.Service;
@@ -40,14 +39,14 @@ public class UploadServiceImpl implements IUploadService {
 			}
 
 			// 保存文件
-			String imageRelativePath = year + "/" + month + "/" + fileName;
+			/*String imageRelativePath = year + "/" + month + "/" + fileName;
 			Image image = this.save(imageRelativePath);
 
 			FileView fileView = new FileView();
 			fileView.setPath(FtpUtil.getAbsPath(imageRelativePath));
 			fileView.setId(image.getId());
 
-			view.setData(fileView);
+			view.setData(fileView);*/
 			return view;
 		} catch (ServiceException e) {
 			view.setData(null);
