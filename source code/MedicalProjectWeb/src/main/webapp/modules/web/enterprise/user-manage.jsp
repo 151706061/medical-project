@@ -27,7 +27,7 @@
 								</div>
 								
 								<div id="transactions-wrap">
-								<table class="table table-hover" id="trans-table">
+								<table class="table table-hover table-with-bg-color">
 									<thead>
 								        <tr>
 								          <th>申请时间</th>

@@ -39,7 +39,7 @@
 									    </div>
 									</div>
 									<div class="col-sm-12">
-										<table class="table table-hover" id="trans-table">
+										<table class="table table-hover table-with-bg-color" id="trans-table">
 											<thead>
 										        <tr>
 										          <th>时间</th>
