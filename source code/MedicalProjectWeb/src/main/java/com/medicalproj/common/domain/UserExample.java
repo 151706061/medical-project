@@ -375,6 +375,76 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andPasswordIsNull() {
+            addCriterion("PASSWORD is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordIsNotNull() {
+            addCriterion("PASSWORD is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordEqualTo(String value) {
+            addCriterion("PASSWORD =", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordNotEqualTo(String value) {
+            addCriterion("PASSWORD <>", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordGreaterThan(String value) {
+            addCriterion("PASSWORD >", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordGreaterThanOrEqualTo(String value) {
+            addCriterion("PASSWORD >=", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordLessThan(String value) {
+            addCriterion("PASSWORD <", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordLessThanOrEqualTo(String value) {
+            addCriterion("PASSWORD <=", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordLike(String value) {
+            addCriterion("PASSWORD like", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordNotLike(String value) {
+            addCriterion("PASSWORD not like", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordIn(List<String> values) {
+            addCriterion("PASSWORD in", values, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordNotIn(List<String> values) {
+            addCriterion("PASSWORD not in", values, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordBetween(String value1, String value2) {
+            addCriterion("PASSWORD between", value1, value2, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordNotBetween(String value1, String value2) {
+            addCriterion("PASSWORD not between", value1, value2, "password");
+            return (Criteria) this;
+        }
+
         public Criteria andUserTypeIsNull() {
             addCriterion("USER_TYPE is null");
             return (Criteria) this;
@@ -552,6 +622,136 @@ public class UserExample {
 
         public Criteria andRegTimeNotBetween(Date value1, Date value2) {
             addCriterion("REG_TIME not between", value1, value2, "regTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeIsNull() {
+            addCriterion("VERIFY_CODE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeIsNotNull() {
+            addCriterion("VERIFY_CODE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeEqualTo(String value) {
+            addCriterion("VERIFY_CODE =", value, "verifyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeNotEqualTo(String value) {
+            addCriterion("VERIFY_CODE <>", value, "verifyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeGreaterThan(String value) {
+            addCriterion("VERIFY_CODE >", value, "verifyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("VERIFY_CODE >=", value, "verifyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeLessThan(String value) {
+            addCriterion("VERIFY_CODE <", value, "verifyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeLessThanOrEqualTo(String value) {
+            addCriterion("VERIFY_CODE <=", value, "verifyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeLike(String value) {
+            addCriterion("VERIFY_CODE like", value, "verifyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeNotLike(String value) {
+            addCriterion("VERIFY_CODE not like", value, "verifyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeIn(List<String> values) {
+            addCriterion("VERIFY_CODE in", values, "verifyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeNotIn(List<String> values) {
+            addCriterion("VERIFY_CODE not in", values, "verifyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeBetween(String value1, String value2) {
+            addCriterion("VERIFY_CODE between", value1, value2, "verifyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeNotBetween(String value1, String value2) {
+            addCriterion("VERIFY_CODE not between", value1, value2, "verifyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeUpdateTimeIsNull() {
+            addCriterion("VERIFY_CODE_UPDATE_TIME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeUpdateTimeIsNotNull() {
+            addCriterion("VERIFY_CODE_UPDATE_TIME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeUpdateTimeEqualTo(Date value) {
+            addCriterion("VERIFY_CODE_UPDATE_TIME =", value, "verifyCodeUpdateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeUpdateTimeNotEqualTo(Date value) {
+            addCriterion("VERIFY_CODE_UPDATE_TIME <>", value, "verifyCodeUpdateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeUpdateTimeGreaterThan(Date value) {
+            addCriterion("VERIFY_CODE_UPDATE_TIME >", value, "verifyCodeUpdateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeUpdateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("VERIFY_CODE_UPDATE_TIME >=", value, "verifyCodeUpdateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeUpdateTimeLessThan(Date value) {
+            addCriterion("VERIFY_CODE_UPDATE_TIME <", value, "verifyCodeUpdateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeUpdateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("VERIFY_CODE_UPDATE_TIME <=", value, "verifyCodeUpdateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeUpdateTimeIn(List<Date> values) {
+            addCriterion("VERIFY_CODE_UPDATE_TIME in", values, "verifyCodeUpdateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeUpdateTimeNotIn(List<Date> values) {
+            addCriterion("VERIFY_CODE_UPDATE_TIME not in", values, "verifyCodeUpdateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeUpdateTimeBetween(Date value1, Date value2) {
+            addCriterion("VERIFY_CODE_UPDATE_TIME between", value1, value2, "verifyCodeUpdateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyCodeUpdateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("VERIFY_CODE_UPDATE_TIME not between", value1, value2, "verifyCodeUpdateTime");
             return (Criteria) this;
         }
     }

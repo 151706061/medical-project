@@ -9,4 +9,8 @@ public interface IUserService {
 
 	User getByEmail(String email)throws ServiceException;
 
+	User initUserByMobile(String mobile)throws ServiceException;
+
+	void saveOrUpdate(User user)throws ServiceException;
+
 }

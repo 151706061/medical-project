@@ -10,4 +10,6 @@ public interface IWebAuthService {
 
 	View<Boolean> reg(RegisterParam param)throws ServiceException;
 
+	void resetPwd(String mobile, String verifyCode, String newPassword)throws ServiceException;
+
 }

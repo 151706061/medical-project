@@ -12,12 +12,12 @@ import com.medicalproj.web.service.IWebNotificationService;
 @Service
 public class WebNotificationServiceImpl implements IWebNotificationService {
 	@Autowired
-	private INotificationService commonNotificationService;
+	private INotificationService notificationService;
 	
 	@Override
-	public View<NotificationListView> listNotification(Integer loginUserId)
+	public View<NotificationListView> listNotification(Integer loginUserId,Integer page,Integer pageSize)
 			throws ServiceException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

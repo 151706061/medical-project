@@ -6,9 +6,12 @@
     <result column="NAME" property="name" jdbcType="VARCHAR" />
     <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
     <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
     <result column="USER_TYPE" property="userType" jdbcType="INTEGER" />
     <result column="BALANCE" property="balance" jdbcType="INTEGER" />
     <result column="REG_TIME" property="regTime" jdbcType="TIMESTAMP" />
+    <result column="VERIFY_CODE" property="verifyCode" jdbcType="VARCHAR" />
+    <result column="VERIFY_CODE_UPDATE_TIME" property="verifyCodeUpdateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, NAME, MOBILE, EMAIL, USER_TYPE, BALANCE, REG_TIME
+    ID, NAME, MOBILE, EMAIL, PASSWORD, USER_TYPE, BALANCE, REG_TIME, VERIFY_CODE, VERIFY_CODE_UPDATE_TIME
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.UserExample" >
     select
@@ -106,10 +109,12 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into tbl_user (NAME, MOBILE, EMAIL, 
-      USER_TYPE, BALANCE, REG_TIME
+      PASSWORD, USER_TYPE, BALANCE, 
+      REG_TIME, VERIFY_CODE, VERIFY_CODE_UPDATE_TIME
       )
     values (#{name,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{userType,jdbcType=INTEGER}, #{balance,jdbcType=INTEGER}, #{regTime,jdbcType=TIMESTAMP}
+      #{password,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER}, #{balance,jdbcType=INTEGER}, 
+      #{regTime,jdbcType=TIMESTAMP}, #{verifyCode,jdbcType=VARCHAR}, #{verifyCodeUpdateTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.User" >
@@ -127,6 +132,9 @@
       <if test="email != null" >
         EMAIL,
       </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
       <if test="userType != null" >
         USER_TYPE,
       </if>
@@ -135,6 +143,12 @@
       </if>
       <if test="regTime != null" >
         REG_TIME,
+      </if>
+      <if test="verifyCode != null" >
+        VERIFY_CODE,
+      </if>
+      <if test="verifyCodeUpdateTime != null" >
+        VERIFY_CODE_UPDATE_TIME,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -147,6 +161,9 @@
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
       </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
       <if test="userType != null" >
         #{userType,jdbcType=INTEGER},
       </if>
@@ -155,6 +172,12 @@
       </if>
       <if test="regTime != null" >
         #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyCode != null" >
+        #{verifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyCodeUpdateTime != null" >
+        #{verifyCodeUpdateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -179,6 +202,9 @@
       <if test="record.email != null" >
         EMAIL = #{record.email,jdbcType=VARCHAR},
       </if>
+      <if test="record.password != null" >
+        PASSWORD = #{record.password,jdbcType=VARCHAR},
+      </if>
       <if test="record.userType != null" >
         USER_TYPE = #{record.userType,jdbcType=INTEGER},
       </if>
@@ -187,6 +213,12 @@
       </if>
       <if test="record.regTime != null" >
         REG_TIME = #{record.regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.verifyCode != null" >
+        VERIFY_CODE = #{record.verifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifyCodeUpdateTime != null" >
+        VERIFY_CODE_UPDATE_TIME = #{record.verifyCodeUpdateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -199,9 +231,12 @@
       NAME = #{record.name,jdbcType=VARCHAR},
       MOBILE = #{record.mobile,jdbcType=VARCHAR},
       EMAIL = #{record.email,jdbcType=VARCHAR},
+      PASSWORD = #{record.password,jdbcType=VARCHAR},
       USER_TYPE = #{record.userType,jdbcType=INTEGER},
       BALANCE = #{record.balance,jdbcType=INTEGER},
-      REG_TIME = #{record.regTime,jdbcType=TIMESTAMP}
+      REG_TIME = #{record.regTime,jdbcType=TIMESTAMP},
+      VERIFY_CODE = #{record.verifyCode,jdbcType=VARCHAR},
+      VERIFY_CODE_UPDATE_TIME = #{record.verifyCodeUpdateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -218,6 +253,9 @@
       <if test="email != null" >
         EMAIL = #{email,jdbcType=VARCHAR},
       </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
       <if test="userType != null" >
         USER_TYPE = #{userType,jdbcType=INTEGER},
       </if>
@@ -227,6 +265,12 @@
       <if test="regTime != null" >
         REG_TIME = #{regTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="verifyCode != null" >
+        VERIFY_CODE = #{verifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyCodeUpdateTime != null" >
+        VERIFY_CODE_UPDATE_TIME = #{verifyCodeUpdateTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
@@ -235,9 +279,12 @@
     set NAME = #{name,jdbcType=VARCHAR},
       MOBILE = #{mobile,jdbcType=VARCHAR},
       EMAIL = #{email,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
       USER_TYPE = #{userType,jdbcType=INTEGER},
       BALANCE = #{balance,jdbcType=INTEGER},
-      REG_TIME = #{regTime,jdbcType=TIMESTAMP}
+      REG_TIME = #{regTime,jdbcType=TIMESTAMP},
+      VERIFY_CODE = #{verifyCode,jdbcType=VARCHAR},
+      VERIFY_CODE_UPDATE_TIME = #{verifyCodeUpdateTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <select resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.UserExample" id="selectByExampleWithRowbounds" >

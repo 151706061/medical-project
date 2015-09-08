@@ -3,9 +3,9 @@ package com.medicalproj.web.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.medicalproj.common.domain.User;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
+import com.medicalproj.common.service.IAuthService;
 import com.medicalproj.common.service.IUserService;
 import com.medicalproj.web.dto.param.RegisterParam;
 import com.medicalproj.web.service.IWebAuthService;
@@ -14,38 +14,47 @@ import com.medicalproj.web.service.IWebAuthService;
 public class WebAuthServiceImpl extends WebBaseServiceImpl implements IWebAuthService {
 	@Autowired
 	private IUserService userService;
+	@Autowired
+	private IAuthService authService;
 	
 	@Override
 	public View<Boolean> login(String account, String password) throws ServiceException {
-		if( account == null ){
-			throw new ServiceException("«Î ‰»Î’ ∫≈");
-		}
+		View<Boolean> view = new View<Boolean>();
 		
-		if( password == null ){
-			throw new ServiceException("«Î ‰»Î√‹¬Î");
-		}
-		
-		User user = null;
-		user = userService.getByMobile(account);
-		if( user == null ){
+		try {
+			authService.login(account,password);
+			view.setData(true);
 			
-			user = userService.getByEmail(account);
-			
-			if( user == null ){
-				throw new ServiceException("’ ∫≈≤ª¥Ê‘⁄");
-			}
+			return view;
+		} catch (Exception e) {
+			view.setMsg(e.getMessage());
+			view.setData(false);
+			return view;
 		}
-		
-		//≈–∂œ√‹¬Î «∑Ò’˝»∑
-	
-		
-		return null;
 	}
 
 	@Override
 	public View<Boolean> reg(RegisterParam param) throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
+		View<Boolean> view = new View<Boolean>();
+		
+		try {
+			authService.reg(param);
+			view.setData(true);
+			
+			return view;
+		} catch (Exception e) {
+			view.setMsg(e.getMessage());
+			view.setData(false);
+			return view;
+		}
 	}
 
+	@Override
+	public void resetPwd(String mobile, String verifyCode, String newPassword)
+			throws ServiceException {
+		
+		authService.resetPassword(mobile,verifyCode,newPassword);
+	}
+
+	
 }

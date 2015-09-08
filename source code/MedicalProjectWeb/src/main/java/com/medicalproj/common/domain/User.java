@@ -11,11 +11,17 @@ public class User {
 
     private String email;
 
+    private String password;
+
     private Integer userType;
 
     private Integer balance;
 
     private Date regTime;
+
+    private String verifyCode;
+
+    private Date verifyCodeUpdateTime;
 
     public Integer getId() {
         return id;
@@ -49,6 +55,14 @@ public class User {
         this.email = email == null ? null : email.trim();
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
     public Integer getUserType() {
         return userType;
     }
@@ -71,5 +85,21 @@ public class User {
 
     public void setRegTime(Date regTime) {
         this.regTime = regTime;
+    }
+
+    public String getVerifyCode() {
+        return verifyCode;
+    }
+
+    public void setVerifyCode(String verifyCode) {
+        this.verifyCode = verifyCode == null ? null : verifyCode.trim();
+    }
+
+    public Date getVerifyCodeUpdateTime() {
+        return verifyCodeUpdateTime;
+    }
+
+    public void setVerifyCodeUpdateTime(Date verifyCodeUpdateTime) {
+        this.verifyCodeUpdateTime = verifyCodeUpdateTime;
     }
 }

@@ -10,7 +10,7 @@ import com.medicalproj.web.util.Constants;
 public class WebBaseController {
 	protected Logger logger = Logger.getLogger(this.getClass());
 	
-	protected User getLoginUserId(HttpSession session){
+	protected User getLoginUser(HttpSession session){
 		Object obj = session.getAttribute(Constants.SESSION_KEY_LOGIN_USER_ID);
 		if( obj != null ){
 			return (User)obj;

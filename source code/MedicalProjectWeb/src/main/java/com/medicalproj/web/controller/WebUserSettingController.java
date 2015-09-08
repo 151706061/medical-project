@@ -21,7 +21,7 @@ public class WebUserSettingController extends WebCommonController{
 	@RequestMapping("/getMySetting")
 	@ResponseBody
 	public View<SettingView> getMySetting(HttpSession session){
-		User user = this.getLoginUserId(session);
+		User user = this.getLoginUser(session);
 		
 		return webUserSettingService.getSettingByUserId(user.getId());
 	}
@@ -29,7 +29,7 @@ public class WebUserSettingController extends WebCommonController{
 	@RequestMapping("/saveMySetting")
 	@ResponseBody
 	public View<Boolean> saveMySetting(@ModelAttribute("param")SettingSaveParam param,HttpSession session){
-		User user = this.getLoginUserId(session);
+		User user = this.getLoginUser(session);
 		
 		return webUserSettingService.saveSettingByUserId(user.getId(),param);
 	}

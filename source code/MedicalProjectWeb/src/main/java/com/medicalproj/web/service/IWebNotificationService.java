@@ -6,6 +6,6 @@ import com.medicalproj.web.dto.view.NotificationListView;
 
 public interface IWebNotificationService {
 
-	View<NotificationListView> listNotification(Integer loginUserId)throws ServiceException;
+	View<NotificationListView> listNotification(Integer loginUserId, Integer page, Integer pageSize)throws ServiceException;
 
 }
