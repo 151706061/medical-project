@@ -2,6 +2,9 @@ package com.medicalproj.common.service.impl;
 
 import java.util.Date;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +31,7 @@ public class AuthServiceImpl implements IAuthService {
 				throw new ServiceException("请输入密码");
 			}
 			
+			Subject currentUser = SecurityUtils.getSubject();
 			User user = null;
 			user = userService.getByMobile(account);
 			if( user == null ){
@@ -41,6 +45,10 @@ public class AuthServiceImpl implements IAuthService {
 			
 			if( user.getPassword() != null && user.getPassword().equals(password) ){
 				//登录成功
+				UsernamePasswordToken token = new UsernamePasswordToken(account, password);
+				token.setRememberMe(true);
+				currentUser.login(token);
+				
 				return;
 			}else{
 				throw new ServiceException("帐号或密码不正确");
@@ -50,7 +58,7 @@ public class AuthServiceImpl implements IAuthService {
 		}
 	}
 
-	@Override
+	/*@Override
 	public void reg(RegisterParam param) throws ServiceException {
 		try {
 			if( param == null ){
@@ -64,6 +72,7 @@ public class AuthServiceImpl implements IAuthService {
 			}else if( param.getVerifyCode() == null ){
 				throw new ServiceException("请输入验证码");
 			}
+			
 			User user = userService.getByEmail(param.getEmail());
 			if( user != null ){
 				throw new ServiceException("邮箱已注册");
@@ -89,8 +98,47 @@ public class AuthServiceImpl implements IAuthService {
 		} catch (Exception e) {
 			throw new ServiceException(e.getMessage(),e);
 		}
-	}
+	}*/
 
+	@Override
+	public void reg(RegisterParam param) throws ServiceException {
+		try {
+			if( param == null ){
+				throw new ServiceException("参数错误");
+			}else if( param.getEmail() == null ){
+				throw new ServiceException("请输入邮箱");
+			}else if( param.getMobile() == null ){
+				throw new ServiceException("请输入手机号");
+			}else if( param.getPassword() == null ){
+				throw new ServiceException("请输入密码");
+			}
+			
+			User user = userService.getByEmail(param.getEmail());
+			if( user != null ){
+				throw new ServiceException("邮箱已注册");
+			}
+			
+			user = userService.getByMobile(param.getMobile());
+			if( user == null ){
+				user = new User();
+			}else{
+				if( user.getRegTime() != null ){
+					throw new ServiceException("手机号已经注册");
+				}
+			}
+			
+			user.setUserType(Constants.USER_TYPE_USER);
+			user.setBalance(0);
+			user.setEmail(param.getEmail());
+			user.setMobile(param.getMobile());
+			user.setPassword(param.getPassword());
+			user.setRegTime(new Date());
+			userService.saveOrUpdate(user);
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage(),e);
+		}
+	}
+	
 	@Override
 	public void resetPassword(String mobile, String verifyCode,
 			String newPassword) throws ServiceException {

@@ -216,3 +216,6 @@ nav li.dropdown a .badge{
 		padding-left:10px;
 	}
 }
+
+.modal-body {
+	padding:15px;

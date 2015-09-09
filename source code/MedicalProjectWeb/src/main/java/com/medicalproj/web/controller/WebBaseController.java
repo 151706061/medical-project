@@ -11,7 +11,7 @@ public class WebBaseController {
 	protected Logger logger = Logger.getLogger(this.getClass());
 	
 	protected User getLoginUser(HttpSession session){
-		Object obj = session.getAttribute(Constants.SESSION_KEY_LOGIN_USER_ID);
+		Object obj = session.getAttribute(Constants.SESSION_KEY_LOGIN_USER);
 		if( obj != null ){
 			return (User)obj;
 		}

@@ -2,6 +2,7 @@ package com.medicalproj.common.service.impl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import com.medicalproj.common.service.IUserService;
 
 @Service
 public class UserServiceImpl implements IUserService {
+	private Logger logger = Logger.getLogger(this.getClass());
 	@Autowired
 	private UserMapper userMapper;
 
@@ -97,7 +99,30 @@ public class UserServiceImpl implements IUserService {
 		}
 		
 	}
-	
-	
+
+	@Override
+	public User getByMobileOrEmail(String account) throws ServiceException {
+		try {
+			if( account == null ){
+				throw new ServiceException("帐号不能为空");
+			}
+			String mobile = account;
+			User user = this.getByMobile(mobile);
+			if( user != null ){
+				return user;
+			}
+			
+			String email = account;
+			user = this.getByEmail(email);
+			if( user != null ){
+				return user;
+			}
+			
+			return null;
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+			throw new ServiceException(e.getMessage(),e);
+		}
+	}
 	
 }

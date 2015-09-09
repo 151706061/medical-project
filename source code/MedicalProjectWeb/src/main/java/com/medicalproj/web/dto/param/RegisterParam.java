@@ -1,11 +1,19 @@
 package com.medicalproj.web.dto.param;
 
 public class RegisterParam {
+	private Integer userType;
 	private String userName;
 	private String mobile;
 	private String email;
 	private String password;
 	private String verifyCode;
+	
+	public Integer getUserType() {
+		return userType;
+	}
+	public void setUserType(Integer userType) {
+		this.userType = userType;
+	}
 	public String getUserName() {
 		return userName;
 	}

@@ -13,4 +13,6 @@ public interface IUserService {
 
 	void saveOrUpdate(User user)throws ServiceException;
 
+	User getByMobileOrEmail(String account)throws ServiceException;
+
 }

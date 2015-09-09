@@ -16,25 +16,27 @@
 	<body>
 	<div class="container">
 
-		<form class="form-signin">
+		<form class="form-signin" id="loginForm">
 			<h2 class="form-signin-heading">登录</h2>
-			<label for="inputAccount" class="sr-only">帐号</label> <input
+			<label for="inputAccount" class="sr-only">帐号</label> 
+			<input name="account"
 				type="text" id="inputAccount" class="form-control"
 				placeholder="请输入邮箱或手机号" required autofocus> 
 			<label
 				for="inputPassword" class="sr-only">密码</label> 
-			<input
+			<input name="password"
 				type="password" id="inputPassword" class="form-control"
 				placeholder="请输入密码" required>
 			<div class="forget-password pull-right">
 				<a href="#" class="text-muted">忘记密码?</a>
 			</div>
-			<button class="btn btn-lg btn-success btn-block" type="submit">登录</button>
+			<button id="loginBtn" class="btn btn-lg btn-success btn-block" type="submit">登录</button>
 		</form>
 
 	</div>
 	<!-- /container -->
 
 	<%@include file="/modules/web/include/common-footer.jsp" %>
+	<script src='<c:url value="/modules/web/assets/js/login.js"/>'></script>
 	</body>
 </html>
