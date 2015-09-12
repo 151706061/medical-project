@@ -16,7 +16,7 @@ import com.medicalproj.common.service.IUserService;
 public class UserServiceImpl implements IUserService {
 	private Logger logger = Logger.getLogger(this.getClass());
 	@Autowired
-	private UserMapper userMapper;
+	private UserMapper mapper;
 
 	@Override
 	public User getByMobile(String mobile) throws ServiceException {
@@ -25,7 +25,7 @@ public class UserServiceImpl implements IUserService {
 			UserExample.Criteria c = example.createCriteria();
 			c.andMobileEqualTo(mobile);
 			
-			List<User> ulist = userMapper.selectByExample(example);
+			List<User> ulist = mapper.selectByExample(example);
 			if ( ulist != null && ulist.size() > 0){
 				return ulist.get(0);
 			}
@@ -42,7 +42,7 @@ public class UserServiceImpl implements IUserService {
 			UserExample.Criteria c = example.createCriteria();
 			c.andEmailEqualTo(email);
 			
-			List<User> ulist = userMapper.selectByExample(example);
+			List<User> ulist = mapper.selectByExample(example);
 			if ( ulist != null && ulist.size() > 0){
 				return ulist.get(0);
 			}
@@ -90,9 +90,9 @@ public class UserServiceImpl implements IUserService {
 			}
 			
 			if( user.getId() == null ){
-				userMapper.insertSelective(user);
+				mapper.insertSelective(user);
 			}else{
-				userMapper.updateByPrimaryKeySelective(user);
+				mapper.updateByPrimaryKeySelective(user);
 			}
 		} catch (Exception e) {
 			throw new ServiceException(e.getMessage(),e);
@@ -124,5 +124,12 @@ public class UserServiceImpl implements IUserService {
 			throw new ServiceException(e.getMessage(),e);
 		}
 	}
+
+	@Override
+	public User getById(Integer userId) throws ServiceException {
+		return mapper.selectByPrimaryKey(userId);
+	}
+	
+	
 	
 }

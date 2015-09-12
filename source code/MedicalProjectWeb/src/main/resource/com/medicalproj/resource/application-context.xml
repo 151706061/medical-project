@@ -114,11 +114,12 @@
 	            #/docs/** = authc, perms[document:read]
 	            #/** = authc
 	            # more URL-to-FilterChain definitions here
-	            /modules/web/user/** = anon
 	            /modules/web/login.jsp = anon
+	            /modules/web/register.jsp = anon
 	            /modules/web/index.jsp = anon
 	            /modules/web/assets/** = anon
-	            /** = anon
+	            /web/auth/** = anon
+	            /** = authc
 	        </value>
 	    </property>
 	</bean>

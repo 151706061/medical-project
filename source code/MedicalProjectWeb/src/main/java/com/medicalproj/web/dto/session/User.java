@@ -8,6 +8,7 @@ public class User {
     private String mobile;
     private String email;
     private Integer userType;
+    private String userTypeStr;
     private Integer balance;
     private Date regTime;
 	public Integer getId() {
@@ -51,5 +52,11 @@ public class User {
 	}
 	public void setRegTime(Date regTime) {
 		this.regTime = regTime;
+	}
+	public String getUserTypeStr() {
+		return userTypeStr;
+	}
+	public void setUserTypeStr(String userTypeStr) {
+		this.userTypeStr = userTypeStr;
 	}
 }

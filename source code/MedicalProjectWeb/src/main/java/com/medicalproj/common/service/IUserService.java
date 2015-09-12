@@ -15,4 +15,6 @@ public interface IUserService {
 
 	User getByMobileOrEmail(String account)throws ServiceException;
 
+	User getById(Integer userId)throws ServiceException;
+
 }

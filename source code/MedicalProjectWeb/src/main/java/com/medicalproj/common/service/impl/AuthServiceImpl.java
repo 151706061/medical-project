@@ -127,6 +127,7 @@ public class AuthServiceImpl implements IAuthService {
 				}
 			}
 			
+			user.setName(param.getUserName());
 			user.setUserType(Constants.USER_TYPE_USER);
 			user.setBalance(0);
 			user.setEmail(param.getEmail());
@@ -168,6 +169,12 @@ public class AuthServiceImpl implements IAuthService {
 			throw new ServiceException(e.getMessage(),e);
 		}
 		
+	}
+
+	@Override
+	public void logout() throws ServiceException {
+		Subject subject = SecurityUtils.getSubject();
+		subject.logout();
 	}
 
 	

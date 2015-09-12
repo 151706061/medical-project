@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IAuthService;
+import com.medicalproj.common.service.INotificationService;
 import com.medicalproj.common.service.IUserService;
+import com.medicalproj.common.util.MappingHelper;
 import com.medicalproj.web.dto.param.RegisterParam;
 import com.medicalproj.web.dto.session.User;
 import com.medicalproj.web.service.IWebAuthService;
@@ -15,6 +17,10 @@ import com.medicalproj.web.service.IWebAuthService;
 public class WebAuthServiceImpl extends WebBaseServiceImpl implements IWebAuthService {
 	@Autowired
 	private IUserService userService;
+	
+	@Autowired
+	private INotificationService notificationService;
+	
 	@Autowired
 	private IAuthService authService;
 	
@@ -61,6 +67,8 @@ public class WebAuthServiceImpl extends WebBaseServiceImpl implements IWebAuthSe
 			sessionUser.setName(user.getName());
 			sessionUser.setRegTime(user.getRegTime());
 			sessionUser.setUserType(user.getUserType());
+			sessionUser.setUserTypeStr(MappingHelper.getUserTypeValueByCode(user.getUserType()));
+			
 			return sessionUser;
 		}
 		return null;

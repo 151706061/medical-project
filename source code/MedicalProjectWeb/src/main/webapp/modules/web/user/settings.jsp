@@ -23,45 +23,52 @@
                 <div class="padding">
                     <div class="full col-sm-12">
 						<div class="page-header">
-						  <h1>我的设置<small></small></h1>
+						  <h1>我的设置 <small></small></h1>
 						</div>
 						
 						<div class="col-sm-8" id="settings-wrap">
 				
-							<form class="form-horizontal">
+							<form class="form-horizontal" id="settingForm">
 								<div class="form-group">
 									<label for="inputUserName" class="col-sm-2 control-label">姓名</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" id="inputUserName"
-											placeholder="姓名">
+										<input type="text" name="userName" class="form-control" id="inputUserName"
+											placeholder="姓名" value="${settings.userName }">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="inputMobile" class="col-sm-2 control-label">手机号</label>
 									<div class="col-sm-10">
-										<input type="tel" class="form-control"
-											id="inputMobile" placeholder="手机号">
+										<input type="tel" name="mobile" class="form-control"
+											id="inputMobile" placeholder="手机号" value="${settings.mobile }">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
 									<div class="col-sm-10">
-										<input type="email" class="form-control" id="inputEmail"
-											placeholder="邮箱">
+										<input type="email" name="email" class="form-control" id="inputEmail"
+											placeholder="邮箱" value="${settings.email }">
 									</div>
 								</div>
 								
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
 										<div class="checkbox">
-											<label> <input type="checkbox">  有新消息时，是否短信/邮件通知
+											<label> 
+												<input type="checkbox" name="receiveNotification"
+													<c:if test="${settings.isReceiveNotification == 1}">
+														checked
+													</c:if>
+													<c:if test="${empty settings.isReceiveNotification || settings.isReceiveNotification != 1}">
+													</c:if>
+												 />  有新消息时，是否短信/邮件通知
 											</label>
 										</div>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
-										<button type="submit" class="btn btn-success">保存设置</button>
+										<button type="submit" class="btn btn-success" id="saveSettingBtn">保存设置</button>
 									</div>
 								</div>
 							</form>
@@ -105,5 +112,6 @@
   </div>
 </div>
 	<%@include file="/modules/web/include/common-footer.jsp" %>
+	<script src='<c:url value="/modules/web/assets/js/settings.js"/>'></script>
 	</body>
 </html>

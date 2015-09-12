@@ -1,10 +1,17 @@
-package com.medicalproj.web.dto.param;
+package com.medicalproj.common.dto.view;
 
-public class SettingSaveParam {
+public class UserSettingView {
+	private Integer userId;
 	private String userName;
 	private String mobile;
 	private String email;
-	private boolean isReceiveNotification;
+	private Integer isReceiveNotification;
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 	public String getUserName() {
 		return userName;
 	}
@@ -23,12 +30,11 @@ public class SettingSaveParam {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public boolean isReceiveNotification() {
+	public Integer getIsReceiveNotification() {
 		return isReceiveNotification;
 	}
-	public void setReceiveNotification(boolean isReceiveNotification) {
+	public void setIsReceiveNotification(Integer isReceiveNotification) {
 		this.isReceiveNotification = isReceiveNotification;
 	}
-	
 	
 }

@@ -11,4 +11,7 @@ public class Constants {
 	public static final Integer USER_TYPE_SENIOR_DOCTOR = 3;
 	public static final Integer USER_TYPE_ENTERPRISE_USER = 4;
 
+	public static final Integer NOTIFICATION_IS_READ_FALSE = 0;
+	public static final Integer NOTIFICATION_IS_READ_TRUE = 1;
+
 }

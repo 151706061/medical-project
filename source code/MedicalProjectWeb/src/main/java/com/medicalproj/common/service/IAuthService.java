@@ -11,5 +11,7 @@ public interface IAuthService {
 
 	void resetPassword(String mobile, String verifyCode, String newPassword)throws ServiceException;
 
+	void logout()throws ServiceException;
+
 
 }

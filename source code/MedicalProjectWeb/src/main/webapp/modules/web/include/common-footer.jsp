@@ -5,7 +5,7 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
     	<div class="modal-header">
-    	注册
+    	提示
     	</div>
     	<div class="modal-body">
     	
@@ -22,3 +22,11 @@
 <script src='<c:url value="/modules/web/assets/libs/jquery/jquery-1.11.3.min.js"/>'></script>
 <script src='<c:url value="/modules/web/assets/libs/bootstrap-3.3.5/js/bootstrap.js"/>'></script>
 <script src='<c:url value="/modules/web/assets/js/fbscripts.js"/>'></script>
+<script src='<c:url value="/modules/web/assets/js/script.js"/>'></script>
+<script>
+$(function(){
+	commonObj.loadUserInfo();
+	commonObj.getUnreadNotificationCount();
+});
+
+</script>

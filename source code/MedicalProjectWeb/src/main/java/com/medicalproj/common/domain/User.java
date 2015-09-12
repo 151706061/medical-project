@@ -23,6 +23,8 @@ public class User {
 
     private Date verifyCodeUpdateTime;
 
+    private Integer isReceiveNotification;
+
     public Integer getId() {
         return id;
     }
@@ -101,5 +103,13 @@ public class User {
 
     public void setVerifyCodeUpdateTime(Date verifyCodeUpdateTime) {
         this.verifyCodeUpdateTime = verifyCodeUpdateTime;
+    }
+
+    public Integer getIsReceiveNotification() {
+        return isReceiveNotification;
+    }
+
+    public void setIsReceiveNotification(Integer isReceiveNotification) {
+        this.isReceiveNotification = isReceiveNotification;
     }
 }

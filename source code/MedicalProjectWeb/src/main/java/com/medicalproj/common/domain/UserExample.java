@@ -754,6 +754,66 @@ public class UserExample {
             addCriterion("VERIFY_CODE_UPDATE_TIME not between", value1, value2, "verifyCodeUpdateTime");
             return (Criteria) this;
         }
+
+        public Criteria andIsReceiveNotificationIsNull() {
+            addCriterion("IS_RECEIVE_NOTIFICATION is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReceiveNotificationIsNotNull() {
+            addCriterion("IS_RECEIVE_NOTIFICATION is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReceiveNotificationEqualTo(Integer value) {
+            addCriterion("IS_RECEIVE_NOTIFICATION =", value, "isReceiveNotification");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReceiveNotificationNotEqualTo(Integer value) {
+            addCriterion("IS_RECEIVE_NOTIFICATION <>", value, "isReceiveNotification");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReceiveNotificationGreaterThan(Integer value) {
+            addCriterion("IS_RECEIVE_NOTIFICATION >", value, "isReceiveNotification");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReceiveNotificationGreaterThanOrEqualTo(Integer value) {
+            addCriterion("IS_RECEIVE_NOTIFICATION >=", value, "isReceiveNotification");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReceiveNotificationLessThan(Integer value) {
+            addCriterion("IS_RECEIVE_NOTIFICATION <", value, "isReceiveNotification");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReceiveNotificationLessThanOrEqualTo(Integer value) {
+            addCriterion("IS_RECEIVE_NOTIFICATION <=", value, "isReceiveNotification");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReceiveNotificationIn(List<Integer> values) {
+            addCriterion("IS_RECEIVE_NOTIFICATION in", values, "isReceiveNotification");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReceiveNotificationNotIn(List<Integer> values) {
+            addCriterion("IS_RECEIVE_NOTIFICATION not in", values, "isReceiveNotification");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReceiveNotificationBetween(Integer value1, Integer value2) {
+            addCriterion("IS_RECEIVE_NOTIFICATION between", value1, value2, "isReceiveNotification");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReceiveNotificationNotBetween(Integer value1, Integer value2) {
+            addCriterion("IS_RECEIVE_NOTIFICATION not between", value1, value2, "isReceiveNotification");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

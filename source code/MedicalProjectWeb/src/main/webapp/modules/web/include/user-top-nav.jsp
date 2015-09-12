@@ -32,8 +32,11 @@
                       </li>
                     </ul> --%>
 		<ul class="nav navbar-nav navbar-right">
-			<li class="dropdown"><a href='<c:url value="/modules/web/user/notification.jsp"/>'><i
-					class="glyphicon glyphicon-envelope"></i><span class="badge">3</span></a>
+			<li class="dropdown">
+			<a href='<c:url value="/modules/web/user/notification.jsp"/>'>
+				<i class="glyphicon glyphicon-envelope"></i>
+				<span class="badge unread-notification-count" id='notification-cnt'></span>
+			</a>
 				<%-- <ul class="dropdown-menu">
                           <li><a href="javascript:void(0)"><i class="glyphicon glyphicon-cog"></i>我的设置</a></li>
                           <li><a href="javascript:void(0)"><i class="glyphicon glyphicon-off"></i>退出</a></li>
@@ -41,10 +44,13 @@
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
 				<ul class="dropdown-menu">
-					<li><a href='<c:url value="/modules/web/user/settings.jsp"/>'><i
+					<li><a href='<c:url value="/web/setting/settings.do"/>'><i
 							class="glyphicon glyphicon-cog"></i>我的设置</a></li>
-					<li><a href="javascript:void(0)"><i
-							class="glyphicon glyphicon-off"></i>退出</a></li>
+					<li>
+						<a class="logout" href='<c:url value="/web/common/logout.do" />'>
+							<i class="glyphicon glyphicon-off"></i>退出
+						</a>
+					</li>
 				</ul></li>
 		</ul>
 	</nav>

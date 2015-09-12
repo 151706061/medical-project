@@ -9,12 +9,12 @@
 	</ul>
    
    <div class="column-sm-12 userinfo-col hidden-xs">
-   		<div class="userinfo">
-   			<div><img class="user-head" src='<c:url value="/modules/web/assets/img/head.png"/>'> <h3 class="username">王力宏</h3> </div> 
+   		<div class="userinfo" id="user-info-wrap">
+   			<div><img class="user-head" src='<c:url value="/modules/web/assets/img/head.png"/>'> <h3 class="username"></h3> </div> 
    			<ul class="list-unstyled user-info-extra">
-   				<li>普通用户</li>
-   				<li>14782394091</li>
-   				<li>xinem@126.com</li>
+   				<li class="usertype"></li>
+   				<li class="mobile"></li>
+   				<li class="email"></li>
    			</ul>
    		</div>
    </div>

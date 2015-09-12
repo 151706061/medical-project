@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.medicalproj.common.dto.view.UserSettingView;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.web.dto.session.User;
 import com.medicalproj.web.service.IWebCommonService;
@@ -17,12 +18,12 @@ import com.medicalproj.web.util.Constants;
 @Controller
 public class WebCommonController extends WebBaseController{
 	@Autowired
-	private IWebCommonService commonService;
+	private IWebCommonService webCommonService;
 	
 	@RequestMapping("/getMobileVerifyCode")
 	@ResponseBody
 	public View<Boolean> getMobileVerifyCode(String mobile){
-		return commonService.getMobileVerifyCode(mobile);
+		return webCommonService.getMobileVerifyCode(mobile);
 	}
 	
 	/**
@@ -48,4 +49,30 @@ public class WebCommonController extends WebBaseController{
 			return null;
 		}
 	}
+	
+	@RequestMapping("/getLoginUserInfo")
+	@ResponseBody
+	public View<User> getLoginUserInfo(HttpSession session){
+		View<User> view = new View<User>();
+		User user = super.getLoginUser(session);
+		view.setData(user);
+		return view;
+	}
+	
+	@RequestMapping("/getUnreadNotificationCount")
+	@ResponseBody
+	public View<Integer> getUnreadNotificationCount(HttpSession session){
+		User user = super.getLoginUser(session);
+		View<Integer> view = webCommonService.getUnreadNotificaitonCount(user.getId());
+		return view;
+	}
+	
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpSession session){
+		ModelAndView mav = new ModelAndView("redirect:/modules/web/login.jsp");
+		User user = super.getLoginUser(session);
+		webCommonService.logout();
+		return mav;
+	}
+	
 }

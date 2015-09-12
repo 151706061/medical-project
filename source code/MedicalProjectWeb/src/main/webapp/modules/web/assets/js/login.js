@@ -4,10 +4,9 @@ $(document).ready(function(){
 	$loginForm.submit(function() {
 		var account = $('#inputAccount').val();
 		var password = $('#inputPassword').val();
-		
 		// 异步提交表单
 		jQuery.ajax({
-			url: appContext + '/web/auth/login.do',
+			url: appContext + 'web/auth/login.do',
 			data: $loginForm.serialize(),
 			type:"POST",
 			beforeSend:function()
