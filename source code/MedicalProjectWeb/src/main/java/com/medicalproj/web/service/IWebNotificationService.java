@@ -8,4 +8,6 @@ public interface IWebNotificationService {
 
 	View<NotificationListView> listNotification(Integer loginUserId, Integer page, Integer pageSize)throws ServiceException;
 
+	View<Boolean> doReadNotification(Integer notificationId)throws ServiceException;
+
 }

@@ -26,88 +26,6 @@
 						  <h1>我的消息 <small></small></h1>
 						</div>
                      	<div id="my-notification-wrap">
-	                     	<ul class="list-unstyled" id="notification-list-ul"> 
-	                     		<li>
-	                     			<div>
-		                     			<h5>您的请求[胸腔 3张]已诊断完成，可以去支付并查看诊断报告了。</h5>
-	                     				<div>
-	                     					<span>2015-08-20 12:33</span>
-	                     					<span class="label label-default">已读</span>
-	                     				</div>
-	                     			</div>
-	                     			
-	                     		</li>
-	                     		<li>
-	                     			<div>
-		                     			<h5>您的请求[胸腔 3张]已诊断完成，可以去支付并查看诊断报告了。</h5>
-	                     				<div>
-	                     					<span>2015-08-20 12:33</span>
-	                     					<span class="label label-success">未读</span>
-	                     				</div>
-	                     			</div>
-	                     			
-	                     		</li>
-	                     		<li>
-	                     			<div>
-		                     			<h5>您的请求[胸腔 3张]已诊断完成，可以去支付并查看诊断报告了。</h5>
-	                     				<div>
-	                     					<span>2015-08-20 12:33</span>
-	                     					<span class="label label-success">未读</span>
-	                     				</div>
-	                     			</div>
-	                     			
-	                     		</li>
-	                     		<li>
-	                     			<div>
-		                     			<h5>您的请求[胸腔 3张]已诊断完成，可以去支付并查看诊断报告了。</h5>
-	                     				<div>
-	                     					<span>2015-08-20 12:33</span>
-	                     					<span class="label label-success">未读</span>
-	                     				</div>
-	                     			</div>
-	                     			
-	                     		</li>
-	                     		<li>
-	                     			<div>
-		                     			<h5>您的请求[胸腔 3张]已诊断完成，可以去支付并查看诊断报告了。</h5>
-	                     				<div>
-	                     					<span>2015-08-20 12:33</span>
-	                     					<span class="label label-success">未读</span>
-	                     				</div>
-	                     			</div>
-	                     			
-	                     		</li>
-	                     		<li>
-	                     			<div>
-		                     			<h5>您的请求[胸腔 3张]已诊断完成，可以去支付并查看诊断报告了。</h5>
-	                     				<div>
-	                     					<span>2015-08-20 12:33</span>
-	                     					<span class="label label-default">已读</span>
-	                     				</div>
-	                     			</div>
-	                     			
-	                     		</li>
-	                     		<li>
-	                     			<div>
-		                     			<h5>您的请求[胸腔 3张]已诊断完成，可以去支付并查看诊断报告了。</h5>
-	                     				<div>
-	                     					<span>2015-08-20 12:33</span>
-	                     					<span class="label label-default">已读</span>
-	                     				</div>
-	                     			</div>
-	                     			
-	                     		</li>
-	                     		<li>
-	                     			<div>
-		                     			<h5>您的请求[胸腔 3张]已诊断完成，可以去支付并查看诊断报告了。</h5>
-	                     				<div> 
-	                     					<span>2015-08-20 12:33</span>
-	                     					<span class="label label-default">已读</span>
-	                     				</div>
-	                     			</div>
-	                     			
-	                     		</li>
-	                     	</ul>
 							
                      	</div>
                      
@@ -133,8 +51,24 @@
     </div>
 </div>
 
+	
+	<script id="notificationTmpl" type="x-tmpl-mustache">
+	<ul class="list-unstyled" id="notification-list-ul">
+		{{#notifications}}
+		<li data-notification-id="{{notificationId}}">
+			<div>
+				<h5>{{content}}</h5>
+				<div>
+					<span>{{sendTime}}</span> <span class="label label-success read-status">{{readStatus}}</span>
+				</div>
+			</div>
+
+		</li>
+		{{/notifications}}
+
+	</ul>
+	</script>
 	<%@include file="/modules/web/include/common-footer.jsp" %>
 	<script src='<c:url value="/modules/web/assets/js/notification.js"/>'></script>
-	
 	</body>
 </html>
