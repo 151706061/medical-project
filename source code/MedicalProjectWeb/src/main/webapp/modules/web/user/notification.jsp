@@ -134,5 +134,7 @@
 </div>
 
 	<%@include file="/modules/web/include/common-footer.jsp" %>
+	<script src='<c:url value="/modules/web/assets/js/notification.js"/>'></script>
+	
 	</body>
 </html>
