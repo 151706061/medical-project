@@ -86,6 +86,9 @@
 		<!-- View -->
 		<table tableName="vw_notification" domainObjectName="NotificationView">
 		</table>
+		
+		<table tableName="vw_transaction" domainObjectName="TransactionView">
+		</table>
 
 	</context>
 </generatorConfiguration>

@@ -1,0 +1,59 @@
+-- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+--
+-- Host: localhost    Database: medicaldb
+-- ------------------------------------------------------
+-- Server version	5.6.26-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `tbl_transaction`
+--
+
+DROP TABLE IF EXISTS `tbl_transaction`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_transaction` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `TRANS_ID` varchar(100) DEFAULT NULL,
+  `PAY_PLATFORM_TRANS_ID` varchar(100) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL COMMENT '交易状态:1 待审核  2 交易成功 3交易失败 4审核通过 5审核未通过',
+  `TYPE` int(11) DEFAULT NULL COMMENT '交易类型：1充值 2消费',
+  `AMOUNT` int(11) DEFAULT NULL COMMENT '交易金额',
+  `DESC` varchar(200) DEFAULT NULL,
+  `REMARK` varchar(200) DEFAULT NULL,
+  `OWNER_USER_ID` int(11) DEFAULT NULL,
+  `PAY_PLATFORM_TYPE` int(11) DEFAULT NULL COMMENT '支付平台类型：1 支付宝 2网银 3帐户余额 4企业账户余额',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_transaction`
+--
+
+LOCK TABLES `tbl_transaction` WRITE;
+/*!40000 ALTER TABLE `tbl_transaction` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_transaction` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-09-12 22:33:01
