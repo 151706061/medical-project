@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.web.dto.session.User;
-import com.medicalproj.web.dto.view.NotificationListView;
-import com.medicalproj.web.service.IWebNotificationService;
+import com.medicalproj.web.dto.view.UserAuthorizeListView;
+import com.medicalproj.web.service.IWebEnterpriseUserManageService;
 
 @RequestMapping("/web/enterprise/userManage")
 @Controller
 public class WebEnterpriseUserManageController extends WebBaseController {
 	@Autowired
-	private IWebNotificationService webNotificationService;
+	private IWebEnterpriseUserManageService webEnterpriseUserManageService;
 	
-	@RequestMapping("/listUser")
+	@RequestMapping("/listAuthorizeUser")
 	@ResponseBody
-	public View<UserListView> listNotification(Integer page,Integer pageSize,HttpSession session){
+	public View<UserAuthorizeListView> listAuthorizeUser(Integer page,Integer pageSize,HttpSession session){
 		User user = super.getLoginUser(session);
-		View<NotificationListView> view = webNotificationService.listNotification(user.getId(),page,pageSize);
+		View<UserAuthorizeListView> view = webEnterpriseUserManageService.listAuthorizeUser(user.getId(),page,pageSize);
 		
 		return view;
 	}

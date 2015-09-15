@@ -3,6 +3,8 @@
 	var pageSize = 10;
 	$(function(){
 		UserManageModule.listUser(page,pageSize,function(result){
+			
+			console.log(result);
 			if( result && result.data && result.data.notifications && result.data.notifications.length > 0 ){
 				var template = $('#notificationTmpl').html();
 				Mustache.parse(template);  
@@ -30,7 +32,7 @@
 		return {
 			listUser:function(page,pageSize,successFn){
 				$.ajax({
-					url: appContext + 'web/notification/listNotification.do',
+					url: appContext + '/web/enterprise/userManage/listAuthorizeUser.do',
 					data: {
 						page: page,
 						pageSize: pageSize
