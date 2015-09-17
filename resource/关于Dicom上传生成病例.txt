@@ -1,0 +1,9 @@
+上传中断后继续传，后台上传，病例组织，study desc ri ption部位
+
+---------------
+
+1.存储Study Description 值，代表部位
+2.页面无刷新，上传图片可以后台上传
+3.上传中断后，下次上传可以继续之前未完成的
+4.病例的组织：
+一个病人生成一个病例，一个病例可以根据study id（Study ID）分成多个study，一个study下可以有多个series，一个series下有多个instance 
