@@ -2,6 +2,8 @@ package com.medicalproj.web.dto.view;
 
 import java.util.List;
 
+import com.medicalproj.common.domain.AuthorizeUserView;
+
 public class UserAuthorizeListView {
 	private List<AuthorizeUserView> users;
 	private PagerView pager;

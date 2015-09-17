@@ -1,7 +1,6 @@
 package com.medicalproj.common.domain;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class TransactionViewExample {
@@ -232,66 +231,6 @@ public class TransactionViewExample {
 
         public Criteria andTransTimeNotBetween(String value1, String value2) {
             addCriterion("TRANS_TIME not between", value1, value2, "transTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andTransTimeOriginIsNull() {
-            addCriterion("TRANS_TIME_ORIGIN is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTransTimeOriginIsNotNull() {
-            addCriterion("TRANS_TIME_ORIGIN is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTransTimeOriginEqualTo(Date value) {
-            addCriterion("TRANS_TIME_ORIGIN =", value, "transTimeOrigin");
-            return (Criteria) this;
-        }
-
-        public Criteria andTransTimeOriginNotEqualTo(Date value) {
-            addCriterion("TRANS_TIME_ORIGIN <>", value, "transTimeOrigin");
-            return (Criteria) this;
-        }
-
-        public Criteria andTransTimeOriginGreaterThan(Date value) {
-            addCriterion("TRANS_TIME_ORIGIN >", value, "transTimeOrigin");
-            return (Criteria) this;
-        }
-
-        public Criteria andTransTimeOriginGreaterThanOrEqualTo(Date value) {
-            addCriterion("TRANS_TIME_ORIGIN >=", value, "transTimeOrigin");
-            return (Criteria) this;
-        }
-
-        public Criteria andTransTimeOriginLessThan(Date value) {
-            addCriterion("TRANS_TIME_ORIGIN <", value, "transTimeOrigin");
-            return (Criteria) this;
-        }
-
-        public Criteria andTransTimeOriginLessThanOrEqualTo(Date value) {
-            addCriterion("TRANS_TIME_ORIGIN <=", value, "transTimeOrigin");
-            return (Criteria) this;
-        }
-
-        public Criteria andTransTimeOriginIn(List<Date> values) {
-            addCriterion("TRANS_TIME_ORIGIN in", values, "transTimeOrigin");
-            return (Criteria) this;
-        }
-
-        public Criteria andTransTimeOriginNotIn(List<Date> values) {
-            addCriterion("TRANS_TIME_ORIGIN not in", values, "transTimeOrigin");
-            return (Criteria) this;
-        }
-
-        public Criteria andTransTimeOriginBetween(Date value1, Date value2) {
-            addCriterion("TRANS_TIME_ORIGIN between", value1, value2, "transTimeOrigin");
-            return (Criteria) this;
-        }
-
-        public Criteria andTransTimeOriginNotBetween(Date value1, Date value2) {
-            addCriterion("TRANS_TIME_ORIGIN not between", value1, value2, "transTimeOrigin");
             return (Criteria) this;
         }
 

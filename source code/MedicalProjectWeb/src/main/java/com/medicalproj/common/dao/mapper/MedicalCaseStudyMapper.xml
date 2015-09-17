@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.medicalproj.common.dao.MedicalCaseStudyMapper" >
+  <resultMap id="BaseResultMap" type="com.medicalproj.common.domain.MedicalCaseStudy" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SERIES_NUMBER" property="seriesNumber" jdbcType="VARCHAR" />
+    <result column="INSTANCE_NUMBER" property="instanceNumber" jdbcType="VARCHAR" />
+    <result column="MODALITY" property="modality" jdbcType="VARCHAR" />
+    <result column="STUDY_DATE" property="studyDate" jdbcType="DATE" />
+    <result column="BODY_PART_EXAMINED" property="bodyPartExamined" jdbcType="VARCHAR" />
+    <result column="PATIENT_POSITION" property="patientPosition" jdbcType="VARCHAR" />
+    <result column="ACQUISITION_DATETIME" property="acquisitionDatetime" jdbcType="TIMESTAMP" />
+    <result column="MEDICAL_CASE_ID" property="medicalCaseId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SERIES_NUMBER, INSTANCE_NUMBER, MODALITY, STUDY_DATE, BODY_PART_EXAMINED, PATIENT_POSITION, 
+    ACQUISITION_DATETIME, MEDICAL_CASE_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.MedicalCaseStudyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_medical_case_study
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_medical_case_study
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_medical_case_study
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.medicalproj.common.domain.MedicalCaseStudyExample" >
+    delete from tbl_medical_case_study
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.medicalproj.common.domain.MedicalCaseStudy" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tbl_medical_case_study (SERIES_NUMBER, INSTANCE_NUMBER, MODALITY, 
+      STUDY_DATE, BODY_PART_EXAMINED, PATIENT_POSITION, 
+      ACQUISITION_DATETIME, MEDICAL_CASE_ID)
+    values (#{seriesNumber,jdbcType=VARCHAR}, #{instanceNumber,jdbcType=VARCHAR}, #{modality,jdbcType=VARCHAR}, 
+      #{studyDate,jdbcType=DATE}, #{bodyPartExamined,jdbcType=VARCHAR}, #{patientPosition,jdbcType=VARCHAR}, 
+      #{acquisitionDatetime,jdbcType=TIMESTAMP}, #{medicalCaseId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.medicalproj.common.domain.MedicalCaseStudy" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tbl_medical_case_study
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seriesNumber != null" >
+        SERIES_NUMBER,
+      </if>
+      <if test="instanceNumber != null" >
+        INSTANCE_NUMBER,
+      </if>
+      <if test="modality != null" >
+        MODALITY,
+      </if>
+      <if test="studyDate != null" >
+        STUDY_DATE,
+      </if>
+      <if test="bodyPartExamined != null" >
+        BODY_PART_EXAMINED,
+      </if>
+      <if test="patientPosition != null" >
+        PATIENT_POSITION,
+      </if>
+      <if test="acquisitionDatetime != null" >
+        ACQUISITION_DATETIME,
+      </if>
+      <if test="medicalCaseId != null" >
+        MEDICAL_CASE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seriesNumber != null" >
+        #{seriesNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="instanceNumber != null" >
+        #{instanceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="modality != null" >
+        #{modality,jdbcType=VARCHAR},
+      </if>
+      <if test="studyDate != null" >
+        #{studyDate,jdbcType=DATE},
+      </if>
+      <if test="bodyPartExamined != null" >
+        #{bodyPartExamined,jdbcType=VARCHAR},
+      </if>
+      <if test="patientPosition != null" >
+        #{patientPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="acquisitionDatetime != null" >
+        #{acquisitionDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="medicalCaseId != null" >
+        #{medicalCaseId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.medicalproj.common.domain.MedicalCaseStudyExample" resultType="java.lang.Integer" >
+    select count(*) from tbl_medical_case_study
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_medical_case_study
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.seriesNumber != null" >
+        SERIES_NUMBER = #{record.seriesNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.instanceNumber != null" >
+        INSTANCE_NUMBER = #{record.instanceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modality != null" >
+        MODALITY = #{record.modality,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studyDate != null" >
+        STUDY_DATE = #{record.studyDate,jdbcType=DATE},
+      </if>
+      <if test="record.bodyPartExamined != null" >
+        BODY_PART_EXAMINED = #{record.bodyPartExamined,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientPosition != null" >
+        PATIENT_POSITION = #{record.patientPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acquisitionDatetime != null" >
+        ACQUISITION_DATETIME = #{record.acquisitionDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.medicalCaseId != null" >
+        MEDICAL_CASE_ID = #{record.medicalCaseId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_medical_case_study
+    set ID = #{record.id,jdbcType=INTEGER},
+      SERIES_NUMBER = #{record.seriesNumber,jdbcType=VARCHAR},
+      INSTANCE_NUMBER = #{record.instanceNumber,jdbcType=VARCHAR},
+      MODALITY = #{record.modality,jdbcType=VARCHAR},
+      STUDY_DATE = #{record.studyDate,jdbcType=DATE},
+      BODY_PART_EXAMINED = #{record.bodyPartExamined,jdbcType=VARCHAR},
+      PATIENT_POSITION = #{record.patientPosition,jdbcType=VARCHAR},
+      ACQUISITION_DATETIME = #{record.acquisitionDatetime,jdbcType=TIMESTAMP},
+      MEDICAL_CASE_ID = #{record.medicalCaseId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.medicalproj.common.domain.MedicalCaseStudy" >
+    update tbl_medical_case_study
+    <set >
+      <if test="seriesNumber != null" >
+        SERIES_NUMBER = #{seriesNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="instanceNumber != null" >
+        INSTANCE_NUMBER = #{instanceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="modality != null" >
+        MODALITY = #{modality,jdbcType=VARCHAR},
+      </if>
+      <if test="studyDate != null" >
+        STUDY_DATE = #{studyDate,jdbcType=DATE},
+      </if>
+      <if test="bodyPartExamined != null" >
+        BODY_PART_EXAMINED = #{bodyPartExamined,jdbcType=VARCHAR},
+      </if>
+      <if test="patientPosition != null" >
+        PATIENT_POSITION = #{patientPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="acquisitionDatetime != null" >
+        ACQUISITION_DATETIME = #{acquisitionDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="medicalCaseId != null" >
+        MEDICAL_CASE_ID = #{medicalCaseId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.medicalproj.common.domain.MedicalCaseStudy" >
+    update tbl_medical_case_study
+    set SERIES_NUMBER = #{seriesNumber,jdbcType=VARCHAR},
+      INSTANCE_NUMBER = #{instanceNumber,jdbcType=VARCHAR},
+      MODALITY = #{modality,jdbcType=VARCHAR},
+      STUDY_DATE = #{studyDate,jdbcType=DATE},
+      BODY_PART_EXAMINED = #{bodyPartExamined,jdbcType=VARCHAR},
+      PATIENT_POSITION = #{patientPosition,jdbcType=VARCHAR},
+      ACQUISITION_DATETIME = #{acquisitionDatetime,jdbcType=TIMESTAMP},
+      MEDICAL_CASE_ID = #{medicalCaseId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.MedicalCaseStudyExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_medical_case_study
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

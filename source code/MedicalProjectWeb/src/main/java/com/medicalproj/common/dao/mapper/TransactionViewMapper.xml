@@ -4,7 +4,6 @@
   <resultMap id="BaseResultMap" type="com.medicalproj.common.domain.TransactionView" >
     <result column="TRANS_ID" property="transId" jdbcType="INTEGER" />
     <result column="TRANS_TIME" property="transTime" jdbcType="VARCHAR" />
-    <result column="TRANS_TIME_ORIGIN" property="transTimeOrigin" jdbcType="TIMESTAMP" />
     <result column="TRANS_AMOUNT" property="transAmount" jdbcType="VARCHAR" />
     <result column="TRANS_DESC" property="transDesc" jdbcType="VARCHAR" />
     <result column="OWNER_USER_ID" property="ownerUserId" jdbcType="INTEGER" />
@@ -69,8 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    TRANS_ID, TRANS_TIME, TRANS_TIME_ORIGIN, TRANS_AMOUNT, TRANS_DESC, OWNER_USER_ID, 
-    TRANS_TYPE
+    TRANS_ID, TRANS_TIME, TRANS_AMOUNT, TRANS_DESC, OWNER_USER_ID, TRANS_TYPE
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.TransactionViewExample" >
     select
@@ -93,12 +91,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.medicalproj.common.domain.TransactionView" >
-    insert into vw_transaction (TRANS_ID, TRANS_TIME, TRANS_TIME_ORIGIN, 
-      TRANS_AMOUNT, TRANS_DESC, OWNER_USER_ID, 
-      TRANS_TYPE)
-    values (#{transId,jdbcType=INTEGER}, #{transTime,jdbcType=VARCHAR}, #{transTimeOrigin,jdbcType=TIMESTAMP}, 
-      #{transAmount,jdbcType=VARCHAR}, #{transDesc,jdbcType=VARCHAR}, #{ownerUserId,jdbcType=INTEGER}, 
-      #{transType,jdbcType=VARCHAR})
+    insert into vw_transaction (TRANS_ID, TRANS_TIME, TRANS_AMOUNT, 
+      TRANS_DESC, OWNER_USER_ID, TRANS_TYPE
+      )
+    values (#{transId,jdbcType=INTEGER}, #{transTime,jdbcType=VARCHAR}, #{transAmount,jdbcType=VARCHAR}, 
+      #{transDesc,jdbcType=VARCHAR}, #{ownerUserId,jdbcType=INTEGER}, #{transType,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.TransactionView" >
     insert into vw_transaction
@@ -108,9 +106,6 @@
       </if>
       <if test="transTime != null" >
         TRANS_TIME,
-      </if>
-      <if test="transTimeOrigin != null" >
-        TRANS_TIME_ORIGIN,
       </if>
       <if test="transAmount != null" >
         TRANS_AMOUNT,
@@ -131,9 +126,6 @@
       </if>
       <if test="transTime != null" >
         #{transTime,jdbcType=VARCHAR},
-      </if>
-      <if test="transTimeOrigin != null" >
-        #{transTimeOrigin,jdbcType=TIMESTAMP},
       </if>
       <if test="transAmount != null" >
         #{transAmount,jdbcType=VARCHAR},
@@ -164,9 +156,6 @@
       <if test="record.transTime != null" >
         TRANS_TIME = #{record.transTime,jdbcType=VARCHAR},
       </if>
-      <if test="record.transTimeOrigin != null" >
-        TRANS_TIME_ORIGIN = #{record.transTimeOrigin,jdbcType=TIMESTAMP},
-      </if>
       <if test="record.transAmount != null" >
         TRANS_AMOUNT = #{record.transAmount,jdbcType=VARCHAR},
       </if>
@@ -188,7 +177,6 @@
     update vw_transaction
     set TRANS_ID = #{record.transId,jdbcType=INTEGER},
       TRANS_TIME = #{record.transTime,jdbcType=VARCHAR},
-      TRANS_TIME_ORIGIN = #{record.transTimeOrigin,jdbcType=TIMESTAMP},
       TRANS_AMOUNT = #{record.transAmount,jdbcType=VARCHAR},
       TRANS_DESC = #{record.transDesc,jdbcType=VARCHAR},
       OWNER_USER_ID = #{record.ownerUserId,jdbcType=INTEGER},

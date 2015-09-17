@@ -54,7 +54,7 @@
 		        </div>
 		    </div>
 		</div>
-<table id="uploaded-files">
+	<table id="uploaded-files">
         <tr>
             <th>File Name</th>
             <th>File Size</th>

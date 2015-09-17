@@ -23,6 +23,14 @@ public class MedicalCase {
 
     private Integer status;
 
+    private String patientId;
+
+    private String patientName;
+
+    private Date patientBirthday;
+
+    private String patientSex;
+
     public Integer getId() {
         return id;
     }
@@ -101,5 +109,37 @@ public class MedicalCase {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId == null ? null : patientId.trim();
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName == null ? null : patientName.trim();
+    }
+
+    public Date getPatientBirthday() {
+        return patientBirthday;
+    }
+
+    public void setPatientBirthday(Date patientBirthday) {
+        this.patientBirthday = patientBirthday;
+    }
+
+    public String getPatientSex() {
+        return patientSex;
+    }
+
+    public void setPatientSex(String patientSex) {
+        this.patientSex = patientSex == null ? null : patientSex.trim();
     }
 }

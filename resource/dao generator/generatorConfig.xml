@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-  <classPathEntry location="E:\libs\mysql-connector-java-5.1.35.jar" />
+  <classPathEntry location="D:\lib\mysql-connector-java-5.1.35.jar" />
 
   <context id="DB2Tables" targetRuntime="MyBatis3">
 		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
@@ -83,11 +83,22 @@
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table>
 		
+		<table tableName="tbl_medical_case_study" domainObjectName="MedicalCaseStudy">
+			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
+		</table>
+		
+		<table tableName="tbl_pay_authorize" domainObjectName="PayAuthorize">
+			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
+		</table>
+		
 		<!-- View -->
 		<table tableName="vw_notification" domainObjectName="NotificationView">
 		</table>
 		
 		<table tableName="vw_transaction" domainObjectName="TransactionView">
+		</table>
+		
+		<table tableName="vw_authorize_user" domainObjectName="AuthorizeUserView">
 		</table>
 
 	</context>

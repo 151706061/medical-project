@@ -8,4 +8,8 @@ public interface IWebEnterpriseUserManageService {
 
 	View<UserAuthorizeListView> listAuthorizeUser(Integer enterpriseUserId, Integer page, Integer pageSize)throws ServiceException;
 
+	View<Boolean> authorize(Integer payAuthorizeId)throws ServiceException;
+
+	View<Boolean> unauthorize(Integer payAuthorizeId)throws ServiceException;
+
 }
