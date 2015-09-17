@@ -21,4 +21,22 @@ public class Constants {
 	public static final int QUALIFICATION_APPLICATION_STATUS_APPROVE = 2;
 	public static final int QUALIFICATION_APPLICATION_STATUS_REJECT = 3;
 
+	//任务类型 : 病例诊断(1)  资格审批(2)
+	public static final int TASK_TYPE_MEDICAL_CASE_DIAGNOSE = 1;
+	public static final int TASK_TYPE_QUALIFICATION_AUDIT = 2;
+
+	/*任务状态*/
+	//病例诊断状态 ：1待审 2待诊断 3完成 4已分配待诊断 
+	public static final int TASK_STATUS_MEDICAL_CASE_WAIT_FOR_AUDIT = 1;
+	public static final int TASK_STATUS_MEDICAL_CASE_WAIT_FOR_DIAGNOSE = 2;
+	public static final int TASK_STATUS_MEDICAL_CASE_COMPLETE = 3;
+	public static final int TASK_STATUS_MEDICAL_CASE_ASSIGNED_WAIT_FOR_DIAGNOSE = 4;
+	
+	//资格审批状态 ： 5待审 6批准 7拒绝 
+	public static final int TASK_STATUS_QUALIFICATION_AUDIT_WAIT_FOR_REVIEW = 5;
+	public static final int TASK_STATUS_QUALIFICATION_AUDIT_APPROVE = 6;
+	public static final int TASK_STATUS_QUALIFICATION_AUDIT_REJECT = 7;
+	/* END - 任务状态*/
+	
+	
 }

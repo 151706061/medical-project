@@ -7,13 +7,15 @@ public class Task {
 
     private Integer ownerUserId;
 
-    private Integer medicalCaseId;
+    private Integer type;
 
-    private Date createTime;
+    private Integer resourceId;
 
     private Integer status;
 
-    private Date completeTime;
+    private Date createTime;
+
+    private Date processTime;
 
     public Integer getId() {
         return id;
@@ -31,20 +33,20 @@ public class Task {
         this.ownerUserId = ownerUserId;
     }
 
-    public Integer getMedicalCaseId() {
-        return medicalCaseId;
+    public Integer getType() {
+        return type;
     }
 
-    public void setMedicalCaseId(Integer medicalCaseId) {
-        this.medicalCaseId = medicalCaseId;
+    public void setType(Integer type) {
+        this.type = type;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Integer getResourceId() {
+        return resourceId;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setResourceId(Integer resourceId) {
+        this.resourceId = resourceId;
     }
 
     public Integer getStatus() {
@@ -55,11 +57,19 @@ public class Task {
         this.status = status;
     }
 
-    public Date getCompleteTime() {
-        return completeTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCompleteTime(Date completeTime) {
-        this.completeTime = completeTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getProcessTime() {
+        return processTime;
+    }
+
+    public void setProcessTime(Date processTime) {
+        this.processTime = processTime;
     }
 }

@@ -100,6 +100,9 @@
 		
 		<table tableName="vw_authorize_user" domainObjectName="AuthorizeUserView">
 		</table>
+		
+		<table tableName="vw_task" domainObjectName="TaskView">
+		</table>
 
 	</context>
 </generatorConfiguration>

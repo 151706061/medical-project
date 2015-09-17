@@ -225,123 +225,123 @@ public class TaskExample {
             return (Criteria) this;
         }
 
-        public Criteria andMedicalCaseIdIsNull() {
-            addCriterion("MEDICAL_CASE_ID is null");
+        public Criteria andTypeIsNull() {
+            addCriterion("TYPE is null");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalCaseIdIsNotNull() {
-            addCriterion("MEDICAL_CASE_ID is not null");
+        public Criteria andTypeIsNotNull() {
+            addCriterion("TYPE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalCaseIdEqualTo(Integer value) {
-            addCriterion("MEDICAL_CASE_ID =", value, "medicalCaseId");
+        public Criteria andTypeEqualTo(Integer value) {
+            addCriterion("TYPE =", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalCaseIdNotEqualTo(Integer value) {
-            addCriterion("MEDICAL_CASE_ID <>", value, "medicalCaseId");
+        public Criteria andTypeNotEqualTo(Integer value) {
+            addCriterion("TYPE <>", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalCaseIdGreaterThan(Integer value) {
-            addCriterion("MEDICAL_CASE_ID >", value, "medicalCaseId");
+        public Criteria andTypeGreaterThan(Integer value) {
+            addCriterion("TYPE >", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalCaseIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("MEDICAL_CASE_ID >=", value, "medicalCaseId");
+        public Criteria andTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("TYPE >=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalCaseIdLessThan(Integer value) {
-            addCriterion("MEDICAL_CASE_ID <", value, "medicalCaseId");
+        public Criteria andTypeLessThan(Integer value) {
+            addCriterion("TYPE <", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalCaseIdLessThanOrEqualTo(Integer value) {
-            addCriterion("MEDICAL_CASE_ID <=", value, "medicalCaseId");
+        public Criteria andTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("TYPE <=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalCaseIdIn(List<Integer> values) {
-            addCriterion("MEDICAL_CASE_ID in", values, "medicalCaseId");
+        public Criteria andTypeIn(List<Integer> values) {
+            addCriterion("TYPE in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalCaseIdNotIn(List<Integer> values) {
-            addCriterion("MEDICAL_CASE_ID not in", values, "medicalCaseId");
+        public Criteria andTypeNotIn(List<Integer> values) {
+            addCriterion("TYPE not in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalCaseIdBetween(Integer value1, Integer value2) {
-            addCriterion("MEDICAL_CASE_ID between", value1, value2, "medicalCaseId");
+        public Criteria andTypeBetween(Integer value1, Integer value2) {
+            addCriterion("TYPE between", value1, value2, "type");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalCaseIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("MEDICAL_CASE_ID not between", value1, value2, "medicalCaseId");
+        public Criteria andTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("TYPE not between", value1, value2, "type");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNull() {
-            addCriterion("CREATE_TIME is null");
+        public Criteria andResourceIdIsNull() {
+            addCriterion("RESOURCE_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNotNull() {
-            addCriterion("CREATE_TIME is not null");
+        public Criteria andResourceIdIsNotNull() {
+            addCriterion("RESOURCE_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualTo(Date value) {
-            addCriterion("CREATE_TIME =", value, "createTime");
+        public Criteria andResourceIdEqualTo(Integer value) {
+            addCriterion("RESOURCE_ID =", value, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualTo(Date value) {
-            addCriterion("CREATE_TIME <>", value, "createTime");
+        public Criteria andResourceIdNotEqualTo(Integer value) {
+            addCriterion("RESOURCE_ID <>", value, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThan(Date value) {
-            addCriterion("CREATE_TIME >", value, "createTime");
+        public Criteria andResourceIdGreaterThan(Integer value) {
+            addCriterion("RESOURCE_ID >", value, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("CREATE_TIME >=", value, "createTime");
+        public Criteria andResourceIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("RESOURCE_ID >=", value, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThan(Date value) {
-            addCriterion("CREATE_TIME <", value, "createTime");
+        public Criteria andResourceIdLessThan(Integer value) {
+            addCriterion("RESOURCE_ID <", value, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
-            addCriterion("CREATE_TIME <=", value, "createTime");
+        public Criteria andResourceIdLessThanOrEqualTo(Integer value) {
+            addCriterion("RESOURCE_ID <=", value, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIn(List<Date> values) {
-            addCriterion("CREATE_TIME in", values, "createTime");
+        public Criteria andResourceIdIn(List<Integer> values) {
+            addCriterion("RESOURCE_ID in", values, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotIn(List<Date> values) {
-            addCriterion("CREATE_TIME not in", values, "createTime");
+        public Criteria andResourceIdNotIn(List<Integer> values) {
+            addCriterion("RESOURCE_ID not in", values, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
-            addCriterion("CREATE_TIME between", value1, value2, "createTime");
+        public Criteria andResourceIdBetween(Integer value1, Integer value2) {
+            addCriterion("RESOURCE_ID between", value1, value2, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
-            addCriterion("CREATE_TIME not between", value1, value2, "createTime");
+        public Criteria andResourceIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("RESOURCE_ID not between", value1, value2, "resourceId");
             return (Criteria) this;
         }
 
@@ -405,63 +405,123 @@ public class TaskExample {
             return (Criteria) this;
         }
 
-        public Criteria andCompleteTimeIsNull() {
-            addCriterion("COMPLETE_TIME is null");
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("CREATE_TIME is null");
             return (Criteria) this;
         }
 
-        public Criteria andCompleteTimeIsNotNull() {
-            addCriterion("COMPLETE_TIME is not null");
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("CREATE_TIME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCompleteTimeEqualTo(Date value) {
-            addCriterion("COMPLETE_TIME =", value, "completeTime");
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterion("CREATE_TIME =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCompleteTimeNotEqualTo(Date value) {
-            addCriterion("COMPLETE_TIME <>", value, "completeTime");
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterion("CREATE_TIME <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCompleteTimeGreaterThan(Date value) {
-            addCriterion("COMPLETE_TIME >", value, "completeTime");
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterion("CREATE_TIME >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCompleteTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("COMPLETE_TIME >=", value, "completeTime");
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("CREATE_TIME >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCompleteTimeLessThan(Date value) {
-            addCriterion("COMPLETE_TIME <", value, "completeTime");
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterion("CREATE_TIME <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCompleteTimeLessThanOrEqualTo(Date value) {
-            addCriterion("COMPLETE_TIME <=", value, "completeTime");
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("CREATE_TIME <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCompleteTimeIn(List<Date> values) {
-            addCriterion("COMPLETE_TIME in", values, "completeTime");
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterion("CREATE_TIME in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCompleteTimeNotIn(List<Date> values) {
-            addCriterion("COMPLETE_TIME not in", values, "completeTime");
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterion("CREATE_TIME not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCompleteTimeBetween(Date value1, Date value2) {
-            addCriterion("COMPLETE_TIME between", value1, value2, "completeTime");
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterion("CREATE_TIME between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCompleteTimeNotBetween(Date value1, Date value2) {
-            addCriterion("COMPLETE_TIME not between", value1, value2, "completeTime");
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("CREATE_TIME not between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeIsNull() {
+            addCriterion("PROCESS_TIME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeIsNotNull() {
+            addCriterion("PROCESS_TIME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeEqualTo(Date value) {
+            addCriterion("PROCESS_TIME =", value, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeNotEqualTo(Date value) {
+            addCriterion("PROCESS_TIME <>", value, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeGreaterThan(Date value) {
+            addCriterion("PROCESS_TIME >", value, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("PROCESS_TIME >=", value, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeLessThan(Date value) {
+            addCriterion("PROCESS_TIME <", value, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeLessThanOrEqualTo(Date value) {
+            addCriterion("PROCESS_TIME <=", value, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeIn(List<Date> values) {
+            addCriterion("PROCESS_TIME in", values, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeNotIn(List<Date> values) {
+            addCriterion("PROCESS_TIME not in", values, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeBetween(Date value1, Date value2) {
+            addCriterion("PROCESS_TIME between", value1, value2, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeNotBetween(Date value1, Date value2) {
+            addCriterion("PROCESS_TIME not between", value1, value2, "processTime");
             return (Criteria) this;
         }
     }

@@ -4,10 +4,11 @@
   <resultMap id="BaseResultMap" type="com.medicalproj.common.domain.Task" >
     <id column="ID" property="id" jdbcType="INTEGER" />
     <result column="OWNER_USER_ID" property="ownerUserId" jdbcType="INTEGER" />
-    <result column="MEDICAL_CASE_ID" property="medicalCaseId" jdbcType="INTEGER" />
-    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="RESOURCE_ID" property="resourceId" jdbcType="INTEGER" />
     <result column="STATUS" property="status" jdbcType="INTEGER" />
-    <result column="COMPLETE_TIME" property="completeTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="PROCESS_TIME" property="processTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, OWNER_USER_ID, MEDICAL_CASE_ID, CREATE_TIME, STATUS, COMPLETE_TIME
+    ID, OWNER_USER_ID, TYPE, RESOURCE_ID, STATUS, CREATE_TIME, PROCESS_TIME
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.TaskExample" >
     select
@@ -104,10 +105,12 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tbl_task (OWNER_USER_ID, MEDICAL_CASE_ID, CREATE_TIME, 
-      STATUS, COMPLETE_TIME)
-    values (#{ownerUserId,jdbcType=INTEGER}, #{medicalCaseId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=INTEGER}, #{completeTime,jdbcType=TIMESTAMP})
+    insert into tbl_task (OWNER_USER_ID, TYPE, RESOURCE_ID, 
+      STATUS, CREATE_TIME, PROCESS_TIME
+      )
+    values (#{ownerUserId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{resourceId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{processTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.Task" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -118,34 +121,40 @@
       <if test="ownerUserId != null" >
         OWNER_USER_ID,
       </if>
-      <if test="medicalCaseId != null" >
-        MEDICAL_CASE_ID,
+      <if test="type != null" >
+        TYPE,
       </if>
-      <if test="createTime != null" >
-        CREATE_TIME,
+      <if test="resourceId != null" >
+        RESOURCE_ID,
       </if>
       <if test="status != null" >
         STATUS,
       </if>
-      <if test="completeTime != null" >
-        COMPLETE_TIME,
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="processTime != null" >
+        PROCESS_TIME,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="ownerUserId != null" >
         #{ownerUserId,jdbcType=INTEGER},
       </if>
-      <if test="medicalCaseId != null" >
-        #{medicalCaseId,jdbcType=INTEGER},
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="completeTime != null" >
-        #{completeTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processTime != null" >
+        #{processTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -164,17 +173,20 @@
       <if test="record.ownerUserId != null" >
         OWNER_USER_ID = #{record.ownerUserId,jdbcType=INTEGER},
       </if>
-      <if test="record.medicalCaseId != null" >
-        MEDICAL_CASE_ID = #{record.medicalCaseId,jdbcType=INTEGER},
+      <if test="record.type != null" >
+        TYPE = #{record.type,jdbcType=INTEGER},
       </if>
-      <if test="record.createTime != null" >
-        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.resourceId != null" >
+        RESOURCE_ID = #{record.resourceId,jdbcType=INTEGER},
       </if>
       <if test="record.status != null" >
         STATUS = #{record.status,jdbcType=INTEGER},
       </if>
-      <if test="record.completeTime != null" >
-        COMPLETE_TIME = #{record.completeTime,jdbcType=TIMESTAMP},
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.processTime != null" >
+        PROCESS_TIME = #{record.processTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -185,10 +197,11 @@
     update tbl_task
     set ID = #{record.id,jdbcType=INTEGER},
       OWNER_USER_ID = #{record.ownerUserId,jdbcType=INTEGER},
-      MEDICAL_CASE_ID = #{record.medicalCaseId,jdbcType=INTEGER},
-      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      TYPE = #{record.type,jdbcType=INTEGER},
+      RESOURCE_ID = #{record.resourceId,jdbcType=INTEGER},
       STATUS = #{record.status,jdbcType=INTEGER},
-      COMPLETE_TIME = #{record.completeTime,jdbcType=TIMESTAMP}
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      PROCESS_TIME = #{record.processTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -199,17 +212,20 @@
       <if test="ownerUserId != null" >
         OWNER_USER_ID = #{ownerUserId,jdbcType=INTEGER},
       </if>
-      <if test="medicalCaseId != null" >
-        MEDICAL_CASE_ID = #{medicalCaseId,jdbcType=INTEGER},
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      <if test="resourceId != null" >
+        RESOURCE_ID = #{resourceId,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         STATUS = #{status,jdbcType=INTEGER},
       </if>
-      <if test="completeTime != null" >
-        COMPLETE_TIME = #{completeTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processTime != null" >
+        PROCESS_TIME = #{processTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
@@ -217,10 +233,11 @@
   <update id="updateByPrimaryKey" parameterType="com.medicalproj.common.domain.Task" >
     update tbl_task
     set OWNER_USER_ID = #{ownerUserId,jdbcType=INTEGER},
-      MEDICAL_CASE_ID = #{medicalCaseId,jdbcType=INTEGER},
-      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      TYPE = #{type,jdbcType=INTEGER},
+      RESOURCE_ID = #{resourceId,jdbcType=INTEGER},
       STATUS = #{status,jdbcType=INTEGER},
-      COMPLETE_TIME = #{completeTime,jdbcType=TIMESTAMP}
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      PROCESS_TIME = #{processTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <select resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.TaskExample" id="selectByExampleWithRowbounds" >
