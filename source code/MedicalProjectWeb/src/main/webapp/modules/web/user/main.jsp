@@ -60,6 +60,6 @@
   </div>
 </div>
 	<%@include file="/modules/web/include/common-footer.jsp" %>
-	<script src='<c:url value="/modules/web/assets/js/index.js"/>'></script>
+	<script src='<c:url value="/modules/web/assets/js/user-main.js"/>'></script>
 	</body>
 </html>

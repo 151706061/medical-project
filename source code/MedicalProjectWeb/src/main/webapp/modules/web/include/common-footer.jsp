@@ -21,6 +21,7 @@
 <!-- script references -->
 <script src='<c:url value="/modules/web/assets/libs/jquery/jquery-1.11.3.min.js"/>'></script>
 <script src='<c:url value="/modules/web/assets/libs/bootstrap-3.3.5/js/bootstrap.js"/>'></script>
+<script src='<c:url value="/modules/web/assets/libs/routie.js"/>'></script>
 <script src='<c:url value="/modules/web/assets/libs/mustache.min.js"/>'></script>
 <script src='<c:url value="/modules/web/assets/js/fbscripts.js"/>'></script>
 <script src='<c:url value="/modules/web/assets/js/script.js"/>'></script>

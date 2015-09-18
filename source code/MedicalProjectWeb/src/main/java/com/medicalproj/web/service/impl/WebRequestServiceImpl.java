@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IMedicalCaseService;
+import com.medicalproj.web.dto.param.ListRequestParam;
+import com.medicalproj.web.dto.view.RequestListView;
 import com.medicalproj.web.service.IWebRequestService;
 
 import eden.dicomparser.DicomParser;
@@ -48,6 +50,13 @@ public class WebRequestServiceImpl implements IWebRequestService {
 			view.setMsg(e.getMessage());
 			return view;
 		}
+	}
+
+	@Override
+	public List<RequestListView> listRequest(ListRequestParam param)
+			throws ServiceException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

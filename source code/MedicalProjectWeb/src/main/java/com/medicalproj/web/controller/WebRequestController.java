@@ -20,7 +20,7 @@ public class WebRequestController extends WebBaseController{
 	
 	@RequestMapping(value="/submitRequest", method = RequestMethod.POST)
 	@ResponseBody
-	public View<Boolean> submitRequest(@RequestParam("file") MultipartFile file,HttpSession session){
+	public View<Boolean> submitRequest(@RequestParam("file[]") MultipartFile[] file,HttpSession session){
 		User user = super.getLoginUser(session);
 		
 		View<Boolean> view = webRequestService.submitRequest(user.getId() , file);

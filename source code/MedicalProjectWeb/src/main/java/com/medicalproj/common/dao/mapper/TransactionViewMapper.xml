@@ -3,6 +3,7 @@
 <mapper namespace="com.medicalproj.common.dao.TransactionViewMapper" >
   <resultMap id="BaseResultMap" type="com.medicalproj.common.domain.TransactionView" >
     <result column="TRANS_ID" property="transId" jdbcType="INTEGER" />
+    <result column="TRANS_TIME_ORIGIN" property="transTimeOrigin" jdbcType="TIMESTAMP" />
     <result column="TRANS_TIME" property="transTime" jdbcType="VARCHAR" />
     <result column="TRANS_AMOUNT" property="transAmount" jdbcType="VARCHAR" />
     <result column="TRANS_DESC" property="transDesc" jdbcType="VARCHAR" />
@@ -68,7 +69,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    TRANS_ID, TRANS_TIME, TRANS_AMOUNT, TRANS_DESC, OWNER_USER_ID, TRANS_TYPE
+    TRANS_ID, TRANS_TIME_ORIGIN, TRANS_TIME, TRANS_AMOUNT, TRANS_DESC, OWNER_USER_ID, 
+    TRANS_TYPE
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.TransactionViewExample" >
     select
@@ -91,18 +93,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.medicalproj.common.domain.TransactionView" >
-    insert into vw_transaction (TRANS_ID, TRANS_TIME, TRANS_AMOUNT, 
-      TRANS_DESC, OWNER_USER_ID, TRANS_TYPE
-      )
-    values (#{transId,jdbcType=INTEGER}, #{transTime,jdbcType=VARCHAR}, #{transAmount,jdbcType=VARCHAR}, 
-      #{transDesc,jdbcType=VARCHAR}, #{ownerUserId,jdbcType=INTEGER}, #{transType,jdbcType=VARCHAR}
-      )
+    insert into vw_transaction (TRANS_ID, TRANS_TIME_ORIGIN, TRANS_TIME, 
+      TRANS_AMOUNT, TRANS_DESC, OWNER_USER_ID, 
+      TRANS_TYPE)
+    values (#{transId,jdbcType=INTEGER}, #{transTimeOrigin,jdbcType=TIMESTAMP}, #{transTime,jdbcType=VARCHAR}, 
+      #{transAmount,jdbcType=VARCHAR}, #{transDesc,jdbcType=VARCHAR}, #{ownerUserId,jdbcType=INTEGER}, 
+      #{transType,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.TransactionView" >
     insert into vw_transaction
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="transId != null" >
         TRANS_ID,
+      </if>
+      <if test="transTimeOrigin != null" >
+        TRANS_TIME_ORIGIN,
       </if>
       <if test="transTime != null" >
         TRANS_TIME,
@@ -123,6 +128,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="transId != null" >
         #{transId,jdbcType=INTEGER},
+      </if>
+      <if test="transTimeOrigin != null" >
+        #{transTimeOrigin,jdbcType=TIMESTAMP},
       </if>
       <if test="transTime != null" >
         #{transTime,jdbcType=VARCHAR},
@@ -153,6 +161,9 @@
       <if test="record.transId != null" >
         TRANS_ID = #{record.transId,jdbcType=INTEGER},
       </if>
+      <if test="record.transTimeOrigin != null" >
+        TRANS_TIME_ORIGIN = #{record.transTimeOrigin,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.transTime != null" >
         TRANS_TIME = #{record.transTime,jdbcType=VARCHAR},
       </if>
@@ -176,6 +187,7 @@
   <update id="updateByExample" parameterType="map" >
     update vw_transaction
     set TRANS_ID = #{record.transId,jdbcType=INTEGER},
+      TRANS_TIME_ORIGIN = #{record.transTimeOrigin,jdbcType=TIMESTAMP},
       TRANS_TIME = #{record.transTime,jdbcType=VARCHAR},
       TRANS_AMOUNT = #{record.transAmount,jdbcType=VARCHAR},
       TRANS_DESC = #{record.transDesc,jdbcType=VARCHAR},

@@ -1,7 +1,11 @@
 package com.medicalproj.common.domain;
 
+import java.util.Date;
+
 public class TransactionView {
     private Integer transId;
+
+    private Date transTimeOrigin;
 
     private String transTime;
 
@@ -19,6 +23,14 @@ public class TransactionView {
 
     public void setTransId(Integer transId) {
         this.transId = transId;
+    }
+
+    public Date getTransTimeOrigin() {
+        return transTimeOrigin;
+    }
+
+    public void setTransTimeOrigin(Date transTimeOrigin) {
+        this.transTimeOrigin = transTimeOrigin;
     }
 
     public String getTransTime() {
