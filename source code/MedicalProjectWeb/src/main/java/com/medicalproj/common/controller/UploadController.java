@@ -1,6 +1,8 @@
 package com.medicalproj.common.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,18 +14,22 @@ import org.springframework.web.multipart.MultipartFile;
 import com.medicalproj.common.dto.view.FileView;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.service.IUploadService;
+import com.medicalproj.web.controller.WebBaseController;
+import com.medicalproj.web.dto.session.User;
 
 
 @RequestMapping("/")
 @Controller
-public class UploadController extends BaseController{
+public class UploadController extends WebBaseController{
 	@Autowired
 	private IUploadService uploadService;
 	
 	@RequestMapping(value="/upload", method = RequestMethod.POST)
 	@ResponseBody
-    public View<FileView> upload(@RequestParam("file") MultipartFile file) {
-		View<FileView> view = uploadService.upload(file);
+    public View<FileView> upload(@RequestParam("file") MultipartFile file,HttpSession session) {
+		User user = super.getLoginUser(session);
+		
+		View<FileView> view = uploadService.upload(file,user.getId());
 		return view;
     }
 	

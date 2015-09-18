@@ -37,6 +37,10 @@ public class Constants {
 	public static final int TASK_STATUS_QUALIFICATION_AUDIT_APPROVE = 6;
 	public static final int TASK_STATUS_QUALIFICATION_AUDIT_REJECT = 7;
 	/* END - 任务状态*/
+
+	public static final int UPLOAD_FILE_TYPE_JPEG = 1;
+	public static final int UPLOAD_FILE_TYPE_PNG = 2;
+	public static final int UPLOAD_FILE_TYPE_DICOM = 3;
 	
 	
 }

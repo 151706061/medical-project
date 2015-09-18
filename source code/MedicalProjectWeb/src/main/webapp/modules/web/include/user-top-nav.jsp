@@ -33,7 +33,7 @@
                     </ul> --%>
 		<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
-			<a href='<c:url value="/modules/web/user/notification.jsp"/>'>
+			<a href='#notifications'>
 				<i class="glyphicon glyphicon-envelope"></i>
 				<span class="badge unread-notification-count" id='notification-cnt'></span>
 			</a>
@@ -44,7 +44,7 @@
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
 				<ul class="dropdown-menu">
-					<li><a href='<c:url value="/web/setting/settings.do"/>'><i
+					<li><a href='#settings'><i
 							class="glyphicon glyphicon-cog"></i>我的设置</a></li>
 					<li>
 						<a class="logout" href='<c:url value="/web/common/logout.do" />'>

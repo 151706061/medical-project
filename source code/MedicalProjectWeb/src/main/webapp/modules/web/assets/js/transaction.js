@@ -1,21 +1,4 @@
 (function(){
-	var page = 1;
-	var pageSize = 10;
-	$(function(){
-		$('#periodBtnGroup > a').on('click',function(){
-			var $this = $(this);
-			var periodType = $this.data('period-type');
-
-			$('#periodBtnGroup > a.btn-success').removeClass('btn-success').addClass('btn-default');
-			$this.removeClass('btn-default').addClass('btn-success');
-			
-			TransactionModule.listTransaction(periodType,page,pageSize);
-		});
-		
-		var periodType = null;
-		TransactionModule.listTransaction(periodType,page,pageSize);
-	});
-	
 	var TransactionModule = (function(){
 		return {
 			listTransaction:function(periodType,page,pageSize){
@@ -44,5 +27,22 @@
 			}
 		}
 	})();
+	
+	var page = 1;
+	var pageSize = 10;
+	$(function(){
+		$('#periodBtnGroup > a').on('click',function(){
+			var $this = $(this);
+			var periodType = $this.data('period-type');
+
+			$('#periodBtnGroup > a.btn-success').removeClass('btn-success').addClass('btn-default');
+			$this.removeClass('btn-default').addClass('btn-success');
+			
+			TransactionModule.listTransaction(periodType,page,pageSize);
+		});
+		
+		var periodType = null;
+		TransactionModule.listTransaction(periodType,page,pageSize);
+	});
 	
 })();

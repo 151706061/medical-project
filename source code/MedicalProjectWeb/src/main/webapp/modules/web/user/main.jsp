@@ -19,14 +19,16 @@
                 
                 <%@include file="/modules/web/include/user-top-nav.jsp" %>
               
-              	<%-- 内容部分 --%>
-                <div class="padding">
-                    <div class="full col-sm-9">
-                      
-                    </div><!-- /col-9 -->
-                </div><!-- /padding -->
-                
-                <%-- END 内容部分 --%>
+              	<div id="content">
+	              	<%-- 内容部分 --%>
+	                <div class="padding">
+	                    <div class="full col-sm-9">
+	                      
+	                    </div><!-- /col-9 -->
+	                </div><!-- /padding -->
+	                
+	                <%-- END 内容部分 --%>
+                </div>
             </div>
             <!-- /main -->
           
@@ -60,6 +62,6 @@
   </div>
 </div>
 	<%@include file="/modules/web/include/common-footer.jsp" %>
-	<script src='<c:url value="/modules/web/assets/js/user-main.js"/>'></script>
+	<script src='<c:url value="/modules/web/assets/js/user/main.js"/>'></script>
 	</body>
 </html>

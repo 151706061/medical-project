@@ -8,6 +8,6 @@ import com.medicalproj.common.exception.ServiceException;
 
 public interface IUploadService {
 
-	View<FileView> upload(MultipartFile file)throws ServiceException;
+	View<FileView> upload(MultipartFile file,Integer uploadUserId)throws ServiceException;
 
 }

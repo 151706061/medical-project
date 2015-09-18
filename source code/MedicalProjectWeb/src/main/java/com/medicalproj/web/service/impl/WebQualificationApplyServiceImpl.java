@@ -1,12 +1,16 @@
 package com.medicalproj.web.service.impl;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.medicalproj.common.domain.UserView;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IQualificationApplicationService;
+import com.medicalproj.common.service.IUserService;
 import com.medicalproj.web.service.IWebQualificationApplyService;
 
 @Service
@@ -16,6 +20,8 @@ public class WebQualificationApplyServiceImpl implements
 	
 	@Autowired
 	private IQualificationApplicationService qualificationApplicationService;
+	@Autowired
+	private IUserService userService;
 	
 	@Override
 	public View<Boolean> submitApplication(Integer yszgzId,
@@ -33,4 +39,18 @@ public class WebQualificationApplyServiceImpl implements
 		}
 	}
 
+	@Override
+	public View<List<UserView>> listAllSeniorDoctor() throws ServiceException {
+		View<List<UserView>> view = new View<List<UserView>>();
+		try {
+			List<UserView> users = userService.listAllSeniorDoctor();
+			view.setData(users);
+			return view;
+		} catch (Exception e) {
+			view.setMsg(e.getMessage());
+			return view;
+		}
+	}
+
+	
 }

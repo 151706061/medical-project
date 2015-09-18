@@ -7,16 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.medicalproj.common.dao.UserMapper;
+import com.medicalproj.common.dao.UserViewMapper;
 import com.medicalproj.common.domain.User;
 import com.medicalproj.common.domain.UserExample;
+import com.medicalproj.common.domain.UserView;
+import com.medicalproj.common.domain.UserViewExample;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IUserService;
+import com.medicalproj.web.util.Constants;
 
 @Service
 public class UserServiceImpl implements IUserService {
 	private Logger logger = Logger.getLogger(this.getClass());
 	@Autowired
 	private UserMapper mapper;
+
+	@Autowired
+	private UserViewMapper userViewMapper;
 
 	@Override
 	public User getByMobile(String mobile) throws ServiceException {
@@ -129,7 +136,18 @@ public class UserServiceImpl implements IUserService {
 	public User getById(Integer userId) throws ServiceException {
 		return mapper.selectByPrimaryKey(userId);
 	}
-	
-	
+
+	@Override
+	public List<UserView> listAllSeniorDoctor() throws ServiceException {
+		try {
+			UserViewExample example = new UserViewExample();
+			UserViewExample.Criteria c = example.createCriteria();
+			c.andUserTypeCodeEqualTo(Constants.USER_TYPE_SENIOR_DOCTOR);
+			
+			return userViewMapper.selectByExample(example);
+		} catch (Exception e) {
+			throw new ServiceException(e);
+		}
+	}
 	
 }

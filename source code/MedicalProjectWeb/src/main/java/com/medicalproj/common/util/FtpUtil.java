@@ -9,11 +9,11 @@ import org.apache.log4j.Logger;
 
 public class FtpUtil {
 	private static Logger logger = Logger.getLogger(FtpUtil.class);
-	public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp";
+	public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp/";
 	public final static String FTP_URL = "127.0.0.1";
-	public final static int FTP_PORT = 1212;
-	public final static String FTP_USER_NAME = "test";
-	public final static String FTP_PASSWORD = "test";
+	public final static int FTP_PORT = 21;
+	public final static String FTP_USER_NAME = "ftpuser";
+	public final static String FTP_PASSWORD = "ftpuser";
 	
 	public static void upload(InputStream fileInputStream,String path,String fileName)throws Exception{
 		FTPClient ftpClient = new FTPClient();
@@ -31,7 +31,7 @@ public class FtpUtil {
             
             System.out.println("Start uploading first file");
             ftpClient.makeDirectory(path);
-        	
+            
             boolean done = ftpClient.storeFile(path+"/" + fileName, fileInputStream);
         	fileInputStream.close();
         	if (done) {
@@ -50,6 +50,10 @@ public class FtpUtil {
                 ex.printStackTrace();
             }
         }
+	}
+
+	public static String getAbsPath(String relativePath) {
+		return FTP_HTTP_BASE_URL + relativePath;
 	}
 
 }
