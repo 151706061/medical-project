@@ -24,9 +24,10 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">导入方式</label>
 						<div class="col-sm-8">
-							<select class="form-control">
-								<option>本地导入</option>
-								<option>从PACS系统导入</option>
+							<select id="importMethodSelect" class="form-control">
+								<option>请选择导入方式</option>
+								<option value="local">本地导入</option>
+								<option value="pacs">从PACS系统导入</option>
 							</select>
 						</div>
 					</div>
@@ -118,5 +119,14 @@
 	</div>
 </div>
 <!-- /padding -->
-
+<input type="file" name="files[]" multiple="" class="hide" data-url='<c:url value="/web/request/submitRequest.do"/>' id="uploadFileInput" />
 <%-- END 内容部分 --%>
+
+<script
+	src='<c:url value="/modules/web/assets/libs/jquery.ui.widget.js"/>'></script>
+<script
+	src='<c:url value="/modules/web/assets/libs/jquery.fileupload.js"/>'></script>
+<script
+	src='<c:url value="/modules/web/assets/libs/jquery.iframe-transport.js"/>'></script>
+<script
+	src='<c:url value="/modules/web/assets/js/create-request.js"/>'></script>

@@ -8,13 +8,13 @@
 			        done: function (e, data) {
 			        	var result = data.result;
 			        	if( result.msg ){
-			        		$('#msgModal').find('.modal-body').html(result.msg);
-							$('#msgModal').modal();
+			        		CommonModule.showMsg(result.msg);
 			        	}else{
 			        		var imgPath = result.data.path;
 			        		var imgId = result.data.id;
 			        		$('#yszgz-img').attr('src',imgPath);
 			        		$('#qualificationForm').find('input[name="yszgzId"]').val(imgId);
+			        		$('#yszgz-img').removeClass('hide');
 			        	}
 			        },
 			 
@@ -43,63 +43,67 @@
 						successFn(data.data);
 					}
 				});
+			},
+			resetQualificationApplicationForm:function(){
+				$('#qualificationForm').find('input[name="yszgzId"]').val('');
+				if( !$('#yszgz-img').hasClass('hide') ){
+					$('#yszgz-img').addClass('hide');
+				}
+				$('#selectAuditUser').children(':selected').attr('selected',false);
+				$('#selectAuditUser').children(':eq(0)').attr('selected',true);
 			}
 		}
 	})();
+
+	QualificationApplicationModule.initUpload();
 	
-	$(function(){
-		QualificationApplicationModule.initUpload();
-		
-		QualificationApplicationModule.initAuditUserCombo(function(userlist){
-			if( userlist && userlist.length > 0){
-				var template = '{{#userlist}}<option data-uid="{{id}}">{{name}}</option>{{/userlist}}';
-				Mustache.parse(template);  
-				var rendered = Mustache.render(template, {userlist : userlist});
+	QualificationApplicationModule.initAuditUserCombo(function(userlist){
+		if( userlist && userlist.length > 0){
+			var template = '{{#userlist}}<option value="{{id}}">{{name}}</option>{{/userlist}}';
+			Mustache.parse(template);  
+			var rendered = Mustache.render(template, {userlist : userlist});
 
-				$('#selectAuditUser').children('option[value!="0"]').remove();
-				$('#selectAuditUser').append(rendered);
-			}
-			
-			
-		});
-		
-		var $qualificationForm = $('#qualificationForm');
-		$('#qualificationForm').submit(function() {
-			var yszgzId = $('#qualificationForm').find('input[name="yszgzId"]').val();
-
-			if( yszgzId == null || $.trim(yszgzId).length == 0 ){
-				$('#msgModal').find('.modal-body').html('请先上传医师资格证');
-				$('#msgModal').modal();
-				return false;
-			}
-			
-			var auditUser = $qualificationForm.find('select[name="auditUser"]').val();
-			
-			// 异步提交表单
-			jQuery.ajax({
-				url: appContext + 'web/qualificationApply/submitApplication.do',
-				data: $qualificationForm.serialize() ,
-				type:"POST",
-				beforeSend:function()
-				{  
-					$('#submitBtn').attr('disabled',true);
-				},
-				success:function(data){
-					$('#submitBtn').attr('disabled',false);
-					if( data && data.data == true ){
-						$('#msgModal').find('.modal-body').html('申请成功提交。');
-						$('#msgModal').modal();
-					}else{
-						$('#msgModal').find('.modal-body').html(data.msg);
-						$('#msgModal').modal();
-					}
-				}
-			});
-
-			return false;
-		});
+			$('#selectAuditUser').children('option[value!="0"]').remove();
+			$('#selectAuditUser').append(rendered);
+		}
 		
 		
 	});
+	
+	var $qualificationForm = $('#qualificationForm');
+	$('#qualificationForm').submit(function() {
+		var yszgzId = $('#qualificationForm').find('input[name="yszgzId"]').val();
+
+		if( yszgzId == null || $.trim(yszgzId).length == 0 ){
+			CommonModule.showMsg('请先上传医师资格证');
+			return false;
+		}
+		
+		var auditUser = $qualificationForm.find('select[name="auditUser"]').val();
+		
+		// 异步提交表单
+		$.ajax({
+			url: appContext + 'web/qualificationApply/submitApplication.do',
+			data: $qualificationForm.serialize() ,
+			type:"POST",
+			beforeSend:function()
+			{  
+				$('#submitBtn').attr('disabled',true);
+			},
+			success:function(data){
+				$('#submitBtn').attr('disabled',false);
+				if( data && data.data == true ){
+					CommonModule.showMsg('申请成功提交。');
+					QualificationApplicationModule.resetQualificationApplicationForm();
+				}else{
+					CommonModule.showMsg(data.msg);
+				}
+			}
+		});
+
+		return false;
+	});
+		
+		
 	
 })();

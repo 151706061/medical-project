@@ -11,10 +11,11 @@
 		</div>
 		<p class="text-muted">您可以申请成为影像医师或影像专家，申请需要上传医师资格证扫描件。</p>
 		<div id="qualification-application-wrap">
-			<label>上传医师资格证</label> <input id="uploadYszgzBtn" type="file"
+			<label>上传医师资格证</label> 
+			<input id="uploadYszgzBtn" type="file"
 				name="file" data-url='<c:url value="/"/>upload.do' />
 			<!-- <input type="file" class="btn btn-success" id="uploadYszgzBtn"></input> -->
-			<img src="" alt="医师资格证" class="img-thumbnail" id="yszgz-img" />
+			<img src="" alt="医师资格证" class="img-thumbnail hide" id="yszgz-img" />
 			<form id="qualificationForm">
 				<input type="hidden" name="yszgzId" />
 				<div class="form-group">

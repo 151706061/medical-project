@@ -64,7 +64,8 @@ public class WebUserSettingServiceImpl implements IWebUserSettingService {
 	}
 	
 	@Override
-	public UserSettingView getSetting(Integer userId) throws ServiceException {
+	public View<UserSettingView> getSetting(Integer userId) throws ServiceException {
+		View<UserSettingView> view = new View<UserSettingView>();
 		try {
 			User user = userService.getById(userId);
 			if( user == null ){
@@ -77,9 +78,12 @@ public class WebUserSettingServiceImpl implements IWebUserSettingService {
 			setting.setIsReceiveNotification(user.getIsReceiveNotification());
 			setting.setUserId(userId);
 			setting.setUserName(user.getName());
-			return setting;
+			
+			view.setData(setting);
+			return view;
 		} catch (Exception e) {
-			throw new ServiceException(e.getMessage(),e);
+			view.setMsg(e.getMessage());
+			return view;
 		}
 	}
 	

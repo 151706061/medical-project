@@ -48,4 +48,18 @@ $(function(){
 	commonObj.getUnreadNotificationCount();
 });
 
+var CommonModule = (function(){
+	return {
+		showMsg: function(msg){
+			$('#msgModal').find('.modal-body').html(msg);
+			$('#msgModal').modal();
+		},
+		onDicomUploadProgressUpdate :function(progress){
+			$('.upload-progress-text').html('文件上传中...'+progress);		
+		},
+		onDicomUploadComplete:function(){
+			$('.upload-progress-text').html('上传完成!');
+		}
+	}
+})();
 </script>

@@ -3,6 +3,7 @@ package com.medicalproj.web.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,19 +12,41 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.web.dto.session.User;
+import com.medicalproj.web.dto.view.MedicalCaseListView;
 import com.medicalproj.web.service.IWebRequestService;
 
 @RequestMapping("/web/request")
+@Controller
 public class WebRequestController extends WebBaseController{
 	@Autowired
 	private IWebRequestService webRequestService;
 	
 	@RequestMapping(value="/submitRequest", method = RequestMethod.POST)
 	@ResponseBody
-	public View<Boolean> submitRequest(@RequestParam("file[]") MultipartFile[] file,HttpSession session){
+	public View<Boolean> submitRequest(@RequestParam("files[]") MultipartFile[] files,Integer medicalCaseId,HttpSession session){
 		User user = super.getLoginUser(session);
 		
-		View<Boolean> view = webRequestService.submitRequest(user.getId() , file);
+		View<Boolean> view = webRequestService.submitRequest(user.getId() , medicalCaseId,files);
+		
+		return view;
+	}
+	
+	@RequestMapping(value="/listIncompleteRequest", method = RequestMethod.GET)
+	@ResponseBody
+	public View<MedicalCaseListView> listIncompleteRequest(HttpSession session){
+		User user = super.getLoginUser(session);
+		
+		View<MedicalCaseListView> view = webRequestService.listIncompleteRequest(user.getId() );
+		
+		return view;
+	}
+	
+	@RequestMapping(value="/initNewMedicalCase", method = RequestMethod.GET)
+	@ResponseBody
+	public View<Integer> initNewMedicalCase(HttpSession session){
+		User user = super.getLoginUser(session);
+		
+		View<Integer> view = webRequestService.initNewMedicalCase(user.getId() );
 		
 		return view;
 	}

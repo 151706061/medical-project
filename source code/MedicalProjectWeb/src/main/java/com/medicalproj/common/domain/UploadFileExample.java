@@ -495,6 +495,76 @@ public class UploadFileExample {
             return (Criteria) this;
         }
 
+        public Criteria andFileMd5IsNull() {
+            addCriterion("FILE_MD5 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileMd5IsNotNull() {
+            addCriterion("FILE_MD5 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileMd5EqualTo(String value) {
+            addCriterion("FILE_MD5 =", value, "fileMd5");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileMd5NotEqualTo(String value) {
+            addCriterion("FILE_MD5 <>", value, "fileMd5");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileMd5GreaterThan(String value) {
+            addCriterion("FILE_MD5 >", value, "fileMd5");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileMd5GreaterThanOrEqualTo(String value) {
+            addCriterion("FILE_MD5 >=", value, "fileMd5");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileMd5LessThan(String value) {
+            addCriterion("FILE_MD5 <", value, "fileMd5");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileMd5LessThanOrEqualTo(String value) {
+            addCriterion("FILE_MD5 <=", value, "fileMd5");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileMd5Like(String value) {
+            addCriterion("FILE_MD5 like", value, "fileMd5");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileMd5NotLike(String value) {
+            addCriterion("FILE_MD5 not like", value, "fileMd5");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileMd5In(List<String> values) {
+            addCriterion("FILE_MD5 in", values, "fileMd5");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileMd5NotIn(List<String> values) {
+            addCriterion("FILE_MD5 not in", values, "fileMd5");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileMd5Between(String value1, String value2) {
+            addCriterion("FILE_MD5 between", value1, value2, "fileMd5");
+            return (Criteria) this;
+        }
+
+        public Criteria andFileMd5NotBetween(String value1, String value2) {
+            addCriterion("FILE_MD5 not between", value1, value2, "fileMd5");
+            return (Criteria) this;
+        }
+
         public Criteria andUploadTimeIsNull() {
             addCriterion("UPLOAD_TIME is null");
             return (Criteria) this;

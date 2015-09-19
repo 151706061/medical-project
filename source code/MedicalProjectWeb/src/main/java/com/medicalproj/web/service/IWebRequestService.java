@@ -7,12 +7,18 @@ import org.springframework.web.multipart.MultipartFile;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.web.dto.param.ListRequestParam;
+import com.medicalproj.web.dto.view.MedicalCaseListView;
 import com.medicalproj.web.dto.view.RequestListView;
 
 public interface IWebRequestService {
 
-	View<Boolean> submitRequest(Integer userId, MultipartFile[] dicomFile)throws ServiceException;
+	View<Boolean> submitRequest(Integer userId, Integer medicalCaseId, MultipartFile[] dicomFile)throws ServiceException;
 
 	List<RequestListView> listRequest(ListRequestParam param)throws ServiceException;
+
+	View<MedicalCaseListView> listIncompleteRequest(Integer userId)throws ServiceException;
+
+	View<Integer> initNewMedicalCase(Integer creatorUserId)throws ServiceException;
+
 
 }

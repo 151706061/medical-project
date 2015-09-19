@@ -41,6 +41,16 @@ public class Constants {
 	public static final int UPLOAD_FILE_TYPE_JPEG = 1;
 	public static final int UPLOAD_FILE_TYPE_PNG = 2;
 	public static final int UPLOAD_FILE_TYPE_DICOM = 3;
+
+	public static final String CONTENT_TYPE_JPG_JPEG = "image/jpeg";
+	public static final String CONTENT_TYPE_PNG = "image/png";
+	public static final String CONTENT_TYPE_DICOM = "application/dicom";
+	public static final Object CONTENT_TYPE_OCTET_STREAM = "application/octet-stream";
+
+	public static final int MEDICAL_CASE_STATUS_OPEN = 1;
+
+	public static final int MEDICAL_CASE_IS_UPLOAD_COMPLETE_FALSE = 0;
+	public static final int MEDICAL_CASE_IS_UPLOAD_COMPLETE_TRUE = 1;
 	
 	
 }

@@ -10,9 +10,9 @@ public class FileUtil {
 	
 	static{
 		fileContentTypeAndDbTypeMap = new HashMap<String,Integer>();
-		fileContentTypeAndDbTypeMap.put("image/jpeg", Constants.UPLOAD_FILE_TYPE_JPEG);
-		fileContentTypeAndDbTypeMap.put("image/png", Constants.UPLOAD_FILE_TYPE_PNG);
-		fileContentTypeAndDbTypeMap.put("application/dicom", Constants.UPLOAD_FILE_TYPE_DICOM);
+		fileContentTypeAndDbTypeMap.put(Constants.CONTENT_TYPE_JPG_JPEG, Constants.UPLOAD_FILE_TYPE_JPEG);
+		fileContentTypeAndDbTypeMap.put(Constants.CONTENT_TYPE_PNG, Constants.UPLOAD_FILE_TYPE_PNG);
+		fileContentTypeAndDbTypeMap.put(Constants.CONTENT_TYPE_DICOM, Constants.UPLOAD_FILE_TYPE_DICOM);
 		
 	}
 	public static String getSuffix(String fileName) {
@@ -45,6 +45,13 @@ public class FileUtil {
 
 	public static boolean isFileSupport(String contentType) {
 		if( fileContentTypeAndDbTypeMap.containsKey(contentType) ){
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean isDicomFile(String contentType) {
+		if( contentType != null && (contentType.equals(Constants.CONTENT_TYPE_DICOM) || contentType.equals(Constants.CONTENT_TYPE_OCTET_STREAM))){
 			return true;
 		}
 		return false;

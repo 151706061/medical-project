@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-  <classPathEntry location="D:\lib\mysql-connector-java-5.1.35.jar" />
+  <classPathEntry location="E:\libs\mysql-connector-java-5.1.35.jar" />
 
   <context id="DB2Tables" targetRuntime="MyBatis3">
 		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
@@ -41,53 +41,48 @@
 			targetProject=".">
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
-
-		
-		<table tableName="tbl_medical_case" domainObjectName="MedicalCase">
+	
+		<table tableName="TBL_INSTANCE" domainObjectName="Instance">
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table>
 		
-		<table tableName="tbl_medical_case_resource" domainObjectName="MedicalCaseResource">
+		<table tableName="TBL_MEDICAL_CASE" domainObjectName="MedicalCase">
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table>
 		
-		<table tableName="tbl_medical_case_assign_history" domainObjectName="MedicalCaseAssignHistory">
+		<table tableName="TBL_NOTIFICATION" domainObjectName="Notification">
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table>
 		
-		<table tableName="tbl_notification" domainObjectName="Notification">
+		<table tableName="TBL_PAY_AUTHORIZE" domainObjectName="PayAuthorize">
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table>
 		
-		<table tableName="tbl_qualification_application" domainObjectName="QualificationApplication">
+		<table tableName="TBL_QUALIFICATION_APPLICATION" domainObjectName="QualificationApplication">
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table>
 		
-		<table tableName="tbl_request" domainObjectName="Request">
+		<table tableName="TBL_SERIES" domainObjectName="Series">
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table>
 		
-		<table tableName="tbl_task" domainObjectName="Task">
+		<table tableName="TBL_STUDY" domainObjectName="Study">
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table>
 		
-		<table tableName="tbl_transaction" domainObjectName="Transaction">
+		<table tableName="TBL_TASK" domainObjectName="Task">
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table>
 		
-		<table tableName="tbl_upload_file" domainObjectName="UploadFile">
+		<table tableName="TBL_TRANSACTION" domainObjectName="Transaction">
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table>
 		
-		<table tableName="tbl_user" domainObjectName="User">
+		<table tableName="TBL_UPLOAD_FILE" domainObjectName="UploadFile">
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table>
 		
-		<table tableName="tbl_medical_case_study" domainObjectName="MedicalCaseStudy">
-			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
-		</table>
-		
-		<table tableName="tbl_pay_authorize" domainObjectName="PayAuthorize">
+		<table tableName="TBL_USER" domainObjectName="User">
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table>
 		
@@ -105,6 +100,18 @@
 		</table>
 		
 		<table tableName="vw_user" domainObjectName="UserView">
+		</table>
+		
+		<table tableName="vw_medical_case" domainObjectName="MedicalCaseView">
+		</table>
+		
+		<table tableName="vw_study" domainObjectName="StudyView">
+		</table>
+		
+		<table tableName="vw_series" domainObjectName="SeriesView">
+		</table>
+		
+		<table tableName="vw_instance" domainObjectName="InstanceView">
 		</table>
 
 	</context>

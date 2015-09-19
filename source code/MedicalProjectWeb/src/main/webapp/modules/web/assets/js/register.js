@@ -29,8 +29,7 @@ $(document).ready(function(){
 					$('#regSuccessModal').find('.modal-body').html('恭喜您，注册成功');
 					$('#regSuccessModal').modal();
 				}else{
-					$('#msgModal').find('.modal-body').html(data.msg);
-					$('#msgModal').modal();
+					CommonModule.showMsg(data.msg);
 				}
 			}
 		});

@@ -8,6 +8,7 @@
     <result column="SIZE" property="size" jdbcType="INTEGER" />
     <result column="TYPE" property="type" jdbcType="INTEGER" />
     <result column="DESC" property="desc" jdbcType="VARCHAR" />
+    <result column="FILE_MD5" property="fileMd5" jdbcType="VARCHAR" />
     <result column="UPLOAD_TIME" property="uploadTime" jdbcType="TIMESTAMP" />
     <result column="UPLOAD_USER_ID" property="uploadUserId" jdbcType="INTEGER" />
   </resultMap>
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, NAME, PATH, SIZE, TYPE, DESC, UPLOAD_TIME, UPLOAD_USER_ID
+    ID, NAME, PATH, SIZE, TYPE, DESC, FILE_MD5, UPLOAD_TIME, UPLOAD_USER_ID
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.UploadFileExample" >
     select
@@ -107,11 +108,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into tbl_upload_file (NAME, PATH, SIZE, 
-      TYPE, DESC, UPLOAD_TIME, 
-      UPLOAD_USER_ID)
+      TYPE, DESC, FILE_MD5, 
+      UPLOAD_TIME, UPLOAD_USER_ID)
     values (#{name,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, 
-      #{type,jdbcType=INTEGER}, #{desc,jdbcType=VARCHAR}, #{uploadTime,jdbcType=TIMESTAMP}, 
-      #{uploadUserId,jdbcType=INTEGER})
+      #{type,jdbcType=INTEGER}, #{desc,jdbcType=VARCHAR}, #{fileMd5,jdbcType=VARCHAR}, 
+      #{uploadTime,jdbcType=TIMESTAMP}, #{uploadUserId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.UploadFile" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -133,6 +134,9 @@
       </if>
       <if test="desc != null" >
         DESC,
+      </if>
+      <if test="fileMd5 != null" >
+        FILE_MD5,
       </if>
       <if test="uploadTime != null" >
         UPLOAD_TIME,
@@ -156,6 +160,9 @@
       </if>
       <if test="desc != null" >
         #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="fileMd5 != null" >
+        #{fileMd5,jdbcType=VARCHAR},
       </if>
       <if test="uploadTime != null" >
         #{uploadTime,jdbcType=TIMESTAMP},
@@ -192,6 +199,9 @@
       <if test="record.desc != null" >
         DESC = #{record.desc,jdbcType=VARCHAR},
       </if>
+      <if test="record.fileMd5 != null" >
+        FILE_MD5 = #{record.fileMd5,jdbcType=VARCHAR},
+      </if>
       <if test="record.uploadTime != null" >
         UPLOAD_TIME = #{record.uploadTime,jdbcType=TIMESTAMP},
       </if>
@@ -211,6 +221,7 @@
       SIZE = #{record.size,jdbcType=INTEGER},
       TYPE = #{record.type,jdbcType=INTEGER},
       DESC = #{record.desc,jdbcType=VARCHAR},
+      FILE_MD5 = #{record.fileMd5,jdbcType=VARCHAR},
       UPLOAD_TIME = #{record.uploadTime,jdbcType=TIMESTAMP},
       UPLOAD_USER_ID = #{record.uploadUserId,jdbcType=INTEGER}
     <if test="_parameter != null" >
@@ -235,6 +246,9 @@
       <if test="desc != null" >
         DESC = #{desc,jdbcType=VARCHAR},
       </if>
+      <if test="fileMd5 != null" >
+        FILE_MD5 = #{fileMd5,jdbcType=VARCHAR},
+      </if>
       <if test="uploadTime != null" >
         UPLOAD_TIME = #{uploadTime,jdbcType=TIMESTAMP},
       </if>
@@ -251,6 +265,7 @@
       SIZE = #{size,jdbcType=INTEGER},
       TYPE = #{type,jdbcType=INTEGER},
       DESC = #{desc,jdbcType=VARCHAR},
+      FILE_MD5 = #{fileMd5,jdbcType=VARCHAR},
       UPLOAD_TIME = #{uploadTime,jdbcType=TIMESTAMP},
       UPLOAD_USER_ID = #{uploadUserId,jdbcType=INTEGER}
     where ID = #{id,jdbcType=INTEGER}

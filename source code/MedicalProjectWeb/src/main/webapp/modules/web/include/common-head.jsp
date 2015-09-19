@@ -13,4 +13,5 @@
 
 <script>
 var appContext = '<c:url value="/"/>';
+
 </script>

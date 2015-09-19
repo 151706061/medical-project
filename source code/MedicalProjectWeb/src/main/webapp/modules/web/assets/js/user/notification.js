@@ -42,7 +42,6 @@
 	var pageSize = 10;
 	$(function(){
 		SettingModule.listNotification(page,pageSize,function(result){
-			alert(result);
 			if( result && result.data && result.data.notifications && result.data.notifications.length > 0 ){
 				var template = $('#notificationTmpl').html();
 				Mustache.parse(template);  

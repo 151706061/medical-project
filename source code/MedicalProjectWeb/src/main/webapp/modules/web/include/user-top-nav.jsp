@@ -33,6 +33,11 @@
                     </ul> --%>
 		<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
+				<a href='#create-request'>
+					<span class="label label-success upload-progress-text">文件上传中...0%</span></span>
+				</a>
+			</li>
+			<li class="dropdown">
 			<a href='#notifications'>
 				<i class="glyphicon glyphicon-envelope"></i>
 				<span class="badge unread-notification-count" id='notification-cnt'></span>

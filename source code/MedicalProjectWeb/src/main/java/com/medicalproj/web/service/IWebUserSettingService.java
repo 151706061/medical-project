@@ -7,7 +7,7 @@ import com.medicalproj.web.dto.param.SettingSaveParam;
 
 public interface IWebUserSettingService {
 
-	UserSettingView getSetting(Integer userId)throws ServiceException;
+	View<UserSettingView> getSetting(Integer userId)throws ServiceException;
 
 	View<Boolean> saveSettingByUserId(Integer userId, SettingSaveParam param)throws ServiceException;
 

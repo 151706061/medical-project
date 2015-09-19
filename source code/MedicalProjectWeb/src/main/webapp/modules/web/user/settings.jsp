@@ -16,33 +16,28 @@
 					<label for="inputUserName" class="col-sm-2 control-label">姓名</label>
 					<div class="col-sm-10">
 						<input type="text" name="userName" class="form-control"
-							id="inputUserName" placeholder="姓名" value="${settings.userName }">
+							id="inputUserName" placeholder="姓名" >
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputMobile" class="col-sm-2 control-label">手机号</label>
 					<div class="col-sm-10">
 						<input type="tel" name="mobile" class="form-control"
-							id="inputMobile" placeholder="手机号" value="${settings.mobile }">
+							id="inputMobile" placeholder="手机号" >
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
 					<div class="col-sm-10">
 						<input type="email" name="email" class="form-control"
-							id="inputEmail" placeholder="邮箱" value="${settings.email }">
+							id="inputEmail" placeholder="邮箱" >
 					</div>
 				</div>
 
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<div class="checkbox">
-							<label> <input type="checkbox" name="receiveNotification"
-								<c:if test="${settings.isReceiveNotification == 1}">
-														checked
-													</c:if>
-								<c:if test="${empty settings.isReceiveNotification || settings.isReceiveNotification != 1}">
-													</c:if> />
+							<label> <input type="checkbox" name="receiveNotification" id="receiveNotificationCheckbox" />
 								有新消息时，是否短信/邮件通知
 							</label>
 						</div>

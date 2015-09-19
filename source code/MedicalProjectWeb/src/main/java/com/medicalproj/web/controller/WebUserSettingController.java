@@ -21,7 +21,7 @@ public class WebUserSettingController extends WebBaseController{
 	@Autowired
 	private IWebUserSettingService webUserSettingService;
 	
-	@RequestMapping("/settings")
+	/*@RequestMapping("/settings")
 	public ModelAndView settings(HttpSession session){
 		ModelAndView mav = new ModelAndView("/web/user/settings");
 		User user = super.getLoginUser(session);
@@ -30,8 +30,17 @@ public class WebUserSettingController extends WebBaseController{
 		mav.addObject("settings", userSettingView);
 		
 		return mav;
-	}
+	}*/
 	
+	@RequestMapping("/loadMySetting")
+	@ResponseBody
+	public View<UserSettingView> loadMySetting(HttpSession session){
+		User user = super.getLoginUser(session);
+		
+		View<UserSettingView> userSettingView = webUserSettingService.getSetting(user.getId());
+		
+		return userSettingView;
+	}
 	
 	@RequestMapping("/saveSetting")
 	@ResponseBody

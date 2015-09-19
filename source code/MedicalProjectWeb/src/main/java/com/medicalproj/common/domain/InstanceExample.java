@@ -1,16 +1,17 @@
 package com.medicalproj.common.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class MedicalCaseResourceExample {
+public class InstanceExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public MedicalCaseResourceExample() {
+    public InstanceExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -164,263 +165,253 @@ public class MedicalCaseResourceExample {
             return (Criteria) this;
         }
 
-        public Criteria andOwnerMedicalCaseIdIsNull() {
-            addCriterion("OWNER_MEDICAL_CASE_ID is null");
+        public Criteria andSeriesIdIsNull() {
+            addCriterion("SERIES_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerMedicalCaseIdIsNotNull() {
-            addCriterion("OWNER_MEDICAL_CASE_ID is not null");
+        public Criteria andSeriesIdIsNotNull() {
+            addCriterion("SERIES_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerMedicalCaseIdEqualTo(Integer value) {
-            addCriterion("OWNER_MEDICAL_CASE_ID =", value, "ownerMedicalCaseId");
+        public Criteria andSeriesIdEqualTo(Integer value) {
+            addCriterion("SERIES_ID =", value, "seriesId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerMedicalCaseIdNotEqualTo(Integer value) {
-            addCriterion("OWNER_MEDICAL_CASE_ID <>", value, "ownerMedicalCaseId");
+        public Criteria andSeriesIdNotEqualTo(Integer value) {
+            addCriterion("SERIES_ID <>", value, "seriesId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerMedicalCaseIdGreaterThan(Integer value) {
-            addCriterion("OWNER_MEDICAL_CASE_ID >", value, "ownerMedicalCaseId");
+        public Criteria andSeriesIdGreaterThan(Integer value) {
+            addCriterion("SERIES_ID >", value, "seriesId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerMedicalCaseIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("OWNER_MEDICAL_CASE_ID >=", value, "ownerMedicalCaseId");
+        public Criteria andSeriesIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("SERIES_ID >=", value, "seriesId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerMedicalCaseIdLessThan(Integer value) {
-            addCriterion("OWNER_MEDICAL_CASE_ID <", value, "ownerMedicalCaseId");
+        public Criteria andSeriesIdLessThan(Integer value) {
+            addCriterion("SERIES_ID <", value, "seriesId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerMedicalCaseIdLessThanOrEqualTo(Integer value) {
-            addCriterion("OWNER_MEDICAL_CASE_ID <=", value, "ownerMedicalCaseId");
+        public Criteria andSeriesIdLessThanOrEqualTo(Integer value) {
+            addCriterion("SERIES_ID <=", value, "seriesId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerMedicalCaseIdIn(List<Integer> values) {
-            addCriterion("OWNER_MEDICAL_CASE_ID in", values, "ownerMedicalCaseId");
+        public Criteria andSeriesIdIn(List<Integer> values) {
+            addCriterion("SERIES_ID in", values, "seriesId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerMedicalCaseIdNotIn(List<Integer> values) {
-            addCriterion("OWNER_MEDICAL_CASE_ID not in", values, "ownerMedicalCaseId");
+        public Criteria andSeriesIdNotIn(List<Integer> values) {
+            addCriterion("SERIES_ID not in", values, "seriesId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerMedicalCaseIdBetween(Integer value1, Integer value2) {
-            addCriterion("OWNER_MEDICAL_CASE_ID between", value1, value2, "ownerMedicalCaseId");
+        public Criteria andSeriesIdBetween(Integer value1, Integer value2) {
+            addCriterion("SERIES_ID between", value1, value2, "seriesId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerMedicalCaseIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("OWNER_MEDICAL_CASE_ID not between", value1, value2, "ownerMedicalCaseId");
+        public Criteria andSeriesIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("SERIES_ID not between", value1, value2, "seriesId");
             return (Criteria) this;
         }
 
-        public Criteria andUploadIdIsNull() {
-            addCriterion("UPLOAD_ID is null");
+        public Criteria andInstanceNumberIsNull() {
+            addCriterion("INSTANCE_NUMBER is null");
             return (Criteria) this;
         }
 
-        public Criteria andUploadIdIsNotNull() {
-            addCriterion("UPLOAD_ID is not null");
+        public Criteria andInstanceNumberIsNotNull() {
+            addCriterion("INSTANCE_NUMBER is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUploadIdEqualTo(Integer value) {
-            addCriterion("UPLOAD_ID =", value, "uploadId");
+        public Criteria andInstanceNumberEqualTo(String value) {
+            addCriterion("INSTANCE_NUMBER =", value, "instanceNumber");
             return (Criteria) this;
         }
 
-        public Criteria andUploadIdNotEqualTo(Integer value) {
-            addCriterion("UPLOAD_ID <>", value, "uploadId");
+        public Criteria andInstanceNumberNotEqualTo(String value) {
+            addCriterion("INSTANCE_NUMBER <>", value, "instanceNumber");
             return (Criteria) this;
         }
 
-        public Criteria andUploadIdGreaterThan(Integer value) {
-            addCriterion("UPLOAD_ID >", value, "uploadId");
+        public Criteria andInstanceNumberGreaterThan(String value) {
+            addCriterion("INSTANCE_NUMBER >", value, "instanceNumber");
             return (Criteria) this;
         }
 
-        public Criteria andUploadIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("UPLOAD_ID >=", value, "uploadId");
+        public Criteria andInstanceNumberGreaterThanOrEqualTo(String value) {
+            addCriterion("INSTANCE_NUMBER >=", value, "instanceNumber");
             return (Criteria) this;
         }
 
-        public Criteria andUploadIdLessThan(Integer value) {
-            addCriterion("UPLOAD_ID <", value, "uploadId");
+        public Criteria andInstanceNumberLessThan(String value) {
+            addCriterion("INSTANCE_NUMBER <", value, "instanceNumber");
             return (Criteria) this;
         }
 
-        public Criteria andUploadIdLessThanOrEqualTo(Integer value) {
-            addCriterion("UPLOAD_ID <=", value, "uploadId");
+        public Criteria andInstanceNumberLessThanOrEqualTo(String value) {
+            addCriterion("INSTANCE_NUMBER <=", value, "instanceNumber");
             return (Criteria) this;
         }
 
-        public Criteria andUploadIdIn(List<Integer> values) {
-            addCriterion("UPLOAD_ID in", values, "uploadId");
+        public Criteria andInstanceNumberLike(String value) {
+            addCriterion("INSTANCE_NUMBER like", value, "instanceNumber");
             return (Criteria) this;
         }
 
-        public Criteria andUploadIdNotIn(List<Integer> values) {
-            addCriterion("UPLOAD_ID not in", values, "uploadId");
+        public Criteria andInstanceNumberNotLike(String value) {
+            addCriterion("INSTANCE_NUMBER not like", value, "instanceNumber");
             return (Criteria) this;
         }
 
-        public Criteria andUploadIdBetween(Integer value1, Integer value2) {
-            addCriterion("UPLOAD_ID between", value1, value2, "uploadId");
+        public Criteria andInstanceNumberIn(List<String> values) {
+            addCriterion("INSTANCE_NUMBER in", values, "instanceNumber");
             return (Criteria) this;
         }
 
-        public Criteria andUploadIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("UPLOAD_ID not between", value1, value2, "uploadId");
+        public Criteria andInstanceNumberNotIn(List<String> values) {
+            addCriterion("INSTANCE_NUMBER not in", values, "instanceNumber");
             return (Criteria) this;
         }
 
-        public Criteria andBodyPartsIsNull() {
-            addCriterion("BODY_PARTS is null");
+        public Criteria andInstanceNumberBetween(String value1, String value2) {
+            addCriterion("INSTANCE_NUMBER between", value1, value2, "instanceNumber");
             return (Criteria) this;
         }
 
-        public Criteria andBodyPartsIsNotNull() {
-            addCriterion("BODY_PARTS is not null");
+        public Criteria andInstanceNumberNotBetween(String value1, String value2) {
+            addCriterion("INSTANCE_NUMBER not between", value1, value2, "instanceNumber");
             return (Criteria) this;
         }
 
-        public Criteria andBodyPartsEqualTo(String value) {
-            addCriterion("BODY_PARTS =", value, "bodyParts");
+        public Criteria andDicomFileIdIsNull() {
+            addCriterion("DICOM_FILE_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andBodyPartsNotEqualTo(String value) {
-            addCriterion("BODY_PARTS <>", value, "bodyParts");
+        public Criteria andDicomFileIdIsNotNull() {
+            addCriterion("DICOM_FILE_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBodyPartsGreaterThan(String value) {
-            addCriterion("BODY_PARTS >", value, "bodyParts");
+        public Criteria andDicomFileIdEqualTo(Integer value) {
+            addCriterion("DICOM_FILE_ID =", value, "dicomFileId");
             return (Criteria) this;
         }
 
-        public Criteria andBodyPartsGreaterThanOrEqualTo(String value) {
-            addCriterion("BODY_PARTS >=", value, "bodyParts");
+        public Criteria andDicomFileIdNotEqualTo(Integer value) {
+            addCriterion("DICOM_FILE_ID <>", value, "dicomFileId");
             return (Criteria) this;
         }
 
-        public Criteria andBodyPartsLessThan(String value) {
-            addCriterion("BODY_PARTS <", value, "bodyParts");
+        public Criteria andDicomFileIdGreaterThan(Integer value) {
+            addCriterion("DICOM_FILE_ID >", value, "dicomFileId");
             return (Criteria) this;
         }
 
-        public Criteria andBodyPartsLessThanOrEqualTo(String value) {
-            addCriterion("BODY_PARTS <=", value, "bodyParts");
+        public Criteria andDicomFileIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("DICOM_FILE_ID >=", value, "dicomFileId");
             return (Criteria) this;
         }
 
-        public Criteria andBodyPartsLike(String value) {
-            addCriterion("BODY_PARTS like", value, "bodyParts");
+        public Criteria andDicomFileIdLessThan(Integer value) {
+            addCriterion("DICOM_FILE_ID <", value, "dicomFileId");
             return (Criteria) this;
         }
 
-        public Criteria andBodyPartsNotLike(String value) {
-            addCriterion("BODY_PARTS not like", value, "bodyParts");
+        public Criteria andDicomFileIdLessThanOrEqualTo(Integer value) {
+            addCriterion("DICOM_FILE_ID <=", value, "dicomFileId");
             return (Criteria) this;
         }
 
-        public Criteria andBodyPartsIn(List<String> values) {
-            addCriterion("BODY_PARTS in", values, "bodyParts");
+        public Criteria andDicomFileIdIn(List<Integer> values) {
+            addCriterion("DICOM_FILE_ID in", values, "dicomFileId");
             return (Criteria) this;
         }
 
-        public Criteria andBodyPartsNotIn(List<String> values) {
-            addCriterion("BODY_PARTS not in", values, "bodyParts");
+        public Criteria andDicomFileIdNotIn(List<Integer> values) {
+            addCriterion("DICOM_FILE_ID not in", values, "dicomFileId");
             return (Criteria) this;
         }
 
-        public Criteria andBodyPartsBetween(String value1, String value2) {
-            addCriterion("BODY_PARTS between", value1, value2, "bodyParts");
+        public Criteria andDicomFileIdBetween(Integer value1, Integer value2) {
+            addCriterion("DICOM_FILE_ID between", value1, value2, "dicomFileId");
             return (Criteria) this;
         }
 
-        public Criteria andBodyPartsNotBetween(String value1, String value2) {
-            addCriterion("BODY_PARTS not between", value1, value2, "bodyParts");
+        public Criteria andDicomFileIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("DICOM_FILE_ID not between", value1, value2, "dicomFileId");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameIsNull() {
-            addCriterion("USER_NAME is null");
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("CREATE_TIME is null");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameIsNotNull() {
-            addCriterion("USER_NAME is not null");
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("CREATE_TIME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameEqualTo(String value) {
-            addCriterion("USER_NAME =", value, "userName");
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterion("CREATE_TIME =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameNotEqualTo(String value) {
-            addCriterion("USER_NAME <>", value, "userName");
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterion("CREATE_TIME <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameGreaterThan(String value) {
-            addCriterion("USER_NAME >", value, "userName");
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterion("CREATE_TIME >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameGreaterThanOrEqualTo(String value) {
-            addCriterion("USER_NAME >=", value, "userName");
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("CREATE_TIME >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameLessThan(String value) {
-            addCriterion("USER_NAME <", value, "userName");
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterion("CREATE_TIME <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameLessThanOrEqualTo(String value) {
-            addCriterion("USER_NAME <=", value, "userName");
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("CREATE_TIME <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameLike(String value) {
-            addCriterion("USER_NAME like", value, "userName");
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterion("CREATE_TIME in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameNotLike(String value) {
-            addCriterion("USER_NAME not like", value, "userName");
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterion("CREATE_TIME not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameIn(List<String> values) {
-            addCriterion("USER_NAME in", values, "userName");
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterion("CREATE_TIME between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameNotIn(List<String> values) {
-            addCriterion("USER_NAME not in", values, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameBetween(String value1, String value2) {
-            addCriterion("USER_NAME between", value1, value2, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameNotBetween(String value1, String value2) {
-            addCriterion("USER_NAME not between", value1, value2, "userName");
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("CREATE_TIME not between", value1, value2, "createTime");
             return (Criteria) this;
         }
     }

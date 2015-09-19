@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MedicalCaseAssignHistoryExample {
+public class SeriesExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public MedicalCaseAssignHistoryExample() {
+    public SeriesExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -165,243 +165,193 @@ public class MedicalCaseAssignHistoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andAssignUserIdIsNull() {
-            addCriterion("ASSIGN_USER_ID is null");
+        public Criteria andStudyIdIsNull() {
+            addCriterion("STUDY_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andAssignUserIdIsNotNull() {
-            addCriterion("ASSIGN_USER_ID is not null");
+        public Criteria andStudyIdIsNotNull() {
+            addCriterion("STUDY_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAssignUserIdEqualTo(Integer value) {
-            addCriterion("ASSIGN_USER_ID =", value, "assignUserId");
+        public Criteria andStudyIdEqualTo(Integer value) {
+            addCriterion("STUDY_ID =", value, "studyId");
             return (Criteria) this;
         }
 
-        public Criteria andAssignUserIdNotEqualTo(Integer value) {
-            addCriterion("ASSIGN_USER_ID <>", value, "assignUserId");
+        public Criteria andStudyIdNotEqualTo(Integer value) {
+            addCriterion("STUDY_ID <>", value, "studyId");
             return (Criteria) this;
         }
 
-        public Criteria andAssignUserIdGreaterThan(Integer value) {
-            addCriterion("ASSIGN_USER_ID >", value, "assignUserId");
+        public Criteria andStudyIdGreaterThan(Integer value) {
+            addCriterion("STUDY_ID >", value, "studyId");
             return (Criteria) this;
         }
 
-        public Criteria andAssignUserIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("ASSIGN_USER_ID >=", value, "assignUserId");
+        public Criteria andStudyIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("STUDY_ID >=", value, "studyId");
             return (Criteria) this;
         }
 
-        public Criteria andAssignUserIdLessThan(Integer value) {
-            addCriterion("ASSIGN_USER_ID <", value, "assignUserId");
+        public Criteria andStudyIdLessThan(Integer value) {
+            addCriterion("STUDY_ID <", value, "studyId");
             return (Criteria) this;
         }
 
-        public Criteria andAssignUserIdLessThanOrEqualTo(Integer value) {
-            addCriterion("ASSIGN_USER_ID <=", value, "assignUserId");
+        public Criteria andStudyIdLessThanOrEqualTo(Integer value) {
+            addCriterion("STUDY_ID <=", value, "studyId");
             return (Criteria) this;
         }
 
-        public Criteria andAssignUserIdIn(List<Integer> values) {
-            addCriterion("ASSIGN_USER_ID in", values, "assignUserId");
+        public Criteria andStudyIdIn(List<Integer> values) {
+            addCriterion("STUDY_ID in", values, "studyId");
             return (Criteria) this;
         }
 
-        public Criteria andAssignUserIdNotIn(List<Integer> values) {
-            addCriterion("ASSIGN_USER_ID not in", values, "assignUserId");
+        public Criteria andStudyIdNotIn(List<Integer> values) {
+            addCriterion("STUDY_ID not in", values, "studyId");
             return (Criteria) this;
         }
 
-        public Criteria andAssignUserIdBetween(Integer value1, Integer value2) {
-            addCriterion("ASSIGN_USER_ID between", value1, value2, "assignUserId");
+        public Criteria andStudyIdBetween(Integer value1, Integer value2) {
+            addCriterion("STUDY_ID between", value1, value2, "studyId");
             return (Criteria) this;
         }
 
-        public Criteria andAssignUserIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("ASSIGN_USER_ID not between", value1, value2, "assignUserId");
+        public Criteria andStudyIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("STUDY_ID not between", value1, value2, "studyId");
             return (Criteria) this;
         }
 
-        public Criteria andBeAssignedUserIdIsNull() {
-            addCriterion("BE_ASSIGNED_USER_ID is null");
+        public Criteria andSeriesNumberIsNull() {
+            addCriterion("SERIES_NUMBER is null");
             return (Criteria) this;
         }
 
-        public Criteria andBeAssignedUserIdIsNotNull() {
-            addCriterion("BE_ASSIGNED_USER_ID is not null");
+        public Criteria andSeriesNumberIsNotNull() {
+            addCriterion("SERIES_NUMBER is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBeAssignedUserIdEqualTo(Integer value) {
-            addCriterion("BE_ASSIGNED_USER_ID =", value, "beAssignedUserId");
+        public Criteria andSeriesNumberEqualTo(String value) {
+            addCriterion("SERIES_NUMBER =", value, "seriesNumber");
             return (Criteria) this;
         }
 
-        public Criteria andBeAssignedUserIdNotEqualTo(Integer value) {
-            addCriterion("BE_ASSIGNED_USER_ID <>", value, "beAssignedUserId");
+        public Criteria andSeriesNumberNotEqualTo(String value) {
+            addCriterion("SERIES_NUMBER <>", value, "seriesNumber");
             return (Criteria) this;
         }
 
-        public Criteria andBeAssignedUserIdGreaterThan(Integer value) {
-            addCriterion("BE_ASSIGNED_USER_ID >", value, "beAssignedUserId");
+        public Criteria andSeriesNumberGreaterThan(String value) {
+            addCriterion("SERIES_NUMBER >", value, "seriesNumber");
             return (Criteria) this;
         }
 
-        public Criteria andBeAssignedUserIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("BE_ASSIGNED_USER_ID >=", value, "beAssignedUserId");
+        public Criteria andSeriesNumberGreaterThanOrEqualTo(String value) {
+            addCriterion("SERIES_NUMBER >=", value, "seriesNumber");
             return (Criteria) this;
         }
 
-        public Criteria andBeAssignedUserIdLessThan(Integer value) {
-            addCriterion("BE_ASSIGNED_USER_ID <", value, "beAssignedUserId");
+        public Criteria andSeriesNumberLessThan(String value) {
+            addCriterion("SERIES_NUMBER <", value, "seriesNumber");
             return (Criteria) this;
         }
 
-        public Criteria andBeAssignedUserIdLessThanOrEqualTo(Integer value) {
-            addCriterion("BE_ASSIGNED_USER_ID <=", value, "beAssignedUserId");
+        public Criteria andSeriesNumberLessThanOrEqualTo(String value) {
+            addCriterion("SERIES_NUMBER <=", value, "seriesNumber");
             return (Criteria) this;
         }
 
-        public Criteria andBeAssignedUserIdIn(List<Integer> values) {
-            addCriterion("BE_ASSIGNED_USER_ID in", values, "beAssignedUserId");
+        public Criteria andSeriesNumberLike(String value) {
+            addCriterion("SERIES_NUMBER like", value, "seriesNumber");
             return (Criteria) this;
         }
 
-        public Criteria andBeAssignedUserIdNotIn(List<Integer> values) {
-            addCriterion("BE_ASSIGNED_USER_ID not in", values, "beAssignedUserId");
+        public Criteria andSeriesNumberNotLike(String value) {
+            addCriterion("SERIES_NUMBER not like", value, "seriesNumber");
             return (Criteria) this;
         }
 
-        public Criteria andBeAssignedUserIdBetween(Integer value1, Integer value2) {
-            addCriterion("BE_ASSIGNED_USER_ID between", value1, value2, "beAssignedUserId");
+        public Criteria andSeriesNumberIn(List<String> values) {
+            addCriterion("SERIES_NUMBER in", values, "seriesNumber");
             return (Criteria) this;
         }
 
-        public Criteria andBeAssignedUserIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("BE_ASSIGNED_USER_ID not between", value1, value2, "beAssignedUserId");
+        public Criteria andSeriesNumberNotIn(List<String> values) {
+            addCriterion("SERIES_NUMBER not in", values, "seriesNumber");
             return (Criteria) this;
         }
 
-        public Criteria andAssignTimeIsNull() {
-            addCriterion("ASSIGN_TIME is null");
+        public Criteria andSeriesNumberBetween(String value1, String value2) {
+            addCriterion("SERIES_NUMBER between", value1, value2, "seriesNumber");
             return (Criteria) this;
         }
 
-        public Criteria andAssignTimeIsNotNull() {
-            addCriterion("ASSIGN_TIME is not null");
+        public Criteria andSeriesNumberNotBetween(String value1, String value2) {
+            addCriterion("SERIES_NUMBER not between", value1, value2, "seriesNumber");
             return (Criteria) this;
         }
 
-        public Criteria andAssignTimeEqualTo(Date value) {
-            addCriterion("ASSIGN_TIME =", value, "assignTime");
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("CREATE_TIME is null");
             return (Criteria) this;
         }
 
-        public Criteria andAssignTimeNotEqualTo(Date value) {
-            addCriterion("ASSIGN_TIME <>", value, "assignTime");
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("CREATE_TIME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAssignTimeGreaterThan(Date value) {
-            addCriterion("ASSIGN_TIME >", value, "assignTime");
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterion("CREATE_TIME =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andAssignTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("ASSIGN_TIME >=", value, "assignTime");
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterion("CREATE_TIME <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andAssignTimeLessThan(Date value) {
-            addCriterion("ASSIGN_TIME <", value, "assignTime");
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterion("CREATE_TIME >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andAssignTimeLessThanOrEqualTo(Date value) {
-            addCriterion("ASSIGN_TIME <=", value, "assignTime");
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("CREATE_TIME >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andAssignTimeIn(List<Date> values) {
-            addCriterion("ASSIGN_TIME in", values, "assignTime");
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterion("CREATE_TIME <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andAssignTimeNotIn(List<Date> values) {
-            addCriterion("ASSIGN_TIME not in", values, "assignTime");
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("CREATE_TIME <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andAssignTimeBetween(Date value1, Date value2) {
-            addCriterion("ASSIGN_TIME between", value1, value2, "assignTime");
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterion("CREATE_TIME in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andAssignTimeNotBetween(Date value1, Date value2) {
-            addCriterion("ASSIGN_TIME not between", value1, value2, "assignTime");
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterion("CREATE_TIME not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalCaseIdIsNull() {
-            addCriterion("MEDICAL_CASE_ID is null");
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterion("CREATE_TIME between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalCaseIdIsNotNull() {
-            addCriterion("MEDICAL_CASE_ID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMedicalCaseIdEqualTo(Integer value) {
-            addCriterion("MEDICAL_CASE_ID =", value, "medicalCaseId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMedicalCaseIdNotEqualTo(Integer value) {
-            addCriterion("MEDICAL_CASE_ID <>", value, "medicalCaseId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMedicalCaseIdGreaterThan(Integer value) {
-            addCriterion("MEDICAL_CASE_ID >", value, "medicalCaseId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMedicalCaseIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("MEDICAL_CASE_ID >=", value, "medicalCaseId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMedicalCaseIdLessThan(Integer value) {
-            addCriterion("MEDICAL_CASE_ID <", value, "medicalCaseId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMedicalCaseIdLessThanOrEqualTo(Integer value) {
-            addCriterion("MEDICAL_CASE_ID <=", value, "medicalCaseId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMedicalCaseIdIn(List<Integer> values) {
-            addCriterion("MEDICAL_CASE_ID in", values, "medicalCaseId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMedicalCaseIdNotIn(List<Integer> values) {
-            addCriterion("MEDICAL_CASE_ID not in", values, "medicalCaseId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMedicalCaseIdBetween(Integer value1, Integer value2) {
-            addCriterion("MEDICAL_CASE_ID between", value1, value2, "medicalCaseId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMedicalCaseIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("MEDICAL_CASE_ID not between", value1, value2, "medicalCaseId");
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("CREATE_TIME not between", value1, value2, "createTime");
             return (Criteria) this;
         }
     }

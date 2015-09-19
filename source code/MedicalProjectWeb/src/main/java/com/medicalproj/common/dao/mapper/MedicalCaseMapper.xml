@@ -3,19 +3,15 @@
 <mapper namespace="com.medicalproj.common.dao.MedicalCaseMapper" >
   <resultMap id="BaseResultMap" type="com.medicalproj.common.domain.MedicalCase" >
     <id column="ID" property="id" jdbcType="INTEGER" />
-    <result column="DIAGNOSE_IMAGE_PERFORMANCE" property="diagnoseImagePerformance" jdbcType="VARCHAR" />
-    <result column="DIAGNOSE_IMAGE_RESULT" property="diagnoseImageResult" jdbcType="VARCHAR" />
-    <result column="DIAGNOSE_USER_ID" property="diagnoseUserId" jdbcType="INTEGER" />
-    <result column="DIAGNOSE_TIME" property="diagnoseTime" jdbcType="TIMESTAMP" />
-    <result column="REVIEW_USER_ID" property="reviewUserId" jdbcType="INTEGER" />
-    <result column="REVIEW_IMAGE_PERFORMANCE" property="reviewImagePerformance" jdbcType="VARCHAR" />
-    <result column="REVIEW_IMAGE_RESULT" property="reviewImageResult" jdbcType="VARCHAR" />
-    <result column="REVIEW_TIME" property="reviewTime" jdbcType="TIMESTAMP" />
-    <result column="STATUS" property="status" jdbcType="INTEGER" />
     <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
     <result column="PATIENT_NAME" property="patientName" jdbcType="VARCHAR" />
+    <result column="PATIENT_WEIGHT" property="patientWeight" jdbcType="VARCHAR" />
     <result column="PATIENT_BIRTHDAY" property="patientBirthday" jdbcType="DATE" />
     <result column="PATIENT_SEX" property="patientSex" jdbcType="VARCHAR" />
+    <result column="IS_UPLOAD_COMPLETE" property="isUploadComplete" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATOR_USER_ID" property="creatorUserId" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -76,9 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, DIAGNOSE_IMAGE_PERFORMANCE, DIAGNOSE_IMAGE_RESULT, DIAGNOSE_USER_ID, DIAGNOSE_TIME, 
-    REVIEW_USER_ID, REVIEW_IMAGE_PERFORMANCE, REVIEW_IMAGE_RESULT, REVIEW_TIME, STATUS, 
-    PATIENT_ID, PATIENT_NAME, PATIENT_BIRTHDAY, PATIENT_SEX
+    ID, PATIENT_ID, PATIENT_NAME, PATIENT_WEIGHT, PATIENT_BIRTHDAY, PATIENT_SEX, IS_UPLOAD_COMPLETE, 
+    STATUS, CREATOR_USER_ID, CREATE_TIME
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.MedicalCaseExample" >
     select
@@ -114,17 +109,13 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tbl_medical_case (DIAGNOSE_IMAGE_PERFORMANCE, DIAGNOSE_IMAGE_RESULT, 
-      DIAGNOSE_USER_ID, DIAGNOSE_TIME, REVIEW_USER_ID, 
-      REVIEW_IMAGE_PERFORMANCE, REVIEW_IMAGE_RESULT, 
-      REVIEW_TIME, STATUS, PATIENT_ID, 
-      PATIENT_NAME, PATIENT_BIRTHDAY, PATIENT_SEX
+    insert into tbl_medical_case (PATIENT_ID, PATIENT_NAME, PATIENT_WEIGHT, 
+      PATIENT_BIRTHDAY, PATIENT_SEX, IS_UPLOAD_COMPLETE, 
+      STATUS, CREATOR_USER_ID, CREATE_TIME
       )
-    values (#{diagnoseImagePerformance,jdbcType=VARCHAR}, #{diagnoseImageResult,jdbcType=VARCHAR}, 
-      #{diagnoseUserId,jdbcType=INTEGER}, #{diagnoseTime,jdbcType=TIMESTAMP}, #{reviewUserId,jdbcType=INTEGER}, 
-      #{reviewImagePerformance,jdbcType=VARCHAR}, #{reviewImageResult,jdbcType=VARCHAR}, 
-      #{reviewTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{patientId,jdbcType=VARCHAR}, 
-      #{patientName,jdbcType=VARCHAR}, #{patientBirthday,jdbcType=DATE}, #{patientSex,jdbcType=VARCHAR}
+    values (#{patientId,jdbcType=VARCHAR}, #{patientName,jdbcType=VARCHAR}, #{patientWeight,jdbcType=VARCHAR}, 
+      #{patientBirthday,jdbcType=DATE}, #{patientSex,jdbcType=VARCHAR}, #{isUploadComplete,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{creatorUserId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.MedicalCase" >
@@ -133,38 +124,14 @@
     </selectKey>
     insert into tbl_medical_case
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="diagnoseImagePerformance != null" >
-        DIAGNOSE_IMAGE_PERFORMANCE,
-      </if>
-      <if test="diagnoseImageResult != null" >
-        DIAGNOSE_IMAGE_RESULT,
-      </if>
-      <if test="diagnoseUserId != null" >
-        DIAGNOSE_USER_ID,
-      </if>
-      <if test="diagnoseTime != null" >
-        DIAGNOSE_TIME,
-      </if>
-      <if test="reviewUserId != null" >
-        REVIEW_USER_ID,
-      </if>
-      <if test="reviewImagePerformance != null" >
-        REVIEW_IMAGE_PERFORMANCE,
-      </if>
-      <if test="reviewImageResult != null" >
-        REVIEW_IMAGE_RESULT,
-      </if>
-      <if test="reviewTime != null" >
-        REVIEW_TIME,
-      </if>
-      <if test="status != null" >
-        STATUS,
-      </if>
       <if test="patientId != null" >
         PATIENT_ID,
       </if>
       <if test="patientName != null" >
         PATIENT_NAME,
+      </if>
+      <if test="patientWeight != null" >
+        PATIENT_WEIGHT,
       </if>
       <if test="patientBirthday != null" >
         PATIENT_BIRTHDAY,
@@ -172,46 +139,46 @@
       <if test="patientSex != null" >
         PATIENT_SEX,
       </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="diagnoseImagePerformance != null" >
-        #{diagnoseImagePerformance,jdbcType=VARCHAR},
-      </if>
-      <if test="diagnoseImageResult != null" >
-        #{diagnoseImageResult,jdbcType=VARCHAR},
-      </if>
-      <if test="diagnoseUserId != null" >
-        #{diagnoseUserId,jdbcType=INTEGER},
-      </if>
-      <if test="diagnoseTime != null" >
-        #{diagnoseTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="reviewUserId != null" >
-        #{reviewUserId,jdbcType=INTEGER},
-      </if>
-      <if test="reviewImagePerformance != null" >
-        #{reviewImagePerformance,jdbcType=VARCHAR},
-      </if>
-      <if test="reviewImageResult != null" >
-        #{reviewImageResult,jdbcType=VARCHAR},
-      </if>
-      <if test="reviewTime != null" >
-        #{reviewTime,jdbcType=TIMESTAMP},
+      <if test="isUploadComplete != null" >
+        IS_UPLOAD_COMPLETE,
       </if>
       <if test="status != null" >
-        #{status,jdbcType=INTEGER},
+        STATUS,
       </if>
+      <if test="creatorUserId != null" >
+        CREATOR_USER_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="patientId != null" >
         #{patientId,jdbcType=VARCHAR},
       </if>
       <if test="patientName != null" >
         #{patientName,jdbcType=VARCHAR},
       </if>
+      <if test="patientWeight != null" >
+        #{patientWeight,jdbcType=VARCHAR},
+      </if>
       <if test="patientBirthday != null" >
         #{patientBirthday,jdbcType=DATE},
       </if>
       <if test="patientSex != null" >
         #{patientSex,jdbcType=VARCHAR},
+      </if>
+      <if test="isUploadComplete != null" >
+        #{isUploadComplete,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creatorUserId != null" >
+        #{creatorUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -227,44 +194,32 @@
       <if test="record.id != null" >
         ID = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.diagnoseImagePerformance != null" >
-        DIAGNOSE_IMAGE_PERFORMANCE = #{record.diagnoseImagePerformance,jdbcType=VARCHAR},
-      </if>
-      <if test="record.diagnoseImageResult != null" >
-        DIAGNOSE_IMAGE_RESULT = #{record.diagnoseImageResult,jdbcType=VARCHAR},
-      </if>
-      <if test="record.diagnoseUserId != null" >
-        DIAGNOSE_USER_ID = #{record.diagnoseUserId,jdbcType=INTEGER},
-      </if>
-      <if test="record.diagnoseTime != null" >
-        DIAGNOSE_TIME = #{record.diagnoseTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.reviewUserId != null" >
-        REVIEW_USER_ID = #{record.reviewUserId,jdbcType=INTEGER},
-      </if>
-      <if test="record.reviewImagePerformance != null" >
-        REVIEW_IMAGE_PERFORMANCE = #{record.reviewImagePerformance,jdbcType=VARCHAR},
-      </if>
-      <if test="record.reviewImageResult != null" >
-        REVIEW_IMAGE_RESULT = #{record.reviewImageResult,jdbcType=VARCHAR},
-      </if>
-      <if test="record.reviewTime != null" >
-        REVIEW_TIME = #{record.reviewTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.status != null" >
-        STATUS = #{record.status,jdbcType=INTEGER},
-      </if>
       <if test="record.patientId != null" >
         PATIENT_ID = #{record.patientId,jdbcType=VARCHAR},
       </if>
       <if test="record.patientName != null" >
         PATIENT_NAME = #{record.patientName,jdbcType=VARCHAR},
       </if>
+      <if test="record.patientWeight != null" >
+        PATIENT_WEIGHT = #{record.patientWeight,jdbcType=VARCHAR},
+      </if>
       <if test="record.patientBirthday != null" >
         PATIENT_BIRTHDAY = #{record.patientBirthday,jdbcType=DATE},
       </if>
       <if test="record.patientSex != null" >
         PATIENT_SEX = #{record.patientSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isUploadComplete != null" >
+        IS_UPLOAD_COMPLETE = #{record.isUploadComplete,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.creatorUserId != null" >
+        CREATOR_USER_ID = #{record.creatorUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -274,19 +229,15 @@
   <update id="updateByExample" parameterType="map" >
     update tbl_medical_case
     set ID = #{record.id,jdbcType=INTEGER},
-      DIAGNOSE_IMAGE_PERFORMANCE = #{record.diagnoseImagePerformance,jdbcType=VARCHAR},
-      DIAGNOSE_IMAGE_RESULT = #{record.diagnoseImageResult,jdbcType=VARCHAR},
-      DIAGNOSE_USER_ID = #{record.diagnoseUserId,jdbcType=INTEGER},
-      DIAGNOSE_TIME = #{record.diagnoseTime,jdbcType=TIMESTAMP},
-      REVIEW_USER_ID = #{record.reviewUserId,jdbcType=INTEGER},
-      REVIEW_IMAGE_PERFORMANCE = #{record.reviewImagePerformance,jdbcType=VARCHAR},
-      REVIEW_IMAGE_RESULT = #{record.reviewImageResult,jdbcType=VARCHAR},
-      REVIEW_TIME = #{record.reviewTime,jdbcType=TIMESTAMP},
-      STATUS = #{record.status,jdbcType=INTEGER},
       PATIENT_ID = #{record.patientId,jdbcType=VARCHAR},
       PATIENT_NAME = #{record.patientName,jdbcType=VARCHAR},
+      PATIENT_WEIGHT = #{record.patientWeight,jdbcType=VARCHAR},
       PATIENT_BIRTHDAY = #{record.patientBirthday,jdbcType=DATE},
-      PATIENT_SEX = #{record.patientSex,jdbcType=VARCHAR}
+      PATIENT_SEX = #{record.patientSex,jdbcType=VARCHAR},
+      IS_UPLOAD_COMPLETE = #{record.isUploadComplete,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=INTEGER},
+      CREATOR_USER_ID = #{record.creatorUserId,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -294,38 +245,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.medicalproj.common.domain.MedicalCase" >
     update tbl_medical_case
     <set >
-      <if test="diagnoseImagePerformance != null" >
-        DIAGNOSE_IMAGE_PERFORMANCE = #{diagnoseImagePerformance,jdbcType=VARCHAR},
-      </if>
-      <if test="diagnoseImageResult != null" >
-        DIAGNOSE_IMAGE_RESULT = #{diagnoseImageResult,jdbcType=VARCHAR},
-      </if>
-      <if test="diagnoseUserId != null" >
-        DIAGNOSE_USER_ID = #{diagnoseUserId,jdbcType=INTEGER},
-      </if>
-      <if test="diagnoseTime != null" >
-        DIAGNOSE_TIME = #{diagnoseTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="reviewUserId != null" >
-        REVIEW_USER_ID = #{reviewUserId,jdbcType=INTEGER},
-      </if>
-      <if test="reviewImagePerformance != null" >
-        REVIEW_IMAGE_PERFORMANCE = #{reviewImagePerformance,jdbcType=VARCHAR},
-      </if>
-      <if test="reviewImageResult != null" >
-        REVIEW_IMAGE_RESULT = #{reviewImageResult,jdbcType=VARCHAR},
-      </if>
-      <if test="reviewTime != null" >
-        REVIEW_TIME = #{reviewTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null" >
-        STATUS = #{status,jdbcType=INTEGER},
-      </if>
       <if test="patientId != null" >
         PATIENT_ID = #{patientId,jdbcType=VARCHAR},
       </if>
       <if test="patientName != null" >
         PATIENT_NAME = #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientWeight != null" >
+        PATIENT_WEIGHT = #{patientWeight,jdbcType=VARCHAR},
       </if>
       <if test="patientBirthday != null" >
         PATIENT_BIRTHDAY = #{patientBirthday,jdbcType=DATE},
@@ -333,24 +260,32 @@
       <if test="patientSex != null" >
         PATIENT_SEX = #{patientSex,jdbcType=VARCHAR},
       </if>
+      <if test="isUploadComplete != null" >
+        IS_UPLOAD_COMPLETE = #{isUploadComplete,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creatorUserId != null" >
+        CREATOR_USER_ID = #{creatorUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.medicalproj.common.domain.MedicalCase" >
     update tbl_medical_case
-    set DIAGNOSE_IMAGE_PERFORMANCE = #{diagnoseImagePerformance,jdbcType=VARCHAR},
-      DIAGNOSE_IMAGE_RESULT = #{diagnoseImageResult,jdbcType=VARCHAR},
-      DIAGNOSE_USER_ID = #{diagnoseUserId,jdbcType=INTEGER},
-      DIAGNOSE_TIME = #{diagnoseTime,jdbcType=TIMESTAMP},
-      REVIEW_USER_ID = #{reviewUserId,jdbcType=INTEGER},
-      REVIEW_IMAGE_PERFORMANCE = #{reviewImagePerformance,jdbcType=VARCHAR},
-      REVIEW_IMAGE_RESULT = #{reviewImageResult,jdbcType=VARCHAR},
-      REVIEW_TIME = #{reviewTime,jdbcType=TIMESTAMP},
-      STATUS = #{status,jdbcType=INTEGER},
-      PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
       PATIENT_NAME = #{patientName,jdbcType=VARCHAR},
+      PATIENT_WEIGHT = #{patientWeight,jdbcType=VARCHAR},
       PATIENT_BIRTHDAY = #{patientBirthday,jdbcType=DATE},
-      PATIENT_SEX = #{patientSex,jdbcType=VARCHAR}
+      PATIENT_SEX = #{patientSex,jdbcType=VARCHAR},
+      IS_UPLOAD_COMPLETE = #{isUploadComplete,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATOR_USER_ID = #{creatorUserId,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <select resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.MedicalCaseExample" id="selectByExampleWithRowbounds" >
