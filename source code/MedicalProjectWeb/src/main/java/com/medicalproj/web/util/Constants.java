@@ -51,6 +51,12 @@ public class Constants {
 
 	public static final int MEDICAL_CASE_IS_UPLOAD_COMPLETE_FALSE = 0;
 	public static final int MEDICAL_CASE_IS_UPLOAD_COMPLETE_TRUE = 1;
-	
+
+	//待诊断
+	public static final int STUDY_STATUS_WAIT_FOR_DIAGNOSE = 1;
+	//待审查
+	public static final int STUDY_STATUS_WAIT_FOR_AUDIT = 2;
+	//完成审查
+	public static final int STUDY_STATUS_COMPLETE_AUDIT = 3;
 	
 }

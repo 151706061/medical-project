@@ -35,7 +35,7 @@ public class Study {
 
     private String bodyPartExamined;
 
-    private String stydyDescription;
+    private String studyDescription;
 
     public Integer getId() {
         return id;
@@ -165,11 +165,11 @@ public class Study {
         this.bodyPartExamined = bodyPartExamined == null ? null : bodyPartExamined.trim();
     }
 
-    public String getStydyDescription() {
-        return stydyDescription;
+    public String getStudyDescription() {
+        return studyDescription;
     }
 
-    public void setStydyDescription(String stydyDescription) {
-        this.stydyDescription = stydyDescription == null ? null : stydyDescription.trim();
+    public void setStudyDescription(String studyDescription) {
+        this.studyDescription = studyDescription == null ? null : studyDescription.trim();
     }
 }

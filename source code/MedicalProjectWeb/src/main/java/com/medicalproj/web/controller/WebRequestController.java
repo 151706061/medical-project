@@ -21,12 +21,12 @@ public class WebRequestController extends WebBaseController{
 	@Autowired
 	private IWebRequestService webRequestService;
 	
-	@RequestMapping(value="/submitRequest", method = RequestMethod.POST)
+	@RequestMapping(value="/uploadDicom", method = RequestMethod.POST)
 	@ResponseBody
-	public View<Boolean> submitRequest(@RequestParam("files[]") MultipartFile[] files,Integer medicalCaseId,HttpSession session){
+	public View<Boolean> uploadDicom(@RequestParam("file") MultipartFile file,Integer medicalCaseId,HttpSession session){
 		User user = super.getLoginUser(session);
 		
-		View<Boolean> view = webRequestService.submitRequest(user.getId() , medicalCaseId,files);
+		View<Boolean> view = webRequestService.uploadDicom(user.getId() , medicalCaseId,file);
 		
 		return view;
 	}
@@ -41,12 +41,22 @@ public class WebRequestController extends WebBaseController{
 		return view;
 	}
 	
-	@RequestMapping(value="/initNewMedicalCase", method = RequestMethod.GET)
+	@RequestMapping("/initNewMedicalCase")
 	@ResponseBody
 	public View<Integer> initNewMedicalCase(HttpSession session){
 		User user = super.getLoginUser(session);
 		
 		View<Integer> view = webRequestService.initNewMedicalCase(user.getId() );
+		
+		return view;
+	}
+	
+	@RequestMapping("/completeRequest")
+	@ResponseBody
+	public View<Boolean> doCompleteRequest(Integer medicalCaseId,HttpSession session){
+		User user = super.getLoginUser(session);
+		
+		View<Boolean> view = webRequestService.doCompleteRequest( medicalCaseId ,user.getId());
 		
 		return view;
 	}

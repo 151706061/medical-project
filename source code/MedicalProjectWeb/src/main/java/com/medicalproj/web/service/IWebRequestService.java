@@ -12,13 +12,15 @@ import com.medicalproj.web.dto.view.RequestListView;
 
 public interface IWebRequestService {
 
-	View<Boolean> submitRequest(Integer userId, Integer medicalCaseId, MultipartFile[] dicomFile)throws ServiceException;
+	View<Boolean> uploadDicom(Integer userId, Integer medicalCaseId, MultipartFile dicomFile)throws ServiceException;
 
 	List<RequestListView> listRequest(ListRequestParam param)throws ServiceException;
 
 	View<MedicalCaseListView> listIncompleteRequest(Integer userId)throws ServiceException;
 
 	View<Integer> initNewMedicalCase(Integer creatorUserId)throws ServiceException;
+
+	View<Boolean> doCompleteRequest(Integer medicalCaseId, Integer processUserId)throws ServiceException;
 
 
 }

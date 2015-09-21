@@ -46,24 +46,18 @@ public class WebRequestServiceImpl implements IWebRequestService {
 	private IInstanceService instanceService;
 	
 	@Override
-	public View<Boolean> submitRequest(Integer userId, Integer medicalCaseId,MultipartFile[] dicomFiles) throws ServiceException {
+	public View<Boolean> uploadDicom(Integer userId, Integer medicalCaseId,MultipartFile dicomFile) throws ServiceException {
 		View<Boolean> view = new View<Boolean>();
 		try {
 			
-			if( dicomFiles != null && dicomFiles.length > 0){
-				List<DicomData> dicomList = new ArrayList<DicomData>();
+			if( dicomFile != null ){
 
-				boolean isAllDicom = isAllDicomFile(dicomFiles);
-				if( !isAllDicom ){
+				boolean isDicom = isDicomFile(dicomFile);
+				if( !isDicom ){
 					throw new ServiceException("检测到非Dicom格式文件，请检查上传的文件后重试");
 				}
 				
-				for( MultipartFile multipartFile : dicomFiles ){
-					DicomData dicom = DicomParser.getInstance().read(multipartFile.getInputStream());
-					dicomList.add(dicom);
-				}
-				
-				medicalCaseService.createMedicalCase(dicomList);
+				medicalCaseService.addDicomToMedicalCase(medicalCaseId,dicomFile,userId);
 				view.setData(true);
 				return view;
 			}else{
@@ -86,6 +80,13 @@ public class WebRequestServiceImpl implements IWebRequestService {
 			}
 		}
 		return isAllDicomFile;
+	}
+	
+	private boolean isDicomFile(MultipartFile dicomFile){
+		if( FileUtil.isDicomFile(dicomFile.getContentType()) ){
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -244,6 +245,24 @@ public class WebRequestServiceImpl implements IWebRequestService {
 			return view;
 		}
 	}
+
+	@Override
+	public View<Boolean> doCompleteRequest(Integer medicalCaseId,
+			Integer processUserId) throws ServiceException {
+		View<Boolean> view = new View<Boolean>();
+		try {
+			medicalCaseService.doComplete(medicalCaseId);
+			view.setData(true);
+			return view;
+		} catch (Exception e) {
+			logger.error(e);
+			view.setData(false);
+			view.setMsg(e.getMessage());
+			return view;
+		}
+	}
+	
+	
 	
 	
 }

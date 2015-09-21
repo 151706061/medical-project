@@ -18,7 +18,7 @@
     <result column="STATUS" property="status" jdbcType="INTEGER" />
     <result column="MODALITY" property="modality" jdbcType="VARCHAR" />
     <result column="BODY_PART_EXAMINED" property="bodyPartExamined" jdbcType="VARCHAR" />
-    <result column="STYDY_DESCRIPTION" property="stydyDescription" jdbcType="VARCHAR" />
+    <result column="STUDY_DESCRIPTION" property="studyDescription" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -81,7 +81,7 @@
   <sql id="Base_Column_List" >
     ID, MEDICAL_CASE_ID, STUDY_ID, STUDY_DATE, CREATE_TIME, DIAGNOSE_IMAGE_PERFORMANCE, 
     DIAGNOSE_IMAGE_RESULT, DIAGNOSE_USER_ID, DIAGNOSE_TIME, REVIEW_USER_ID, REVIEW_IMAGE_PERFORMANCE, 
-    REVIEW_IMAGE_RESULT, REVIEW_TIME, STATUS, MODALITY, BODY_PART_EXAMINED, STYDY_DESCRIPTION
+    REVIEW_IMAGE_RESULT, REVIEW_TIME, STATUS, MODALITY, BODY_PART_EXAMINED, STUDY_DESCRIPTION
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.StudyExample" >
     select
@@ -122,13 +122,13 @@
       DIAGNOSE_IMAGE_RESULT, DIAGNOSE_USER_ID, DIAGNOSE_TIME, 
       REVIEW_USER_ID, REVIEW_IMAGE_PERFORMANCE, REVIEW_IMAGE_RESULT, 
       REVIEW_TIME, STATUS, MODALITY, 
-      BODY_PART_EXAMINED, STYDY_DESCRIPTION)
+      BODY_PART_EXAMINED, STUDY_DESCRIPTION)
     values (#{medicalCaseId,jdbcType=INTEGER}, #{studyId,jdbcType=VARCHAR}, #{studyDate,jdbcType=DATE}, 
       #{createTime,jdbcType=TIMESTAMP}, #{diagnoseImagePerformance,jdbcType=VARCHAR}, 
       #{diagnoseImageResult,jdbcType=VARCHAR}, #{diagnoseUserId,jdbcType=INTEGER}, #{diagnoseTime,jdbcType=TIMESTAMP}, 
       #{reviewUserId,jdbcType=INTEGER}, #{reviewImagePerformance,jdbcType=VARCHAR}, #{reviewImageResult,jdbcType=VARCHAR}, 
       #{reviewTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{modality,jdbcType=VARCHAR}, 
-      #{bodyPartExamined,jdbcType=VARCHAR}, #{stydyDescription,jdbcType=VARCHAR})
+      #{bodyPartExamined,jdbcType=VARCHAR}, #{studyDescription,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.Study" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -181,8 +181,8 @@
       <if test="bodyPartExamined != null" >
         BODY_PART_EXAMINED,
       </if>
-      <if test="stydyDescription != null" >
-        STYDY_DESCRIPTION,
+      <if test="studyDescription != null" >
+        STUDY_DESCRIPTION,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -231,8 +231,8 @@
       <if test="bodyPartExamined != null" >
         #{bodyPartExamined,jdbcType=VARCHAR},
       </if>
-      <if test="stydyDescription != null" >
-        #{stydyDescription,jdbcType=VARCHAR},
+      <if test="studyDescription != null" >
+        #{studyDescription,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -293,8 +293,8 @@
       <if test="record.bodyPartExamined != null" >
         BODY_PART_EXAMINED = #{record.bodyPartExamined,jdbcType=VARCHAR},
       </if>
-      <if test="record.stydyDescription != null" >
-        STYDY_DESCRIPTION = #{record.stydyDescription,jdbcType=VARCHAR},
+      <if test="record.studyDescription != null" >
+        STUDY_DESCRIPTION = #{record.studyDescription,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -319,7 +319,7 @@
       STATUS = #{record.status,jdbcType=INTEGER},
       MODALITY = #{record.modality,jdbcType=VARCHAR},
       BODY_PART_EXAMINED = #{record.bodyPartExamined,jdbcType=VARCHAR},
-      STYDY_DESCRIPTION = #{record.stydyDescription,jdbcType=VARCHAR}
+      STUDY_DESCRIPTION = #{record.studyDescription,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -372,8 +372,8 @@
       <if test="bodyPartExamined != null" >
         BODY_PART_EXAMINED = #{bodyPartExamined,jdbcType=VARCHAR},
       </if>
-      <if test="stydyDescription != null" >
-        STYDY_DESCRIPTION = #{stydyDescription,jdbcType=VARCHAR},
+      <if test="studyDescription != null" >
+        STUDY_DESCRIPTION = #{studyDescription,jdbcType=VARCHAR},
       </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
@@ -395,7 +395,7 @@
       STATUS = #{status,jdbcType=INTEGER},
       MODALITY = #{modality,jdbcType=VARCHAR},
       BODY_PART_EXAMINED = #{bodyPartExamined,jdbcType=VARCHAR},
-      STYDY_DESCRIPTION = #{stydyDescription,jdbcType=VARCHAR}
+      STUDY_DESCRIPTION = #{studyDescription,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <select resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.StudyExample" id="selectByExampleWithRowbounds" >

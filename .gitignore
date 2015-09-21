@@ -1,3 +1,4 @@
 source code/MedicalProjectWeb/.classpath
 *.project
 source code/MedicalProjectWeb/.settings/*
+source code/MedicalProjectWeb/target/*

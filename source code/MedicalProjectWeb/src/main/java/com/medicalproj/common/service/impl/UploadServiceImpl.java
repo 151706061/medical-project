@@ -1,7 +1,5 @@
 package com.medicalproj.common.service.impl;
 
-import java.util.Date;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +10,8 @@ import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IFileUploadService;
 import com.medicalproj.common.service.IUploadService;
-import com.medicalproj.common.util.DateUtil;
 import com.medicalproj.common.util.FileUtil;
 import com.medicalproj.common.util.FtpUtil;
-import com.medicalproj.common.util.UUIDUtil;
 
 @Service
 public class UploadServiceImpl implements IUploadService {
@@ -31,10 +27,9 @@ public class UploadServiceImpl implements IUploadService {
 				throw new ServiceException("文件上传出错");
 			}
 
-			Date now = new Date();
-			int year = DateUtil.getYear(now);
-			int month = DateUtil.getMonth(now);
-			String suffix = FileUtil.getSuffix(file.getOriginalFilename());
+			//Date now = new Date();
+			//int year = DateUtil.getYear(now);
+			//int month = DateUtil.getMonth(now);
 			long fileSize = file.getSize();
 			
 			
@@ -42,19 +37,21 @@ public class UploadServiceImpl implements IUploadService {
 				throw new ServiceException("文件格式不支持.");
 			}
 			
-			String fileName = UUIDUtil.getUUID() + "." + suffix;
-			
+			//String fileName = UUIDUtil.getUUID() + "." + suffix;
+			FtpUtil.UploadResult res = null;
 			try {
-				FtpUtil.upload(file.getInputStream(), year + "/" + month,
-						fileName);
+				res = FtpUtil.upload(file.getInputStream(),FileUtil.getSuffix(file.getOriginalFilename()));
+				if( res == null ){
+					throw new ServiceException("上传失败");
+				}
 			} catch (Exception e) {
-				throw new ServiceException("上传文件失败");
+				throw new ServiceException("上传文件失败",e);
 			}
 
 			// 保存文件
-			String imageRelativePath = year + "/" + month + "/" + fileName;
+			String imageRelativePath = res.getRelativePath();
 			int fileType = FileUtil.getType(file.getContentType());
-			Integer imageId = fileUploadService.save(fileName,imageRelativePath,fileSize,fileType,uploadUserId);
+			Integer imageId = fileUploadService.save(res.getFileName(),imageRelativePath,fileSize,fileType,uploadUserId);
 
 			FileView fileView = new FileView();
 			fileView.setPath(FtpUtil.getAbsPath(imageRelativePath));

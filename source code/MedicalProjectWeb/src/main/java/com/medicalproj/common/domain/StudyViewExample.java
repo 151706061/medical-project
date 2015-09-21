@@ -1324,73 +1324,73 @@ public class StudyViewExample {
             return (Criteria) this;
         }
 
-        public Criteria andStydyDescriptionIsNull() {
-            addCriterion("STYDY_DESCRIPTION is null");
+        public Criteria andStudyDescriptionIsNull() {
+            addCriterion("STUDY_DESCRIPTION is null");
             return (Criteria) this;
         }
 
-        public Criteria andStydyDescriptionIsNotNull() {
-            addCriterion("STYDY_DESCRIPTION is not null");
+        public Criteria andStudyDescriptionIsNotNull() {
+            addCriterion("STUDY_DESCRIPTION is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStydyDescriptionEqualTo(String value) {
-            addCriterion("STYDY_DESCRIPTION =", value, "stydyDescription");
+        public Criteria andStudyDescriptionEqualTo(String value) {
+            addCriterion("STUDY_DESCRIPTION =", value, "studyDescription");
             return (Criteria) this;
         }
 
-        public Criteria andStydyDescriptionNotEqualTo(String value) {
-            addCriterion("STYDY_DESCRIPTION <>", value, "stydyDescription");
+        public Criteria andStudyDescriptionNotEqualTo(String value) {
+            addCriterion("STUDY_DESCRIPTION <>", value, "studyDescription");
             return (Criteria) this;
         }
 
-        public Criteria andStydyDescriptionGreaterThan(String value) {
-            addCriterion("STYDY_DESCRIPTION >", value, "stydyDescription");
+        public Criteria andStudyDescriptionGreaterThan(String value) {
+            addCriterion("STUDY_DESCRIPTION >", value, "studyDescription");
             return (Criteria) this;
         }
 
-        public Criteria andStydyDescriptionGreaterThanOrEqualTo(String value) {
-            addCriterion("STYDY_DESCRIPTION >=", value, "stydyDescription");
+        public Criteria andStudyDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("STUDY_DESCRIPTION >=", value, "studyDescription");
             return (Criteria) this;
         }
 
-        public Criteria andStydyDescriptionLessThan(String value) {
-            addCriterion("STYDY_DESCRIPTION <", value, "stydyDescription");
+        public Criteria andStudyDescriptionLessThan(String value) {
+            addCriterion("STUDY_DESCRIPTION <", value, "studyDescription");
             return (Criteria) this;
         }
 
-        public Criteria andStydyDescriptionLessThanOrEqualTo(String value) {
-            addCriterion("STYDY_DESCRIPTION <=", value, "stydyDescription");
+        public Criteria andStudyDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("STUDY_DESCRIPTION <=", value, "studyDescription");
             return (Criteria) this;
         }
 
-        public Criteria andStydyDescriptionLike(String value) {
-            addCriterion("STYDY_DESCRIPTION like", value, "stydyDescription");
+        public Criteria andStudyDescriptionLike(String value) {
+            addCriterion("STUDY_DESCRIPTION like", value, "studyDescription");
             return (Criteria) this;
         }
 
-        public Criteria andStydyDescriptionNotLike(String value) {
-            addCriterion("STYDY_DESCRIPTION not like", value, "stydyDescription");
+        public Criteria andStudyDescriptionNotLike(String value) {
+            addCriterion("STUDY_DESCRIPTION not like", value, "studyDescription");
             return (Criteria) this;
         }
 
-        public Criteria andStydyDescriptionIn(List<String> values) {
-            addCriterion("STYDY_DESCRIPTION in", values, "stydyDescription");
+        public Criteria andStudyDescriptionIn(List<String> values) {
+            addCriterion("STUDY_DESCRIPTION in", values, "studyDescription");
             return (Criteria) this;
         }
 
-        public Criteria andStydyDescriptionNotIn(List<String> values) {
-            addCriterion("STYDY_DESCRIPTION not in", values, "stydyDescription");
+        public Criteria andStudyDescriptionNotIn(List<String> values) {
+            addCriterion("STUDY_DESCRIPTION not in", values, "studyDescription");
             return (Criteria) this;
         }
 
-        public Criteria andStydyDescriptionBetween(String value1, String value2) {
-            addCriterion("STYDY_DESCRIPTION between", value1, value2, "stydyDescription");
+        public Criteria andStudyDescriptionBetween(String value1, String value2) {
+            addCriterion("STUDY_DESCRIPTION between", value1, value2, "studyDescription");
             return (Criteria) this;
         }
 
-        public Criteria andStydyDescriptionNotBetween(String value1, String value2) {
-            addCriterion("STYDY_DESCRIPTION not between", value1, value2, "stydyDescription");
+        public Criteria andStudyDescriptionNotBetween(String value1, String value2) {
+            addCriterion("STUDY_DESCRIPTION not between", value1, value2, "studyDescription");
             return (Criteria) this;
         }
     }

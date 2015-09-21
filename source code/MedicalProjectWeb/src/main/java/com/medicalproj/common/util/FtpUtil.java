@@ -2,6 +2,7 @@ package com.medicalproj.common.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -15,7 +16,18 @@ public class FtpUtil {
 	public final static String FTP_USER_NAME = "ftpuser";
 	public final static String FTP_PASSWORD = "ftpuser";
 	
-	public static void upload(InputStream fileInputStream,String path,String fileName)throws Exception{
+	public static UploadResult upload(InputStream fileInputStream,String suffix)throws Exception{
+		
+		Date now = new Date();
+		int year = DateUtil.getYear(now);
+		int month = DateUtil.getMonth(now);
+		//String suffix = FileUtil.getSuffix(file.getOriginalFilename());
+		//long fileSize = fileInputStream
+		
+		String fileName = generateFileName(suffix);
+		String path = year + "/" + month;
+		
+		
 		FTPClient ftpClient = new FTPClient();
         try {
  
@@ -36,10 +48,15 @@ public class FtpUtil {
         	fileInputStream.close();
         	if (done) {
         		logger.info("The file is uploaded successfully.");
+        		UploadResult res = new UploadResult();
+        		res.setFileName(fileName);
+        		res.setRelativePath(path+"/" + fileName);
+        		return res;
         	}
- 
+        	return null;
         } catch (Exception ex) {
             logger.error("Error: " + ex.getMessage(),ex);
+            return null;
         } finally {
             try {
                 if (ftpClient.isConnected()) {
@@ -52,8 +69,29 @@ public class FtpUtil {
         }
 	}
 
+	private static String generateFileName(String suffix) {
+		return UUIDUtil.getUUID() + "." + suffix;
+	}
+
 	public static String getAbsPath(String relativePath) {
 		return FTP_HTTP_BASE_URL + relativePath;
+	}
+	
+	public static class UploadResult{
+		private String fileName;
+		private String relativePath;
+		public String getFileName() {
+			return fileName;
+		}
+		public void setFileName(String fileName) {
+			this.fileName = fileName;
+		}
+		public String getRelativePath() {
+			return relativePath;
+		}
+		public void setRelativePath(String relativePath) {
+			this.relativePath = relativePath;
+		}
 	}
 
 }
