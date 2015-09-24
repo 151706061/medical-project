@@ -1,10 +1,22 @@
 package com.medicalproj.common.util;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 
 public class DateUtil {
+	public static Date parse(String format,String date) throws RuntimeException{
+		DateFormat df = new SimpleDateFormat(format);
+		try {
+			return df.parse(date);
+		} catch (ParseException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 	public static long secondDiff(Date date1, Date date2){
 		return (date2.getTime() - date1.getTime())/1000;
 	}
