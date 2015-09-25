@@ -20,4 +20,7 @@ public interface IMedicalCaseService {
 	void addDicomToMedicalCase(Integer medicalCaseId, MultipartFile dicomFile,
 			Integer userId)throws ServiceException;
 
+	com.medicalproj.common.domain.MedicalCaseView getMedicalCaseViewById(
+			Integer medicalCaseId)throws ServiceException;
+
 }

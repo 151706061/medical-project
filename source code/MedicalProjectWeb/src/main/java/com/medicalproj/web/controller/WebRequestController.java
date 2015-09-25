@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.web.dto.session.User;
 import com.medicalproj.web.dto.view.MedicalCaseListView;
+import com.medicalproj.web.dto.view.MedicalCaseView;
 import com.medicalproj.web.service.IWebRequestService;
 
 @RequestMapping("/web/request")
@@ -23,10 +24,10 @@ public class WebRequestController extends WebBaseController{
 	
 	@RequestMapping(value="/uploadDicom", method = RequestMethod.POST)
 	@ResponseBody
-	public View<Boolean> uploadDicom(@RequestParam("file") MultipartFile file,Integer medicalCaseId,HttpSession session){
+	public View<MedicalCaseView> uploadDicom(@RequestParam("file") MultipartFile file,Integer medicalCaseId,HttpSession session){
 		User user = super.getLoginUser(session);
 		
-		View<Boolean> view = webRequestService.uploadDicom(user.getId() , medicalCaseId,file);
+		View<MedicalCaseView> view = webRequestService.uploadDicom(user.getId() , medicalCaseId,file);
 		
 		return view;
 	}
@@ -41,12 +42,22 @@ public class WebRequestController extends WebBaseController{
 		return view;
 	}
 	
-	@RequestMapping("/initNewMedicalCase")
+	@RequestMapping(value="/initNewMedicalCase", method = RequestMethod.POST)
 	@ResponseBody
 	public View<Integer> initNewMedicalCase(HttpSession session){
 		User user = super.getLoginUser(session);
 		
 		View<Integer> view = webRequestService.initNewMedicalCase(user.getId() );
+		
+		return view;
+	}
+	
+	@RequestMapping(value="/loadMedicalCase", method = RequestMethod.GET)
+	@ResponseBody
+	public View<MedicalCaseView> loadMedicalCase(Integer medicalCaseId,HttpSession session){
+		User user = super.getLoginUser(session);
+		
+		View<MedicalCaseView> view = webRequestService.loadMedicalCase(medicalCaseId);
 		
 		return view;
 	}

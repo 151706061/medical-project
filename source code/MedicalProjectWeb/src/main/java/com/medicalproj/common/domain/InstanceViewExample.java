@@ -294,6 +294,136 @@ public class InstanceViewExample {
             return (Criteria) this;
         }
 
+        public Criteria andJpgFileIdIsNull() {
+            addCriterion("JPG_FILE_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdIsNotNull() {
+            addCriterion("JPG_FILE_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdEqualTo(Integer value) {
+            addCriterion("JPG_FILE_ID =", value, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdNotEqualTo(Integer value) {
+            addCriterion("JPG_FILE_ID <>", value, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdGreaterThan(Integer value) {
+            addCriterion("JPG_FILE_ID >", value, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("JPG_FILE_ID >=", value, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdLessThan(Integer value) {
+            addCriterion("JPG_FILE_ID <", value, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdLessThanOrEqualTo(Integer value) {
+            addCriterion("JPG_FILE_ID <=", value, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdIn(List<Integer> values) {
+            addCriterion("JPG_FILE_ID in", values, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdNotIn(List<Integer> values) {
+            addCriterion("JPG_FILE_ID not in", values, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdBetween(Integer value1, Integer value2) {
+            addCriterion("JPG_FILE_ID between", value1, value2, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("JPG_FILE_ID not between", value1, value2, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFilePathIsNull() {
+            addCriterion("JPG_FILE_PATH is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFilePathIsNotNull() {
+            addCriterion("JPG_FILE_PATH is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFilePathEqualTo(String value) {
+            addCriterion("JPG_FILE_PATH =", value, "jpgFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFilePathNotEqualTo(String value) {
+            addCriterion("JPG_FILE_PATH <>", value, "jpgFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFilePathGreaterThan(String value) {
+            addCriterion("JPG_FILE_PATH >", value, "jpgFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFilePathGreaterThanOrEqualTo(String value) {
+            addCriterion("JPG_FILE_PATH >=", value, "jpgFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFilePathLessThan(String value) {
+            addCriterion("JPG_FILE_PATH <", value, "jpgFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFilePathLessThanOrEqualTo(String value) {
+            addCriterion("JPG_FILE_PATH <=", value, "jpgFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFilePathLike(String value) {
+            addCriterion("JPG_FILE_PATH like", value, "jpgFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFilePathNotLike(String value) {
+            addCriterion("JPG_FILE_PATH not like", value, "jpgFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFilePathIn(List<String> values) {
+            addCriterion("JPG_FILE_PATH in", values, "jpgFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFilePathNotIn(List<String> values) {
+            addCriterion("JPG_FILE_PATH not in", values, "jpgFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFilePathBetween(String value1, String value2) {
+            addCriterion("JPG_FILE_PATH between", value1, value2, "jpgFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFilePathNotBetween(String value1, String value2) {
+            addCriterion("JPG_FILE_PATH not between", value1, value2, "jpgFilePath");
+            return (Criteria) this;
+        }
+
         public Criteria andDicomFileSizeIsNull() {
             addCriterion("DICOM_FILE_SIZE is null");
             return (Criteria) this;

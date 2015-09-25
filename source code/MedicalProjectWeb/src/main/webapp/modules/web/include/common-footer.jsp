@@ -38,6 +38,8 @@
 <!-- script references -->
 <script src='<c:url value="/modules/web/assets/libs/jquery/jquery-1.11.3.min.js"/>'></script>
 <script src='<c:url value="/modules/web/assets/libs/bootstrap-3.3.5/js/bootstrap.js"/>'></script>
+<script src='<c:url value="/modules/web/assets/libs/jquery.blockUI.js"/>'></script>
+
 <script src='<c:url value="/modules/web/assets/libs/routie.js"/>'></script>
 <script src='<c:url value="/modules/web/assets/libs/mustache.min.js"/>'></script>
 <script src='<c:url value="/modules/web/assets/js/fbscripts.js"/>'></script>
@@ -50,9 +52,23 @@ $(function(){
 
 var CommonModule = (function(){
 	return {
-		showMsg: function(msg){
-			$('#msgModal').find('.modal-body').html(msg);
-			$('#msgModal').modal();
+		showMsg: function(msg,hasBtn){
+			$.blockUI({
+				fadeIn:0,
+				fadeOut:0,
+				message: '<div class="alert alert-info" role="alert">'+msg+'</div>' 
+			});
+			/* $('#msgModal').find('.modal-body').html(msg);
+			$('#msgModal').modal('show');
+			if( !hasBtn ){
+				$('#msgModal .modal-footer').hide();
+			}else{
+				$('#msgModal .modal-footer').show();
+			} */
+		},
+		hideMsg: function(){
+			$.unblockUI();
+			//$('#msgModal').modal('hide');
 		},
 		onDicomUploadProgressUpdate :function(progress){
 			$('.upload-progress-text').html('文件上传中...'+progress);		

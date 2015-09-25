@@ -355,6 +355,66 @@ public class InstanceExample {
             return (Criteria) this;
         }
 
+        public Criteria andJpgFileIdIsNull() {
+            addCriterion("JPG_FILE_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdIsNotNull() {
+            addCriterion("JPG_FILE_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdEqualTo(Integer value) {
+            addCriterion("JPG_FILE_ID =", value, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdNotEqualTo(Integer value) {
+            addCriterion("JPG_FILE_ID <>", value, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdGreaterThan(Integer value) {
+            addCriterion("JPG_FILE_ID >", value, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("JPG_FILE_ID >=", value, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdLessThan(Integer value) {
+            addCriterion("JPG_FILE_ID <", value, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdLessThanOrEqualTo(Integer value) {
+            addCriterion("JPG_FILE_ID <=", value, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdIn(List<Integer> values) {
+            addCriterion("JPG_FILE_ID in", values, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdNotIn(List<Integer> values) {
+            addCriterion("JPG_FILE_ID not in", values, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdBetween(Integer value1, Integer value2) {
+            addCriterion("JPG_FILE_ID between", value1, value2, "jpgFileId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJpgFileIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("JPG_FILE_ID not between", value1, value2, "jpgFileId");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("CREATE_TIME is null");
             return (Criteria) this;

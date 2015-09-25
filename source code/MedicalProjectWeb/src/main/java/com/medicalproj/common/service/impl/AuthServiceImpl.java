@@ -46,7 +46,7 @@ public class AuthServiceImpl implements IAuthService {
 			if( user.getPassword() != null && user.getPassword().equals(password) ){
 				//登录成功
 				UsernamePasswordToken token = new UsernamePasswordToken(account, password);
-				token.setRememberMe(true);
+				//token.setRememberMe(true);
 				currentUser.login(token);
 				
 				return;

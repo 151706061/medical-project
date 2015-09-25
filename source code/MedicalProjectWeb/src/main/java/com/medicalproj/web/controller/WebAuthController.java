@@ -29,6 +29,7 @@ public class WebAuthController{
 		if( view != null &&  view.getData() == true ){
 			User user = webAuthService.getSessionUserByAccount(account);
 			session.setAttribute(Constants.SESSION_KEY_LOGIN_USER, user);
+			session.setAttribute(Constants.SESSION_KEY_FILE_BASE_PATH, Constants.FTP_HTTP_BASE_URL);
 		}
 		return view;
 	}

@@ -1,5 +1,7 @@
 package com.medicalproj.common.service.impl;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -18,10 +20,12 @@ import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IFileUploadService;
 import com.medicalproj.common.service.IInstanceService;
 import com.medicalproj.common.service.IMedicalCaseService;
+import com.medicalproj.common.service.IMedicalCaseViewService;
 import com.medicalproj.common.service.ISeriesService;
 import com.medicalproj.common.service.IStudyService;
 import com.medicalproj.common.util.FileUtil;
 import com.medicalproj.common.util.FtpUtil;
+import com.medicalproj.common.util.UUIDUtil;
 import com.medicalproj.web.util.Constants;
 
 import eden.dicomparser.DicomParser;
@@ -45,6 +49,9 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 	
 	@Autowired
 	private IFileUploadService fileUploadServcie;
+	
+	@Autowired
+	private IMedicalCaseViewService medicalCaseViewService;
 	
 	@Override
 	public MedicalCase initNewMedicalCase(Integer creatorUserId) throws ServiceException {
@@ -111,8 +118,7 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 	@Override
 	public List<MedicalCaseView> listAllMedicalCaseViewByOwnerId(Integer ownerId)
 			throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
+		return medicalCaseViewService.listAllByOwnerId(ownerId);
 	}
 
 	@Override
@@ -131,11 +137,50 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 			// upload dicom file to ftp server
 			FtpUtil.UploadResult res = FtpUtil.upload(dicomFile.getInputStream(),FileUtil.getSuffix(dicomFile.getOriginalFilename()));
 			Integer uploadDicomFileId = null;
+			Integer uploadJpgFileId = null;
 			if( res == null ){
 				throw new ServiceException("上传失败");
 			}else{
 				// save upload dicom file
 				uploadDicomFileId = fileUploadServcie.save(res.getFileName(), res.getRelativePath(), dicomFile.getSize(), Constants.UPLOAD_FILE_TYPE_DICOM, userId);
+				
+				FileInputStream jpgFileIn = null;
+				File jpgFile = null;
+				File dcmFile = null;
+				try{
+					/* convert to jpg and save */
+					// convert dcm to jpg
+					String tmpdir = System.getProperty("java.io.tmpdir");
+					String jpgFilePath = tmpdir + File.separator + UUIDUtil.getUUID() + ".jpg";
+					logger.info("创建图片临时文件:" + jpgFilePath);
+					String dcmFilePath = tmpdir + File.separator + UUIDUtil.getUUID() + ".jpg";
+					dcmFile = new File(dcmFilePath);
+					FileUtil.copy(dicomFile.getInputStream(),dcmFile);
+					DicomParser.dcm2jpg(dcmFilePath, jpgFilePath);
+					
+					// upload and save jpg to db
+					jpgFile = new File(jpgFilePath);
+					jpgFileIn = new FileInputStream(jpgFile);
+	
+					FtpUtil.UploadResult jpgRes = FtpUtil.upload(jpgFileIn,Constants.FILE_SUFFIX_JPG);
+					uploadJpgFileId = fileUploadServcie.save(jpgRes.getFileName(), jpgRes.getRelativePath(), jpgFile.length(), Constants.UPLOAD_FILE_TYPE_DICOM, userId);
+				}finally{
+					if( jpgFileIn != null ){
+						try {
+							jpgFileIn.close();
+						} catch (Exception e) {
+							logger.error(e);
+							e.printStackTrace();
+						}
+						try {
+							jpgFile.delete();
+							dcmFile.delete();
+						} catch (Exception e) {
+							logger.error(e);
+							e.printStackTrace();
+						}
+					}
+				}
 			}
 			
 			DicomData dicom = DicomParser.getInstance().read(dicomFile.getInputStream());
@@ -150,13 +195,19 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 				if( series != null ){
 					Integer seriesDomainId = series.getId();
 					
-					Instance instance = instanceService.createInstanceIfNotExists(seriesDomainId, dicom, uploadDicomFileId);
+					Instance instance = instanceService.createInstanceIfNotExists(seriesDomainId, dicom, uploadDicomFileId,uploadJpgFileId);
 				}
 			}
 		} catch (Exception e) {
 			logger.error(e);
 			throw new ServiceException(e);
 		}
+	}
+
+	@Override
+	public MedicalCaseView getMedicalCaseViewById(Integer medicalCaseId)
+			throws ServiceException {
+		return medicalCaseViewService.getById(medicalCaseId);
 	}
 	
 }

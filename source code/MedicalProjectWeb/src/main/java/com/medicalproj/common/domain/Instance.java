@@ -11,6 +11,8 @@ public class Instance {
 
     private Integer dicomFileId;
 
+    private Integer jpgFileId;
+
     private Date createTime;
 
     public Integer getId() {
@@ -43,6 +45,14 @@ public class Instance {
 
     public void setDicomFileId(Integer dicomFileId) {
         this.dicomFileId = dicomFileId;
+    }
+
+    public Integer getJpgFileId() {
+        return jpgFileId;
+    }
+
+    public void setJpgFileId(Integer jpgFileId) {
+        this.jpgFileId = jpgFileId;
     }
 
     public Date getCreateTime() {

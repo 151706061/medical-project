@@ -46,7 +46,7 @@ public class InstanceServiceImpl implements IInstanceService {
 
 	@Override
 	public Instance createInstanceIfNotExists(Integer seriesDomainId,
-			DicomData dicom,Integer uploadDicomFileId) throws ServiceException {
+			DicomData dicom,Integer uploadDicomFileId,Integer uploadJpgFileId) throws ServiceException {
 		try {
 			if( seriesDomainId == null || dicom == null || uploadDicomFileId == null){
 				throw new ServiceException("参数错误");
@@ -62,6 +62,7 @@ public class InstanceServiceImpl implements IInstanceService {
 			
 			instance.setCreateTime(new Date());
 			instance.setDicomFileId(uploadDicomFileId);
+			instance.setJpgFileId(uploadJpgFileId);
 			instance.setInstanceNumber(instanceNumber);
 			instance.setSeriesId(seriesDomainId);
 			this.saveOrUpdate(instance);

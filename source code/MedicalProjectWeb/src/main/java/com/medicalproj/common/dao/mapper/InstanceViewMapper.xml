@@ -5,6 +5,8 @@
     <result column="ID" property="id" jdbcType="INTEGER" />
     <result column="DICOM_FILE_ID" property="dicomFileId" jdbcType="INTEGER" />
     <result column="DICOM_FILE_PATH" property="dicomFilePath" jdbcType="VARCHAR" />
+    <result column="JPG_FILE_ID" property="jpgFileId" jdbcType="INTEGER" />
+    <result column="JPG_FILE_PATH" property="jpgFilePath" jdbcType="VARCHAR" />
     <result column="DICOM_FILE_SIZE" property="dicomFileSize" jdbcType="INTEGER" />
     <result column="UPLOAD_TIME" property="uploadTime" jdbcType="VARCHAR" />
     <result column="DICOM_MD5" property="dicomMd5" jdbcType="VARCHAR" />
@@ -71,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, DICOM_FILE_ID, DICOM_FILE_PATH, DICOM_FILE_SIZE, UPLOAD_TIME, DICOM_MD5, INSTANCE_NUMBER, 
-    SERIES_ID, CREATE_TIME
+    ID, DICOM_FILE_ID, DICOM_FILE_PATH, JPG_FILE_ID, JPG_FILE_PATH, DICOM_FILE_SIZE, 
+    UPLOAD_TIME, DICOM_MD5, INSTANCE_NUMBER, SERIES_ID, CREATE_TIME
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.InstanceViewExample" >
     select
@@ -96,13 +98,13 @@
   </delete>
   <insert id="insert" parameterType="com.medicalproj.common.domain.InstanceView" >
     insert into vw_instance (ID, DICOM_FILE_ID, DICOM_FILE_PATH, 
-      DICOM_FILE_SIZE, UPLOAD_TIME, DICOM_MD5, 
-      INSTANCE_NUMBER, SERIES_ID, CREATE_TIME
-      )
+      JPG_FILE_ID, JPG_FILE_PATH, DICOM_FILE_SIZE, 
+      UPLOAD_TIME, DICOM_MD5, INSTANCE_NUMBER, 
+      SERIES_ID, CREATE_TIME)
     values (#{id,jdbcType=INTEGER}, #{dicomFileId,jdbcType=INTEGER}, #{dicomFilePath,jdbcType=VARCHAR}, 
-      #{dicomFileSize,jdbcType=INTEGER}, #{uploadTime,jdbcType=VARCHAR}, #{dicomMd5,jdbcType=VARCHAR}, 
-      #{instanceNumber,jdbcType=VARCHAR}, #{seriesId,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}
-      )
+      #{jpgFileId,jdbcType=INTEGER}, #{jpgFilePath,jdbcType=VARCHAR}, #{dicomFileSize,jdbcType=INTEGER}, 
+      #{uploadTime,jdbcType=VARCHAR}, #{dicomMd5,jdbcType=VARCHAR}, #{instanceNumber,jdbcType=VARCHAR}, 
+      #{seriesId,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.InstanceView" >
     insert into vw_instance
@@ -115,6 +117,12 @@
       </if>
       <if test="dicomFilePath != null" >
         DICOM_FILE_PATH,
+      </if>
+      <if test="jpgFileId != null" >
+        JPG_FILE_ID,
+      </if>
+      <if test="jpgFilePath != null" >
+        JPG_FILE_PATH,
       </if>
       <if test="dicomFileSize != null" >
         DICOM_FILE_SIZE,
@@ -144,6 +152,12 @@
       </if>
       <if test="dicomFilePath != null" >
         #{dicomFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="jpgFileId != null" >
+        #{jpgFileId,jdbcType=INTEGER},
+      </if>
+      <if test="jpgFilePath != null" >
+        #{jpgFilePath,jdbcType=VARCHAR},
       </if>
       <if test="dicomFileSize != null" >
         #{dicomFileSize,jdbcType=INTEGER},
@@ -183,6 +197,12 @@
       <if test="record.dicomFilePath != null" >
         DICOM_FILE_PATH = #{record.dicomFilePath,jdbcType=VARCHAR},
       </if>
+      <if test="record.jpgFileId != null" >
+        JPG_FILE_ID = #{record.jpgFileId,jdbcType=INTEGER},
+      </if>
+      <if test="record.jpgFilePath != null" >
+        JPG_FILE_PATH = #{record.jpgFilePath,jdbcType=VARCHAR},
+      </if>
       <if test="record.dicomFileSize != null" >
         DICOM_FILE_SIZE = #{record.dicomFileSize,jdbcType=INTEGER},
       </if>
@@ -211,6 +231,8 @@
     set ID = #{record.id,jdbcType=INTEGER},
       DICOM_FILE_ID = #{record.dicomFileId,jdbcType=INTEGER},
       DICOM_FILE_PATH = #{record.dicomFilePath,jdbcType=VARCHAR},
+      JPG_FILE_ID = #{record.jpgFileId,jdbcType=INTEGER},
+      JPG_FILE_PATH = #{record.jpgFilePath,jdbcType=VARCHAR},
       DICOM_FILE_SIZE = #{record.dicomFileSize,jdbcType=INTEGER},
       UPLOAD_TIME = #{record.uploadTime,jdbcType=VARCHAR},
       DICOM_MD5 = #{record.dicomMd5,jdbcType=VARCHAR},

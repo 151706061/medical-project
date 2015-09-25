@@ -4,6 +4,9 @@
 	vertical-align: -2px;
 	padding: 0 5px 0 0;
 }
+.blockUI .alert{
+	margin-bottom:0;
+}
 
 nav li.dropdown a .badge{
   	position: relative;

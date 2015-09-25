@@ -2,7 +2,7 @@ package com.medicalproj.web.util;
 
 public class Constants {
 	public static final String SESSION_KEY_LOGIN_USER = "SESSION_KEY_LOGIN_USER";
-	
+	public static final String SESSION_KEY_FILE_BASE_PATH = "SESSION_KEY_FILE_BASE_PATH";
 	/*
 	 * 用户类型
 	 */
@@ -58,5 +58,9 @@ public class Constants {
 	public static final int STUDY_STATUS_WAIT_FOR_AUDIT = 2;
 	//完成审查
 	public static final int STUDY_STATUS_COMPLETE_AUDIT = 3;
+
+	public static final String FILE_SUFFIX_JPG = "jpg";
+	public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp/";
+
 	
 }

@@ -8,9 +8,10 @@ import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.log4j.Logger;
 
+import com.medicalproj.web.util.Constants;
+
 public class FtpUtil {
 	private static Logger logger = Logger.getLogger(FtpUtil.class);
-	public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp/";
 	public final static String FTP_URL = "127.0.0.1";
 	public final static int FTP_PORT = 21;
 	public final static String FTP_USER_NAME = "ftpuser";
@@ -70,11 +71,15 @@ public class FtpUtil {
 	}
 
 	private static String generateFileName(String suffix) {
-		return UUIDUtil.getUUID() + "." + suffix;
+		if( suffix==null ){
+			return UUIDUtil.getUUID();
+		}else{
+			return UUIDUtil.getUUID() + "." + suffix;
+		}
 	}
 
 	public static String getAbsPath(String relativePath) {
-		return FTP_HTTP_BASE_URL + relativePath;
+		return Constants.FTP_HTTP_BASE_URL + relativePath;
 	}
 	
 	public static class UploadResult{

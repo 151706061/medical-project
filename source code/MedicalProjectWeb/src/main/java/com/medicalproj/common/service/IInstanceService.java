@@ -12,6 +12,6 @@ public interface IInstanceService {
 	List<com.medicalproj.common.domain.InstanceView> listAllInstanceViewBySeriesId(
 			Integer seriesId)throws ServiceException;
 
-	Instance createInstanceIfNotExists(Integer seriesDomainId, DicomData dicom,Integer uploadDicomFileId)throws ServiceException;
+	Instance createInstanceIfNotExists(Integer seriesDomainId, DicomData dicom,Integer uploadDicomFileId,Integer uploadJpgFileId)throws ServiceException;
 
 }

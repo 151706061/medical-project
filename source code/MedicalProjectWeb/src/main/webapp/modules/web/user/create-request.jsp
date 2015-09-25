@@ -32,96 +32,59 @@
 						</div>
 					</div>
 				</form>
-
-				<div class="panel panel-primary case-wrap">
-					<div class="panel-heading">
-						<div class="row">
-							<div class="col-sm-4 title-left"></div>
-							<div class="col-sm-4 title-center"></div>
-							<div class="col-sm-4 title-right">
-								<a href="#" class="glyphicon glyphicon-plus"></a>
-							</div>
-						</div>
-					</div>
-					<div class="panel-body">
-						<div class="panel panel-primary case-item-wrap">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col-sm-4 title-left">病例1 (张三)</div>
-									<div class="col-sm-4 title-center">大脑</div>
-									<div class="col-sm-4 title-right">共4张</div>
-								</div>
-							</div>
-							<div class="panel-body">
-								<div class="row">
-									<div class="col-sm-2">
-										<img src="" alt="" class="img-thumbnail case-img" />
-									</div>
-									<div class="col-sm-2">
-										<img src="" alt="" class="img-thumbnail case-img" />
-									</div>
-									<div class="col-sm-2">
-										<img src="" alt="" class="img-thumbnail case-img" />
-									</div>
-									<div class="col-sm-2">
-										<img src="" alt="" class="img-thumbnail case-img" />
-									</div>
-									<div class="col-sm-2">
-										<img src="" alt="" class="img-thumbnail case-img" />
-									</div>
-								</div>
-							</div>
-							<%-- <div class="panel-footer">状态：正在诊断</div> --%>
-						</div>
-
-						<div class="panel panel-primary case-item-wrap">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col-sm-4 title-left">病例2 (李四)</div>
-									<div class="col-sm-4 title-center">胸腔</div>
-									<div class="col-sm-4 title-right">共2张</div>
-								</div>
-							</div>
-							<div class="panel-body">
-								<div class="row">
-									<div class="col-sm-2">
-										<img src="" alt="" class="img-thumbnail case-img" />
-									</div>
-									<div class="col-sm-2">
-										<img src="" alt="" class="img-thumbnail case-img" />
-									</div>
-									<div class="col-sm-2">
-										<img src="" alt="" class="img-thumbnail case-img" />
-									</div>
-									<div class="col-sm-2">
-										<img src="" alt="" class="img-thumbnail case-img" />
-									</div>
-									<div class="col-sm-2">
-										<img src="" alt="" class="img-thumbnail case-img" />
-									</div>
-								</div>
-							</div>
-							<%-- <div class="panel-footer">状态：完成诊断</div> --%>
-						</div>
-					</div>
-					<%-- <div class="panel-footer">
-														<div class="row">
-															<div class="col-sm-6 left">2015-07-21 23:33</div>
-															<div class="col-sm-6 right"><button type="button" class="btn btn-xs btn-link">查看报告</button></div>
-														</div>
-													</div> --%>
+				<div id="case-container">
+				
 				</div>
-
 			</div>
-
+			
 		</div>
 
 	</div>
 </div>
 <!-- /padding -->
-<input type="file" name="files[]" multiple="" class="hide" data-url='<c:url value="/web/request/submitRequest.do"/>' id="uploadFileInput" />
+<input type="file" name="file" <%-- multiple="" --%> class="hide" data-url='<c:url value="/web/request/uploadDicom.do"/>' id="uploadFileInput" />
 <%-- END 内容部分 --%>
 
+<script id="medicalCaseTmpl" type="x-tmpl-mustache">
+<div class="panel panel-primary case-wrap">
+	<div class="panel-heading">
+		<div class="row">
+			<div class="col-sm-4 title-left"></div>
+			<div class="col-sm-4 title-center"></div>
+			<div class="col-sm-4 title-right">
+				<a href="javascript:void(0)" id="uploadDicomBtn" class="glyphicon glyphicon-plus"></a>
+			</div>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="panel panel-primary case-item-wrap">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-sm-4 title-left">Study ID 1 (张三)</div>
+					<div class="col-sm-4 title-center">Study</div>
+					<div class="col-sm-4 title-right">包含3个Series</div>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-2">
+						<img src="" alt="Series1" class="img-thumbnail case-img" />
+					</div>
+				</div>
+			</div>
+			<%-- <div class="panel-footer">状态：正在诊断</div> --%>
+		</div>
+
+	</div>
+	<%-- <div class="panel-footer">
+										<div class="row">
+											<div class="col-sm-6 left">2015-07-21 23:33</div>
+											<div class="col-sm-6 right"><button type="button" class="btn btn-xs btn-link">查看报告</button></div>
+										</div>
+									</div> --%>
+</div>
+</script>
+				
 <script
 	src='<c:url value="/modules/web/assets/libs/jquery.ui.widget.js"/>'></script>
 <script
@@ -129,4 +92,4 @@
 <script
 	src='<c:url value="/modules/web/assets/libs/jquery.iframe-transport.js"/>'></script>
 <script
-	src='<c:url value="/modules/web/assets/js/create-request.js"/>'></script>
+	src='<c:url value="/modules/web/assets/js/user/create-request.js"/>'></script>

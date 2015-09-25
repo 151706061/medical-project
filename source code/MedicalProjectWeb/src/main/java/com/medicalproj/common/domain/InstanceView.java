@@ -7,6 +7,10 @@ public class InstanceView {
 
     private String dicomFilePath;
 
+    private Integer jpgFileId;
+
+    private String jpgFilePath;
+
     private Integer dicomFileSize;
 
     private String uploadTime;
@@ -41,6 +45,22 @@ public class InstanceView {
 
     public void setDicomFilePath(String dicomFilePath) {
         this.dicomFilePath = dicomFilePath == null ? null : dicomFilePath.trim();
+    }
+
+    public Integer getJpgFileId() {
+        return jpgFileId;
+    }
+
+    public void setJpgFileId(Integer jpgFileId) {
+        this.jpgFileId = jpgFileId;
+    }
+
+    public String getJpgFilePath() {
+        return jpgFilePath;
+    }
+
+    public void setJpgFilePath(String jpgFilePath) {
+        this.jpgFilePath = jpgFilePath == null ? null : jpgFilePath.trim();
     }
 
     public Integer getDicomFileSize() {

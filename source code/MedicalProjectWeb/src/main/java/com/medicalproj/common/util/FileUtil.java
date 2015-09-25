@@ -1,5 +1,10 @@
 package com.medicalproj.common.util;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,6 +60,30 @@ public class FileUtil {
 			return true;
 		}
 		return false;
+	}
+
+	public static void copy(InputStream inputStream, File dcmFile) throws IOException {
+		if( inputStream != null && dcmFile.exists() ){
+			FileOutputStream fout = null;
+			try{
+				fout = new FileOutputStream(dcmFile);
+				byte[] buffer = new byte[1024];
+				while( inputStream.read(buffer) != -1 ){
+					fout.write(buffer);
+				}
+				fout.flush();
+			}finally{
+				if( fout != null ){
+					try {
+						fout.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			
+		}
+		
 	}
 
 }

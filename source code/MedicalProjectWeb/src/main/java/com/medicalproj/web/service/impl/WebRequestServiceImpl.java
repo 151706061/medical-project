@@ -26,9 +26,6 @@ import com.medicalproj.web.dto.view.SeriesView;
 import com.medicalproj.web.dto.view.StudyView;
 import com.medicalproj.web.service.IWebRequestService;
 
-import eden.dicomparser.DicomParser;
-import eden.dicomparser.data.DicomData;
-
 @Service
 public class WebRequestServiceImpl implements IWebRequestService {
 	private Logger logger = Logger.getLogger(this.getClass());
@@ -46,8 +43,8 @@ public class WebRequestServiceImpl implements IWebRequestService {
 	private IInstanceService instanceService;
 	
 	@Override
-	public View<Boolean> uploadDicom(Integer userId, Integer medicalCaseId,MultipartFile dicomFile) throws ServiceException {
-		View<Boolean> view = new View<Boolean>();
+	public View<MedicalCaseView> uploadDicom(Integer userId, Integer medicalCaseId,MultipartFile dicomFile) throws ServiceException {
+		View<MedicalCaseView> view = new View<MedicalCaseView>();
 		try {
 			
 			if( dicomFile != null ){
@@ -58,14 +55,15 @@ public class WebRequestServiceImpl implements IWebRequestService {
 				}
 				
 				medicalCaseService.addDicomToMedicalCase(medicalCaseId,dicomFile,userId);
-				view.setData(true);
+				
+				view.setData(this.trans2MedicalCaseView(medicalCaseService.getMedicalCaseViewById(medicalCaseId)));
 				return view;
 			}else{
 				throw new ServiceException("上传文件出错.");
 			}
 		} catch (Exception e) {
 			logger.error(e);
-			view.setData(false);
+			view.setData(null);
 			view.setMsg(e.getMessage());
 			return view;
 		}
@@ -261,8 +259,24 @@ public class WebRequestServiceImpl implements IWebRequestService {
 			return view;
 		}
 	}
-	
-	
+
+	@Override
+	public View<MedicalCaseView> loadMedicalCase(Integer medicalCaseId)
+			throws ServiceException {
+		View<MedicalCaseView> view = new View<MedicalCaseView>();
+		try {
+			com.medicalproj.common.domain.MedicalCaseView domainMedicalCase = this.medicalCaseService.getMedicalCaseViewById(medicalCaseId);
+			
+			MedicalCaseView medicalCaseView = trans2MedicalCaseView(domainMedicalCase);
+			view.setData(medicalCaseView);
+			
+			return view;
+		} catch (Exception e) {
+			logger.error(e);
+			view.setMsg(e.getMessage());
+			return view;
+		}
+	}
 	
 	
 }

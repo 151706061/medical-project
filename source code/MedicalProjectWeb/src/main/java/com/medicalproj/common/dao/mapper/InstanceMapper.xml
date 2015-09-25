@@ -6,6 +6,7 @@
     <result column="SERIES_ID" property="seriesId" jdbcType="INTEGER" />
     <result column="INSTANCE_NUMBER" property="instanceNumber" jdbcType="VARCHAR" />
     <result column="DICOM_FILE_ID" property="dicomFileId" jdbcType="INTEGER" />
+    <result column="JPG_FILE_ID" property="jpgFileId" jdbcType="INTEGER" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, SERIES_ID, INSTANCE_NUMBER, DICOM_FILE_ID, CREATE_TIME
+    ID, SERIES_ID, INSTANCE_NUMBER, DICOM_FILE_ID, JPG_FILE_ID, CREATE_TIME
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.InstanceExample" >
     select
@@ -104,9 +105,9 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into tbl_instance (SERIES_ID, INSTANCE_NUMBER, DICOM_FILE_ID, 
-      CREATE_TIME)
+      JPG_FILE_ID, CREATE_TIME)
     values (#{seriesId,jdbcType=INTEGER}, #{instanceNumber,jdbcType=VARCHAR}, #{dicomFileId,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP})
+      #{jpgFileId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.Instance" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -123,6 +124,9 @@
       <if test="dicomFileId != null" >
         DICOM_FILE_ID,
       </if>
+      <if test="jpgFileId != null" >
+        JPG_FILE_ID,
+      </if>
       <if test="createTime != null" >
         CREATE_TIME,
       </if>
@@ -136,6 +140,9 @@
       </if>
       <if test="dicomFileId != null" >
         #{dicomFileId,jdbcType=INTEGER},
+      </if>
+      <if test="jpgFileId != null" >
+        #{jpgFileId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -163,6 +170,9 @@
       <if test="record.dicomFileId != null" >
         DICOM_FILE_ID = #{record.dicomFileId,jdbcType=INTEGER},
       </if>
+      <if test="record.jpgFileId != null" >
+        JPG_FILE_ID = #{record.jpgFileId,jdbcType=INTEGER},
+      </if>
       <if test="record.createTime != null" >
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -177,6 +187,7 @@
       SERIES_ID = #{record.seriesId,jdbcType=INTEGER},
       INSTANCE_NUMBER = #{record.instanceNumber,jdbcType=VARCHAR},
       DICOM_FILE_ID = #{record.dicomFileId,jdbcType=INTEGER},
+      JPG_FILE_ID = #{record.jpgFileId,jdbcType=INTEGER},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -194,6 +205,9 @@
       <if test="dicomFileId != null" >
         DICOM_FILE_ID = #{dicomFileId,jdbcType=INTEGER},
       </if>
+      <if test="jpgFileId != null" >
+        JPG_FILE_ID = #{jpgFileId,jdbcType=INTEGER},
+      </if>
       <if test="createTime != null" >
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -205,6 +219,7 @@
     set SERIES_ID = #{seriesId,jdbcType=INTEGER},
       INSTANCE_NUMBER = #{instanceNumber,jdbcType=VARCHAR},
       DICOM_FILE_ID = #{dicomFileId,jdbcType=INTEGER},
+      JPG_FILE_ID = #{jpgFileId,jdbcType=INTEGER},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=INTEGER}
   </update>

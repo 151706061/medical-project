@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>首页</title>
+		<title>首页${session.SESSION_KEY_FILE_BASE_PATH }</title>
 		<%@include file="/modules/web/include/common-head.jsp" %>
 	</head>
 	<body>
