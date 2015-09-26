@@ -24,10 +24,10 @@ public class WebRequestController extends WebBaseController{
 	
 	@RequestMapping(value="/uploadDicom", method = RequestMethod.POST)
 	@ResponseBody
-	public View<MedicalCaseView> uploadDicom(@RequestParam("file") MultipartFile file,Integer medicalCaseId,HttpSession session){
+	public View<Boolean> uploadDicom(@RequestParam("file") MultipartFile file,String uploadNo,HttpSession session){
 		User user = super.getLoginUser(session);
 		
-		View<MedicalCaseView> view = webRequestService.uploadDicom(user.getId() , medicalCaseId,file);
+		View<Boolean> view = webRequestService.uploadDicom(user.getId() , uploadNo,file);
 		
 		return view;
 	}

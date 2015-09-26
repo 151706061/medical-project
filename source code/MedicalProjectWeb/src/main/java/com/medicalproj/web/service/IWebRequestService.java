@@ -13,7 +13,7 @@ import com.medicalproj.web.dto.view.RequestListView;
 
 public interface IWebRequestService {
 
-	View<MedicalCaseView> uploadDicom(Integer userId, Integer medicalCaseId, MultipartFile dicomFile)throws ServiceException;
+	View<Boolean> uploadDicom(Integer userId, String uploadNo, MultipartFile dicomFile)throws ServiceException;
 
 	List<RequestListView> listRequest(ListRequestParam param)throws ServiceException;
 

@@ -16,6 +16,7 @@ import com.medicalproj.common.service.IInstanceService;
 import com.medicalproj.common.service.IMedicalCaseService;
 import com.medicalproj.common.service.ISeriesService;
 import com.medicalproj.common.service.IStudyService;
+import com.medicalproj.common.service.IUploadService;
 import com.medicalproj.common.util.FileUtil;
 import com.medicalproj.web.dto.param.ListRequestParam;
 import com.medicalproj.web.dto.view.InstanceView;
@@ -42,11 +43,13 @@ public class WebRequestServiceImpl implements IWebRequestService {
 	@Autowired
 	private IInstanceService instanceService;
 	
+	@Autowired
+	private IUploadService uploadService;
+	
 	@Override
-	public View<MedicalCaseView> uploadDicom(Integer userId, Integer medicalCaseId,MultipartFile dicomFile) throws ServiceException {
-		View<MedicalCaseView> view = new View<MedicalCaseView>();
+	public View<Boolean> uploadDicom(Integer userId, String uploadNo,MultipartFile dicomFile) throws ServiceException {
+		View<Boolean> view = new View<Boolean>();
 		try {
-			
 			if( dicomFile != null ){
 
 				boolean isDicom = isDicomFile(dicomFile);
@@ -54,9 +57,10 @@ public class WebRequestServiceImpl implements IWebRequestService {
 					throw new ServiceException("检测到非Dicom格式文件，请检查上传的文件后重试");
 				}
 				
-				medicalCaseService.addDicomToMedicalCase(medicalCaseId,dicomFile,userId);
+				uploadService.upload(dicomFile, userId,uploadNo);
+				//medicalCaseService.addDicomToMedicalCase(medicalCaseId,dicomFile,userId);
 				
-				view.setData(this.trans2MedicalCaseView(medicalCaseService.getMedicalCaseViewById(medicalCaseId)));
+				view.setData(true);
 				return view;
 			}else{
 				throw new ServiceException("上传文件出错.");

@@ -2,15 +2,17 @@ package com.medicalproj.common.util;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import com.medicalproj.web.util.Constants;
 
 public class FileUtil {
+	private static Logger logger = Logger.getLogger(FileUtil.class);
 	private static Map<String,Integer> fileContentTypeAndDbTypeMap;
 	
 	static{
@@ -27,7 +29,7 @@ public class FileUtil {
 		if( fileName.contains(".") ){
 			return fileName.substring(fileName.lastIndexOf(".")+1);
 		}else{
-			return null;
+			return "";
 		}
 	}
 
@@ -63,7 +65,10 @@ public class FileUtil {
 	}
 
 	public static void copy(InputStream inputStream, File dcmFile) throws IOException {
-		if( inputStream != null && dcmFile.exists() ){
+		if( inputStream != null ){
+			if( !dcmFile.exists() ){
+				dcmFile.createNewFile();
+			}
 			FileOutputStream fout = null;
 			try{
 				fout = new FileOutputStream(dcmFile);
@@ -72,6 +77,9 @@ public class FileUtil {
 					fout.write(buffer);
 				}
 				fout.flush();
+			}catch(Exception e){
+				logger.error(e);
+				return;
 			}finally{
 				if( fout != null ){
 					try {

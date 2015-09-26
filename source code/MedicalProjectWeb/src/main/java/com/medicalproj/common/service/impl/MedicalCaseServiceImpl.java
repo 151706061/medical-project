@@ -151,9 +151,14 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 					/* convert to jpg and save */
 					// convert dcm to jpg
 					String tmpdir = System.getProperty("java.io.tmpdir");
-					String jpgFilePath = tmpdir + File.separator + UUIDUtil.getUUID() + ".jpg";
+					/*********TEST *******/
+					tmpdir = "d:\\tmp\\";
+					/****************/
+					String jpgFilePath = tmpdir + UUIDUtil.getUUID() + ".jpg";
 					logger.info("创建图片临时文件:" + jpgFilePath);
-					String dcmFilePath = tmpdir + File.separator + UUIDUtil.getUUID() + ".jpg";
+					
+					String dcmSuffix = FileUtil.getSuffix(dicomFile.getName());
+					String dcmFilePath = tmpdir + UUIDUtil.getUUID() + dcmSuffix;
 					dcmFile = new File(dcmFilePath);
 					FileUtil.copy(dicomFile.getInputStream(),dcmFile);
 					DicomParser.dcm2jpg(dcmFilePath, jpgFilePath);
@@ -164,6 +169,9 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 	
 					FtpUtil.UploadResult jpgRes = FtpUtil.upload(jpgFileIn,Constants.FILE_SUFFIX_JPG);
 					uploadJpgFileId = fileUploadServcie.save(jpgRes.getFileName(), jpgRes.getRelativePath(), jpgFile.length(), Constants.UPLOAD_FILE_TYPE_DICOM, userId);
+				}catch(Exception e){
+					logger.error(e);
+					throw new ServiceException(e.getMessage(),e);
 				}finally{
 					if( jpgFileIn != null ){
 						try {
