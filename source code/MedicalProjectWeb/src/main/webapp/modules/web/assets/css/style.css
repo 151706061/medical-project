@@ -1,5 +1,8 @@
 *{font-family:Verdana, "ºÚÌå", Arial,Sans;} 
 
+.no-padding{
+	padding:0;
+}
 .dropdown-menu a > i.glyphicon{
 	vertical-align: -2px;
 	padding: 0 5px 0 0;

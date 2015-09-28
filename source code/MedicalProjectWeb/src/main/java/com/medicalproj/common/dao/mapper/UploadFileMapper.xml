@@ -3,14 +3,15 @@
 <mapper namespace="com.medicalproj.common.dao.UploadFileMapper" >
   <resultMap id="BaseResultMap" type="com.medicalproj.common.domain.UploadFile" >
     <id column="ID" property="id" jdbcType="INTEGER" />
-    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="FILE_NAME" property="fileName" jdbcType="VARCHAR" />
     <result column="PATH" property="path" jdbcType="VARCHAR" />
     <result column="SIZE" property="size" jdbcType="INTEGER" />
     <result column="TYPE" property="type" jdbcType="INTEGER" />
-    <result column="DESC" property="desc" jdbcType="VARCHAR" />
+    <result column="FILE_DESC" property="fileDesc" jdbcType="VARCHAR" />
     <result column="FILE_MD5" property="fileMd5" jdbcType="VARCHAR" />
     <result column="UPLOAD_TIME" property="uploadTime" jdbcType="TIMESTAMP" />
     <result column="UPLOAD_USER_ID" property="uploadUserId" jdbcType="INTEGER" />
+    <result column="UPLOAD_NO" property="uploadNo" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -71,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, NAME, PATH, SIZE, TYPE, DESC, FILE_MD5, UPLOAD_TIME, UPLOAD_USER_ID
+    ID, FILE_NAME, PATH, SIZE, TYPE, FILE_DESC, FILE_MD5, UPLOAD_TIME, UPLOAD_USER_ID, 
+    UPLOAD_NO
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.UploadFileExample" >
     select
@@ -107,12 +109,14 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tbl_upload_file (NAME, PATH, SIZE, 
-      TYPE, DESC, FILE_MD5, 
-      UPLOAD_TIME, UPLOAD_USER_ID)
-    values (#{name,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, 
-      #{type,jdbcType=INTEGER}, #{desc,jdbcType=VARCHAR}, #{fileMd5,jdbcType=VARCHAR}, 
-      #{uploadTime,jdbcType=TIMESTAMP}, #{uploadUserId,jdbcType=INTEGER})
+    insert into tbl_upload_file (FILE_NAME, PATH, SIZE, 
+      TYPE, FILE_DESC, FILE_MD5, 
+      UPLOAD_TIME, UPLOAD_USER_ID, UPLOAD_NO
+      )
+    values (#{fileName,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{fileDesc,jdbcType=VARCHAR}, #{fileMd5,jdbcType=VARCHAR}, 
+      #{uploadTime,jdbcType=TIMESTAMP}, #{uploadUserId,jdbcType=INTEGER}, #{uploadNo,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.UploadFile" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -120,8 +124,8 @@
     </selectKey>
     insert into tbl_upload_file
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="name != null" >
-        NAME,
+      <if test="fileName != null" >
+        FILE_NAME,
       </if>
       <if test="path != null" >
         PATH,
@@ -132,8 +136,8 @@
       <if test="type != null" >
         TYPE,
       </if>
-      <if test="desc != null" >
-        DESC,
+      <if test="fileDesc != null" >
+        FILE_DESC,
       </if>
       <if test="fileMd5 != null" >
         FILE_MD5,
@@ -144,10 +148,13 @@
       <if test="uploadUserId != null" >
         UPLOAD_USER_ID,
       </if>
+      <if test="uploadNo != null" >
+        UPLOAD_NO,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
       </if>
       <if test="path != null" >
         #{path,jdbcType=VARCHAR},
@@ -158,8 +165,8 @@
       <if test="type != null" >
         #{type,jdbcType=INTEGER},
       </if>
-      <if test="desc != null" >
-        #{desc,jdbcType=VARCHAR},
+      <if test="fileDesc != null" >
+        #{fileDesc,jdbcType=VARCHAR},
       </if>
       <if test="fileMd5 != null" >
         #{fileMd5,jdbcType=VARCHAR},
@@ -169,6 +176,9 @@
       </if>
       <if test="uploadUserId != null" >
         #{uploadUserId,jdbcType=INTEGER},
+      </if>
+      <if test="uploadNo != null" >
+        #{uploadNo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -184,8 +194,8 @@
       <if test="record.id != null" >
         ID = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null" >
-        NAME = #{record.name,jdbcType=VARCHAR},
+      <if test="record.fileName != null" >
+        FILE_NAME = #{record.fileName,jdbcType=VARCHAR},
       </if>
       <if test="record.path != null" >
         PATH = #{record.path,jdbcType=VARCHAR},
@@ -196,8 +206,8 @@
       <if test="record.type != null" >
         TYPE = #{record.type,jdbcType=INTEGER},
       </if>
-      <if test="record.desc != null" >
-        DESC = #{record.desc,jdbcType=VARCHAR},
+      <if test="record.fileDesc != null" >
+        FILE_DESC = #{record.fileDesc,jdbcType=VARCHAR},
       </if>
       <if test="record.fileMd5 != null" >
         FILE_MD5 = #{record.fileMd5,jdbcType=VARCHAR},
@@ -208,6 +218,9 @@
       <if test="record.uploadUserId != null" >
         UPLOAD_USER_ID = #{record.uploadUserId,jdbcType=INTEGER},
       </if>
+      <if test="record.uploadNo != null" >
+        UPLOAD_NO = #{record.uploadNo,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -216,14 +229,15 @@
   <update id="updateByExample" parameterType="map" >
     update tbl_upload_file
     set ID = #{record.id,jdbcType=INTEGER},
-      NAME = #{record.name,jdbcType=VARCHAR},
+      FILE_NAME = #{record.fileName,jdbcType=VARCHAR},
       PATH = #{record.path,jdbcType=VARCHAR},
       SIZE = #{record.size,jdbcType=INTEGER},
       TYPE = #{record.type,jdbcType=INTEGER},
-      DESC = #{record.desc,jdbcType=VARCHAR},
+      FILE_DESC = #{record.fileDesc,jdbcType=VARCHAR},
       FILE_MD5 = #{record.fileMd5,jdbcType=VARCHAR},
       UPLOAD_TIME = #{record.uploadTime,jdbcType=TIMESTAMP},
-      UPLOAD_USER_ID = #{record.uploadUserId,jdbcType=INTEGER}
+      UPLOAD_USER_ID = #{record.uploadUserId,jdbcType=INTEGER},
+      UPLOAD_NO = #{record.uploadNo,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -231,8 +245,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.medicalproj.common.domain.UploadFile" >
     update tbl_upload_file
     <set >
-      <if test="name != null" >
-        NAME = #{name,jdbcType=VARCHAR},
+      <if test="fileName != null" >
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
       </if>
       <if test="path != null" >
         PATH = #{path,jdbcType=VARCHAR},
@@ -243,8 +257,8 @@
       <if test="type != null" >
         TYPE = #{type,jdbcType=INTEGER},
       </if>
-      <if test="desc != null" >
-        DESC = #{desc,jdbcType=VARCHAR},
+      <if test="fileDesc != null" >
+        FILE_DESC = #{fileDesc,jdbcType=VARCHAR},
       </if>
       <if test="fileMd5 != null" >
         FILE_MD5 = #{fileMd5,jdbcType=VARCHAR},
@@ -255,19 +269,23 @@
       <if test="uploadUserId != null" >
         UPLOAD_USER_ID = #{uploadUserId,jdbcType=INTEGER},
       </if>
+      <if test="uploadNo != null" >
+        UPLOAD_NO = #{uploadNo,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.medicalproj.common.domain.UploadFile" >
     update tbl_upload_file
-    set NAME = #{name,jdbcType=VARCHAR},
+    set FILE_NAME = #{fileName,jdbcType=VARCHAR},
       PATH = #{path,jdbcType=VARCHAR},
       SIZE = #{size,jdbcType=INTEGER},
       TYPE = #{type,jdbcType=INTEGER},
-      DESC = #{desc,jdbcType=VARCHAR},
+      FILE_DESC = #{fileDesc,jdbcType=VARCHAR},
       FILE_MD5 = #{fileMd5,jdbcType=VARCHAR},
       UPLOAD_TIME = #{uploadTime,jdbcType=TIMESTAMP},
-      UPLOAD_USER_ID = #{uploadUserId,jdbcType=INTEGER}
+      UPLOAD_USER_ID = #{uploadUserId,jdbcType=INTEGER},
+      UPLOAD_NO = #{uploadNo,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <select resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.UploadFileExample" id="selectByExampleWithRowbounds" >

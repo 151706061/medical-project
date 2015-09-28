@@ -10,6 +10,6 @@ public interface IUploadService {
 
 	View<FileView> upload(MultipartFile file,Integer uploadUserId)throws ServiceException;
 
-	void upload(MultipartFile dicomFile, Integer userId, String uploadNo)throws ServiceException;
+	View<FileView> upload(MultipartFile dicomFile, Integer userId, String uploadNo)throws ServiceException;
 
 }

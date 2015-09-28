@@ -20,8 +20,9 @@ public class FileUtil {
 		fileContentTypeAndDbTypeMap.put(Constants.CONTENT_TYPE_JPG_JPEG, Constants.UPLOAD_FILE_TYPE_JPEG);
 		fileContentTypeAndDbTypeMap.put(Constants.CONTENT_TYPE_PNG, Constants.UPLOAD_FILE_TYPE_PNG);
 		fileContentTypeAndDbTypeMap.put(Constants.CONTENT_TYPE_DICOM, Constants.UPLOAD_FILE_TYPE_DICOM);
-		
+		fileContentTypeAndDbTypeMap.put(Constants.CONTENT_TYPE_OCTET_STREAM, Constants.UPLOAD_FILE_TYPE_DICOM);
 	}
+	
 	public static String getSuffix(String fileName) {
 		if( fileName == null ){
 			return null;

@@ -17,6 +17,11 @@ public class DateUtil {
 		}
 	}
 	
+	public static String format(String format,Date date) throws RuntimeException{
+		DateFormat df = new SimpleDateFormat(format);
+		return df.format(date);
+	}
+	
 	public static long secondDiff(Date date1, Date date2){
 		return (date2.getTime() - date1.getTime())/1000;
 	}

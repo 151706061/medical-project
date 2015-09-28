@@ -10,17 +10,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.medicalproj.common.domain.MedicalCase;
+import com.medicalproj.common.domain.UploadFile;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
+import com.medicalproj.common.service.IFileUploadService;
 import com.medicalproj.common.service.IInstanceService;
 import com.medicalproj.common.service.IMedicalCaseService;
 import com.medicalproj.common.service.ISeriesService;
 import com.medicalproj.common.service.IStudyService;
 import com.medicalproj.common.service.IUploadService;
+import com.medicalproj.common.util.DateUtil;
 import com.medicalproj.common.util.FileUtil;
 import com.medicalproj.web.dto.param.ListRequestParam;
+import com.medicalproj.web.dto.view.IncompleteRequestResView;
 import com.medicalproj.web.dto.view.InstanceView;
-import com.medicalproj.web.dto.view.MedicalCaseListView;
 import com.medicalproj.web.dto.view.MedicalCaseView;
 import com.medicalproj.web.dto.view.RequestListView;
 import com.medicalproj.web.dto.view.SeriesView;
@@ -45,6 +48,9 @@ public class WebRequestServiceImpl implements IWebRequestService {
 	
 	@Autowired
 	private IUploadService uploadService;
+	
+	@Autowired
+	private IFileUploadService fileUploadService;
 	
 	@Override
 	public View<Boolean> uploadDicom(Integer userId, String uploadNo,MultipartFile dicomFile) throws ServiceException {
@@ -99,15 +105,19 @@ public class WebRequestServiceImpl implements IWebRequestService {
 	}
 
 	@Override
-	public View<MedicalCaseListView> listIncompleteRequest(Integer userId) throws ServiceException {
-		View<MedicalCaseListView> view = new View<MedicalCaseListView>();
+	public View<IncompleteRequestResView> checkIncompleteRequest(Integer userId) throws ServiceException {
+		View<IncompleteRequestResView> view = new View<IncompleteRequestResView>();
 		try {
-			MedicalCaseListView medicalCaseListView = new MedicalCaseListView();
+			IncompleteRequestResView incompleteRequestResView = null;
+			List<UploadFile> uploadFiles = fileUploadService.listIncompleteUpload(userId);
 			
-			List<com.medicalproj.common.domain.MedicalCaseView> domainMedicalCaseViewList = medicalCaseService.listAllMedicalCaseViewByOwnerId(userId);
-			List<MedicalCaseView> medicalCaseViewList = trans2MedicalCaseView(domainMedicalCaseViewList);
-			medicalCaseListView.setMedicalCaseList(medicalCaseViewList);
-			view.setData(medicalCaseListView);
+			if( uploadFiles != null && uploadFiles.size() > 0 ){
+				incompleteRequestResView = new IncompleteRequestResView();
+				incompleteRequestResView.setAlreadyUploadCount(uploadFiles.size());
+				incompleteRequestResView.setUploadNo(uploadFiles.get(0).getUploadNo());
+				incompleteRequestResView.setFirstUploadTime(DateUtil.format("yyyy-MM-dd HH:mm", uploadFiles.get(0).getUploadTime()));
+			}
+			view.setData(incompleteRequestResView);
 			
 			return view;
 		} catch (Exception e) {
@@ -249,16 +259,15 @@ public class WebRequestServiceImpl implements IWebRequestService {
 	}
 
 	@Override
-	public View<Boolean> doCompleteRequest(Integer medicalCaseId,
+	public View<List<Integer>> doCompleteRequest(
 			Integer processUserId) throws ServiceException {
-		View<Boolean> view = new View<Boolean>();
+		View<List<Integer>> view = new View<List<Integer>>();
 		try {
-			medicalCaseService.doComplete(medicalCaseId);
-			view.setData(true);
+			List<Integer> medicalCaseIdList = fileUploadService.generateMedicalCaseUsingUploadDicom(processUserId);
+			view.setData(medicalCaseIdList);
 			return view;
 		} catch (Exception e) {
 			logger.error(e);
-			view.setData(false);
 			view.setMsg(e.getMessage());
 			return view;
 		}
@@ -281,6 +290,19 @@ public class WebRequestServiceImpl implements IWebRequestService {
 			return view;
 		}
 	}
-	
+
+	@Override
+	public View<Boolean> clearOldUpload(Integer userId) throws ServiceException {
+		View<Boolean> view = new View<Boolean>();
+		try {
+			fileUploadService.clearOldUpload(userId);
+			view.setData(true);
+			return view;
+		} catch (Exception e) {
+			view.setData(false);
+			view.setMsg(e.getMessage());
+			return view;
+		}
+	}
 	
 }

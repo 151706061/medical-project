@@ -5,7 +5,7 @@ import java.util.Date;
 public class UploadFile {
     private Integer id;
 
-    private String name;
+    private String fileName;
 
     private String path;
 
@@ -13,13 +13,15 @@ public class UploadFile {
 
     private Integer type;
 
-    private String desc;
+    private String fileDesc;
 
     private String fileMd5;
 
     private Date uploadTime;
 
     private Integer uploadUserId;
+
+    private String uploadNo;
 
     public Integer getId() {
         return id;
@@ -29,12 +31,12 @@ public class UploadFile {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setFileName(String fileName) {
+        this.fileName = fileName == null ? null : fileName.trim();
     }
 
     public String getPath() {
@@ -61,12 +63,12 @@ public class UploadFile {
         this.type = type;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getFileDesc() {
+        return fileDesc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setFileDesc(String fileDesc) {
+        this.fileDesc = fileDesc == null ? null : fileDesc.trim();
     }
 
     public String getFileMd5() {
@@ -91,5 +93,13 @@ public class UploadFile {
 
     public void setUploadUserId(Integer uploadUserId) {
         this.uploadUserId = uploadUserId;
+    }
+
+    public String getUploadNo() {
+        return uploadNo;
+    }
+
+    public void setUploadNo(String uploadNo) {
+        this.uploadNo = uploadNo == null ? null : uploadNo.trim();
     }
 }

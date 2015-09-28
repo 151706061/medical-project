@@ -45,7 +45,7 @@ public class Constants {
 	public static final String CONTENT_TYPE_JPG_JPEG = "image/jpeg";
 	public static final String CONTENT_TYPE_PNG = "image/png";
 	public static final String CONTENT_TYPE_DICOM = "application/dicom";
-	public static final Object CONTENT_TYPE_OCTET_STREAM = "application/octet-stream";
+	public static final String CONTENT_TYPE_OCTET_STREAM = "application/octet-stream";
 
 	public static final int MEDICAL_CASE_STATUS_OPEN = 1;
 

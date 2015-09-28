@@ -15,8 +15,6 @@ public class MedicalCase {
 
     private String patientSex;
 
-    private Integer isUploadComplete;
-
     private Integer status;
 
     private Integer creatorUserId;
@@ -69,14 +67,6 @@ public class MedicalCase {
 
     public void setPatientSex(String patientSex) {
         this.patientSex = patientSex == null ? null : patientSex.trim();
-    }
-
-    public Integer getIsUploadComplete() {
-        return isUploadComplete;
-    }
-
-    public void setIsUploadComplete(Integer isUploadComplete) {
-        this.isUploadComplete = isUploadComplete;
     }
 
     public Integer getStatus() {

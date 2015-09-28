@@ -11,7 +11,8 @@
     	
 	    </div>
     	<div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+	        <button type="button" class="btn btn-default ok-btn">确定</button>
+	        <button type="button" class="btn btn-default cancel-btn" data-dismiss="modal">取消</button>
 	    </div>
     </div>
     
@@ -34,6 +35,7 @@
     
   </div>
 </div>
+
 <div id="fakeLoader"></div>
 <!-- script references -->
 <script src='<c:url value="/modules/web/assets/libs/jquery/jquery-1.11.3.min.js"/>'></script>
@@ -48,16 +50,26 @@
 $(function(){
 	commonObj.loadUserInfo();
 	commonObj.getUnreadNotificationCount();
+	
 });
 
 var CommonModule = (function(){
 	return {
-		showMsg: function(msg,hasBtn){
+		showMsg: function(msg,hideSecond){
 			$.blockUI({
 				fadeIn:0,
 				fadeOut:0,
+				css:{
+					border:'none',
+					background:'none'
+				},
 				message: '<div class="alert alert-info" role="alert">'+msg+'</div>' 
 			});
+			
+			if( hideSecond ){
+				setTimeout($.unblockUI, hideSecond*1000); 
+			}
+			
 			/* $('#msgModal').find('.modal-body').html(msg);
 			$('#msgModal').modal('show');
 			if( !hasBtn ){
@@ -65,6 +77,22 @@ var CommonModule = (function(){
 			}else{
 				$('#msgModal .modal-footer').show();
 			} */
+		},
+		showConfirm:function(msg,onOkBtnClick,onCancelBtnClick){
+			$('#msgModal .modal-body').text(msg);
+			$('#msgModal').modal();
+			$(document).off('click','#msgModal .ok-btn');
+			$(document).on('click','#msgModal .ok-btn',function(){
+				onOkBtnClick();	
+			});
+			
+			$(document).off('click','#msgModal .cancel-btn');
+			$(document).on('click','#msgModal .cancel-btn',function(){
+				onCancelBtnClick();	
+			});
+		},
+		hideConfirm:function(){
+			$('#msgModal').modal('hide');
 		},
 		hideMsg: function(){
 			$.unblockUI();

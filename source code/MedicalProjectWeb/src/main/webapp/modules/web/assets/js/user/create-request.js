@@ -1,15 +1,17 @@
 var medicalCaseId = null;
+var uploadNo = null;
+var uploadIndex = 1;
 var CreateRequestModule = (function(){
 	return {
-		listIncompleteMedicalCase:function(successFn){
+		checkIncompleteRequest:function(successFn){
 			$.ajax({
-				url: appContext + 'web/request/listIncompleteRequest.do',
+				url: appContext + 'web/request/checkIncompleteRequest.do',
 				data: {
 				},
 				type:"GET",
 				beforeSend:function()
 				{  
-					CommonModule.showMsg('正在初始化,请稍候...',false);
+					CommonModule.showMsg('正在初始化,请稍候...');
 					//$('#regBtn').attr('disabled',true);
 				},
 				success:function(data){
@@ -18,16 +20,38 @@ var CreateRequestModule = (function(){
 				}
 			});
 		},
-		initNewMedicalCase:function(successFn){
+		showUploadBox:function(){
+			var template = $('#uploadBoxTmpl').html();
+			Mustache.parse(template);  
+			var rendered = Mustache.render(template, {});
+			
+			$('#case-container').html(rendered);
+		},
+		clearOldUpload: function(successFn){
 			$.ajax({
-				url: appContext + 'web/request/initNewMedicalCase.do',
+				url: appContext + 'web/request/clearOldUpload.do',
 				data: {
 				},
 				type:"POST",
 				beforeSend:function()
 				{  
-					CommonModule.showMsg('正在创建新病例,请稍候...',false);
-					//$('#regBtn').attr('disabled',true);
+					CommonModule.showMsg('正在初始化,请稍候...');
+				},
+				success:function(data){
+					CommonModule.hideMsg();
+					successFn(data);
+				}
+			});
+		},
+		completeRequest: function(successFn){
+			$.ajax({
+				url: appContext + 'web/request/completeRequest.do',
+				data: {
+				},
+				type:"POST",
+				beforeSend:function()
+				{  
+					CommonModule.showMsg('请稍候...');
 				},
 				success:function(data){
 					CommonModule.hideMsg();
@@ -44,13 +68,35 @@ var CreateRequestModule = (function(){
 		sequentialUploads: true,
 		singleFileUploads:true,
 		submit:function(e,data){
-			data.formData = {medicalCaseId: medicalCaseId};
+			if( uploadNo == null ){
+				uploadNo = new Date().getTime();
+			}
+			
+			if( data.uploadIndex == null ){
+				data.uploadIndex = 1;
+			}
+			data.formData = {
+				medicalCaseId: medicalCaseId,
+				uploadNo: uploadNo,
+				uploadIndex: uploadIndex
+			};
+			data.uploadIndex ++;
 		},
 	    progressall: function (e, data) {
 	    	//console.log(data);
-	        var progress = parseInt(data.loaded / data.total * 100, 10);
+	        var progressVal = parseInt(data.loaded / data.total * 100, 10);
 
-	        CommonModule.onDicomUploadProgressUpdate(progress + '%');
+	        CommonModule.onDicomUploadProgressUpdate(progressVal + '%');
+	        
+	        var progress = $('#create-req-wrap .upload-progress');
+	        if( progress.length > 0 ){
+	        	progress.css('width',progressVal + '%');
+	        }
+	        
+	        var tipText = $('#uploadBox .tip-text');
+	        if( tipText.length > 0 ){
+	        	tipText.text('正在上传文件...'+ progressVal + '%');
+	        }
 	        /* $('#progress .bar').css(
 	            'width',
 	            progress + '%'
@@ -62,10 +108,15 @@ var CreateRequestModule = (function(){
 	    	var result = data.result;
 	    	if( result.data == true ){
 	    		CommonModule.onDicomUploadComplete();
+	    		
+	    		var tipText = $('#uploadBox .tip-text');
+		        if( tipText.length > 0 ){
+		        	tipText.text('所有文件上传完成.');
+		        }
 	    	}
 	    	else{
 	    		//出错
-	    		CommonModule.showMsg(result.msg);
+	    		CommonModule.showMsg(result.msg,1);
 	    	}
 	    },
 	    always : function(e,data){
@@ -74,20 +125,44 @@ var CreateRequestModule = (function(){
 	    }
 	});
 	
+	$('#importMethodSelect').off('change');
 	$('#importMethodSelect').on('change',function(){
 		var importMethodVal = $('#importMethodSelect> option:selected').val();
 		if( importMethodVal ){
 			if( importMethodVal == 'local'){
-				$('#importMethodSelect> option:selected').attr('selected',false);
-				$('#importMethodSelect> option:eq(0)').attr('selected',true);
+				/*$('#importMethodSelect> option:selected').attr('selected',false);
+				$('#importMethodSelect> option:eq(0)').attr('selected',true);*/
 				
-				CreateRequestModule.listIncompleteMedicalCase(function(data){
-					if( data.data.medicalCaseList && data.data.medicalCaseList.length > 0 ){
-						//alert('提示有未完成的 ');
+				CreateRequestModule.checkIncompleteRequest(function(data){
+					if( data.data != null ){
+						uploadNo = data.data.uploadNo;
+						var firstUploadTime = data.data.firstUploadTime;
+						var alreadyUploadCount = data.data.alreadyUploadCount;
 						
+						CommonModule.showConfirm('您有未完成的请求，您在'+ firstUploadTime +'上传了' + alreadyUploadCount + '个文件，是否继续上传，点确定继续上传，点取消重新上传。',
+							function(){
+								//ok
+								var template = $('#uploadBoxTmpl').html();
+								Mustache.parse(template);  
+								var rendered = Mustache.render(template, {});
+								
+								$('#case-container').html(rendered);
+								
+								CommonModule.hideConfirm();
+							},
+							function(){
+								// cancel
+								CreateRequestModule.clearOldUpload(function(data){
+									if( data.data == true ){
+										uploadNo = null;
+										CreateRequestModule.showUploadBox();
+									}
+								});
+							}
+						);
 					}else{
 						//创建新病例
-						CreateRequestModule.initNewMedicalCase(function(data){
+						/*CreateRequestModule.initNewMedicalCase(function(data){
 							medicalCaseId = data.data;
 							console.log(medicalCaseId);
 							// 渲染病例到页面
@@ -97,7 +172,8 @@ var CreateRequestModule = (function(){
 							
 							$('#case-container').html(rendered);
 							
-						});
+						});*/
+						CreateRequestModule.showUploadBox();
 					}
 				});
 				
@@ -111,8 +187,32 @@ var CreateRequestModule = (function(){
 		}
 	});
 
-	$(document).on("click","#uploadDicomBtn",function(){
+	$(document).off("click","#uploadDcmBtn"); 
+	$(document).on("click","#uploadDcmBtn",function(){
 		$('#uploadFileInput').click();
 		return false;
 	}); 
+	
+	$(document).off("click","#completeUploadBtn"); 
+	$(document).on("click","#completeUploadBtn",function(){
+		CreateRequestModule.completeRequest(function(data){
+			if( data.data ){
+				var medicalCaseId = data.data;
+				
+			}
+		});
+		
+		return false;
+	});
+	
+	$(document).off("click","#reUploadBtn"); 
+	$(document).on("click","#reUploadBtn",function(){
+		CreateRequestModule.clearOldUpload(function(data){
+			if( data.data == true ){
+				uploadNo = null;
+				CreateRequestModule.showUploadBox();
+			}
+		});
+		return false;
+	});
 })();

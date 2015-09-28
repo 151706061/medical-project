@@ -2,9 +2,12 @@ package com.medicalproj.common.service.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,7 @@ import com.medicalproj.common.domain.MedicalCase;
 import com.medicalproj.common.domain.MedicalCaseView;
 import com.medicalproj.common.domain.Series;
 import com.medicalproj.common.domain.Study;
+import com.medicalproj.common.domain.UploadFile;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IFileUploadService;
 import com.medicalproj.common.service.IInstanceService;
@@ -59,7 +63,6 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 			MedicalCase medicalCase = new MedicalCase();
 			medicalCase.setCreateTime(new Date());
 			medicalCase.setCreatorUserId(creatorUserId);
-			medicalCase.setIsUploadComplete(Constants.MEDICAL_CASE_IS_UPLOAD_COMPLETE_FALSE);
 			medicalCase.setStatus(Constants.MEDICAL_CASE_STATUS_OPEN);
 			
 			saveOrUpdate(medicalCase);
@@ -81,7 +84,7 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 		
 	}
 
-	@Override
+	/*@Override
 	public void doComplete(Integer medicalCaseId) throws ServiceException {
 		try {
 			if( medicalCaseId == null ){
@@ -109,7 +112,7 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 		}
 		
 		
-	}
+	}*/
 
 	private MedicalCase getById(Integer medicalCaseId) {
 		return medicalCaseMapper.selectByPrimaryKey(medicalCaseId);
@@ -151,9 +154,7 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 					/* convert to jpg and save */
 					// convert dcm to jpg
 					String tmpdir = System.getProperty("java.io.tmpdir");
-					/*********TEST *******/
-					tmpdir = "d:\\tmp\\";
-					/****************/
+					
 					String jpgFilePath = tmpdir + UUIDUtil.getUUID() + ".jpg";
 					logger.info("创建图片临时文件:" + jpgFilePath);
 					
@@ -161,7 +162,7 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 					String dcmFilePath = tmpdir + UUIDUtil.getUUID() + dcmSuffix;
 					dcmFile = new File(dcmFilePath);
 					FileUtil.copy(dicomFile.getInputStream(),dcmFile);
-					DicomParser.dcm2jpg(dcmFilePath, jpgFilePath);
+					DicomParser.getInstance().dcm2jpg(dcmFilePath, jpgFilePath);
 					
 					// upload and save jpg to db
 					jpgFile = new File(jpgFilePath);
@@ -210,6 +211,137 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 			logger.error(e);
 			throw new ServiceException(e);
 		}
+	}
+	
+	@Override
+	public Integer createMedicalCaseForPatient(List<UploadFile> dcmUploadFileList, Integer processUserId)
+			throws ServiceException {
+		try {
+			if( dcmUploadFileList == null || processUserId == null ){
+				throw new ServiceException("参数错误");
+			}
+			
+			MedicalCase mcase = this.initNewMedicalCase(processUserId);
+			if( mcase == null ){
+				throw new ServiceException("病例创建失败");
+			}
+				
+			for(UploadFile file: dcmUploadFileList){
+				Integer uploadJpgFileId = null;
+				InputStream in = null;
+				// convert to jpg, upload to ftp and save to db
+				FileInputStream jpgFileIn = null;
+				File jpgFile = null;
+				File dcmFile = null;
+				String jpgFilePath = null;
+				FileOutputStream dcmFileOutputStream = null;
+				try{
+					String filePath = file.getPath().substring(0, file.getPath().lastIndexOf("/"));
+					String fileName = file.getPath().substring(file.getPath().lastIndexOf("/")+1);
+					in = FtpUtil.readFile(filePath, fileName);
+					in.mark( in.available() + 1);
+					
+					/* convert to jpg and save */
+					// convert dcm to jpg
+					String tmpdir = System.getProperty("java.io.tmpdir");
+					
+					jpgFilePath = tmpdir + UUIDUtil.getUUID() + ".jpg";
+					logger.info("创建图片临时文件:" + jpgFilePath);
+					
+					String dcmFilePath = tmpdir + file.getFileName();
+					dcmFileOutputStream = new FileOutputStream(dcmFilePath);
+					IOUtils.copy(in, dcmFileOutputStream);
+					DicomParser.getInstance().dcm2jpg(dcmFilePath, jpgFilePath);
+					
+					// upload and save jpg to db
+					jpgFile = new File(jpgFilePath);
+					jpgFileIn = new FileInputStream(jpgFile);
+	
+					FtpUtil.UploadResult jpgRes = FtpUtil.upload(jpgFileIn,Constants.FILE_SUFFIX_JPG);
+					uploadJpgFileId = fileUploadServcie.save(jpgRes.getFileName(), jpgRes.getRelativePath(), jpgFile.length(), Constants.UPLOAD_FILE_TYPE_DICOM, processUserId);
+				
+					/* create study ,series , instance */
+					in.reset();
+					DicomData dicom = DicomParser.getInstance().read(in);
+					
+					//update medical case
+					this.update(mcase,dicom);
+					
+					// create study
+					Study study = studyService.createStydyIfNotExists(mcase.getId() ,dicom);
+					
+					if( study != null ){
+						Integer studyDomainId = study.getId();
+						
+						Series series = seriesService.createSeriesIfNotExists(studyDomainId,dicom);
+						
+						if( series != null ){
+							Integer seriesDomainId = series.getId();
+							
+							Instance instance = instanceService.createInstanceIfNotExists(seriesDomainId, dicom, file.getId(),uploadJpgFileId);
+						}
+					}
+					
+					return mcase.getId();
+				}catch(Exception e){
+					logger.error(e);
+					throw new ServiceException(e.getMessage(),e);
+				}finally{
+					if( jpgFileIn != null ){
+						try {
+							jpgFileIn.close();
+						} catch (Exception e) {
+							logger.error(e);
+							e.printStackTrace();
+						}
+						try {
+							if( dcmFile != null ){
+								dcmFile.delete();
+							}
+							if( jpgFile != null ){
+								jpgFile.delete();
+							}
+
+						} catch (Exception e) {
+							logger.error(e);
+							e.printStackTrace();
+						}
+					}
+					
+					if( dcmFileOutputStream != null ){
+						try {
+							dcmFileOutputStream.close();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+					
+					if( in != null ){
+						try {
+							in.close();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+			return null;
+		} catch (Exception e) {
+			logger.error(e);
+			throw new ServiceException(e);
+		}
+	}
+
+	private void update(MedicalCase mcase, DicomData dicom) {
+		if( mcase != null ){
+			mcase.setPatientBirthday(dicom.getPatientBirthDate());
+			mcase.setPatientId(dicom.getPatientId());
+			mcase.setPatientName(dicom.getPatientName());
+			mcase.setPatientSex(dicom.getPatientSex());
+			mcase.setPatientWeight(dicom.getPatientWeight());
+			this.saveOrUpdate(mcase);
+		}
+		
 	}
 
 	@Override

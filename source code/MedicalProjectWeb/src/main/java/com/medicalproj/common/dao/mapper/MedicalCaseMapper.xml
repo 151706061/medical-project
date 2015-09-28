@@ -8,7 +8,6 @@
     <result column="PATIENT_WEIGHT" property="patientWeight" jdbcType="VARCHAR" />
     <result column="PATIENT_BIRTHDAY" property="patientBirthday" jdbcType="DATE" />
     <result column="PATIENT_SEX" property="patientSex" jdbcType="VARCHAR" />
-    <result column="IS_UPLOAD_COMPLETE" property="isUploadComplete" jdbcType="INTEGER" />
     <result column="STATUS" property="status" jdbcType="INTEGER" />
     <result column="CREATOR_USER_ID" property="creatorUserId" jdbcType="INTEGER" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
@@ -72,8 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, PATIENT_ID, PATIENT_NAME, PATIENT_WEIGHT, PATIENT_BIRTHDAY, PATIENT_SEX, IS_UPLOAD_COMPLETE, 
-    STATUS, CREATOR_USER_ID, CREATE_TIME
+    ID, PATIENT_ID, PATIENT_NAME, PATIENT_WEIGHT, PATIENT_BIRTHDAY, PATIENT_SEX, STATUS, 
+    CREATOR_USER_ID, CREATE_TIME
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.MedicalCaseExample" >
     select
@@ -110,13 +109,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into tbl_medical_case (PATIENT_ID, PATIENT_NAME, PATIENT_WEIGHT, 
-      PATIENT_BIRTHDAY, PATIENT_SEX, IS_UPLOAD_COMPLETE, 
-      STATUS, CREATOR_USER_ID, CREATE_TIME
-      )
+      PATIENT_BIRTHDAY, PATIENT_SEX, STATUS, 
+      CREATOR_USER_ID, CREATE_TIME)
     values (#{patientId,jdbcType=VARCHAR}, #{patientName,jdbcType=VARCHAR}, #{patientWeight,jdbcType=VARCHAR}, 
-      #{patientBirthday,jdbcType=DATE}, #{patientSex,jdbcType=VARCHAR}, #{isUploadComplete,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER}, #{creatorUserId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
-      )
+      #{patientBirthday,jdbcType=DATE}, #{patientSex,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{creatorUserId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.MedicalCase" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -138,9 +135,6 @@
       </if>
       <if test="patientSex != null" >
         PATIENT_SEX,
-      </if>
-      <if test="isUploadComplete != null" >
-        IS_UPLOAD_COMPLETE,
       </if>
       <if test="status != null" >
         STATUS,
@@ -167,9 +161,6 @@
       </if>
       <if test="patientSex != null" >
         #{patientSex,jdbcType=VARCHAR},
-      </if>
-      <if test="isUploadComplete != null" >
-        #{isUploadComplete,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -209,9 +200,6 @@
       <if test="record.patientSex != null" >
         PATIENT_SEX = #{record.patientSex,jdbcType=VARCHAR},
       </if>
-      <if test="record.isUploadComplete != null" >
-        IS_UPLOAD_COMPLETE = #{record.isUploadComplete,jdbcType=INTEGER},
-      </if>
       <if test="record.status != null" >
         STATUS = #{record.status,jdbcType=INTEGER},
       </if>
@@ -234,7 +222,6 @@
       PATIENT_WEIGHT = #{record.patientWeight,jdbcType=VARCHAR},
       PATIENT_BIRTHDAY = #{record.patientBirthday,jdbcType=DATE},
       PATIENT_SEX = #{record.patientSex,jdbcType=VARCHAR},
-      IS_UPLOAD_COMPLETE = #{record.isUploadComplete,jdbcType=INTEGER},
       STATUS = #{record.status,jdbcType=INTEGER},
       CREATOR_USER_ID = #{record.creatorUserId,jdbcType=INTEGER},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
@@ -260,9 +247,6 @@
       <if test="patientSex != null" >
         PATIENT_SEX = #{patientSex,jdbcType=VARCHAR},
       </if>
-      <if test="isUploadComplete != null" >
-        IS_UPLOAD_COMPLETE = #{isUploadComplete,jdbcType=INTEGER},
-      </if>
       <if test="status != null" >
         STATUS = #{status,jdbcType=INTEGER},
       </if>
@@ -282,7 +266,6 @@
       PATIENT_WEIGHT = #{patientWeight,jdbcType=VARCHAR},
       PATIENT_BIRTHDAY = #{patientBirthday,jdbcType=DATE},
       PATIENT_SEX = #{patientSex,jdbcType=VARCHAR},
-      IS_UPLOAD_COMPLETE = #{isUploadComplete,jdbcType=INTEGER},
       STATUS = #{status,jdbcType=INTEGER},
       CREATOR_USER_ID = #{creatorUserId,jdbcType=INTEGER},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}

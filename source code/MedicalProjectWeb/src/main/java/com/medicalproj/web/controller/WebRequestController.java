@@ -1,5 +1,7 @@
 package com.medicalproj.web.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.web.dto.session.User;
-import com.medicalproj.web.dto.view.MedicalCaseListView;
+import com.medicalproj.web.dto.view.IncompleteRequestResView;
 import com.medicalproj.web.dto.view.MedicalCaseView;
 import com.medicalproj.web.service.IWebRequestService;
 
@@ -32,12 +34,27 @@ public class WebRequestController extends WebBaseController{
 		return view;
 	}
 	
-	@RequestMapping(value="/listIncompleteRequest", method = RequestMethod.GET)
+	/**
+	 * 查询未完成的请求，若没有未完成的，返回null
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/checkIncompleteRequest", method = RequestMethod.GET)
 	@ResponseBody
-	public View<MedicalCaseListView> listIncompleteRequest(HttpSession session){
+	public View<IncompleteRequestResView> checkIncompleteRequest(HttpSession session){
 		User user = super.getLoginUser(session);
 		
-		View<MedicalCaseListView> view = webRequestService.listIncompleteRequest(user.getId() );
+		View<IncompleteRequestResView> view = webRequestService.checkIncompleteRequest(user.getId() );
+		
+		return view;
+	}
+	
+	@RequestMapping(value="/clearOldUpload", method = RequestMethod.POST)
+	@ResponseBody
+	public View<Boolean> clearOldUpload(HttpSession session){
+		User user = super.getLoginUser(session);
+		
+		View<Boolean> view = webRequestService.clearOldUpload(user.getId() );
 		
 		return view;
 	}
@@ -62,12 +79,17 @@ public class WebRequestController extends WebBaseController{
 		return view;
 	}
 	
+	/**
+	 * 完成请求，将上传的dicom生成medical case,返回生成的病例ID列表
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/completeRequest")
 	@ResponseBody
-	public View<Boolean> doCompleteRequest(Integer medicalCaseId,HttpSession session){
+	public View<List<Integer>> doCompleteRequest(HttpSession session){
 		User user = super.getLoginUser(session);
 		
-		View<Boolean> view = webRequestService.doCompleteRequest( medicalCaseId ,user.getId());
+		View<List<Integer>> view = webRequestService.doCompleteRequest( user.getId());
 		
 		return view;
 	}

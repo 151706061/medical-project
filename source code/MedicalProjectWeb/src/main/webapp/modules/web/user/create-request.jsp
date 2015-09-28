@@ -33,7 +33,7 @@
 					</div>
 				</form>
 				<div id="case-container">
-				
+					
 				</div>
 			</div>
 			
@@ -42,8 +42,37 @@
 	</div>
 </div>
 <!-- /padding -->
-<input type="file" name="file" <%-- multiple="" --%> class="hide" data-url='<c:url value="/web/request/uploadDicom.do"/>' id="uploadFileInput" />
+<input type="file" name="file" multiple="" class="hide" data-url='<c:url value="/web/request/uploadDicom.do"/>' id="uploadFileInput" />
 <%-- END 内容部分 --%>
+
+
+<script id="uploadBoxTmpl" type="x-tmpl-mustache">
+<div class="panel panel-default" id="uploadBox">
+	<div class="panel-heading">本地导入</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="alert alert-warning" role="alert">请点击上传按钮，并选择同一个病人的dicom文件，若您选择的文件包含不同的病人，可以在点击完成按钮后选择病人。</div>
+			</div>
+			<div class="col-sm-12">
+				<p class="text-info tip-text"></p>
+			</div>
+			<div class="col-sm-12 progress no-padding">
+				<div class="progress-bar progress-bar-success progress-bar-striped upload-progress"
+					role="progressbar" aria-valuenow="0" aria-valuemin="0"
+					aria-valuemax="100" style="width: 0%">
+					<span class="sr-only">40% Complete (success)</span>
+				</div>
+			</div>
+			<div class="col-sm-5  col-sm-offset-4">
+				<button class="btn btn-lg btn-success" id="uploadDcmBtn">上传</button>
+				<button class="btn btn-lg btn-success" id="completeUploadBtn">完成</button>
+				<button class="btn btn-lg btn-danger" id="reUploadBtn">重新上传</button>
+			</div>
+		</div>
+	</div>
+</div>
+</script>
 
 <script id="medicalCaseTmpl" type="x-tmpl-mustache">
 <div class="panel panel-primary case-wrap">
@@ -52,7 +81,7 @@
 			<div class="col-sm-4 title-left"></div>
 			<div class="col-sm-4 title-center"></div>
 			<div class="col-sm-4 title-right">
-				<a href="javascript:void(0)" id="uploadDicomBtn" class="glyphicon glyphicon-plus"></a>
+				<a href="javascript:void(0)" class="glyphicon glyphicon-plus"></a>
 			</div>
 		</div>
 	</div>

@@ -532,66 +532,6 @@ public class MedicalCaseExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsUploadCompleteIsNull() {
-            addCriterion("IS_UPLOAD_COMPLETE is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsUploadCompleteIsNotNull() {
-            addCriterion("IS_UPLOAD_COMPLETE is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsUploadCompleteEqualTo(Integer value) {
-            addCriterion("IS_UPLOAD_COMPLETE =", value, "isUploadComplete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsUploadCompleteNotEqualTo(Integer value) {
-            addCriterion("IS_UPLOAD_COMPLETE <>", value, "isUploadComplete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsUploadCompleteGreaterThan(Integer value) {
-            addCriterion("IS_UPLOAD_COMPLETE >", value, "isUploadComplete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsUploadCompleteGreaterThanOrEqualTo(Integer value) {
-            addCriterion("IS_UPLOAD_COMPLETE >=", value, "isUploadComplete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsUploadCompleteLessThan(Integer value) {
-            addCriterion("IS_UPLOAD_COMPLETE <", value, "isUploadComplete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsUploadCompleteLessThanOrEqualTo(Integer value) {
-            addCriterion("IS_UPLOAD_COMPLETE <=", value, "isUploadComplete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsUploadCompleteIn(List<Integer> values) {
-            addCriterion("IS_UPLOAD_COMPLETE in", values, "isUploadComplete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsUploadCompleteNotIn(List<Integer> values) {
-            addCriterion("IS_UPLOAD_COMPLETE not in", values, "isUploadComplete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsUploadCompleteBetween(Integer value1, Integer value2) {
-            addCriterion("IS_UPLOAD_COMPLETE between", value1, value2, "isUploadComplete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsUploadCompleteNotBetween(Integer value1, Integer value2) {
-            addCriterion("IS_UPLOAD_COMPLETE not between", value1, value2, "isUploadComplete");
-            return (Criteria) this;
-        }
-
         public Criteria andStatusIsNull() {
             addCriterion("STATUS is null");
             return (Criteria) this;

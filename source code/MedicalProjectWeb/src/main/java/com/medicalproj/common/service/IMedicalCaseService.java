@@ -1,13 +1,13 @@
 package com.medicalproj.common.service;
 
+import java.io.InputStream;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.medicalproj.common.domain.MedicalCase;
+import com.medicalproj.common.domain.UploadFile;
 import com.medicalproj.common.exception.ServiceException;
-
-import eden.dicomparser.data.DicomData;
 
 public interface IMedicalCaseService {
 
@@ -15,12 +15,12 @@ public interface IMedicalCaseService {
 
 	List<com.medicalproj.common.domain.MedicalCaseView> listAllMedicalCaseViewByOwnerId(Integer ownerId)throws ServiceException;
 
-	void doComplete(Integer medicalCaseId)throws ServiceException;
-
 	void addDicomToMedicalCase(Integer medicalCaseId, MultipartFile dicomFile,
 			Integer userId)throws ServiceException;
 
 	com.medicalproj.common.domain.MedicalCaseView getMedicalCaseViewById(
 			Integer medicalCaseId)throws ServiceException;
+
+	Integer createMedicalCaseForPatient(List<UploadFile> uploadFileList, Integer processUserId)throws ServiceException;
 
 }
