@@ -31,7 +31,8 @@
 				<a href="#" class="text-muted">忘记密码?</a>
 			</div>
 			<button id="loginBtn" class="btn btn-lg btn-success btn-block" type="submit">登录</button>
-		</form>
+			<a class="btn btn-lg btn-default btn-block" href="register.jsp">注册</a>
+		</form> 
 
 	</div>
 	<!-- /container -->

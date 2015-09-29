@@ -8,7 +8,9 @@
 			        done: function (e, data) {
 			        	var result = data.result;
 			        	if( result.msg ){
-			        		CommonModule.showMsg(result.msg);
+			        		CommonModule.showConfirm(result.msg,function(){
+			    				CommonModule.hideConfirm();
+			    			});
 			        	}else{
 			        		var imgPath = result.data.path;
 			        		var imgId = result.data.id;
@@ -75,7 +77,9 @@
 		var yszgzId = $('#qualificationForm').find('input[name="yszgzId"]').val();
 
 		if( yszgzId == null || $.trim(yszgzId).length == 0 ){
-			CommonModule.showMsg('请先上传医师资格证');
+			CommonModule.showConfirm('请先上传医师资格证',function(){
+				CommonModule.hideConfirm();
+			});
 			return false;
 		}
 		
@@ -93,7 +97,9 @@
 			success:function(data){
 				$('#submitBtn').attr('disabled',false);
 				if( data && data.data == true ){
-					CommonModule.showMsg('申请成功提交。');
+					CommonModule.showConfirm('申请成功提交。',function(){
+	    				CommonModule.hideConfirm();
+	    			});
 					QualificationApplicationModule.resetQualificationApplicationForm();
 				}else{
 					CommonModule.showMsg(data.msg);

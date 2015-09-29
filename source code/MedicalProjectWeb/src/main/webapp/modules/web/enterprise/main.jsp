@@ -12,7 +12,7 @@
         <div class="row row-offcanvas row-offcanvas-left">
  
           
-            <%@include file="/modules/web/include/user-sidebar.jsp" %>
+            <%@include file="/modules/web/include/enterprise-user-sidebar.jsp" %>
           
             <!-- main right col -->
             <div class="column col-sm-10 col-xs-11" id="main">
@@ -62,6 +62,6 @@
   </div>
 </div>
 	<%@include file="/modules/web/include/common-footer.jsp" %>
-	<script src='<c:url value="/modules/web/assets/js/user/main.js"/>'></script>
+	<script src='<c:url value="/modules/web/assets/js/enterprise/main.js"/>'></script>
 	</body>
 </html>

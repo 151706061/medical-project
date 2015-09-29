@@ -28,7 +28,7 @@ public class LoginRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         // 增加默认角色
         info.addRole("ROLE_USER");
-        /*以下可以从数据库获取用户的角色以及权限信息，获取到的信息添加入info即可，具体获取数据库的代码我就省略了*/
+        /*以下可以从数据库获取用户的角色以及权限信息，获取到的信息添加入info即可*/
         // // 增加自定义角色
         // if (null != userInfo.getRoleList()) {
         // for (RoleInfo roleInfo : userInfo.getRoleList()) {

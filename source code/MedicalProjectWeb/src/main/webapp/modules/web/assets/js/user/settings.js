@@ -30,7 +30,7 @@
 					success:function(data){
 						$('#saveSettingBtn').attr('disabled',false);
 						if( data && data.data == true ){
-							CommonModule.showMsg('保存设置成功');
+							CommonModule.showMsg('保存设置成功',1);
 						}else{
 							CommonModule.showMsg(data.msg);
 						}

@@ -1,6 +1,8 @@
 package com.medicalproj.common.domain;
 
 public class AuthorizeUserView {
+    private Integer authId;
+
     private Integer applyUserId;
 
     private String applyUserName;
@@ -18,6 +20,14 @@ public class AuthorizeUserView {
     private Integer enterpriseUserId;
 
     private String enterpriseUserName;
+
+    public Integer getAuthId() {
+        return authId;
+    }
+
+    public void setAuthId(Integer authId) {
+        this.authId = authId;
+    }
 
     public Integer getApplyUserId() {
         return applyUserId;

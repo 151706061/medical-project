@@ -58,4 +58,33 @@ public class WebUserSettingController extends WebBaseController{
 		
 		return webUserSettingService.saveSettingByUserId(user.getId(),param);
 	}
+	
+	
+	@RequestMapping("/loadEnterpriseUserSetting")
+	@ResponseBody
+	public View<UserSettingView> loadEnterpriseUserSetting(HttpSession session){
+		User user = super.getLoginUser(session);
+		
+		View<UserSettingView> userSettingView = webUserSettingService.getSetting(user.getId());
+		
+		return userSettingView;
+	}
+	
+	@RequestMapping("/saveEnterpriseUserSetting")
+	@ResponseBody
+	public View<Boolean> saveEnterpriseUserSetting(@ModelAttribute("param")SettingSaveParam param,String receiveNotification ,HttpSession session){
+		if( receiveNotification!= null ){
+			if( receiveNotification.equals("on") ){
+				param.setReceiveNotification(true);
+			}else{
+				param.setReceiveNotification(false);
+			}
+		}else{
+			param.setReceiveNotification(false);
+		}
+		User user = this.getLoginUser(session);
+		
+		return webUserSettingService.saveSettingByUserId(user.getId(),param);
+	}
+	
 }

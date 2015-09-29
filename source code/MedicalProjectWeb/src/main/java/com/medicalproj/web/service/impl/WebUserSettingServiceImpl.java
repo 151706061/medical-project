@@ -31,28 +31,46 @@ public class WebUserSettingServiceImpl implements IWebUserSettingService {
 			String mobile = param.getMobile();
 			String email = param.getEmail();
 			String userName = param.getUserName();
+			String contactUserName = param.getContactUserName();
 			boolean isReceiveNotification = param.isReceiveNotification();
 			
-			if( !user.getMobile().equals(mobile) ){
-				User tmpUser = userService.getByMobile(mobile);
-				if( tmpUser != null ){
-					throw new ServiceException("手机号已被注册");
+			if( user.getUserType().equals(Constants.USER_TYPE_USER )){
+				if( !user.getMobile().equals(mobile) ){
+					User tmpUser = userService.getByMobile(mobile);
+					if( tmpUser != null ){
+						throw new ServiceException("手机号已被注册");
+					}
 				}
+				
+				if( !user.getEmail().equals(email) ){
+					User tmpUser = userService.getByEmail(email);
+					if( tmpUser != null ){
+						throw new ServiceException("邮箱已被注册");
+					}
+				}
+				
+				
+				user.setName(userName);
+				user.setEmail(email);
+				user.setMobile(mobile);
+				user.setIsReceiveNotification(isReceiveNotification == true ? Constants.NOTIFICATION_IS_READ_TRUE :Constants.NOTIFICATION_IS_READ_FALSE );
+				userService.saveOrUpdate(user);
+			}else if( user.getUserType().equals(Constants.USER_TYPE_ENTERPRISE_USER ) ){
+				if( !user.getMobile().equals(mobile) ){
+					User tmpUser = userService.getByMobile(mobile);
+					if( tmpUser != null ){
+						throw new ServiceException("手机号已被注册");
+					}
+				}
+				
+				user.setName(userName);
+				user.setEmail(email);
+				user.setMobile(mobile);
+				user.setCompanyContactUserName(contactUserName);
+				user.setIsReceiveNotification(isReceiveNotification == true ? Constants.NOTIFICATION_IS_READ_TRUE :Constants.NOTIFICATION_IS_READ_FALSE );
+				userService.saveOrUpdate(user);
 			}
 			
-			if( !user.getEmail().equals(email) ){
-				User tmpUser = userService.getByEmail(email);
-				if( tmpUser != null ){
-					throw new ServiceException("邮箱已被注册");
-				}
-			}
-			
-			
-			user.setName(userName);
-			user.setEmail(email);
-			user.setMobile(mobile);
-			user.setIsReceiveNotification(isReceiveNotification == true ? Constants.NOTIFICATION_IS_READ_TRUE :Constants.NOTIFICATION_IS_READ_FALSE );
-			userService.saveOrUpdate(user);
 			view.setData(true);
 			
 			return view;
@@ -78,6 +96,7 @@ public class WebUserSettingServiceImpl implements IWebUserSettingService {
 			setting.setIsReceiveNotification(user.getIsReceiveNotification());
 			setting.setUserId(userId);
 			setting.setUserName(user.getName());
+			setting.setContactUserName(user.getCompanyContactUserName());
 			
 			view.setData(setting);
 			return view;

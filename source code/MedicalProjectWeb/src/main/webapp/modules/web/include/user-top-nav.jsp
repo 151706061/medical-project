@@ -34,7 +34,7 @@
 		<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
 				<a href='#create-request'>
-					<span class="label label-success upload-progress-text">文件上传中...0%</span></span>
+					<span class="label label-success upload-progress-text hide">文件上传中...0%</span>
 				</a>
 			</li>
 			<li class="dropdown">

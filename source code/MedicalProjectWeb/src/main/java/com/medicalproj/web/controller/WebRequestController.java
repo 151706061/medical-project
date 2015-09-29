@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.web.dto.session.User;
 import com.medicalproj.web.dto.view.IncompleteRequestResView;
+import com.medicalproj.web.dto.view.ListMedicalCaseParam;
+import com.medicalproj.web.dto.view.MedicalCaseListView;
 import com.medicalproj.web.dto.view.MedicalCaseView;
 import com.medicalproj.web.service.IWebRequestService;
 
@@ -93,4 +96,17 @@ public class WebRequestController extends WebBaseController{
 		
 		return view;
 	}
+	
+	@RequestMapping(value="/listRequest", method = RequestMethod.GET)
+	@ResponseBody
+	public View<MedicalCaseListView> listRequest(@ModelAttribute("param")ListMedicalCaseParam param,HttpSession session){
+		User user = super.getLoginUser(session);
+		if( user != null ){
+			param.setOwnerUserId(user.getId());
+		}
+		View<MedicalCaseListView> view = webRequestService.listMedicalCase(param);
+		
+		return view;
+	}
+	
 }

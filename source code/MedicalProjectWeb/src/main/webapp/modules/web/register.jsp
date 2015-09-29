@@ -21,36 +21,39 @@
 			<label for="selectUserType" class="sr-only">用户类型</label> 
 			<select name="userType" class="form-control" id="selectUserType" required>
 			  <option value="1">普通用户</option>
-			  <option value="2">企业用户</option>
+			  <option value="4">企业用户</option>
 			</select>	
-			
-			<label for="inputUsername" class="sr-only">用户名</label> 
-			<input
-				type="text" name="userName" id="inputUsername" class="form-control"
-				placeholder="请输入用户名" required>
-			
-			<label for="inputMobile" class="sr-only">用户名</label> 
-			<input
-				type="text" name="mobile" id="inputMobile" class="form-control"
-				placeholder="请输入手机号" required>
+			<div class="enterprise-input-wrap">
 				
-			 
-			 <label for="inputEmail" class="sr-only">邮箱</label> 
-			<input
-				type="email" name="email" id="inputEmail" class="form-control"
-				placeholder="请输入邮箱" required>
+			</div>
+			<div class="user-input-wrap">
+				<label for="inputUsername" class="sr-only">用户名</label> 
+				<input
+					type="text" name="userName" id="inputUsername" class="form-control"
+					placeholder="请输入用户名" required />
 				
+				<label for="inputMobile" class="sr-only">手机号</label> 
+				<input
+					type="text" name="mobile" id="inputMobile" class="form-control"
+					placeholder="请输入手机号" required />
+					
+				 
+				 <label for="inputEmail" class="sr-only">邮箱</label> 
+				<input
+					type="email" name="email" id="inputEmail" class="form-control"
+					placeholder="请输入邮箱" required />
+			</div>
 			<label
 				for="inputPassword" class="sr-only">密码</label> 
 			<input
 				type="password" name="password" id="inputPassword" class="form-control"
-				placeholder="请输入密码" required>
+				placeholder="请输入密码" required />
 				
 			<label
 				for="inputPasswordAgain" class="sr-only">确认密码</label> 
 			<input
 				type="password" id="inputPasswordAgain" class="form-control"
-				placeholder="请再次输入密码" required>
+				placeholder="请再次输入密码" required />
 				
 			<div class="checkbox">
 			  <label>
@@ -58,8 +61,8 @@
 			        我同意xxx条款
 			  </label>
 			</div>
-			
 			<button id="regBtn" class="btn btn-lg btn-success btn-block" type="submit">注册</button>
+			<a class="btn btn-link" href="login.jsp" style="display:block;text-align:center">已有账号? 登录</a>
 		</form>
 
 	</div>
@@ -81,7 +84,37 @@
 	    
 	  </div>
 	</div>
+
 	
+	<script id="enterpriseInputTmpl" type="x-tmpl-mustache">
+	<label for="inputCompanyName" class="sr-only">单位名称</label>
+	<input type="text" name="companyName" id="inputCompanyName"
+		class="form-control" placeholder="请输入单位名称" required />
+
+	<label for="inputContactUserName" class="sr-only">联系人</label>
+	<input type="text" name="contactUserName" id="inputContactUserName"
+		class="form-control" placeholder="请输入联系人姓名" required />
+
+	<label for="inputContactPhone" class="sr-only">联系电话</label>
+	<input type="text" name="contactPhone" id="inputContactPhone"
+		class="form-control" placeholder="请输入联系电话" required />
+	</script>
+
+	
+	<script id="userInputTmpl" type="x-tmpl-mustache">
+	<label for="inputUsername" class="sr-only">用户名</label>
+	<input type="text" name="userName" id="inputUsername"
+		class="form-control" placeholder="请输入用户名" required />
+
+	<label for="inputMobile" class="sr-only">手机号</label>
+	<input type="text" name="mobile" id="inputMobile" class="form-control"
+		placeholder="请输入手机号" required />
+
+
+	<label for="inputEmail" class="sr-only">邮箱</label>
+	<input type="email" name="email" id="inputEmail" class="form-control"
+		placeholder="请输入邮箱" required />
+	</script>
 	<%@include file="/modules/web/include/common-footer.jsp" %>
 	<script src='<c:url value="/modules/web/assets/js/register.js"/>'></script>
 	</body>

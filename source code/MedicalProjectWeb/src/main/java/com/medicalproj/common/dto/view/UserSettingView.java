@@ -6,6 +6,8 @@ public class UserSettingView {
 	private String mobile;
 	private String email;
 	private Integer isReceiveNotification;
+	
+	private String contactUserName;
 	public Integer getUserId() {
 		return userId;
 	}
@@ -35,6 +37,12 @@ public class UserSettingView {
 	}
 	public void setIsReceiveNotification(Integer isReceiveNotification) {
 		this.isReceiveNotification = isReceiveNotification;
+	}
+	public String getContactUserName() {
+		return contactUserName;
+	}
+	public void setContactUserName(String contactUserName) {
+		this.contactUserName = contactUserName;
 	}
 	
 }

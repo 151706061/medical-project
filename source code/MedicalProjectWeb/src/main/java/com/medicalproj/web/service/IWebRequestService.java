@@ -8,6 +8,8 @@ import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.web.dto.param.ListRequestParam;
 import com.medicalproj.web.dto.view.IncompleteRequestResView;
+import com.medicalproj.web.dto.view.ListMedicalCaseParam;
+import com.medicalproj.web.dto.view.MedicalCaseListView;
 import com.medicalproj.web.dto.view.MedicalCaseView;
 import com.medicalproj.web.dto.view.RequestListView;
 
@@ -26,6 +28,8 @@ public interface IWebRequestService {
 	View<MedicalCaseView> loadMedicalCase(Integer medicalCaseId)throws ServiceException;
 
 	View<Boolean> clearOldUpload(Integer userId)throws ServiceException;
+
+	View<MedicalCaseListView> listMedicalCase(ListMedicalCaseParam param)throws ServiceException;
 
 
 }

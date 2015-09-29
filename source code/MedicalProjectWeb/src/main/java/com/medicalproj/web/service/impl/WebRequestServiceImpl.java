@@ -21,10 +21,14 @@ import com.medicalproj.common.service.IStudyService;
 import com.medicalproj.common.service.IUploadService;
 import com.medicalproj.common.util.DateUtil;
 import com.medicalproj.common.util.FileUtil;
+import com.medicalproj.common.util.PagerHelper;
 import com.medicalproj.web.dto.param.ListRequestParam;
 import com.medicalproj.web.dto.view.IncompleteRequestResView;
 import com.medicalproj.web.dto.view.InstanceView;
+import com.medicalproj.web.dto.view.ListMedicalCaseParam;
+import com.medicalproj.web.dto.view.MedicalCaseListView;
 import com.medicalproj.web.dto.view.MedicalCaseView;
+import com.medicalproj.web.dto.view.PagerView;
 import com.medicalproj.web.dto.view.RequestListView;
 import com.medicalproj.web.dto.view.SeriesView;
 import com.medicalproj.web.dto.view.StudyView;
@@ -289,6 +293,44 @@ public class WebRequestServiceImpl implements IWebRequestService {
 			view.setMsg(e.getMessage());
 			return view;
 		}
+	}
+
+	@Override
+	public View<MedicalCaseListView> listMedicalCase(ListMedicalCaseParam param) throws ServiceException {
+		View<MedicalCaseListView> view = new View<MedicalCaseListView>();
+		try {
+			MedicalCaseListView medicalCaseListView = new MedicalCaseListView();
+			List<com.medicalproj.common.domain.MedicalCaseView> domainMedicalCaseList = this.medicalCaseService.listMedicalCaseViewByCond(param);
+			List<MedicalCaseView> medicalCaseViewList = trans2MedicalCaseViewList(domainMedicalCaseList);
+			medicalCaseListView.setMedicalCaseList(medicalCaseViewList);
+			
+			int totalCount = medicalCaseService.countMedicalCaseViewByCond(param);
+			PagerView pager = PagerHelper.getPager(param.getPage(), param.getPageSize(), totalCount);
+			medicalCaseListView.setPager(pager);
+
+			view.setData(medicalCaseListView);
+			return view;
+		} catch (Exception e) {
+			logger.error(e);
+			view.setMsg(e.getMessage());
+			return view;
+		}
+	}
+
+	private List<MedicalCaseView> trans2MedicalCaseViewList(
+			List<com.medicalproj.common.domain.MedicalCaseView> domainMedicalCaseList) {
+		if( domainMedicalCaseList != null ){
+			List<MedicalCaseView> list = new ArrayList<MedicalCaseView>();
+			for( com.medicalproj.common.domain.MedicalCaseView mcv: domainMedicalCaseList){
+				MedicalCaseView mcvNew = trans2MedicalCaseView(mcv);
+				if( mcvNew != null ){
+					list.add(mcvNew);
+				}
+			}
+			
+			return list;
+		}
+		return null;
 	}
 
 	@Override

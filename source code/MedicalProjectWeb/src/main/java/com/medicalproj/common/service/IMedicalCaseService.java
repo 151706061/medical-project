@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.medicalproj.common.domain.MedicalCase;
 import com.medicalproj.common.domain.UploadFile;
 import com.medicalproj.common.exception.ServiceException;
+import com.medicalproj.web.dto.view.ListMedicalCaseParam;
 
 public interface IMedicalCaseService {
 
@@ -22,5 +23,9 @@ public interface IMedicalCaseService {
 			Integer medicalCaseId)throws ServiceException;
 
 	Integer createMedicalCaseForPatient(List<UploadFile> uploadFileList, Integer processUserId)throws ServiceException;
+
+	List<com.medicalproj.common.domain.MedicalCaseView> listMedicalCaseViewByCond(ListMedicalCaseParam param)throws ServiceException;
+
+	int countMedicalCaseViewByCond(ListMedicalCaseParam param)throws ServiceException;
 
 }

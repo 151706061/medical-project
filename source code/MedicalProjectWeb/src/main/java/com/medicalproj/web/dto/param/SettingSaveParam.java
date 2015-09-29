@@ -5,6 +5,7 @@ public class SettingSaveParam {
 	private String mobile;
 	private String email;
 	private boolean isReceiveNotification;
+	private String contactUserName;
 	public String getUserName() {
 		return userName;
 	}
@@ -29,6 +30,11 @@ public class SettingSaveParam {
 	public void setReceiveNotification(boolean isReceiveNotification) {
 		this.isReceiveNotification = isReceiveNotification;
 	}
-	
+	public String getContactUserName() {
+		return contactUserName;
+	}
+	public void setContactUserName(String contactUserName) {
+		this.contactUserName = contactUserName;
+	}
 	
 }

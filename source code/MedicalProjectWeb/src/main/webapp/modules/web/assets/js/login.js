@@ -18,7 +18,7 @@ $(document).ready(function(){
 				if( data && data.data == true ){
 					location = appContext + 'web/common/home.do';
 				}else{
-					CommonModule.showMsg(data.msg);
+					CommonModule.showMsg(data.msg,1);
 				}
 			}
 		});

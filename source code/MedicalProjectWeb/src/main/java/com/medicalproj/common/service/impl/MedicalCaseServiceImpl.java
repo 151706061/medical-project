@@ -8,15 +8,18 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.medicalproj.common.dao.MedicalCaseMapper;
+import com.medicalproj.common.dao.MedicalCaseViewMapper;
 import com.medicalproj.common.domain.Instance;
 import com.medicalproj.common.domain.MedicalCase;
 import com.medicalproj.common.domain.MedicalCaseView;
+import com.medicalproj.common.domain.MedicalCaseViewExample;
 import com.medicalproj.common.domain.Series;
 import com.medicalproj.common.domain.Study;
 import com.medicalproj.common.domain.UploadFile;
@@ -29,7 +32,9 @@ import com.medicalproj.common.service.ISeriesService;
 import com.medicalproj.common.service.IStudyService;
 import com.medicalproj.common.util.FileUtil;
 import com.medicalproj.common.util.FtpUtil;
+import com.medicalproj.common.util.PagerHelper;
 import com.medicalproj.common.util.UUIDUtil;
+import com.medicalproj.web.dto.view.ListMedicalCaseParam;
 import com.medicalproj.web.util.Constants;
 
 import eden.dicomparser.DicomParser;
@@ -56,6 +61,9 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 	
 	@Autowired
 	private IMedicalCaseViewService medicalCaseViewService;
+	
+	@Autowired 
+	private MedicalCaseViewMapper medicalCaseViewMapper;
 	
 	@Override
 	public MedicalCase initNewMedicalCase(Integer creatorUserId) throws ServiceException {
@@ -282,7 +290,6 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 						}
 					}
 					
-					return mcase.getId();
 				}catch(Exception e){
 					logger.error(e);
 					throw new ServiceException(e.getMessage(),e);
@@ -325,7 +332,7 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 					}
 				}
 			}
-			return null;
+			return mcase.getId();
 		} catch (Exception e) {
 			logger.error(e);
 			throw new ServiceException(e);
@@ -349,5 +356,33 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 			throws ServiceException {
 		return medicalCaseViewService.getById(medicalCaseId);
 	}
+
+	@Override
+	public List<MedicalCaseView> listMedicalCaseViewByCond(ListMedicalCaseParam param) throws ServiceException {
+		MedicalCaseViewExample example = trans2MedicalCaseViewExample(param);
+		
+		int start = PagerHelper.getStart(param.getPage(), param.getPageSize());
+		RowBounds bounds = new RowBounds(start, param.getPageSize());
+		return medicalCaseViewMapper.selectByExampleWithRowbounds(example, bounds);
+	}
+
+	private MedicalCaseViewExample trans2MedicalCaseViewExample(ListMedicalCaseParam param) {
+		if( param == null ){
+			return new MedicalCaseViewExample();
+		}
+		MedicalCaseViewExample example = new MedicalCaseViewExample();
+		MedicalCaseViewExample.Criteria c = example.createCriteria();
+		c.andCreatorUserIdEqualTo(param.getOwnerUserId());
+		
+		example.setOrderByClause("CREATE_TIME DESC");
+		return example;
+	}
+
+	@Override
+	public int countMedicalCaseViewByCond(ListMedicalCaseParam param) throws ServiceException {
+		MedicalCaseViewExample example = trans2MedicalCaseViewExample(param);
+		return medicalCaseViewMapper.countByExample(example);
+	}
+	
 	
 }

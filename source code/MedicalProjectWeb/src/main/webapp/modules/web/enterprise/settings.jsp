@@ -13,24 +13,24 @@
 
 			<form class="form-horizontal" id="settingForm">
 				<div class="form-group">
-					<label for="inputUserName" class="col-sm-2 control-label">姓名</label>
+					<label for="inputCompanyName" class="col-sm-2 control-label">单位名称</label>
 					<div class="col-sm-10">
 						<input type="text" name="userName" class="form-control"
-							id="inputUserName" placeholder="姓名" >
+							id="inputCompanyName" placeholder="单位名称" >
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputMobile" class="col-sm-2 control-label">手机号</label>
+					<label for="inputContactUserName" class="col-sm-2 control-label">联系人</label>
 					<div class="col-sm-10">
-						<input type="tel" name="mobile" class="form-control"
-							id="inputMobile" placeholder="手机号" >
+						<input type="tel" name="contactUserName" class="form-control"
+							id="inputContactUserName" placeholder="联系人" >
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
+					<label for="inputContactUserPhone" class="col-sm-2 control-label">联系电话</label>
 					<div class="col-sm-10">
-						<input type="email" name="email" class="form-control"
-							id="inputEmail" placeholder="邮箱" >
+						<input type="text" name="mobile" class="form-control"
+							id="inputContactUserPhone" placeholder="联系电话" >
 					</div>
 				</div>
 
@@ -90,4 +90,4 @@
 			</div>
 		</div>
 	</div>
-	<script src='<c:url value="/modules/web/assets/js/user/settings.js"/>'></script>
+	<script src='<c:url value="/modules/web/assets/js/enterprise/settings.js"/>'></script>

@@ -81,6 +81,7 @@ var CreateRequestModule = (function(){
 				uploadIndex: uploadIndex
 			};
 			data.uploadIndex ++;
+			
 		},
 	    progressall: function (e, data) {
 	    	//console.log(data);
@@ -103,6 +104,7 @@ var CreateRequestModule = (function(){
 	        );*/
 	    },
 	    send: function(e,data){
+	    	$('#completeUploadBtn').attr('disabled',true);
 	    }, 
 	    done:function(e,data){
 	    	var result = data.result;
@@ -112,6 +114,7 @@ var CreateRequestModule = (function(){
 	    		var tipText = $('#uploadBox .tip-text');
 		        if( tipText.length > 0 ){
 		        	tipText.text('所有文件上传完成.');
+		        	$('#completeUploadBtn').attr('disabled',false);
 		        }
 	    	}
 	    	else{
@@ -197,8 +200,13 @@ var CreateRequestModule = (function(){
 	$(document).on("click","#completeUploadBtn",function(){
 		CreateRequestModule.completeRequest(function(data){
 			if( data.data ){
-				var medicalCaseId = data.data;
-				
+				CommonModule.showConfirm('病例已生成，点确定查看病例，点取消上传新病例。',function(){
+					routie('requests');
+				},
+				function(){
+					uploadNo = null;
+					CreateRequestModule.showUploadBox();
+				});
 			}
 		});
 		

@@ -8,6 +8,10 @@ public class RegisterParam {
 	private String password;
 	private String verifyCode;
 	
+	private String companyName;
+	private String contactUserName;
+	private String contactPhone;
+	
 	public Integer getUserType() {
 		return userType;
 	}
@@ -43,5 +47,23 @@ public class RegisterParam {
 	}
 	public void setVerifyCode(String verifyCode) {
 		this.verifyCode = verifyCode;
+	}
+	public String getCompanyName() {
+		return companyName;
+	}
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	public String getContactUserName() {
+		return contactUserName;
+	}
+	public void setContactUserName(String contactUserName) {
+		this.contactUserName = contactUserName;
+	}
+	public String getContactPhone() {
+		return contactPhone;
+	}
+	public void setContactPhone(String contactPhone) {
+		this.contactPhone = contactPhone;
 	}
 }

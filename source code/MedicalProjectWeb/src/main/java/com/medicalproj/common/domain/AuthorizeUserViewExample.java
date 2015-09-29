@@ -104,6 +104,66 @@ public class AuthorizeUserViewExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andAuthIdIsNull() {
+            addCriterion("AUTH_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthIdIsNotNull() {
+            addCriterion("AUTH_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthIdEqualTo(Integer value) {
+            addCriterion("AUTH_ID =", value, "authId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthIdNotEqualTo(Integer value) {
+            addCriterion("AUTH_ID <>", value, "authId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthIdGreaterThan(Integer value) {
+            addCriterion("AUTH_ID >", value, "authId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("AUTH_ID >=", value, "authId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthIdLessThan(Integer value) {
+            addCriterion("AUTH_ID <", value, "authId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthIdLessThanOrEqualTo(Integer value) {
+            addCriterion("AUTH_ID <=", value, "authId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthIdIn(List<Integer> values) {
+            addCriterion("AUTH_ID in", values, "authId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthIdNotIn(List<Integer> values) {
+            addCriterion("AUTH_ID not in", values, "authId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthIdBetween(Integer value1, Integer value2) {
+            addCriterion("AUTH_ID between", value1, value2, "authId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("AUTH_ID not between", value1, value2, "authId");
+            return (Criteria) this;
+        }
+
         public Criteria andApplyUserIdIsNull() {
             addCriterion("APPLY_USER_ID is null");
             return (Criteria) this;

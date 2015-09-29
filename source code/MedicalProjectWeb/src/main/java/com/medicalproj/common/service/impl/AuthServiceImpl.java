@@ -105,36 +105,68 @@ public class AuthServiceImpl implements IAuthService {
 		try {
 			if( param == null ){
 				throw new ServiceException("参数错误");
-			}else if( param.getEmail() == null ){
-				throw new ServiceException("请输入邮箱");
-			}else if( param.getMobile() == null ){
-				throw new ServiceException("请输入手机号");
-			}else if( param.getPassword() == null ){
-				throw new ServiceException("请输入密码");
-			}
-			
-			User user = userService.getByEmail(param.getEmail());
-			if( user != null ){
-				throw new ServiceException("邮箱已注册");
-			}
-			
-			user = userService.getByMobile(param.getMobile());
-			if( user == null ){
-				user = new User();
 			}else{
-				if( user.getRegTime() != null ){
-					throw new ServiceException("手机号已经注册");
+				if( param.getUserType().equals(Constants.USER_TYPE_USER) ){
+					if( param.getEmail() == null ){
+						throw new ServiceException("请输入邮箱");
+					}else if( param.getMobile() == null ){
+						throw new ServiceException("请输入手机号");
+					}else if( param.getPassword() == null ){
+						throw new ServiceException("请输入密码");
+					}
+				}else if( param.getUserType().equals(Constants.USER_TYPE_ENTERPRISE_USER) ){
+					if( param.getCompanyName() == null ){
+						throw new ServiceException("请输入单位名称");
+					}else if( param.getContactUserName() == null ){
+						throw new ServiceException("请输入联系人");
+					}else if( param.getContactPhone() == null ){
+						throw new ServiceException("请输入联系电话");
+					}
 				}
 			}
 			
-			user.setName(param.getUserName());
-			user.setUserType(Constants.USER_TYPE_USER);
-			user.setBalance(0);
-			user.setEmail(param.getEmail());
-			user.setMobile(param.getMobile());
-			user.setPassword(param.getPassword());
-			user.setRegTime(new Date());
-			userService.saveOrUpdate(user);
+			if( param.getUserType().equals(Constants.USER_TYPE_USER )){
+				User user = userService.getByEmail(param.getEmail());
+				if( user != null ){
+					throw new ServiceException("邮箱已注册");
+				}
+				
+				user = userService.getByMobile(param.getMobile());
+				if( user == null ){
+					user = new User();
+				}else{
+					if( user.getRegTime() != null ){
+						throw new ServiceException("手机号已经注册");
+					}
+				}
+				
+				user.setName(param.getUserName());
+				user.setUserType(param.getUserType());
+				user.setBalance(0);
+				user.setEmail(param.getEmail());
+				user.setMobile(param.getMobile());
+				user.setPassword(param.getPassword());
+				user.setRegTime(new Date());
+				userService.saveOrUpdate(user);
+			}else if( param.getUserType().equals(Constants.USER_TYPE_ENTERPRISE_USER)){
+				User user = userService.getByMobile(param.getContactPhone());
+				if( user == null ){
+					user = new User();
+				}else{
+					if( user.getRegTime() != null ){
+						throw new ServiceException("手机号已经注册");
+					}
+				}
+				
+				user.setName(param.getCompanyName());
+				user.setCompanyContactUserName(param.getContactUserName());
+				user.setUserType(param.getUserType());
+				user.setBalance(0);
+				user.setMobile(param.getContactPhone());
+				user.setPassword(param.getPassword());
+				user.setRegTime(new Date());
+				userService.saveOrUpdate(user);
+			}
 		} catch (Exception e) {
 			throw new ServiceException(e.getMessage(),e);
 		}

@@ -201,7 +201,11 @@ nav li.dropdown a .badge{
 .form-reg input#inputUsername,
 .form-reg input#inputMobile,
 .form-reg input#inputEmail,
-.form-reg input#inputPassword{
+.form-reg input#inputPassword,
+.form-reg input#inputCompanyName,
+.form-reg input#inputContactUserName,
+.form-reg input#inputContactPhone
+{
 	margin-bottom: -1px;
  	border-bottom-right-radius: 0;
   	border-bottom-left-radius: 0;

@@ -25,6 +25,8 @@ public class User {
 
     private Integer isReceiveNotification;
 
+    private String companyContactUserName;
+
     public Integer getId() {
         return id;
     }
@@ -111,5 +113,13 @@ public class User {
 
     public void setIsReceiveNotification(Integer isReceiveNotification) {
         this.isReceiveNotification = isReceiveNotification;
+    }
+
+    public String getCompanyContactUserName() {
+        return companyContactUserName;
+    }
+
+    public void setCompanyContactUserName(String companyContactUserName) {
+        this.companyContactUserName = companyContactUserName == null ? null : companyContactUserName.trim();
     }
 }

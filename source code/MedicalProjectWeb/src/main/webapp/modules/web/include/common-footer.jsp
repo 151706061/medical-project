@@ -99,6 +99,9 @@ var CommonModule = (function(){
 			//$('#msgModal').modal('hide');
 		},
 		onDicomUploadProgressUpdate :function(progress){
+			if( $('.upload-progress-text').hasClass('hide') ){
+				$('.upload-progress-text').removeClass('hide');
+			}
 			$('.upload-progress-text').html('文件上传中...'+progress);		
 		},
 		onDicomUploadComplete:function(){

@@ -814,6 +814,76 @@ public class UserExample {
             addCriterion("IS_RECEIVE_NOTIFICATION not between", value1, value2, "isReceiveNotification");
             return (Criteria) this;
         }
+
+        public Criteria andCompanyContactUserNameIsNull() {
+            addCriterion("COMPANY_CONTACT_USER_NAME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompanyContactUserNameIsNotNull() {
+            addCriterion("COMPANY_CONTACT_USER_NAME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompanyContactUserNameEqualTo(String value) {
+            addCriterion("COMPANY_CONTACT_USER_NAME =", value, "companyContactUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompanyContactUserNameNotEqualTo(String value) {
+            addCriterion("COMPANY_CONTACT_USER_NAME <>", value, "companyContactUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompanyContactUserNameGreaterThan(String value) {
+            addCriterion("COMPANY_CONTACT_USER_NAME >", value, "companyContactUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompanyContactUserNameGreaterThanOrEqualTo(String value) {
+            addCriterion("COMPANY_CONTACT_USER_NAME >=", value, "companyContactUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompanyContactUserNameLessThan(String value) {
+            addCriterion("COMPANY_CONTACT_USER_NAME <", value, "companyContactUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompanyContactUserNameLessThanOrEqualTo(String value) {
+            addCriterion("COMPANY_CONTACT_USER_NAME <=", value, "companyContactUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompanyContactUserNameLike(String value) {
+            addCriterion("COMPANY_CONTACT_USER_NAME like", value, "companyContactUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompanyContactUserNameNotLike(String value) {
+            addCriterion("COMPANY_CONTACT_USER_NAME not like", value, "companyContactUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompanyContactUserNameIn(List<String> values) {
+            addCriterion("COMPANY_CONTACT_USER_NAME in", values, "companyContactUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompanyContactUserNameNotIn(List<String> values) {
+            addCriterion("COMPANY_CONTACT_USER_NAME not in", values, "companyContactUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompanyContactUserNameBetween(String value1, String value2) {
+            addCriterion("COMPANY_CONTACT_USER_NAME between", value1, value2, "companyContactUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompanyContactUserNameNotBetween(String value1, String value2) {
+            addCriterion("COMPANY_CONTACT_USER_NAME not between", value1, value2, "companyContactUserName");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

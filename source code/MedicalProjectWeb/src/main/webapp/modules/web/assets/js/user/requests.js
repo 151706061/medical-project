@@ -1,9 +1,9 @@
 (function(){
 	var RequestModule = (function(){
 		return {
-			/*listNotification:function(page,pageSize,successFn){
+			listRequest:function(page,pageSize,successFn){
 				$.ajax({
-					url: appContext + 'web/notification/listNotification.do',
+					url: appContext + 'web/request/listRequest.do',
 					data: {
 						page: page,
 						pageSize: pageSize
@@ -17,7 +17,7 @@
 						successFn(data);
 					}
 				});
-			}*/
+			}
 		}
 	})();
 	
@@ -25,7 +25,14 @@
 	var page = 1;
 	var pageSize = 10;
 	$(function(){
-		
+		RequestModule.listRequest(page, pageSize , function(data){
+			var medicalCaseList = data.data.medicalCaseList;
+			var template = $('#medicalCaseTmpl').html();
+			Mustache.parse(template);  
+			var rendered = Mustache.render(template, {medicalCaseList: medicalCaseList});
+			
+			$('#medicalCaseListWrap').html(rendered); 
+		});
 	});
 	
 })();

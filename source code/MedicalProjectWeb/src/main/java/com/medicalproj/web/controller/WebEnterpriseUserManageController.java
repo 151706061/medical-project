@@ -28,4 +28,22 @@ public class WebEnterpriseUserManageController extends WebBaseController {
 	}
 	
 	
+	@RequestMapping("/authorize")
+	@ResponseBody
+	public View<Boolean> authorize(Integer authId,HttpSession session){
+		User user = super.getLoginUser(session);
+		View<Boolean> view = webEnterpriseUserManageService.authorize(authId);
+		
+		return view;
+	}
+	
+	@RequestMapping("/unauthorize")
+	@ResponseBody
+	public View<Boolean> unauthorize(Integer authId,HttpSession session){
+		User user = super.getLoginUser(session);
+		View<Boolean> view = webEnterpriseUserManageService.unauthorize(authId);
+		
+		return view;
+	}
+	
 }
