@@ -8,4 +8,6 @@ import com.medicalproj.web.dto.view.TaskListView;
 public interface IWebTaskService {
 	View<TaskListView> listTask(ListTaskParam param)throws ServiceException;
 
+	View<TaskListView> sendAudit(Integer taskId, Integer userId)throws ServiceException;
+
 }

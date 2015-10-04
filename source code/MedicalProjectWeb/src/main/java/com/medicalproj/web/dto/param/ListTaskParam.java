@@ -1,7 +1,12 @@
 package com.medicalproj.web.dto.param;
 
+import java.util.Date;
+
 public class ListTaskParam {
 	private Integer ownerId;
+	private Integer status;
+	private Date taskTime;
+	private String studyDesc;	//²¿Î»
 	
 	private Integer page;
 	private Integer pageSize;
@@ -23,4 +28,24 @@ public class ListTaskParam {
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public String getStudyDesc() {
+		return studyDesc;
+	}
+	public void setStudyDesc(String studyDesc) {
+		this.studyDesc = studyDesc;
+	}
+	public Date getTaskTime() {
+		return taskTime;
+	}
+	public void setTaskTime(Date taskTime) {
+		this.taskTime = taskTime;
+	}
+	
+	
 }
