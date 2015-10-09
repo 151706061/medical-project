@@ -45,4 +45,11 @@ public class WebTaskServiceImpl implements IWebTaskService {
 		}
 	}
 
+	@Override
+	public View<TaskListView> sendAudit(Integer taskId, Integer userId) throws ServiceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

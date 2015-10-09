@@ -106,13 +106,14 @@ public class FtpUtil {
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             ftpClient.setControlEncoding("UTF-8");
             
-            System.out.println("Start uploading first file");
+            System.out.println("uploading file..." + path+"/" + fileName);
             ftpClient.makeDirectory(path);
             
             boolean done = ftpClient.storeFile(path+"/" + fileName, fileInputStream);
+            System.out.println("uploading file..." + done + ",replyCode:" + ftpClient.getReplyCode());
         	fileInputStream.close();
         	if (done) {
-        		logger.info("The file is uploaded successfully.");
+        		System.out.println("The file is uploaded successfully.");
         		UploadResult res = new UploadResult();
         		res.setFileName(fileName);
         		res.setRelativePath(path+"/" + fileName);
@@ -120,6 +121,7 @@ public class FtpUtil {
         	}
         	return null;
         } catch (Exception ex) {
+        	ex.printStackTrace();
             logger.error("Error: " + ex.getMessage(),ex);
             return null;
         } finally {
