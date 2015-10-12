@@ -100,5 +100,19 @@ public class StudyServiceImpl implements IStudyService {
 			}
 		}
 	}
+
+	@Override
+	public StudyView getStudyViewById(Integer studyId) throws ServiceException {
+		StudyViewExample example = new StudyViewExample();
+		StudyViewExample.Criteria c = example.createCriteria();
+		
+		c.andIdEqualTo(studyId);
+		
+		List<StudyView> list = studyViewMapper.selectByExample(example);
+		if( list != null && list.size() > 0 ){
+			return list.get(0);
+		}
+		return null;
+	}
 	
 }

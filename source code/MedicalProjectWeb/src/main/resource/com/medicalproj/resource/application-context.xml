@@ -129,7 +129,9 @@
 	            #/docs/** = authc, perms[document:read]
 	            #/** = authc
 	            # more URL-to-FilterChain definitions here
-	            
+
+				/web/dcmviewer/** = anon	            
+	            /modules/cornerstone/** = anon
 	            /modules/web/login.jsp = anon
 	            /modules/web/register.jsp = anon
 	            /modules/web/assets/** = anon
