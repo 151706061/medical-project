@@ -12,4 +12,6 @@ public interface ITaskService {
 
 	Integer countTaskByCond(ListTaskParam param)throws ServiceException;
 
+	void assignDiagnoseTask(List<Integer> medicalCaseIdList)throws ServiceException;
+
 }

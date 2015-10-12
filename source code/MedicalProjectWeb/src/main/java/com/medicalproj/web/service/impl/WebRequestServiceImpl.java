@@ -18,6 +18,7 @@ import com.medicalproj.common.service.IInstanceService;
 import com.medicalproj.common.service.IMedicalCaseService;
 import com.medicalproj.common.service.ISeriesService;
 import com.medicalproj.common.service.IStudyService;
+import com.medicalproj.common.service.ITaskService;
 import com.medicalproj.common.service.IUploadService;
 import com.medicalproj.common.util.DateUtil;
 import com.medicalproj.common.util.FileUtil;
@@ -55,6 +56,9 @@ public class WebRequestServiceImpl implements IWebRequestService {
 	
 	@Autowired
 	private IFileUploadService fileUploadService;
+	
+	@Autowired
+	private ITaskService taskService;
 	
 	@Override
 	public View<Boolean> uploadDicom(Integer userId, String uploadNo,MultipartFile dicomFile) throws ServiceException {
@@ -269,6 +273,10 @@ public class WebRequestServiceImpl implements IWebRequestService {
 		try {
 			List<Integer> medicalCaseIdList = fileUploadService.generateMedicalCaseUsingUploadDicom(processUserId);
 			view.setData(medicalCaseIdList);
+			
+			// 创建任务随机分配给Senior Doctor
+			taskService.assignDiagnoseTask(medicalCaseIdList);
+			
 			return view;
 		} catch (Exception e) {
 			logger.error(e);
