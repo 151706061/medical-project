@@ -20,9 +20,9 @@ public class DcmViewerController {
 	
 	@RequestMapping("/loadStudy")
 	@ResponseBody
-	public View<StudyViewerView> loadStudy(Integer studyId,HttpSession session){
+	public StudyViewerView loadStudy(Integer studyId,HttpSession session){
 		View<StudyViewerView> view = dcmViewerService.loadStudy(studyId);
 		
-		return view;
+		return view.getData();
 	}	
 }

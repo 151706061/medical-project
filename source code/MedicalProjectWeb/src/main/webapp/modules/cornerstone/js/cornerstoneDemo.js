@@ -1,15 +1,49 @@
 // Load in HTML templates
 
 var viewportTemplate; // the viewport template
+var studyViewerTemplate; // the study viewer template
 loadTemplate("templates/viewport.html", function(element) {
     viewportTemplate = element;
+    
+    loadTemplate("templates/studyViewer.html", function(element) {
+        studyViewerTemplate = element;
+        
+        openViewer();
+    });
 });
 
-var studyViewerTemplate; // the study viewer template
-loadTemplate("templates/studyViewer.html", function(element) {
-    studyViewerTemplate = element;
-});
 
+
+function openViewer(){
+	//Add new tab for this study and switch to it
+    var studyTab = '<li><a href="#x' + 1 + '" data-toggle="tab">Viewer</a></li>';
+    $('#tabs').append(studyTab);
+
+    // Add tab content by making a copy of the studyViewerTemplate element
+    var studyViewerCopy = studyViewerTemplate.clone();
+
+    /*var viewportCopy = viewportTemplate.clone();
+    studyViewerCopy.find('.imageViewer').append(viewportCopy);*/
+
+
+    studyViewerCopy.attr("id", 'x' + 1);
+    // Make the viewer visible
+    studyViewerCopy.removeClass('hidden');
+    // Add section to the tab content
+    studyViewerCopy.appendTo('#tabContent');
+
+    // Show the new tab (which will be the last one since it was just added
+    $('#tabs a:last').tab('show');
+
+    // Toggle window resize (?)
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+      $(window).trigger('resize');
+    });
+
+    // Now load the study.json
+    loadStudy(studyViewerCopy, viewportTemplate, studyId);
+}
+/*
 // Get study list from JSON manifest
 $.getJSON('studyList.json', function(data) {
   data.studyList.forEach(function(study) {
@@ -37,8 +71,8 @@ $.getJSON('studyList.json', function(data) {
       // Add tab content by making a copy of the studyViewerTemplate element
       var studyViewerCopy = studyViewerTemplate.clone();
 
-      /*var viewportCopy = viewportTemplate.clone();
-      studyViewerCopy.find('.imageViewer').append(viewportCopy);*/
+      var viewportCopy = viewportTemplate.clone();
+      studyViewerCopy.find('.imageViewer').append(viewportCopy);
 
 
       studyViewerCopy.attr("id", 'x' + study.patientId);
@@ -60,6 +94,7 @@ $.getJSON('studyList.json', function(data) {
     });
   });
 });
+*/
 
 
 // Show tabs on click

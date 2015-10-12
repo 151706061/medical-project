@@ -120,7 +120,7 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 		}
 		
 		InstanceViewerView instanceViewerView = new InstanceViewerView();
-		instanceViewerView.setImageId(Constants.FTP_HTTP_BASE_URL + instanceView.getDicomFilePath());
+		instanceViewerView.setImageId(Constants.FTP_HTTP_BASE_URL + instanceView.getJpgFilePath());
 
 		return instanceViewerView;
 	}
