@@ -6,7 +6,7 @@ public class ListTaskParam {
 	private Integer ownerId;
 	private Integer status;
 	private Date taskTime;
-	private String studyDesc;	//²¿Î»
+	private String studyDesc;	
 	
 	private Integer page;
 	private Integer pageSize;

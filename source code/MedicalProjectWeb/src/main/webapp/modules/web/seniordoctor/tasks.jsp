@@ -11,17 +11,21 @@
 			</h1>
 		</div>
 		<div class="col-sm-12">
-			<ul class="list-unstyled">
-				<li>
-					<div>
-						<h5>您的请求[胸腔 3张]已诊断完成，可以去支付并查看诊断报告了。</h5>
-						<div>
-							<span>2015-08-20 12:33</span> <span class="label label-default">已读</span>
-						</div>
-					</div>
-				</li>
-			</ul>
-
+			<table class="table table-hover table-with-bg-color">
+				<thead>
+					<tr>
+						<th>时间</th>
+						<th>任务类型</th>
+						<th>病人姓名</th>
+						<th>请求用户</th>
+						<th>任务状态</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody id="taskListTbody">
+					
+				</tbody>
+			</table>
 		</div>
 
 
@@ -41,5 +45,17 @@
 </div>
 <!-- /padding -->
 
+<script id="taskListItemTmpl" type="x-tmpl-mustache">
+{{#tasks}}
+<tr>
+	<td>{{taskCreateTime}}</td>
+	<td>{{taskType}}</td>
+	<td>{{patientName}}</td>
+	<td>{{taskOwnerUserName}}</td>
+	<td>{{taskStatus}}</td>
+	<td><a href="../../cornerstone/index.jsp?studyId={{resourceId}}" target="_blank" class="btn btn-success btn-xs diagnose-btn" >诊断</button></td>
+</tr>
+{{/tasks}}
+</script>
 <%-- END 内容部分 --%>
-
+<script src='<c:url value="/modules/web/assets/js/task.js"/>'></script>

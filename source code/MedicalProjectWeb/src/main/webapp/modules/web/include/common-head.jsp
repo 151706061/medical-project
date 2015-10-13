@@ -13,5 +13,5 @@
 
 <script>
 var appContext = '<c:url value="/"/>';
-
+var isCurrentUploadComplete = null;
 </script>

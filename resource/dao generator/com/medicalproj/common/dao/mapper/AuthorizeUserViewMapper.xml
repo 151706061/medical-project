@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.medicalproj.common.dao.AuthorizeUserViewMapper" >
+  <resultMap id="BaseResultMap" type="com.medicalproj.common.domain.AuthorizeUserView" >
+    <result column="AUTH_ID" property="authId" jdbcType="INTEGER" />
+    <result column="APPLY_USER_ID" property="applyUserId" jdbcType="INTEGER" />
+    <result column="APPLY_USER_NAME" property="applyUserName" jdbcType="VARCHAR" />
+    <result column="APPLY_USER_EMAIL" property="applyUserEmail" jdbcType="VARCHAR" />
+    <result column="APPLY_USER_MOBILE" property="applyUserMobile" jdbcType="VARCHAR" />
+    <result column="APPLY_TIME" property="applyTime" jdbcType="VARCHAR" />
+    <result column="AUTHORIZE_STATUS" property="authorizeStatus" jdbcType="VARCHAR" />
+    <result column="PROCESS_TIME" property="processTime" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_USER_ID" property="enterpriseUserId" jdbcType="INTEGER" />
+    <result column="ENTERPRISE_USER_NAME" property="enterpriseUserName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    AUTH_ID, APPLY_USER_ID, APPLY_USER_NAME, APPLY_USER_EMAIL, APPLY_USER_MOBILE, APPLY_TIME, 
+    AUTHORIZE_STATUS, PROCESS_TIME, ENTERPRISE_USER_ID, ENTERPRISE_USER_NAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.AuthorizeUserViewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vw_authorize_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.medicalproj.common.domain.AuthorizeUserViewExample" >
+    delete from vw_authorize_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.medicalproj.common.domain.AuthorizeUserView" >
+    insert into vw_authorize_user (AUTH_ID, APPLY_USER_ID, APPLY_USER_NAME, 
+      APPLY_USER_EMAIL, APPLY_USER_MOBILE, APPLY_TIME, 
+      AUTHORIZE_STATUS, PROCESS_TIME, ENTERPRISE_USER_ID, 
+      ENTERPRISE_USER_NAME)
+    values (#{authId,jdbcType=INTEGER}, #{applyUserId,jdbcType=INTEGER}, #{applyUserName,jdbcType=VARCHAR}, 
+      #{applyUserEmail,jdbcType=VARCHAR}, #{applyUserMobile,jdbcType=VARCHAR}, #{applyTime,jdbcType=VARCHAR}, 
+      #{authorizeStatus,jdbcType=VARCHAR}, #{processTime,jdbcType=VARCHAR}, #{enterpriseUserId,jdbcType=INTEGER}, 
+      #{enterpriseUserName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.medicalproj.common.domain.AuthorizeUserView" >
+    insert into vw_authorize_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="authId != null" >
+        AUTH_ID,
+      </if>
+      <if test="applyUserId != null" >
+        APPLY_USER_ID,
+      </if>
+      <if test="applyUserName != null" >
+        APPLY_USER_NAME,
+      </if>
+      <if test="applyUserEmail != null" >
+        APPLY_USER_EMAIL,
+      </if>
+      <if test="applyUserMobile != null" >
+        APPLY_USER_MOBILE,
+      </if>
+      <if test="applyTime != null" >
+        APPLY_TIME,
+      </if>
+      <if test="authorizeStatus != null" >
+        AUTHORIZE_STATUS,
+      </if>
+      <if test="processTime != null" >
+        PROCESS_TIME,
+      </if>
+      <if test="enterpriseUserId != null" >
+        ENTERPRISE_USER_ID,
+      </if>
+      <if test="enterpriseUserName != null" >
+        ENTERPRISE_USER_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="authId != null" >
+        #{authId,jdbcType=INTEGER},
+      </if>
+      <if test="applyUserId != null" >
+        #{applyUserId,jdbcType=INTEGER},
+      </if>
+      <if test="applyUserName != null" >
+        #{applyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUserEmail != null" >
+        #{applyUserEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUserMobile != null" >
+        #{applyUserMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizeStatus != null" >
+        #{authorizeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="processTime != null" >
+        #{processTime,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseUserId != null" >
+        #{enterpriseUserId,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseUserName != null" >
+        #{enterpriseUserName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.medicalproj.common.domain.AuthorizeUserViewExample" resultType="java.lang.Integer" >
+    select count(*) from vw_authorize_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vw_authorize_user
+    <set >
+      <if test="record.authId != null" >
+        AUTH_ID = #{record.authId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyUserId != null" >
+        APPLY_USER_ID = #{record.applyUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyUserName != null" >
+        APPLY_USER_NAME = #{record.applyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyUserEmail != null" >
+        APPLY_USER_EMAIL = #{record.applyUserEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyUserMobile != null" >
+        APPLY_USER_MOBILE = #{record.applyUserMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyTime != null" >
+        APPLY_TIME = #{record.applyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authorizeStatus != null" >
+        AUTHORIZE_STATUS = #{record.authorizeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.processTime != null" >
+        PROCESS_TIME = #{record.processTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterpriseUserId != null" >
+        ENTERPRISE_USER_ID = #{record.enterpriseUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.enterpriseUserName != null" >
+        ENTERPRISE_USER_NAME = #{record.enterpriseUserName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vw_authorize_user
+    set AUTH_ID = #{record.authId,jdbcType=INTEGER},
+      APPLY_USER_ID = #{record.applyUserId,jdbcType=INTEGER},
+      APPLY_USER_NAME = #{record.applyUserName,jdbcType=VARCHAR},
+      APPLY_USER_EMAIL = #{record.applyUserEmail,jdbcType=VARCHAR},
+      APPLY_USER_MOBILE = #{record.applyUserMobile,jdbcType=VARCHAR},
+      APPLY_TIME = #{record.applyTime,jdbcType=VARCHAR},
+      AUTHORIZE_STATUS = #{record.authorizeStatus,jdbcType=VARCHAR},
+      PROCESS_TIME = #{record.processTime,jdbcType=VARCHAR},
+      ENTERPRISE_USER_ID = #{record.enterpriseUserId,jdbcType=INTEGER},
+      ENTERPRISE_USER_NAME = #{record.enterpriseUserName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.AuthorizeUserViewExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vw_authorize_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

@@ -63,6 +63,9 @@ var CreateRequestModule = (function(){
 })();
 
 (function(){
+	if( isCurrentUploadComplete != null && isCurrentUploadComplete == false ){
+		CreateRequestModule.showUploadBox();
+	}
 	
 	$('#uploadFileInput').fileupload({
 		sequentialUploads: true,
@@ -104,6 +107,7 @@ var CreateRequestModule = (function(){
 	        );*/
 	    },
 	    send: function(e,data){
+	    	isCurrentUploadComplete = false;
 	    	$('#completeUploadBtn').attr('disabled',true);
 	    }, 
 	    done:function(e,data){
@@ -200,6 +204,7 @@ var CreateRequestModule = (function(){
 	$(document).on("click","#completeUploadBtn",function(){
 		CreateRequestModule.completeRequest(function(data){
 			if( data.data ){
+				isCurrentUploadComplete = true;
 				CommonModule.showConfirm('病例已生成，点确定查看病例，点取消上传新病例。',function(){
 					routie('requests');
 				},

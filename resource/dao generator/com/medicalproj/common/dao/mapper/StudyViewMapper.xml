@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.medicalproj.common.dao.StudyViewMapper" >
+  <resultMap id="BaseResultMap" type="com.medicalproj.common.domain.StudyView" >
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="MEDICAL_CASE_ID" property="medicalCaseId" jdbcType="INTEGER" />
+    <result column="STUDY_ID" property="studyId" jdbcType="VARCHAR" />
+    <result column="STUDY_DATE" property="studyDate" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="DIAGNOSE_IMAGE_PERFORMANCE" property="diagnoseImagePerformance" jdbcType="VARCHAR" />
+    <result column="DIAGNOSE_IMAGE_RESULT" property="diagnoseImageResult" jdbcType="VARCHAR" />
+    <result column="DIAGNOSE_USER_ID" property="diagnoseUserId" jdbcType="INTEGER" />
+    <result column="DIAGNOSE_USER_NAME" property="diagnoseUserName" jdbcType="VARCHAR" />
+    <result column="DIAGNOSE_TIME" property="diagnoseTime" jdbcType="VARCHAR" />
+    <result column="REVIEW_IMAGE_PERFORMANCE" property="reviewImagePerformance" jdbcType="VARCHAR" />
+    <result column="REVIEW_IMAGE_RESULT" property="reviewImageResult" jdbcType="VARCHAR" />
+    <result column="REVIEW_USER_ID" property="reviewUserId" jdbcType="INTEGER" />
+    <result column="REVIEW_USER_NAME" property="reviewUserName" jdbcType="VARCHAR" />
+    <result column="REVIEW_TIME" property="reviewTime" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="MODALITY" property="modality" jdbcType="VARCHAR" />
+    <result column="BODY_PART_EXAMINED" property="bodyPartExamined" jdbcType="VARCHAR" />
+    <result column="STUDY_DESCRIPTION" property="studyDescription" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, MEDICAL_CASE_ID, STUDY_ID, STUDY_DATE, CREATE_TIME, DIAGNOSE_IMAGE_PERFORMANCE, 
+    DIAGNOSE_IMAGE_RESULT, DIAGNOSE_USER_ID, DIAGNOSE_USER_NAME, DIAGNOSE_TIME, REVIEW_IMAGE_PERFORMANCE, 
+    REVIEW_IMAGE_RESULT, REVIEW_USER_ID, REVIEW_USER_NAME, REVIEW_TIME, STATUS, MODALITY, 
+    BODY_PART_EXAMINED, STUDY_DESCRIPTION
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.StudyViewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vw_study
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.medicalproj.common.domain.StudyViewExample" >
+    delete from vw_study
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.medicalproj.common.domain.StudyView" >
+    insert into vw_study (ID, MEDICAL_CASE_ID, STUDY_ID, 
+      STUDY_DATE, CREATE_TIME, DIAGNOSE_IMAGE_PERFORMANCE, 
+      DIAGNOSE_IMAGE_RESULT, DIAGNOSE_USER_ID, DIAGNOSE_USER_NAME, 
+      DIAGNOSE_TIME, REVIEW_IMAGE_PERFORMANCE, REVIEW_IMAGE_RESULT, 
+      REVIEW_USER_ID, REVIEW_USER_NAME, REVIEW_TIME, 
+      STATUS, MODALITY, BODY_PART_EXAMINED, 
+      STUDY_DESCRIPTION)
+    values (#{id,jdbcType=INTEGER}, #{medicalCaseId,jdbcType=INTEGER}, #{studyId,jdbcType=VARCHAR}, 
+      #{studyDate,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{diagnoseImagePerformance,jdbcType=VARCHAR}, 
+      #{diagnoseImageResult,jdbcType=VARCHAR}, #{diagnoseUserId,jdbcType=INTEGER}, #{diagnoseUserName,jdbcType=VARCHAR}, 
+      #{diagnoseTime,jdbcType=VARCHAR}, #{reviewImagePerformance,jdbcType=VARCHAR}, #{reviewImageResult,jdbcType=VARCHAR}, 
+      #{reviewUserId,jdbcType=INTEGER}, #{reviewUserName,jdbcType=VARCHAR}, #{reviewTime,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{modality,jdbcType=VARCHAR}, #{bodyPartExamined,jdbcType=VARCHAR}, 
+      #{studyDescription,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.medicalproj.common.domain.StudyView" >
+    insert into vw_study
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="medicalCaseId != null" >
+        MEDICAL_CASE_ID,
+      </if>
+      <if test="studyId != null" >
+        STUDY_ID,
+      </if>
+      <if test="studyDate != null" >
+        STUDY_DATE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="diagnoseImagePerformance != null" >
+        DIAGNOSE_IMAGE_PERFORMANCE,
+      </if>
+      <if test="diagnoseImageResult != null" >
+        DIAGNOSE_IMAGE_RESULT,
+      </if>
+      <if test="diagnoseUserId != null" >
+        DIAGNOSE_USER_ID,
+      </if>
+      <if test="diagnoseUserName != null" >
+        DIAGNOSE_USER_NAME,
+      </if>
+      <if test="diagnoseTime != null" >
+        DIAGNOSE_TIME,
+      </if>
+      <if test="reviewImagePerformance != null" >
+        REVIEW_IMAGE_PERFORMANCE,
+      </if>
+      <if test="reviewImageResult != null" >
+        REVIEW_IMAGE_RESULT,
+      </if>
+      <if test="reviewUserId != null" >
+        REVIEW_USER_ID,
+      </if>
+      <if test="reviewUserName != null" >
+        REVIEW_USER_NAME,
+      </if>
+      <if test="reviewTime != null" >
+        REVIEW_TIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="modality != null" >
+        MODALITY,
+      </if>
+      <if test="bodyPartExamined != null" >
+        BODY_PART_EXAMINED,
+      </if>
+      <if test="studyDescription != null" >
+        STUDY_DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="medicalCaseId != null" >
+        #{medicalCaseId,jdbcType=INTEGER},
+      </if>
+      <if test="studyId != null" >
+        #{studyId,jdbcType=VARCHAR},
+      </if>
+      <if test="studyDate != null" >
+        #{studyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnoseImagePerformance != null" >
+        #{diagnoseImagePerformance,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnoseImageResult != null" >
+        #{diagnoseImageResult,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnoseUserId != null" >
+        #{diagnoseUserId,jdbcType=INTEGER},
+      </if>
+      <if test="diagnoseUserName != null" >
+        #{diagnoseUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnoseTime != null" >
+        #{diagnoseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewImagePerformance != null" >
+        #{reviewImagePerformance,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewImageResult != null" >
+        #{reviewImageResult,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewUserId != null" >
+        #{reviewUserId,jdbcType=INTEGER},
+      </if>
+      <if test="reviewUserName != null" >
+        #{reviewUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewTime != null" >
+        #{reviewTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="modality != null" >
+        #{modality,jdbcType=VARCHAR},
+      </if>
+      <if test="bodyPartExamined != null" >
+        #{bodyPartExamined,jdbcType=VARCHAR},
+      </if>
+      <if test="studyDescription != null" >
+        #{studyDescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.medicalproj.common.domain.StudyViewExample" resultType="java.lang.Integer" >
+    select count(*) from vw_study
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vw_study
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.medicalCaseId != null" >
+        MEDICAL_CASE_ID = #{record.medicalCaseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.studyId != null" >
+        STUDY_ID = #{record.studyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studyDate != null" >
+        STUDY_DATE = #{record.studyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagnoseImagePerformance != null" >
+        DIAGNOSE_IMAGE_PERFORMANCE = #{record.diagnoseImagePerformance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagnoseImageResult != null" >
+        DIAGNOSE_IMAGE_RESULT = #{record.diagnoseImageResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagnoseUserId != null" >
+        DIAGNOSE_USER_ID = #{record.diagnoseUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.diagnoseUserName != null" >
+        DIAGNOSE_USER_NAME = #{record.diagnoseUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagnoseTime != null" >
+        DIAGNOSE_TIME = #{record.diagnoseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewImagePerformance != null" >
+        REVIEW_IMAGE_PERFORMANCE = #{record.reviewImagePerformance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewImageResult != null" >
+        REVIEW_IMAGE_RESULT = #{record.reviewImageResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewUserId != null" >
+        REVIEW_USER_ID = #{record.reviewUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.reviewUserName != null" >
+        REVIEW_USER_NAME = #{record.reviewUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewTime != null" >
+        REVIEW_TIME = #{record.reviewTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modality != null" >
+        MODALITY = #{record.modality,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bodyPartExamined != null" >
+        BODY_PART_EXAMINED = #{record.bodyPartExamined,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studyDescription != null" >
+        STUDY_DESCRIPTION = #{record.studyDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vw_study
+    set ID = #{record.id,jdbcType=INTEGER},
+      MEDICAL_CASE_ID = #{record.medicalCaseId,jdbcType=INTEGER},
+      STUDY_ID = #{record.studyId,jdbcType=VARCHAR},
+      STUDY_DATE = #{record.studyDate,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      DIAGNOSE_IMAGE_PERFORMANCE = #{record.diagnoseImagePerformance,jdbcType=VARCHAR},
+      DIAGNOSE_IMAGE_RESULT = #{record.diagnoseImageResult,jdbcType=VARCHAR},
+      DIAGNOSE_USER_ID = #{record.diagnoseUserId,jdbcType=INTEGER},
+      DIAGNOSE_USER_NAME = #{record.diagnoseUserName,jdbcType=VARCHAR},
+      DIAGNOSE_TIME = #{record.diagnoseTime,jdbcType=VARCHAR},
+      REVIEW_IMAGE_PERFORMANCE = #{record.reviewImagePerformance,jdbcType=VARCHAR},
+      REVIEW_IMAGE_RESULT = #{record.reviewImageResult,jdbcType=VARCHAR},
+      REVIEW_USER_ID = #{record.reviewUserId,jdbcType=INTEGER},
+      REVIEW_USER_NAME = #{record.reviewUserName,jdbcType=VARCHAR},
+      REVIEW_TIME = #{record.reviewTime,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      MODALITY = #{record.modality,jdbcType=VARCHAR},
+      BODY_PART_EXAMINED = #{record.bodyPartExamined,jdbcType=VARCHAR},
+      STUDY_DESCRIPTION = #{record.studyDescription,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.StudyViewExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vw_study
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
