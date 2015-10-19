@@ -11,6 +11,6 @@ Ext.application({
      models: [
       ],
     autoCreateViewport: true,
-    name: 'Weblushi'
+    name: 'MedicalProject'
 });
 

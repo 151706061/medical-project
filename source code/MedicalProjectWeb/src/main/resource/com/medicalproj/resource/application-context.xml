@@ -143,6 +143,9 @@
 	            #/** = authc
 	            # more URL-to-FilterChain definitions here
 
+				/admin/login/** = anon
+				/admin/auth/login.do = anon
+				/admin/assets/** = anon
 				/web/dcmviewer/** = anon	            
 	            /modules/cornerstone/** = anon
 	            /modules/web/login.jsp = anon

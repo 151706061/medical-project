@@ -2,25 +2,30 @@ package com.medicalproj.common.service.impl;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.medicalproj.admin.dto.param.ListUserParam;
 import com.medicalproj.common.dao.UserMapper;
 import com.medicalproj.common.dao.UserViewMapper;
 import com.medicalproj.common.domain.User;
 import com.medicalproj.common.domain.UserExample;
 import com.medicalproj.common.domain.UserView;
 import com.medicalproj.common.domain.UserViewExample;
+import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IUserService;
+import com.medicalproj.common.util.AssertUtil;
+import com.medicalproj.common.util.PagerHelper;
 import com.medicalproj.web.util.Constants;
 
 @Service
 public class UserServiceImpl implements IUserService {
 	private Logger logger = Logger.getLogger(this.getClass());
 	@Autowired
-	private UserMapper mapper;
+	private UserMapper userMapper;
 
 	@Autowired
 	private UserViewMapper userViewMapper;
@@ -32,7 +37,7 @@ public class UserServiceImpl implements IUserService {
 			UserExample.Criteria c = example.createCriteria();
 			c.andMobileEqualTo(mobile);
 			
-			List<User> ulist = mapper.selectByExample(example);
+			List<User> ulist = userMapper.selectByExample(example);
 			if ( ulist != null && ulist.size() > 0){
 				return ulist.get(0);
 			}
@@ -49,7 +54,7 @@ public class UserServiceImpl implements IUserService {
 			UserExample.Criteria c = example.createCriteria();
 			c.andEmailEqualTo(email);
 			
-			List<User> ulist = mapper.selectByExample(example);
+			List<User> ulist = userMapper.selectByExample(example);
 			if ( ulist != null && ulist.size() > 0){
 				return ulist.get(0);
 			}
@@ -97,9 +102,9 @@ public class UserServiceImpl implements IUserService {
 			}
 			
 			if( user.getId() == null ){
-				mapper.insertSelective(user);
+				userMapper.insertSelective(user);
 			}else{
-				mapper.updateByPrimaryKeySelective(user);
+				userMapper.updateByPrimaryKeySelective(user);
 			}
 		} catch (Exception e) {
 			throw new ServiceException(e.getMessage(),e);
@@ -134,7 +139,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User getById(Integer userId) throws ServiceException {
-		return mapper.selectByPrimaryKey(userId);
+		return userMapper.selectByPrimaryKey(userId);
 	}
 
 	@Override
@@ -148,6 +153,51 @@ public class UserServiceImpl implements IUserService {
 		} catch (Exception e) {
 			throw new ServiceException(e);
 		}
+	}
+
+	@Override
+	public List<UserView> listUserViewByCond(ListUserParam param) throws ServiceException {
+		UserViewExample example = trans2UserViewExample(param);
+		example.setOrderByClause("REG_TIME DESC");
+		
+		RowBounds rowBounds = new RowBounds(PagerHelper.getStart(param.getPage(), param.getPageSize()), param.getPageSize());
+		return userViewMapper.selectByExampleWithRowbounds(example, rowBounds);
+	}
+
+	
+
+	@Override
+	public int countUserViewByCond(ListUserParam param) throws ServiceException {
+		UserViewExample example = trans2UserViewExample(param);
+		return userViewMapper.countByExample(example);
+	}
+	
+	private UserViewExample trans2UserViewExample(ListUserParam param) {
+		if( param == null ){
+			return new UserViewExample();
+		}
+		
+		UserViewExample example = new UserViewExample();
+		UserViewExample.Criteria c = example.createCriteria();
+		
+		if( AssertUtil.isNotEmpty(param.getEmail()) ){
+			c.andEmailLike("%" +  param.getEmail() + "%");
+		}
+		if( AssertUtil.isNotEmpty(param.getMobile()) ){
+			c.andMobileLike("%" +  param.getMobile() + "%");
+		}
+		if( AssertUtil.isNotEmpty(param.getName()) ){
+			c.andNameLike("%" +  param.getName() + "%");
+		}
+		if( AssertUtil.isNotEmpty(param.getUserType()) ){
+			c.andUserTypeEqualTo( param.getUserType());
+		}
+		return example;
+	}
+
+	@Override
+	public void delUserById(Integer userId) throws ServiceException {
+		userMapper.deleteByPrimaryKey(userId);
 	}
 	
 }

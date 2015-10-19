@@ -13,28 +13,26 @@
  * Do NOT hand edit this file.
  */
 
-
-    
 var userGridStore = Ext.create('Ext.data.Store', {
 	extend: 'Ext.data.Store',
     
-    fields: ['serviceId','serviceName','serviceDesc','serviceCategoryId','serviceCategory','servicePrice','createTime',
-             'createTimeUtime','contactUserId','contactUserName','publishUserId','publishUserName','templateId','templateName'],
+    fields: ['id','name','mobile','email','userTypeCode','userType','regTime'],
     autoLoad: true,
     //pageSize: 10,
     proxy: {
         type: 'ajax',
-        url : appContext + '/admin/service/listServiceByCond.do',
-        //actionMethods: { read: 'POST' }  ,	
+        url : appContext + '/admin/userManage/listUser.do',
+        actionMethods: { read: 'POST' }  ,	
         pageParam:"page", 
         limitParam:"pageSize",
         reader: {
             type: 'json',
-            root: 'data.serviceList',
+            root: 'data.users',
             totalProperty: 'data.pager.totalCount'
         }
     }
 });
+
 
 Ext.define('MedicalProject.view.UserManage', {
     extend: 'Ext.container.Container',
@@ -56,31 +54,55 @@ Ext.define('MedicalProject.view.UserManage', {
                     },
                     items: [
                         {
-                            xtype: 'panel',
+                            xtype: 'form',
+                            id:'userManage_userSearchForm',
                             flex: 0,
                             layout: {
-                                columns: 4,
+                                columns: 5,
                                 type: 'table'
                             },
                             bodyPadding: 10,
-                            title: '服务管理',
+                            title: '用户管理',
                             items: [
                                 {
-                                    xtype: 'datefield',
-                                    fieldLabel: '发布时间'
+                                    xtype: 'textfield',
+                                    margin: '0 5px',
+                                    name:'name',
+                                    fieldLabel: '姓名'
                                 },
                                 {
                                     xtype: 'textfield',
                                     margin: '0 5px',
-                                    fieldLabel: '服务名称'
+                                    name:'mobile',
+                                    fieldLabel: '手机号'
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    margin: '0 5px',
+                                    name:'email',
+                                    fieldLabel: '邮箱'
                                 },
                                 {
                                     xtype: 'combobox',
                                     margin: '0 5px',
-                                    fieldLabel: '状态'
+                                    fieldLabel: '用户类型',
+                                    name:'userType',
+                                    mode: 'remote',
+                                    valueField: 'typeName',
+                                    displayField: 'typeName',
+                                    store:Ext.create('Ext.data.SimpleStore',{
+                                    	fields: ['typeCode', 'typeName'],
+                                    	data : [
+                                    		['1','用户'],
+                                    		['2','医师'],
+                                    		['3','专家'],
+                                    		['4','企业用户']
+                                    	]
+                                    })
                                 },
                                 {
                                     xtype: 'button',
+                                    id:'userManage_searchBtn',
                                     margin: '0 5px',
                                     width: 80,
                                     text: '搜索'
@@ -92,44 +114,40 @@ Ext.define('MedicalProject.view.UserManage', {
                             id:'userManage_userGrid',
                             store: userGridStore,
                             flex: 1,
-                            title: '服务列表',
+                            title: '用户列表',
                             columns: [
+								{
+								    xtype: 'gridcolumn',
+								    dataIndex: 'id',
+								    text: 'ID'
+								},
                                 {
                                     xtype: 'gridcolumn',
-                                    dataIndex: 'createTime',
-                                    text: '发布时间'
+                                    dataIndex: 'name',
+                                    text: '姓名'
                                 },
                                 {
                                     xtype: 'gridcolumn',
-                                    dataIndex: 'serviceName',
-                                    text: '服务名称'
+                                    dataIndex: 'mobile',
+                                    text: '电话'
                                 },
                                 {
                                     xtype: 'gridcolumn',
-                                    dataIndex: 'serviceCategory',
-                                    text: '分类'
-                                },
-                                {
-                                    xtype: 'gridcolumn',
-                                    dataIndex: 'servicePrice',
-                                    text: '服务价格'
+                                    dataIndex: 'email',
+                                    text: '邮箱'
                                 },
                                 {
                                     xtype: 'gridcolumn',
                                     width: 108,
-                                    dataIndex: 'publishUserName',
-                                    text: '发布者'
+                                    dataIndex: 'userType',
+                                    text: '用户类型'
                                 },
                                 {
                                     xtype: 'gridcolumn',
-                                    dataIndex: 'contactUserName',
-                                    text: '联系人'
-                                },
-                                {
-                                    xtype: 'gridcolumn',
-                                    dataIndex: 'templateName',
-                                    text: '模板'
+                                    dataIndex: 'regTime',
+                                    text: '注册时间'
                                 }
+                                
                             ],
                             dockedItems: [
                                 {
@@ -137,7 +155,7 @@ Ext.define('MedicalProject.view.UserManage', {
                                     dock: 'bottom',
                                     width: 360,
                                     displayInfo: true,
-                                    store:serviceGridStore
+                                    store:userGridStore
                                 },
                                 {
                                     xtype: 'toolbar',
@@ -145,36 +163,9 @@ Ext.define('MedicalProject.view.UserManage', {
                                     items: [
                                         {
                                             xtype: 'button',
-                                            text: '新建服务',
-                                            id: 'serviceManage_tbCreateServiceBtn'
-                                        },
-                                        {
-                                            xtype: 'tbseparator'
-                                        },
-                                        {
-                                            xtype: 'button',
-                                            text: '禁用服务'
-                                        }/*,
-                                        {
-                                            xtype: 'tbseparator'
-                                        },
-                                        {
-                                            xtype: 'splitbutton',
-                                            text: '人员分配',
-                                            menu: {
-                                                xtype: 'menu',
-                                                items: [
-                                                    {
-                                                        xtype: 'menuitem',
-                                                        text: '分配导师'
-                                                    },
-                                                    {
-                                                        xtype: 'menuitem',
-                                                        text: '分配审查员'
-                                                    }
-                                                ]
-                                            }
-                                        }*/
+                                            id:'userManage_tbDeleteUserBtn',
+                                            text: '删除用户'
+                                        }
                                     ]
                                 }
                             ]
@@ -185,32 +176,39 @@ Ext.define('MedicalProject.view.UserManage', {
         });
 
         me.callParent(arguments);
-        //me.bindEvent();
-       // me.init();
-    },
-    init : function(){
-    	var me = this;
-    	var serviceGrid = Ext.getCmp('serviceManage_serviceGrid');
-    	
-    	/*serviceGrid.getStore.load({
-    		params:{
-    			page:1
-    		}
-    	});*/
+        me.bindEvent();
     },
     bindEvent: function(){
     	var me = this;
-    	var serviceGrid = Ext.getCmp('userManage_userGrid');
-    	Ext.getCmp('serviceManage_tbCreateServiceBtn').on('click',function(){
-    		Ext.create(
-				'Weblushi.view.PublishServiceWin',
-				{
-					modal :true,
-					done: function(){
-						serviceGrid.getStore().reload();
-					}
-				}
-    		).show();
+    	var userGrid = Ext.getCmp('userManage_userGrid');
+    	Ext.getCmp('userManage_tbDeleteUserBtn').on('click',function(){
+    		var selection = userGrid.getSelectionModel().getSelection();
+
+    		if( selection.length > 0 ){
+    			var userId = selection[0].data.id;
+    			Ext.Ajax.request({
+    				url:appContext + 'admin/userManage/delUser.do',
+    				params:{
+    					userId: userId
+    				},
+    				success:function(){
+    					userGrid.getStore().reload();
+    				}
+    			});
+    		}else{
+    			Ext.Msg.alert('提示','请选择用户');
+    		}
+    	});
+    	
+    	Ext.getCmp('userManage_searchBtn').on('click',function(){
+    		var userSearchForm = Ext.getCmp('userManage_userSearchForm').getForm();
+        	var searchParamObj = userSearchForm.getValues();
+        	
+        	var userGrid = Ext.getCmp('userManage_userGrid');
+        	searchParamObj.page = 1;
+        	userGrid.store.reload({
+        		params:searchParamObj,
+        	});
     	});
     }
 

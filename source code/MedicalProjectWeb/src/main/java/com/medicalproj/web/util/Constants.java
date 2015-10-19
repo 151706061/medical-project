@@ -1,6 +1,7 @@
 package com.medicalproj.web.util;
 
 public class Constants {
+	public static final String SESSION_KEY_LOGIN_ADMIN_ID = "SESSION_KEY_LOGIN_ADMIN_ID";
 	public static final String SESSION_KEY_LOGIN_USER = "SESSION_KEY_LOGIN_USER";
 	public static final String SESSION_KEY_FILE_BASE_PATH = "SESSION_KEY_FILE_BASE_PATH";
 	/*

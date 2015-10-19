@@ -3,9 +3,10 @@
 
 <html>
 <head>
-    <title>Hello Ext</title>
+    <title>管理员登录</title>
 
-    <%@include file="/include/admin-common-header.jsp" %>
+    <%@include file="/admin/include/common-header.jsp" %>
+    <script type="text/javascript" src='<c:url value="/admin/assets/libs/md5.min.js"/>'></script>
     <script type="text/javascript" src="app.js"></script>
 </head>
 <body></body>

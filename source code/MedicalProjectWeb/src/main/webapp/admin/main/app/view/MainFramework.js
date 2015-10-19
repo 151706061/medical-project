@@ -13,7 +13,7 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('Weblushi.view.MainFramework', {
+Ext.define('MedicalProject.view.MainFramework', {
     extend: 'Ext.container.Viewport',
 
     layout: {

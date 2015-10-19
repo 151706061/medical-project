@@ -113,7 +113,7 @@ Ext.define('MedicalProject.view.LoginViewport', {
     				url:appContext + 'admin/auth/login.do',
     				method:'POST',
     				params: {
-    					password: md5(Ext.getCmp('passwordTf').getValue())
+    					password: Ext.getCmp('passwordTf').getValue()
             	    },
     				success:function(form,action){
     					var response = Ext.JSON.decode(action.response.responseText);
