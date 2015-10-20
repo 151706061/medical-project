@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.medicalproj.common.dao.QualificationApplicationViewMapper" >
+  <resultMap id="BaseResultMap" type="com.medicalproj.common.domain.QualificationApplicationView" >
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="APPLY_TIME" property="applyTime" jdbcType="VARCHAR" />
+    <result column="APPLY_USER_ID" property="applyUserId" jdbcType="INTEGER" />
+    <result column="APPLY_USER_NAME" property="applyUserName" jdbcType="VARCHAR" />
+    <result column="APPLY_USER_MOOBILE" property="applyUserMoobile" jdbcType="VARCHAR" />
+    <result column="APPLY_USER_EMAIL" property="applyUserEmail" jdbcType="VARCHAR" />
+    <result column="YSZGZ_IMG_RELATIVE_PATH" property="yszgzImgRelativePath" jdbcType="VARCHAR" />
+    <result column="REVIEW_USER_ID" property="reviewUserId" jdbcType="INTEGER" />
+    <result column="REVIEW_USER_NAME" property="reviewUserName" jdbcType="VARCHAR" />
+    <result column="REVIEW_USER_MOBILE" property="reviewUserMobile" jdbcType="VARCHAR" />
+    <result column="REVIEW_USER_EMAIL" property="reviewUserEmail" jdbcType="VARCHAR" />
+    <result column="REVIEW_TIME" property="reviewTime" jdbcType="VARCHAR" />
+    <result column="REVIEW_TEXT" property="reviewText" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, APPLY_TIME, APPLY_USER_ID, APPLY_USER_NAME, APPLY_USER_MOOBILE, APPLY_USER_EMAIL, 
+    YSZGZ_IMG_RELATIVE_PATH, REVIEW_USER_ID, REVIEW_USER_NAME, REVIEW_USER_MOBILE, REVIEW_USER_EMAIL, 
+    REVIEW_TIME, REVIEW_TEXT, STATUS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.QualificationApplicationViewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vw_qualification_application
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.medicalproj.common.domain.QualificationApplicationViewExample" >
+    delete from vw_qualification_application
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.medicalproj.common.domain.QualificationApplicationView" >
+    insert into vw_qualification_application (ID, APPLY_TIME, APPLY_USER_ID, 
+      APPLY_USER_NAME, APPLY_USER_MOOBILE, APPLY_USER_EMAIL, 
+      YSZGZ_IMG_RELATIVE_PATH, REVIEW_USER_ID, REVIEW_USER_NAME, 
+      REVIEW_USER_MOBILE, REVIEW_USER_EMAIL, REVIEW_TIME, 
+      REVIEW_TEXT, STATUS)
+    values (#{id,jdbcType=INTEGER}, #{applyTime,jdbcType=VARCHAR}, #{applyUserId,jdbcType=INTEGER}, 
+      #{applyUserName,jdbcType=VARCHAR}, #{applyUserMoobile,jdbcType=VARCHAR}, #{applyUserEmail,jdbcType=VARCHAR}, 
+      #{yszgzImgRelativePath,jdbcType=VARCHAR}, #{reviewUserId,jdbcType=INTEGER}, #{reviewUserName,jdbcType=VARCHAR}, 
+      #{reviewUserMobile,jdbcType=VARCHAR}, #{reviewUserEmail,jdbcType=VARCHAR}, #{reviewTime,jdbcType=VARCHAR}, 
+      #{reviewText,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.medicalproj.common.domain.QualificationApplicationView" >
+    insert into vw_qualification_application
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="applyTime != null" >
+        APPLY_TIME,
+      </if>
+      <if test="applyUserId != null" >
+        APPLY_USER_ID,
+      </if>
+      <if test="applyUserName != null" >
+        APPLY_USER_NAME,
+      </if>
+      <if test="applyUserMoobile != null" >
+        APPLY_USER_MOOBILE,
+      </if>
+      <if test="applyUserEmail != null" >
+        APPLY_USER_EMAIL,
+      </if>
+      <if test="yszgzImgRelativePath != null" >
+        YSZGZ_IMG_RELATIVE_PATH,
+      </if>
+      <if test="reviewUserId != null" >
+        REVIEW_USER_ID,
+      </if>
+      <if test="reviewUserName != null" >
+        REVIEW_USER_NAME,
+      </if>
+      <if test="reviewUserMobile != null" >
+        REVIEW_USER_MOBILE,
+      </if>
+      <if test="reviewUserEmail != null" >
+        REVIEW_USER_EMAIL,
+      </if>
+      <if test="reviewTime != null" >
+        REVIEW_TIME,
+      </if>
+      <if test="reviewText != null" >
+        REVIEW_TEXT,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUserId != null" >
+        #{applyUserId,jdbcType=INTEGER},
+      </if>
+      <if test="applyUserName != null" >
+        #{applyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUserMoobile != null" >
+        #{applyUserMoobile,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUserEmail != null" >
+        #{applyUserEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="yszgzImgRelativePath != null" >
+        #{yszgzImgRelativePath,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewUserId != null" >
+        #{reviewUserId,jdbcType=INTEGER},
+      </if>
+      <if test="reviewUserName != null" >
+        #{reviewUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewUserMobile != null" >
+        #{reviewUserMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewUserEmail != null" >
+        #{reviewUserEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewTime != null" >
+        #{reviewTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewText != null" >
+        #{reviewText,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.medicalproj.common.domain.QualificationApplicationViewExample" resultType="java.lang.Integer" >
+    select count(*) from vw_qualification_application
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vw_qualification_application
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyTime != null" >
+        APPLY_TIME = #{record.applyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyUserId != null" >
+        APPLY_USER_ID = #{record.applyUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyUserName != null" >
+        APPLY_USER_NAME = #{record.applyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyUserMoobile != null" >
+        APPLY_USER_MOOBILE = #{record.applyUserMoobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyUserEmail != null" >
+        APPLY_USER_EMAIL = #{record.applyUserEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yszgzImgRelativePath != null" >
+        YSZGZ_IMG_RELATIVE_PATH = #{record.yszgzImgRelativePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewUserId != null" >
+        REVIEW_USER_ID = #{record.reviewUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.reviewUserName != null" >
+        REVIEW_USER_NAME = #{record.reviewUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewUserMobile != null" >
+        REVIEW_USER_MOBILE = #{record.reviewUserMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewUserEmail != null" >
+        REVIEW_USER_EMAIL = #{record.reviewUserEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewTime != null" >
+        REVIEW_TIME = #{record.reviewTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewText != null" >
+        REVIEW_TEXT = #{record.reviewText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vw_qualification_application
+    set ID = #{record.id,jdbcType=INTEGER},
+      APPLY_TIME = #{record.applyTime,jdbcType=VARCHAR},
+      APPLY_USER_ID = #{record.applyUserId,jdbcType=INTEGER},
+      APPLY_USER_NAME = #{record.applyUserName,jdbcType=VARCHAR},
+      APPLY_USER_MOOBILE = #{record.applyUserMoobile,jdbcType=VARCHAR},
+      APPLY_USER_EMAIL = #{record.applyUserEmail,jdbcType=VARCHAR},
+      YSZGZ_IMG_RELATIVE_PATH = #{record.yszgzImgRelativePath,jdbcType=VARCHAR},
+      REVIEW_USER_ID = #{record.reviewUserId,jdbcType=INTEGER},
+      REVIEW_USER_NAME = #{record.reviewUserName,jdbcType=VARCHAR},
+      REVIEW_USER_MOBILE = #{record.reviewUserMobile,jdbcType=VARCHAR},
+      REVIEW_USER_EMAIL = #{record.reviewUserEmail,jdbcType=VARCHAR},
+      REVIEW_TIME = #{record.reviewTime,jdbcType=VARCHAR},
+      REVIEW_TEXT = #{record.reviewText,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.QualificationApplicationViewExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vw_qualification_application
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

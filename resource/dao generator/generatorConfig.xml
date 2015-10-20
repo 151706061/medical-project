@@ -113,6 +113,9 @@
 		
 		<table tableName="vw_instance" domainObjectName="InstanceView">
 		</table>
+		
+		<table tableName="vw_qualification_application" domainObjectName="QualificationApplicationView">
+		</table>
 
 	</context>
 </generatorConfiguration>
