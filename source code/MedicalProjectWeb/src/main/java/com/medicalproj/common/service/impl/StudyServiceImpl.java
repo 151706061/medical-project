@@ -3,18 +3,26 @@ package com.medicalproj.common.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.medicalproj.admin.dto.param.ListStudyParam;
+import com.medicalproj.common.dao.DetailedStudyViewMapper;
 import com.medicalproj.common.dao.StudyMapper;
 import com.medicalproj.common.dao.StudyViewMapper;
+import com.medicalproj.common.domain.DetailedStudyView;
+import com.medicalproj.common.domain.DetailedStudyViewExample;
 import com.medicalproj.common.domain.Study;
 import com.medicalproj.common.domain.StudyExample;
 import com.medicalproj.common.domain.StudyView;
 import com.medicalproj.common.domain.StudyViewExample;
+import com.medicalproj.common.domain.UserViewExample;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IStudyService;
+import com.medicalproj.common.util.AssertUtil;
+import com.medicalproj.common.util.PagerHelper;
 import com.medicalproj.web.util.Constants;
 
 import eden.dicomparser.data.DicomData;
@@ -27,6 +35,9 @@ public class StudyServiceImpl implements IStudyService {
 	
 	@Autowired
 	private StudyViewMapper studyViewMapper;
+	
+	@Autowired
+	private DetailedStudyViewMapper detailedStudyViewMapper;
 	
 	@Override
 	public List<StudyView> listAllStudyByMedicalCaseId(Integer medicalCaseId)
@@ -114,5 +125,58 @@ public class StudyServiceImpl implements IStudyService {
 		}
 		return null;
 	}
+
+	@Override
+	public List<DetailedStudyView> listDetailedStudyViewByCond(
+			ListStudyParam param) throws ServiceException {
+		DetailedStudyViewExample example = trans2DetailedStudyViewExample(param);
+		example.setOrderByClause("CREATE_TIME DESC");
+		
+		RowBounds rowBounds = new RowBounds(PagerHelper.getStart(param.getPage(), param.getPageSize()), param.getPageSize());
+		return detailedStudyViewMapper.selectByExampleWithRowbounds(example, rowBounds);
+	}
+
+	@Override
+	public int countDetailedStudyViewByCond(ListStudyParam param)
+			throws ServiceException {
+		DetailedStudyViewExample example = trans2DetailedStudyViewExample(param);
+		return detailedStudyViewMapper.countByExample(example);
+	}
+
+	private DetailedStudyViewExample trans2DetailedStudyViewExample(
+			ListStudyParam param) {
+		if( param == null ){
+			return new DetailedStudyViewExample();
+		}
+		
+		DetailedStudyViewExample example = new DetailedStudyViewExample();
+		DetailedStudyViewExample.Criteria c = example.createCriteria();
+		
+		if( AssertUtil.isNotEmpty(param.getCreateTime()) ){
+			c.andCreateTimeLike(param.getCreateTime() + "%");
+		}
+		
+		if( AssertUtil.isNotEmpty(param.getCreatorUserName()) ){
+			c.andCreatorUserNameLike("%" + param.getCreatorUserName() + "%");
+		}
+		
+		if( AssertUtil.isNotEmpty(param.getPatientId()) ){
+			c.andPatientIdEqualTo(param.getPatientId());
+		}
+		
+		
+		if( AssertUtil.isNotEmpty(param.getPatientName()) ){
+			c.andPatientNameLike( "%" + param.getPatientName() + "%");
+		}
+		
+		
+		if( AssertUtil.isNotEmpty(param.getStudyStatus()) ){
+			c.andStudyStatusEqualTo(param.getStudyStatus());
+		}
+		
+		return example;
+	}
+	
+	
 	
 }

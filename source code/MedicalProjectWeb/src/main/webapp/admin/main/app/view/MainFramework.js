@@ -111,7 +111,7 @@ Ext.define('MedicalProject.view.MainFramework', {
                         text: "菜单",
                         expanded: true,
                         children: [
-                            { text: "请求管理", tabId:'tab1',clazz:'MedicalProject.view.RequestManage' ,leaf: true },
+                            { text: "病例管理", tabId:'tab1',clazz:'MedicalProject.view.MedicalCaseManage' ,leaf: true },
                             { text: "用户管理", tabId:'tab2',clazz:'MedicalProject.view.UserManage',leaf: true },
                             { text: "资格申请管理", tabId:'tab3',clazz:'MedicalProject.view.QualificationApplicationManage',leaf: true },
                             { text: "交易管理", tabId:'tab4',clazz:'MedicalProject.view.TransactionManage',leaf: true }

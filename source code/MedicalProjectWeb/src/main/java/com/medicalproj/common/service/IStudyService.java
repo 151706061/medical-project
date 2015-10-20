@@ -2,6 +2,8 @@ package com.medicalproj.common.service;
 
 import java.util.List;
 
+import com.medicalproj.admin.dto.param.ListStudyParam;
+import com.medicalproj.common.domain.DetailedStudyView;
 import com.medicalproj.common.domain.Study;
 import com.medicalproj.common.domain.StudyView;
 import com.medicalproj.common.exception.ServiceException;
@@ -16,5 +18,9 @@ public interface IStudyService {
 	Study createStydyIfNotExists(Integer medicalCaseId, DicomData dicom)throws ServiceException;
 
 	StudyView getStudyViewById(Integer studyId)throws ServiceException;
+
+	List<DetailedStudyView> listDetailedStudyViewByCond(ListStudyParam param)throws ServiceException;
+
+	int countDetailedStudyViewByCond(ListStudyParam param)throws ServiceException;
 
 }
