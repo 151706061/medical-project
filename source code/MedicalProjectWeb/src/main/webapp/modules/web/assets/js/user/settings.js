@@ -32,7 +32,7 @@
 						if( data && data.data == true ){
 							CommonModule.showMsg('保存设置成功',1);
 						}else{
-							CommonModule.showMsg(data.msg);
+							CommonModule.showMsg(data.msg,1);
 						}
 					}
 				});

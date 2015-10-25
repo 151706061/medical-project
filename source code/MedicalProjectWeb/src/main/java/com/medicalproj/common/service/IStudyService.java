@@ -23,4 +23,8 @@ public interface IStudyService {
 
 	int countDetailedStudyViewByCond(ListStudyParam param)throws ServiceException;
 
+	void dignose(Integer userId, Integer studyId, String performance, String result)throws ServiceException;
+
+	void audit(Integer userId, Integer studyId, String performance, String result)throws ServiceException;
+
 }

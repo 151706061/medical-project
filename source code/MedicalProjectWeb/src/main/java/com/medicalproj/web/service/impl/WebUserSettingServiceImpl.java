@@ -34,7 +34,8 @@ public class WebUserSettingServiceImpl implements IWebUserSettingService {
 			String contactUserName = param.getContactUserName();
 			boolean isReceiveNotification = param.isReceiveNotification();
 			
-			if( user.getUserType().equals(Constants.USER_TYPE_USER )){
+			if( user.getUserType().equals(Constants.USER_TYPE_USER ) || user.getUserType().equals(Constants.USER_TYPE_JUNIOR_DOCTOR )
+					|| user.getUserType().equals(Constants.USER_TYPE_SENIOR_DOCTOR ) ){
 				if( !user.getMobile().equals(mobile) ){
 					User tmpUser = userService.getByMobile(mobile);
 					if( tmpUser != null ){

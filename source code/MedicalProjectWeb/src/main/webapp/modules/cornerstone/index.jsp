@@ -29,6 +29,17 @@
 	var appContext = '<c:url value="/"/>';
 	var studyId = ${param.studyId };
 	</script>
+	<style>
+		.close{
+			color:#fff;
+		}
+		.modal-header {
+		    border-bottom: 1px solid #3C3C3C;
+		}
+		.modal-footer {
+		    border-top: 1px solid #3C3C3C;
+	    }
+	</style>
 </head>
 
 <body>
@@ -38,11 +49,40 @@
     <nav class="myNav navbar navbar-default" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="https://github.com/chafey/cornerstone">Cornerstone</a>
+          <a class="navbar-brand" href="javascript:void(0)">病例诊断</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-          <li><a id="help" href="#" class="button hidden-xs">Help </a></li>
-          <li><a id="about" href="#" class="button hidden-xs">About</a></li>
+          <li class="options junior-options hide">
+          	<%-- 医师 --%>
+          	<button id="diagnoseBtn" class="btn btn-success" data-toggle="modal" data-target="#dignoseModal" style="margin:10px 0 0 0;">
+			  	诊断
+			</button>
+			<%-- 医师 END--%>
+          </li>
+          <li class="options senior-options hide">
+          	<%-- 专家 --%>
+			<button class="btn btn-success auditBtn" data-toggle="modal" data-target="#auditModal" style="margin:10px 0 0 0;">
+			  	审查
+			</button>
+			<%-- 专家 END--%>
+          </li>
+          
+          <li class="options enterprise-options hide">
+          	<%-- 企业--%>
+			<button class="btn btn-success viewReportBtn" data-toggle="modal" data-target="#viewReportModal" style="margin:10px 0 0 0;">
+			  	查看诊断报告
+			</button>
+			<%-- 企业 END--%>
+          </li>
+          
+          <li class="options user-options hide">
+          	<%-- 普通用户--%>
+			<button class="btn btn-success viewReportBtn" data-toggle="modal" data-target="#viewReportModal" style="margin:10px 0 0 0;">
+			  	查看诊断报告
+			</button>
+			<%-- 普通用户 END--%>
+          </li>
+          <li><a id="help" href="#" class="button hidden-xs">Help</a></li>
         </ul>
       </div>
     </nav>
@@ -84,10 +124,110 @@
 </div>
 
 
+<div id="dignoseModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">诊断</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+		  <div class="form-group">
+		    <label for="dignoseInputPerformance">影像表现</label>
+		    <textarea class="form-control" id="dignoseInputPerformance" placeholder="请输入影像表现" style="height:120px"></textarea>
+		  </div>
+		  <div class="form-group">
+		    <label for="dignoseInputResult">影像结论</label>
+		    <textarea class="form-control" id="dignoseInputResult" placeholder="请输入影像结论" style="height:120px"></textarea>
+		  </div>
+		</form>
 
 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-success submitReport">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
+<div id="auditModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">审查</h4>
+      </div>
+      <div class="modal-body">
+      	<form>
+      	  <div class="form-group">
+      	  	<p>诊断医生： Jack Chen</p>
+      	  </div>
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">影像表现</label>
+		    <p class="performance">这里是影响表现</p>
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputPassword1">影像结论</label>
+		    <p class="result">这里是影像结论</p>
+		  </div>
+		</form>
+		<hr />
+        <form>
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">影像表现</label>
+		    <textarea class="form-control" id="exampleInputEmail1" placeholder="请输入影像表现" style="height:120px"></textarea>
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputPassword1">影像结论</label>
+		    <textarea class="form-control" id="exampleInputEmail1" placeholder="请输入影像结论" style="height:120px"></textarea>
+		  </div>
+		</form>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-success submitReport">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="viewReportModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">查看诊断报告</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+      	  	<p>诊断医生： Jack Chen</p>
+      	  </div>
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">影像表现</label>
+		    <p class="performance">这里是影响表现</p>
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputPassword1">影像结论</label>
+		    <p class="result">这里是影像结论</p>
+		  </div>
+		</form>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Javascripts -->
 
@@ -135,5 +275,80 @@
 <script src="js/setupViewportOverlays.js"></script>
 <script src="js/cornerstoneDemo.js"></script>
 
+<script>
+$(function(){
+	$.get(
+		appContext + 'web/dcmviewer/getUserType.do',
+		{},
+		function(resp){
+			if( !$('.nav > li.options').hasClass('hide') ){
+				$('.nav > li.options').addClass('hide');
+			}
+			
+			if( resp.data == 1 ){
+				$('.nav > li.user-options').removeClass('hide');
+			}else if( resp.data == 2 ){
+				$('.nav > li.junior-options').removeClass('hide');
+			}else if( resp.data == 3 ){
+				$('.nav > li.senior-options').removeClass('hide');
+			}else if( resp.data == 4 ){
+				$('.nav > li.enterprise-options').removeClass('hide');
+			}
+		},
+		'json'
+	);
+	
+	$('.viewReportBtn').on('click',function(){
+		$.get(
+			appContext + 'web/dcmviewer/loadStudyView.do',
+			{
+				studyId: studyId
+			},	
+			function(resp){
+				var performance = resp.data.diagnoseImagePerformance;
+				var result = resp.data.diagnoseImageResult;
+				$('#viewReportModal .performance').text(performance);
+				$('#viewReportModal .result').text(result);
+			},
+			'json'
+		);	
+		
+	});
+	
+	$('#dignoseModal .submitReport').on('click',function(){
+		var performance = $.trim($('#dignoseInputPerformance').val());
+		var result = $.trim($('#dignoseInputResult').val());
+		
+		if( performance == '' ){
+			alert('影像表现不可为空');
+			return false;
+		}
+		
+		if( result == '' ){
+			alert('影像结论不可为空');
+			return false;
+		}
+		
+	});
+	
+	
+	$('.auditBtn').on('click',function(){
+		$.get(
+			appContext + 'web/dcmviewer/loadStudyView.do',
+			{
+				studyId: studyId
+			},	
+			function(resp){
+				var performance = resp.data.diagnoseImagePerformance;
+				var result = resp.data.diagnoseImageResult;
+				$('#auditModal .performance').text(performance);
+				$('#auditModal .result').text(result);
+			},
+			'json'
+		);	
+		
+	});
+});
+</script>
 </body>
 </html>

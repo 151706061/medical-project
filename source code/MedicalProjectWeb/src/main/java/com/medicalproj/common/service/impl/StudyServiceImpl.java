@@ -18,7 +18,6 @@ import com.medicalproj.common.domain.Study;
 import com.medicalproj.common.domain.StudyExample;
 import com.medicalproj.common.domain.StudyView;
 import com.medicalproj.common.domain.StudyViewExample;
-import com.medicalproj.common.domain.UserViewExample;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IStudyService;
 import com.medicalproj.common.util.AssertUtil;
@@ -176,7 +175,37 @@ public class StudyServiceImpl implements IStudyService {
 		
 		return example;
 	}
-	
+
+	@Override
+	public void dignose(Integer userId, Integer studyId, String performance, String result) throws ServiceException {
+		Study study = this.getById(studyId);
+		if( study != null ){
+			study.setDiagnoseImagePerformance(performance);
+			study.setDiagnoseImageResult(result);
+			study.setDiagnoseTime(new Date());
+			study.setDiagnoseUserId(userId);
+			
+			this.saveOrUpdate(study);
+		}
+		
+	}
+
+	@Override
+	public void audit(Integer userId, Integer studyId, String performance, String result) throws ServiceException {
+		Study study = this.getById(studyId);
+		if( study != null ){
+			study.setReviewImagePerformance(performance);
+			study.setReviewImageResult(result);
+			study.setReviewTime(new Date());
+			study.setReviewUserId(userId);
+			
+			this.saveOrUpdate(study);
+		}		
+	}
+
+	private Study getById(Integer studyId) {
+		return studyMapper.selectByPrimaryKey(studyId);
+	}
 	
 	
 }

@@ -93,7 +93,7 @@
 					<div class="row">
 						<div class="col-sm-6 left">{{status}}</div>
 						<div class="col-sm-6 right">
-							<button type="button" class="btn btn-xs btn-link">查看报告</button>
+							<a target="_blank" href='<c:url value="/modules/cornerstone/index.jsp?studyId={{id}}"/>' class="btn btn-xs btn-link">查看报告</a>
 						</div>
 					</div>
 				</div>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.medicalproj.common.domain.InstanceView;
 import com.medicalproj.common.domain.MedicalCaseView;
 import com.medicalproj.common.domain.SeriesView;
+import com.medicalproj.common.domain.Study;
 import com.medicalproj.common.domain.StudyView;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
@@ -124,5 +125,35 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 
 		return instanceViewerView;
 	}
+
+	@Override
+	public View<StudyView> loadStudyView(Integer studyId) throws ServiceException {
+		View<StudyView> view = new View<StudyView>();
+		
+		StudyView studyView = studyService.getStudyViewById(studyId);
+		view.setData(studyView);
+		return view;
+	}
+
+	@Override
+	public View<Boolean> submitDignose(Integer userId, Integer studyId, String performance, String result)
+			throws ServiceException {
+		View<Boolean> view = new View<Boolean>();
+		studyService.dignose(userId,studyId,performance,result);
+		
+		view.setData(true);
+		return view;
+	}
+
+	@Override
+	public View<Boolean> submitAudit(Integer userId, Integer studyId, String performance, String result)
+			throws ServiceException {
+		View<Boolean> view = new View<Boolean>();
+		studyService.audit(userId,studyId,performance,result);
+		
+		view.setData(true);
+		return view;
+	}
+
 	
 }

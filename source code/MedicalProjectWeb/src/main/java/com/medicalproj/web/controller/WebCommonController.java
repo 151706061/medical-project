@@ -38,13 +38,13 @@ public class WebCommonController extends WebBaseController{
 		if( user == null ){
 			return new ModelAndView("redirect:/modules/web/login.jsp");
 		}else if( user.getUserType().equals( Constants.USER_TYPE_USER) ){
-			return new ModelAndView("redirect:/modules/web/user/main.jsp");
+			return new ModelAndView("redirect:/modules/web/user/main.jsp#requests");
 		}else if( user.getUserType().equals( Constants.USER_TYPE_ENTERPRISE_USER) ){
 			return new ModelAndView("redirect:/modules/web/enterprise/main.jsp");
 		}else if( user.getUserType().equals( Constants.USER_TYPE_JUNIOR_DOCTOR) ){
-			return new ModelAndView("redirect:/modules/web/juniordoctor/main.jsp");
+			return new ModelAndView("redirect:/modules/web/juniordoctor/main.jsp#requests");
 		}else if( user.getUserType().equals( Constants.USER_TYPE_SENIOR_DOCTOR) ){
-			return new ModelAndView("redirect:/modules/web/seniordoctor/main.jsp");
+			return new ModelAndView("redirect:/modules/web/seniordoctor/main.jsp#requests");
 		}else{
 			return null;
 		}
