@@ -19,4 +19,8 @@ public interface IQualificationApplicationService {
 
 	void delQualificationApplicationById(Integer applicationId)throws ServiceException;
 
+	void apprvoe(Integer applicationId, Integer processUserId)throws ServiceException;
+
+	void reject(Integer applicationId, Integer processUserId)throws ServiceException;
+
 }

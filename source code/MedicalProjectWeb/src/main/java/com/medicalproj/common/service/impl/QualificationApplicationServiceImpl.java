@@ -14,8 +14,10 @@ import com.medicalproj.common.dao.QualificationApplicationViewMapper;
 import com.medicalproj.common.domain.QualificationApplication;
 import com.medicalproj.common.domain.QualificationApplicationView;
 import com.medicalproj.common.domain.QualificationApplicationViewExample;
+import com.medicalproj.common.domain.User;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IQualificationApplicationService;
+import com.medicalproj.common.service.IUserService;
 import com.medicalproj.common.util.AssertUtil;
 import com.medicalproj.common.util.PagerHelper;
 import com.medicalproj.web.util.Constants;
@@ -30,6 +32,9 @@ public class QualificationApplicationServiceImpl implements
 	
 	@Autowired
 	private QualificationApplicationViewMapper qualificationApplicationViewMapper;
+	
+	@Autowired
+	private IUserService userService;
 	
 	@Override
 	public void submitApplication(Integer yszgzId, Integer auditUserId,
@@ -107,6 +112,62 @@ public class QualificationApplicationServiceImpl implements
 	public void delQualificationApplicationById(Integer applicationId)
 			throws ServiceException {
 		qualificationApplicationMapper.deleteByPrimaryKey(applicationId);
+	}
+
+	@Override
+	public void apprvoe(Integer applicationId, Integer processUserId)
+			throws ServiceException {
+		QualificationApplication application = this.getById(applicationId);
+		if( application != null ){
+			// update user type
+			User user = userService.getById(application.getApplyUserId());
+			if( user.getUserType() != null ){
+				if( user.getUserType().equals(Constants.USER_TYPE_USER) ){
+					user.setUserType(Constants.USER_TYPE_JUNIOR_DOCTOR);
+					userService.saveOrUpdate(user);
+				}else if( user.getUserType().equals(Constants.USER_TYPE_JUNIOR_DOCTOR) ){
+					user.setUserType(Constants.USER_TYPE_SENIOR_DOCTOR);
+					userService.saveOrUpdate(user);
+				}
+			}
+			
+			// update application status
+			application.setReviewTime(new Date());
+			application.setReviewUserId(processUserId);
+			application.setStatus(Constants.QUALIFICATION_APPLICATION_STATUS_REJECT);
+			
+			this.saveOrUpdate(application);
+		}
+		
+	}
+
+	@Override
+	public void reject(Integer applicationId, Integer processUserId)
+			throws ServiceException {
+		QualificationApplication application = this.getById(applicationId);
+		if( application != null ){
+			application.setReviewTime(new Date());
+			application.setReviewUserId(processUserId);
+			application.setStatus(Constants.QUALIFICATION_APPLICATION_STATUS_REJECT);
+			
+			this.saveOrUpdate(application);
+		}
+		
+	}
+
+	private void saveOrUpdate(QualificationApplication application) {
+		if( application != null ){
+			if( application.getId() == null ){
+				qualificationApplicationMapper.insertSelective(application);
+			}else{
+				qualificationApplicationMapper.updateByPrimaryKeySelective(application);
+			}
+		}
+		
+	}
+
+	private QualificationApplication getById(Integer applicationId) {
+		return qualificationApplicationMapper.selectByPrimaryKey(applicationId);
 	}
 	
 }

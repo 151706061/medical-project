@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.medicalproj.common.dao.TaskViewMapper" >
   <resultMap id="BaseResultMap" type="com.medicalproj.common.domain.TaskView" >
+    <result column="TASK_ID" property="taskId" jdbcType="INTEGER" />
     <result column="TASK_TYPE" property="taskType" jdbcType="VARCHAR" />
     <result column="TASK_STATUS" property="taskStatus" jdbcType="VARCHAR" />
     <result column="RESOURCE_ID" property="resourceId" jdbcType="BIGINT" />
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    TASK_TYPE, TASK_STATUS, RESOURCE_ID, TASK_CREATE_TIME, PROCESS_TIME, TASK_OWNER_USER_ID, 
+    TASK_ID, TASK_TYPE, TASK_STATUS, RESOURCE_ID, TASK_CREATE_TIME, PROCESS_TIME, TASK_OWNER_USER_ID, 
     TASK_OWNER_USER_NAME, TASK_OWNER_USER_EMAIL, TASK_OWNER_USER_MOBILE, PATIENT_NAME
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.TaskViewExample" >
@@ -96,18 +97,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.medicalproj.common.domain.TaskView" >
-    insert into vw_task (TASK_TYPE, TASK_STATUS, RESOURCE_ID, 
-      TASK_CREATE_TIME, PROCESS_TIME, TASK_OWNER_USER_ID, 
-      TASK_OWNER_USER_NAME, TASK_OWNER_USER_EMAIL, 
+    insert into vw_task (TASK_ID, TASK_TYPE, TASK_STATUS, 
+      RESOURCE_ID, TASK_CREATE_TIME, PROCESS_TIME, 
+      TASK_OWNER_USER_ID, TASK_OWNER_USER_NAME, TASK_OWNER_USER_EMAIL, 
       TASK_OWNER_USER_MOBILE, PATIENT_NAME)
-    values (#{taskType,jdbcType=VARCHAR}, #{taskStatus,jdbcType=VARCHAR}, #{resourceId,jdbcType=BIGINT}, 
-      #{taskCreateTime,jdbcType=VARCHAR}, #{processTime,jdbcType=VARCHAR}, #{taskOwnerUserId,jdbcType=INTEGER}, 
-      #{taskOwnerUserName,jdbcType=VARCHAR}, #{taskOwnerUserEmail,jdbcType=VARCHAR}, 
+    values (#{taskId,jdbcType=INTEGER}, #{taskType,jdbcType=VARCHAR}, #{taskStatus,jdbcType=VARCHAR}, 
+      #{resourceId,jdbcType=BIGINT}, #{taskCreateTime,jdbcType=VARCHAR}, #{processTime,jdbcType=VARCHAR}, 
+      #{taskOwnerUserId,jdbcType=INTEGER}, #{taskOwnerUserName,jdbcType=VARCHAR}, #{taskOwnerUserEmail,jdbcType=VARCHAR}, 
       #{taskOwnerUserMobile,jdbcType=VARCHAR}, #{patientName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.TaskView" >
     insert into vw_task
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taskId != null" >
+        TASK_ID,
+      </if>
       <if test="taskType != null" >
         TASK_TYPE,
       </if>
@@ -140,6 +144,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taskId != null" >
+        #{taskId,jdbcType=INTEGER},
+      </if>
       <if test="taskType != null" >
         #{taskType,jdbcType=VARCHAR},
       </if>
@@ -181,6 +188,9 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update vw_task
     <set >
+      <if test="record.taskId != null" >
+        TASK_ID = #{record.taskId,jdbcType=INTEGER},
+      </if>
       <if test="record.taskType != null" >
         TASK_TYPE = #{record.taskType,jdbcType=VARCHAR},
       </if>
@@ -218,7 +228,8 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update vw_task
-    set TASK_TYPE = #{record.taskType,jdbcType=VARCHAR},
+    set TASK_ID = #{record.taskId,jdbcType=INTEGER},
+      TASK_TYPE = #{record.taskType,jdbcType=VARCHAR},
       TASK_STATUS = #{record.taskStatus,jdbcType=VARCHAR},
       RESOURCE_ID = #{record.resourceId,jdbcType=BIGINT},
       TASK_CREATE_TIME = #{record.taskCreateTime,jdbcType=VARCHAR},

@@ -18,8 +18,10 @@ import com.medicalproj.common.domain.Study;
 import com.medicalproj.common.domain.StudyExample;
 import com.medicalproj.common.domain.StudyView;
 import com.medicalproj.common.domain.StudyViewExample;
+import com.medicalproj.common.domain.Task;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IStudyService;
+import com.medicalproj.common.service.ITaskService;
 import com.medicalproj.common.util.AssertUtil;
 import com.medicalproj.common.util.PagerHelper;
 import com.medicalproj.web.util.Constants;
@@ -37,6 +39,9 @@ public class StudyServiceImpl implements IStudyService {
 	
 	@Autowired
 	private DetailedStudyViewMapper detailedStudyViewMapper;
+	
+	@Autowired
+	private ITaskService taskService;
 	
 	@Override
 	public List<StudyView> listAllStudyByMedicalCaseId(Integer medicalCaseId)
@@ -177,8 +182,9 @@ public class StudyServiceImpl implements IStudyService {
 	}
 
 	@Override
-	public void dignose(Integer userId, Integer studyId, String performance, String result) throws ServiceException {
-		Study study = this.getById(studyId);
+	public void dignose(Integer userId, Integer taskId, String performance, String result) throws ServiceException {
+		Task task = taskService.getById(taskId);
+		Study study = this.getById(task.getResourceId());
 		if( study != null ){
 			study.setDiagnoseImagePerformance(performance);
 			study.setDiagnoseImageResult(result);
@@ -186,13 +192,20 @@ public class StudyServiceImpl implements IStudyService {
 			study.setDiagnoseUserId(userId);
 			
 			this.saveOrUpdate(study);
+			
+			task.setStatus(Constants.TASK_STATUS_MEDICAL_CASE_DIAGNOSE_COMPLETE);
+			taskService.saveOrUpdate(task);
+			
+			//创建审核任务
+			taskService.createAuditTask(study.getId());
 		}
 		
 	}
 
 	@Override
-	public void audit(Integer userId, Integer studyId, String performance, String result) throws ServiceException {
-		Study study = this.getById(studyId);
+	public void audit(Integer userId, Integer taskId, String performance, String result) throws ServiceException {
+		Task task = taskService.getById(taskId);
+		Study study = this.getById(task.getResourceId());
 		if( study != null ){
 			study.setReviewImagePerformance(performance);
 			study.setReviewImageResult(result);
@@ -200,12 +213,15 @@ public class StudyServiceImpl implements IStudyService {
 			study.setReviewUserId(userId);
 			
 			this.saveOrUpdate(study);
+			
+			//更新任务状态
+			task.setStatus(Constants.TASK_STATUS_MEDICAL_CASE_AUDIT_COMPLETE);
+			taskService.saveOrUpdate(task);
 		}		
 	}
 
-	private Study getById(Integer studyId) {
+	@Override
+	public Study getById(Integer studyId) throws ServiceException {
 		return studyMapper.selectByPrimaryKey(studyId);
 	}
-	
-	
 }

@@ -1,10 +1,11 @@
 package com.medicalproj.web.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.medicalproj.common.domain.User;
-import com.medicalproj.common.dto.view.UserSettingView;
+import com.medicalproj.common.domain.UserView;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IAuthService;
@@ -57,4 +58,13 @@ public class WebCommonServiceImpl implements IWebCommonService {
 		}
 	}
 
+	@Override
+	public View<List<UserView>> listAllJuniorDoctor() throws ServiceException {
+		View<List<UserView>> view = new View<List<UserView>>();
+		List<UserView> userList = userService.listAllJuniorDoctor();
+		view.setData(userList);
+		return view;
+	}
+
+	
 }

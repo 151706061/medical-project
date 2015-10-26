@@ -10,4 +10,6 @@ public interface IWebTaskService {
 
 	View<TaskListView> sendAudit(Integer taskId, Integer userId)throws ServiceException;
 
+	View<Boolean> assignTask(Integer taskId, Integer assignToUserId)throws ServiceException;
+
 }

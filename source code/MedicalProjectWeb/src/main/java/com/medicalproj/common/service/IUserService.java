@@ -22,6 +22,8 @@ public interface IUserService {
 
 	User getById(Integer userId)throws ServiceException;
 
+	List<UserView> listAllJuniorDoctor()throws ServiceException;
+	
 	List<UserView> listAllSeniorDoctor()throws ServiceException;
 
 	List<UserView> listUserViewByCond(ListUserParam param)throws ServiceException;

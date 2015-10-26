@@ -12,6 +12,7 @@ import com.medicalproj.common.dao.TaskMapper;
 import com.medicalproj.common.dao.TaskViewMapper;
 import com.medicalproj.common.domain.StudyView;
 import com.medicalproj.common.domain.Task;
+import com.medicalproj.common.domain.TaskExample;
 import com.medicalproj.common.domain.TaskView;
 import com.medicalproj.common.domain.TaskViewExample;
 import com.medicalproj.common.domain.UserView;
@@ -81,7 +82,7 @@ public class TaskServiceImpl implements ITaskService {
 	}
 
 	@Override
-	public void assignDiagnoseTask(List<Integer> medicalCaseIdList) throws ServiceException {
+	public void createAssignTask(List<Integer> medicalCaseIdList) throws ServiceException {
 		List<UserView> seniorList = userService.listAllSeniorDoctor();
 		if( seniorList != null && seniorList.size() > 0 ){
 			UserView senor = seniorList.get(0);
@@ -96,8 +97,9 @@ public class TaskServiceImpl implements ITaskService {
 							task.setCreateTime(new Date());
 							task.setOwnerUserId(senor.getId());
 							task.setResourceId(studyView.getId());
-							task.setStatus(Constants.TASK_STATUS_MEDICAL_CASE_ASSIGNED_WAIT_FOR_DIAGNOSE);
-							task.setType(Constants.TASK_TYPE_MEDICAL_CASE_DIAGNOSE);
+							//新建的病例，待分配状态，之后由专家分配
+							task.setStatus(Constants.TASK_STATUS_MEDICAL_CASE_WAIT_FOR_ASSIGNED);
+							task.setType(Constants.TASK_TYPE_MEDICAL_CASE_ASSIGN);
 							
 							this.saveOrUpdate(task);
 						}
@@ -107,7 +109,9 @@ public class TaskServiceImpl implements ITaskService {
 		}
 	}
 
-	private void saveOrUpdate(Task task) {
+
+	@Override
+	public void saveOrUpdate(Task task) throws ServiceException {
 		if( task != null ){
 			if( task.getId() == null ){
 				taskMapper.insertSelective(task);
@@ -116,7 +120,79 @@ public class TaskServiceImpl implements ITaskService {
 				taskMapper.updateByPrimaryKey(task);
 			}
 		}
+	}
+
+	@Override
+	public Task getMyDiagnoseTask(Integer studyId, Integer userId)
+			throws ServiceException {
+		Task task = this.getByCond( userId, studyId,Constants.TASK_TYPE_MEDICAL_CASE_DIAGNOSE);
+		return task;
+	}
+
+	@Override
+	public Task getMyAuditTask(Integer studyId, Integer userId)
+			throws ServiceException {
+		Task task = this.getByCond( userId, studyId, Constants.TASK_TYPE_MEDICAL_CASE_AUDIT);
+		return task;
+	}
+
+	private Task getByCond(Integer userId, Integer studyId,
+			int taskType) {
+		TaskExample example = new TaskExample();
+		TaskExample.Criteria c = example.createCriteria();
+		
+		c.andOwnerUserIdEqualTo(userId);
+		c.andTypeEqualTo(taskType);
+		c.andResourceIdEqualTo(studyId);
+		
+		List<Task> taskList = taskMapper.selectByExample(example);
+		if( taskList != null && taskList.size() > 0 ){
+			return taskList.get(0);
+		}
+		return null;
+	}
+
+	@Override
+	public void createDiagnoseTask(Integer studyId, Integer assignToUserId)
+			throws ServiceException {
+		try {
+			Task task = new Task();
+			task.setType(Constants.TASK_TYPE_MEDICAL_CASE_DIAGNOSE);
+			task.setResourceId(studyId);
+			task.setOwnerUserId(assignToUserId);
+			task.setStatus(Constants.TASK_STATUS_MEDICAL_CASE_ASSIGNED_WAIT_FOR_DIAGNOSE);
+			task.setCreateTime(new Date());
+			
+			this.saveOrUpdate(task);
+		} catch (Exception e) {
+			logger.error(e);
+			throw new ServiceException(e.getMessage());
+		}		
+	}
+
+
+	@Override
+	public void createAuditTask(Integer studyId) throws ServiceException {
+		List<UserView> seniorList = userService.listAllSeniorDoctor();
+		if( seniorList != null && seniorList.size() > 0 ){
+			UserView senor = seniorList.get(0);
+			
+			Task task = new Task();
+			task.setType(Constants.TASK_TYPE_MEDICAL_CASE_AUDIT);
+			task.setResourceId(studyId);
+			task.setOwnerUserId(senor.getId());
+			task.setStatus(Constants.TASK_STATUS_MEDICAL_CASE_WAIT_FOR_AUDIT);
+			task.setCreateTime(new Date());
+			
+			this.saveOrUpdate(task);
+		}
 		
 	}
+
+	@Override
+	public Task getById(Integer taskId) throws ServiceException {
+		return taskMapper.selectByPrimaryKey(taskId);
+	}
+
 
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.medicalproj.common.domain.StudyView;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.web.dto.session.User;
+import com.medicalproj.web.dto.view.DcmViewerOptionPermission;
 import com.medicalproj.web.dto.view.StudyViewerView;
 import com.medicalproj.web.service.IDcmViewerService;
 
@@ -21,13 +22,24 @@ public class DcmViewerController extends WebBaseController{
 	
 	@RequestMapping("/getUserType")
 	@ResponseBody
-	public View<Integer> view(HttpSession session){
+	public View<Integer> getUserType(HttpSession session){
 		User user = super.getLoginUser(session);
 		
 		View<Integer> view = new View<Integer>();
 		view.setData(user.getUserType());
 		return view;
-	}	
+	}
+	
+	@RequestMapping("/getOptionPermission")
+	@ResponseBody
+	public View<DcmViewerOptionPermission> getOptionPermission(Integer studyId,HttpSession session){
+		User user = super.getLoginUser(session);
+		
+		View<DcmViewerOptionPermission> view = dcmViewerService.getDcmViewerOptionPermission(studyId,user.getId());
+		
+		return view;
+	}
+	
 	
 	@RequestMapping("/loadStudy")
 	@ResponseBody
@@ -45,21 +57,21 @@ public class DcmViewerController extends WebBaseController{
 		return view;
 	}
 	
-	@RequestMapping("/submitDignose")
+	@RequestMapping("/submitDiagnose")
 	@ResponseBody
-	public View<Boolean> submitDignose(Integer studyId ,String performance,String result ,HttpSession session){
+	public View<Boolean> submitDignose(Integer taskId ,String performance,String result ,HttpSession session){
 		User user = super.getLoginUser(session);
 		
-		View<Boolean> view = dcmViewerService.submitDignose(user.getId(),studyId,performance,result);
+		View<Boolean> view = dcmViewerService.submitDignose(user.getId(),taskId,performance,result);
 		
 		return view;
 	}
 	
 	@RequestMapping("/submitAudit")
 	@ResponseBody
-	public View<Boolean> submitAudit(Integer studyId ,String performance,String result ,HttpSession session){
+	public View<Boolean> submitAudit(Integer taskId ,String performance,String result ,HttpSession session){
 		User user = super.getLoginUser(session);
-		View<Boolean> view = dcmViewerService.submitAudit(user.getId(),studyId,performance,result);
+		View<Boolean> view = dcmViewerService.submitAudit(user.getId(),taskId,performance,result);
 		
 		return view;
 	}

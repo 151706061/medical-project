@@ -36,9 +36,9 @@
 	<div class="col-sm-12">
 		<nav>
 			<ul class="pager">
-				<li class="previous"><a href="#"><span aria-hidden="true">&larr;</span>
+				<li class="previous taskPrevBtn"><a href="#"><span aria-hidden="true">&larr;</span>
 						上一页</a></li>
-				<li class="next"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+				<li class="next taskNextBtn"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
 			</ul>
 		</nav>
 	</div>
@@ -53,9 +53,9 @@
 	<td>{{patientName}}</td>
 	<td>{{taskOwnerUserName}}</td>
 	<td>{{taskStatus}}</td>
-	<td><a href="../../cornerstone/index.jsp?studyId={{resourceId}}" target="_blank" class="btn btn-success btn-xs diagnose-btn" >诊断</button></td>
+	<td><a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs diagnose-btn" >诊断</button></td>
 </tr>
 {{/tasks}}
 </script>
 <%-- END 内容部分 --%>
-<script src='<c:url value="/modules/web/assets/js/task.js"/>'></script>
+<script src='<c:url value="/modules/web/assets/js/junior/task.js"/>'></script>

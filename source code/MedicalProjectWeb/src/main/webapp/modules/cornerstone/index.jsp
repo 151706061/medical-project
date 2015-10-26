@@ -27,7 +27,12 @@
   
   <script>
 	var appContext = '<c:url value="/"/>';
+	<c:if test="${not empty param.taskId}">
+	var taskId = ${param.taskId };
+	</c:if>
+	<c:if test="${not empty param.studyId}">
 	var studyId = ${param.studyId };
+	</c:if>
 	</script>
 	<style>
 		.close{
@@ -52,35 +57,18 @@
           <a class="navbar-brand" href="javascript:void(0)">病例诊断</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-          <li class="options junior-options hide">
-          	<%-- 医师 --%>
-          	<button id="diagnoseBtn" class="btn btn-success" data-toggle="modal" data-target="#dignoseModal" style="margin:10px 0 0 0;">
-			  	诊断
-			</button>
-			<%-- 医师 END--%>
-          </li>
-          <li class="options senior-options hide">
-          	<%-- 专家 --%>
-			<button class="btn btn-success auditBtn" data-toggle="modal" data-target="#auditModal" style="margin:10px 0 0 0;">
+          <li>
+          		<button id="viewReportBtn" class="btn btn-success hide" data-toggle="modal" data-target="#viewReportModal" style="margin:10px 0 0 0;">
+				 查看诊断报告
+				</button>
+	         	<button id="diagnoseBtn" class="btn btn-success hide" data-toggle="modal" data-target="#dignoseModal" style="margin:10px 0 0 0;">
+				 诊断
+				</button>
+				<button id="auditBtn" class="btn btn-success hide" data-toggle="modal" data-target="#auditModal" style="margin:10px 0 0 0;">
 			  	审查
-			</button>
-			<%-- 专家 END--%>
+				</button>
           </li>
           
-          <li class="options enterprise-options hide">
-          	<%-- 企业--%>
-			<button class="btn btn-success viewReportBtn" data-toggle="modal" data-target="#viewReportModal" style="margin:10px 0 0 0;">
-			  	查看诊断报告
-			</button>
-			<%-- 企业 END--%>
-          </li>
-          
-          <li class="options user-options hide">
-          	<%-- 普通用户--%>
-			<button class="btn btn-success viewReportBtn" data-toggle="modal" data-target="#viewReportModal" style="margin:10px 0 0 0;">
-			  	查看诊断报告
-			</button>
-			<%-- 普通用户 END--%>
           </li>
           <li><a id="help" href="#" class="button hidden-xs">Help</a></li>
         </ul>
@@ -178,12 +166,12 @@
 		<hr />
         <form>
 		  <div class="form-group">
-		    <label for="exampleInputEmail1">影像表现</label>
-		    <textarea class="form-control" id="exampleInputEmail1" placeholder="请输入影像表现" style="height:120px"></textarea>
+		    <label for="auditInputPerformance">影像表现</label>
+		    <textarea class="form-control" id="auditInputPerformance" placeholder="请输入影像表现" style="height:120px"></textarea>
 		  </div>
 		  <div class="form-group">
-		    <label for="exampleInputPassword1">影像结论</label>
-		    <textarea class="form-control" id="exampleInputEmail1" placeholder="请输入影像结论" style="height:120px"></textarea>
+		    <label for="auditInputResult">影像结论</label>
+		    <textarea class="form-control" id="auditInputResult" placeholder="请输入影像结论" style="height:120px"></textarea>
 		  </div>
 		</form>
 
@@ -278,27 +266,49 @@
 <script>
 $(function(){
 	$.get(
-		appContext + 'web/dcmviewer/getUserType.do',
-		{},
+		appContext + 'web/dcmviewer/getOptionPermission.do',
+		{
+			studyId:studyId
+		},
 		function(resp){
+			var canViewReport = resp.data.canViewReport;
+			var canDiagnose = resp.data.canDiagnose;
+			var canAudit = resp.data.canAudit;
+			var canViewDiagnoseAndAuditReport = resp.data.canViewDiagnoseAndAuditReport;
+			
+			if( canDiagnose == true){
+				$('#diagnoseBtn').removeClass('hide');
+			}
+			if( canAudit == true){
+				$('#auditBtn').removeClass('hide');
+			}
+			if( canViewReport == true){
+				$('#viewReportBtn').removeClass('hide');
+			}
+			
+			
+			/* 
 			if( !$('.nav > li.options').hasClass('hide') ){
 				$('.nav > li.options').addClass('hide');
 			}
 			
-			if( resp.data == 1 ){
-				$('.nav > li.user-options').removeClass('hide');
-			}else if( resp.data == 2 ){
-				$('.nav > li.junior-options').removeClass('hide');
-			}else if( resp.data == 3 ){
-				$('.nav > li.senior-options').removeClass('hide');
-			}else if( resp.data == 4 ){
-				$('.nav > li.enterprise-options').removeClass('hide');
+			if( canViewReport == true ){
+				$('#viewReportBtn').removeClass('hide');
 			}
+			if( canDiagnose == true ){
+				$('#diagnoseBtn').removeClass('hide');
+			}
+			if( canAudit == true ){
+				$('#auditBtn').removeClass('hide');
+			}
+			if( canViewDiagnoseAndAuditReport == true ){
+			} */
+			
 		},
 		'json'
 	);
 	
-	$('.viewReportBtn').on('click',function(){
+	$('#viewReportBtn').on('click',function(){
 		$.get(
 			appContext + 'web/dcmviewer/loadStudyView.do',
 			{
@@ -315,6 +325,43 @@ $(function(){
 		
 	});
 	
+	$('#auditModal .submitReport').on('click',function(){
+		var performance = $.trim($('#auditInputPerformance').val());
+		var result = $.trim($('#auditInputResult').val());
+		
+		if( performance == '' ){
+			alert('影像表现不可为空');
+			return false;
+		}
+		
+		if( result == '' ){
+			alert('影像结论不可为空');
+			return false;
+		}
+		
+		$.post(
+				appContext + 'web/dcmviewer/submitAudit.do',
+				{
+					taskId: taskId,
+					performance:performance,
+					result : result
+				},
+				function(resp){
+					if( resp.data == true ){
+						alert('诊断内容已提交');
+						$('#auditInputPerformance').val('');
+						$('#auditInputResult').val('');
+						
+						$('#dignoseModal').modal('hide');
+						
+						window.location.reload();
+						
+					}
+				},
+				'json'
+			);
+	});
+		
 	$('#dignoseModal .submitReport').on('click',function(){
 		var performance = $.trim($('#dignoseInputPerformance').val());
 		var result = $.trim($('#dignoseInputResult').val());
@@ -329,8 +376,42 @@ $(function(){
 			return false;
 		}
 		
+		$.post(
+			appContext + 'web/dcmviewer/submitDiagnose.do',
+			{
+				taskId: taskId,
+				performance:performance,
+				result : result
+			},
+			function(resp){
+				if( resp.data == true ){
+					alert('诊断内容已提交');
+					$('#dignoseModal form')[0].reset();
+					$('#dignoseModal').modal('hide');
+					
+					window.location.reload();
+				}
+			},
+			'json'
+		);
 	});
 	
+	$('#diagnoseBtn').on('click',function(){
+		$.get(
+			appContext + 'web/dcmviewer/loadStudyView.do',
+			{
+				studyId: studyId
+			},	
+			function(resp){
+				var performance = resp.data.diagnoseImagePerformance;
+				var result = resp.data.diagnoseImageResult;
+				$('#dignoseInputPerformance').text(performance);
+				$('#dignoseInputResult').text(result);
+			},
+			'json'
+		);	
+		
+	});
 	
 	$('.auditBtn').on('click',function(){
 		$.get(

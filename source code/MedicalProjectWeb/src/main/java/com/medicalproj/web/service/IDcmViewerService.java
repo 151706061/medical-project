@@ -3,6 +3,7 @@ package com.medicalproj.web.service;
 import com.medicalproj.common.domain.StudyView;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
+import com.medicalproj.web.dto.view.DcmViewerOptionPermission;
 import com.medicalproj.web.dto.view.StudyViewerView;
 
 public interface IDcmViewerService {
@@ -11,9 +12,12 @@ public interface IDcmViewerService {
 
 	View<StudyView> loadStudyView(Integer studyId)throws ServiceException;
 
-	View<Boolean> submitDignose(Integer userId, Integer studyId, String performance, String result)throws ServiceException;
+	View<Boolean> submitDignose(Integer userId, Integer taskId, String performance, String result)throws ServiceException;
 
-	View<Boolean> submitAudit(Integer userId, Integer studyId, String performance, String result)throws ServiceException;
+	View<Boolean> submitAudit(Integer userId, Integer taskId, String performance, String result)throws ServiceException;
+
+	View<DcmViewerOptionPermission> getDcmViewerOptionPermission(
+			Integer studyId, Integer userId)throws ServiceException;
 
 
 }

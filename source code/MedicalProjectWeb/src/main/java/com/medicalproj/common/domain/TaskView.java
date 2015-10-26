@@ -1,6 +1,8 @@
 package com.medicalproj.common.domain;
 
 public class TaskView {
+    private Integer taskId;
+
     private String taskType;
 
     private String taskStatus;
@@ -20,6 +22,14 @@ public class TaskView {
     private String taskOwnerUserMobile;
 
     private String patientName;
+
+    public Integer getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(Integer taskId) {
+        this.taskId = taskId;
+    }
 
     public String getTaskType() {
         return taskType;

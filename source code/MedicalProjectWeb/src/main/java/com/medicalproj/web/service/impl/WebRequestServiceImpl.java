@@ -275,7 +275,7 @@ public class WebRequestServiceImpl implements IWebRequestService {
 			view.setData(medicalCaseIdList);
 			
 			// 创建任务随机分配给Senior Doctor
-			taskService.assignDiagnoseTask(medicalCaseIdList);
+			taskService.createAssignTask(medicalCaseIdList);
 			
 			return view;
 		} catch (Exception e) {

@@ -52,4 +52,13 @@ public class WebTaskController extends WebBaseController{
 		return view;
 	}
 	
+	
+	@RequestMapping("/assignTask")
+	@ResponseBody
+	public View<Boolean> assignTask(Integer taskId,Integer assignToUserId,HttpSession session){
+		View<Boolean> view = webTaskService.assignTask(taskId,assignToUserId);
+		
+		return view;
+	}
+	
 }

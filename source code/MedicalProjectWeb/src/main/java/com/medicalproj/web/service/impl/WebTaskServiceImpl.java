@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.medicalproj.common.domain.Task;
 import com.medicalproj.common.domain.TaskView;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
@@ -15,6 +16,7 @@ import com.medicalproj.web.dto.param.ListTaskParam;
 import com.medicalproj.web.dto.view.PagerView;
 import com.medicalproj.web.dto.view.TaskListView;
 import com.medicalproj.web.service.IWebTaskService;
+import com.medicalproj.web.util.Constants;
 
 @Service
 public class WebTaskServiceImpl implements IWebTaskService {
@@ -51,5 +53,24 @@ public class WebTaskServiceImpl implements IWebTaskService {
 		return null;
 	}
 
-	
+	@Override
+	public View<Boolean> assignTask(Integer taskId, Integer assignToUserId)
+			throws ServiceException {
+		View<Boolean> view = new View<Boolean>();
+		try {
+			Task task = taskService.getById(taskId);
+			task.setStatus(Constants.TASK_STATUS_MEDICAL_CASE_ASSIGN_COMPLETE);
+			taskService.saveOrUpdate(task);
+			
+			taskService.createDiagnoseTask(task.getResourceId(),assignToUserId);
+			view.setData(true);
+			return view;
+		} catch (Exception e) {
+			logger.error(e);
+			view.setMsg(e.getMessage());
+			view.setSuccess(false);
+			return view;
+		}
+	}
+
 }

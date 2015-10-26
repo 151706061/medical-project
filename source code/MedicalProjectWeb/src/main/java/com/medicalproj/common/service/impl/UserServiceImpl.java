@@ -143,6 +143,19 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
+	public List<UserView> listAllJuniorDoctor() throws ServiceException {
+		try {
+			UserViewExample example = new UserViewExample();
+			UserViewExample.Criteria c = example.createCriteria();
+			c.andUserTypeCodeEqualTo(Constants.USER_TYPE_JUNIOR_DOCTOR);
+			
+			return userViewMapper.selectByExample(example);
+		} catch (Exception e) {
+			throw new ServiceException(e);
+		}
+	}
+	
+	@Override
 	public List<UserView> listAllSeniorDoctor() throws ServiceException {
 		try {
 			UserViewExample example = new UserViewExample();

@@ -1,5 +1,7 @@
 package com.medicalproj.web.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.medicalproj.common.dto.view.UserSettingView;
+import com.medicalproj.common.domain.UserView;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.web.dto.session.User;
 import com.medicalproj.web.service.IWebCommonService;
@@ -75,4 +77,11 @@ public class WebCommonController extends WebBaseController{
 		return mav;
 	}
 	
+	
+	@RequestMapping("/listAllJuniorDoctor")
+	@ResponseBody
+	public View<List<UserView>> listAllJuniorDoctor(HttpSession session){
+		View<List<UserView>> view = webCommonService.listAllJuniorDoctor();
+		return view;
+	}
 }

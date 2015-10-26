@@ -3,6 +3,7 @@ package com.medicalproj.web.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +12,18 @@ import com.medicalproj.common.domain.MedicalCaseView;
 import com.medicalproj.common.domain.SeriesView;
 import com.medicalproj.common.domain.Study;
 import com.medicalproj.common.domain.StudyView;
+import com.medicalproj.common.domain.Task;
+import com.medicalproj.common.domain.User;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IInstanceService;
 import com.medicalproj.common.service.IMedicalCaseService;
 import com.medicalproj.common.service.ISeriesService;
 import com.medicalproj.common.service.IStudyService;
+import com.medicalproj.common.service.ITaskService;
+import com.medicalproj.common.service.IUserService;
 import com.medicalproj.common.util.DateUtil;
+import com.medicalproj.web.dto.view.DcmViewerOptionPermission;
 import com.medicalproj.web.dto.view.InstanceViewerView;
 import com.medicalproj.web.dto.view.SeriesViewerView;
 import com.medicalproj.web.dto.view.StudyViewerView;
@@ -26,6 +32,7 @@ import com.medicalproj.web.util.Constants;
 
 @Service
 public class DcmViewerServiceImpl implements IDcmViewerService {
+	private Logger logger = Logger.getLogger(this.getClass());
 	@Autowired
 	private IStudyService studyService;
 	
@@ -37,6 +44,12 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 
 	@Autowired
 	private IMedicalCaseService medicalCaseService;
+	
+	@Autowired
+	private IUserService userService;
+	
+	@Autowired
+	private ITaskService taskService;
 	
 	@Override
 	public View<StudyViewerView> loadStudy(Integer studyId) throws ServiceException {
@@ -136,23 +149,81 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 	}
 
 	@Override
-	public View<Boolean> submitDignose(Integer userId, Integer studyId, String performance, String result)
+	public View<Boolean> submitDignose(Integer userId, Integer taskId, String performance, String result)
 			throws ServiceException {
 		View<Boolean> view = new View<Boolean>();
-		studyService.dignose(userId,studyId,performance,result);
+		
+		studyService.dignose(userId,taskId,performance,result);
 		
 		view.setData(true);
 		return view;
 	}
 
 	@Override
-	public View<Boolean> submitAudit(Integer userId, Integer studyId, String performance, String result)
+	public View<Boolean> submitAudit(Integer userId, Integer taskId, String performance, String result)
 			throws ServiceException {
 		View<Boolean> view = new View<Boolean>();
-		studyService.audit(userId,studyId,performance,result);
+		studyService.audit(userId,taskId,performance,result);
 		
 		view.setData(true);
 		return view;
+	}
+
+	@Override
+	public View<DcmViewerOptionPermission> getDcmViewerOptionPermission(
+			Integer studyId, Integer userId) throws ServiceException {
+		View<DcmViewerOptionPermission>  view = new View<DcmViewerOptionPermission> ();
+		try {
+			DcmViewerOptionPermission permission = new DcmViewerOptionPermission(false,false,false,false);
+			
+			User user = userService.getById(userId);
+			if( user == null || user.getUserType() == null){
+				throw new ServiceException("帐号异常");
+			}
+			
+			Study study = studyService.getById(studyId);
+			if( study == null ){
+				throw new ServiceException("Study 不存在");
+			}
+			
+			if( user.getUserType().equals(Constants.USER_TYPE_USER) ){
+				if( study.getDiagnoseTime() == null ){
+					
+				}else{
+					permission.setCanViewReport(true);
+				}
+			}else if( user.getUserType().equals(Constants.USER_TYPE_JUNIOR_DOCTOR) ){
+				Task task = taskService.getMyDiagnoseTask(studyId, userId);
+				if( task != null){
+					permission.setCanViewReport(true);
+					if( task.getStatus().equals(Constants.TASK_STATUS_MEDICAL_CASE_ASSIGNED_WAIT_FOR_DIAGNOSE) ){
+						permission.setCanDiagnose(true);
+					}
+				}
+				
+			}else if( user.getUserType().equals(Constants.USER_TYPE_SENIOR_DOCTOR) ){
+				Task task = taskService.getMyAuditTask(studyId, userId);
+				
+				if( task != null ){
+					permission.setCanViewDiagnoseAndAuditReport(true);
+					if( task.getStatus().equals(Constants.TASK_STATUS_MEDICAL_CASE_WAIT_FOR_AUDIT) ){
+						permission.setCanAudit(true);
+					}
+				}
+			}else if( user.getUserType().equals(Constants.USER_TYPE_ENTERPRISE_USER) ){
+				
+			}else{
+				throw new ServiceException("非法的用户角色");
+			}
+			
+			view.setData(permission);
+			return view;
+		} catch (Exception e) {
+			logger.error(e);
+			view.setMsg(e.getMessage());
+			view.setSuccess(false);
+			return view;
+		}
 	}
 
 	

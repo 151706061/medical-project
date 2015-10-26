@@ -36,26 +36,56 @@
 	<div class="col-sm-12">
 		<nav>
 			<ul class="pager">
-				<li class="previous"><a href="#"><span aria-hidden="true">&larr;</span>
+				<li class="previous disabled taskPrevBtn"><a href="#"><span aria-hidden="true">&larr;</span>
 						上一页</a></li>
-				<li class="next"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+				<li class="next disabled taskNextBtn"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
 			</ul>
 		</nav>
 	</div>
 </div>
 <!-- /padding -->
 
+<div id="assignTaskModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">分配任务</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+		  <div class="form-group">
+		    <label for="juniorDoctorSelect">医师</label>
+		    <select class="form-control" id="juniorDoctorSelect">
+		    	<option>Jack</option>
+		    </select>
+		  </div>
+		</form>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-success assignBtn" >分配</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script id="taskListItemTmpl" type="x-tmpl-mustache">
 {{#tasks}}
-<tr>
+<tr data-taskid={{taskId}}>
 	<td>{{taskCreateTime}}</td>
 	<td>{{taskType}}</td>
 	<td>{{patientName}}</td>
 	<td>{{taskOwnerUserName}}</td>
 	<td>{{taskStatus}}</td>
-	<td><a href="../../cornerstone/index.jsp?studyId={{resourceId}}" target="_blank" class="btn btn-success btn-xs diagnose-btn" >诊断</button></td>
+	<td>
+		<a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs diagnose-btn" >诊断</button>
+		<a href='javascript:void(0)' target="_blank" class="btn btn-success btn-xs assign-btn" style="margin-left:5px">分配</button>
+	</td>
 </tr>
 {{/tasks}}
 </script>
 <%-- END 内容部分 --%>
-<script src='<c:url value="/modules/web/assets/js/task.js"/>'></script>
+<script src='<c:url value="/modules/web/assets/js/senior/task.js"/>'></script>
