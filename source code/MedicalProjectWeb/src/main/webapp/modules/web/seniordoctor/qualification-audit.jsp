@@ -18,7 +18,6 @@
 						<th>用户类型</th>
 						<th>申请时间</th>
 						<th>状态</th>
-						<th>医师资格证</th>
 						<th>操作</th>
 					</tr>
 				</thead>
@@ -42,36 +41,24 @@
 </div>
 <!-- /padding -->
 
-
-<!-- Modal -->
-<div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body" style="text-align:center">
-       	<img src="" id="yszgzImg" />
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script id="qualificationApplicationTmpl" type="x-tmpl-mustache">
 {{#applications}}
 <tr>
-	<td>{{applyUserName}}</td>
-	<td>{{applyUserType}}</td>
-	<td>{{applyTime}}</td>
-	<td>{{status}}</td>
-	<td><a class="viewYszgz" data-src="${sessionScope["SESSION_KEY_FILE_BASE_PATH"]}{{yszgzImgRelativePath}}" href="javascript:void(0)">查看</a></td>
+	<td>张三</td>
+	<td>用户</td>
+	<td>2015-08-05 09:32</td>
+	<td>待审核</td>
 	<td>
 		{{#isApproveShow}}
-		<button type="button" class="btn btn-success btn-xs approveBtn" data-applicationid={{id}}>批准</button>
+		<button type="button" class="btn btn-success btn-xs">批准</button>
 		{{/isApproveShow}}
 		{{#isRejectShow}}
-		<button type="button" class="btn btn-danger btn-xs rejectBtn" data-applicationid={{id}}>拒绝</button>
+		<button type="button" class="btn btn-danger btn-xs">拒绝</button>
 		{{/isRejectShow}}
+		{{#isDetailShow}}
+		<button type="button" class="btn btn-default btn-xs">详情</button>
+		{{/isDetailShow}}
+		
 	</td>
 </tr>
 {{/applications}}

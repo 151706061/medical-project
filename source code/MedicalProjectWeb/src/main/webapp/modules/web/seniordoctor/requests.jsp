@@ -77,14 +77,12 @@
 						</div>
 						<div class="panel-body">
 							<div class="row">
-								<%-- 
 								{{#instanceList}}
 								<div class="col-sm-2">
 									<img src="/ftp/{{jpgFilePath}}" alt="" class="img-thumbnail case-img" />
 								</div>
 								{{/instanceList}}
-								--%>
-								<p class="alert alert-warning">共{{instanceList.length}}个图像，点击查看病例可查看上传的病例</p>
+								
 							</div>
 						</div>
 
@@ -95,7 +93,7 @@
 					<div class="row">
 						<div class="col-sm-6 left">{{status}}</div>
 						<div class="col-sm-6 right">
-							<a target="_blank" href='<c:url value="/modules/cornerstone/index.jsp?studyId={{id}}"/>' class="btn btn-xs btn-link">查看病例</a>
+							<a target="_blank" href='<c:url value="/modules/cornerstone/index.jsp?studyId={{id}}"/>' class="btn btn-xs btn-link">查看报告</a>
 						</div>
 					</div>
 				</div>

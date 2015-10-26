@@ -58,56 +58,22 @@ var QualificationAuditModule = (function(){
 							n.isDetailShow = true;
 						}
 					});
-
+					console.log(result.data.applications );
 					var template = $('#qualificationApplicationTmpl').html();
 					Mustache.parse(template);  
 					var rendered = Mustache.render(template, {applications: result.data.applications});
 					
 					$('#applicationContainer').html(rendered);
 					
-					$('.approveBtn').off();
-					$('.approveBtn').on('click',function(){
-						var applicationId = $(this).data('applicationid');
-
-						$.post(
-							appContext + 'web/qualificationApply/approve.do',
-							{
-								applicationId: applicationId
-							},
-							function(resp){
-								param.page = 1;
-								search();
-							},
-							'json'
-						);
+					/*$('.assign-btn').off();
+					$('.assign-btn').on('click',function(){
+						$('#assignTaskModal').modal('show');
 						
-					});
-					
-					$('.rejectBtn').off();
-					$('.rejectBtn').on('click',function(){
-						var applicationId = $(this).data('applicationid');
+						initAssignTaskModalData();
 						
-						$.post(
-							appContext + 'web/qualificationApply/reject.do',
-							{
-								applicationId:applicationId
-							},
-							function(resp){
-								param.page = 1;
-								search();
-							},
-							'json'
-						);
-						
-					});
-					
-					$('.viewYszgz').off();
-					$('.viewYszgz').on('click',function(){
-						var src = $(this).data('src');
-						
-						$('#yszgzImg').attr('src',src);
-						$('#imgModal').modal('show');
-					});
+						var taskId = $(this).closest('tr').data('taskid');
+						assignParam.taskId = taskId;
+					});*/
 				}
 			}
 		});

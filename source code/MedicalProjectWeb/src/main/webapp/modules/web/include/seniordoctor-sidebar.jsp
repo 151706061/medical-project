@@ -3,6 +3,7 @@
 
 <!-- sidebar -->
 <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
+  
   	<ul class="nav lfpadding10">
 	<li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
 	</ul>

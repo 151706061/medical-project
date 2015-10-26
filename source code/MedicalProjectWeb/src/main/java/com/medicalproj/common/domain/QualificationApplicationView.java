@@ -13,8 +13,6 @@ public class QualificationApplicationView {
 
     private String applyUserEmail;
 
-    private String applyUserType;
-
     private String yszgzImgRelativePath;
 
     private Integer reviewUserId;
@@ -77,14 +75,6 @@ public class QualificationApplicationView {
 
     public void setApplyUserEmail(String applyUserEmail) {
         this.applyUserEmail = applyUserEmail == null ? null : applyUserEmail.trim();
-    }
-
-    public String getApplyUserType() {
-        return applyUserType;
-    }
-
-    public void setApplyUserType(String applyUserType) {
-        this.applyUserType = applyUserType == null ? null : applyUserType.trim();
     }
 
     public String getYszgzImgRelativePath() {

@@ -8,7 +8,6 @@
     <result column="APPLY_USER_NAME" property="applyUserName" jdbcType="VARCHAR" />
     <result column="APPLY_USER_MOOBILE" property="applyUserMoobile" jdbcType="VARCHAR" />
     <result column="APPLY_USER_EMAIL" property="applyUserEmail" jdbcType="VARCHAR" />
-    <result column="APPLY_USER_TYPE" property="applyUserType" jdbcType="VARCHAR" />
     <result column="YSZGZ_IMG_RELATIVE_PATH" property="yszgzImgRelativePath" jdbcType="VARCHAR" />
     <result column="REVIEW_USER_ID" property="reviewUserId" jdbcType="INTEGER" />
     <result column="REVIEW_USER_NAME" property="reviewUserName" jdbcType="VARCHAR" />
@@ -78,8 +77,8 @@
   </sql>
   <sql id="Base_Column_List" >
     ID, APPLY_TIME, APPLY_USER_ID, APPLY_USER_NAME, APPLY_USER_MOOBILE, APPLY_USER_EMAIL, 
-    APPLY_USER_TYPE, YSZGZ_IMG_RELATIVE_PATH, REVIEW_USER_ID, REVIEW_USER_NAME, REVIEW_USER_MOBILE, 
-    REVIEW_USER_EMAIL, REVIEW_TIME, REVIEW_TEXT, STATUS
+    YSZGZ_IMG_RELATIVE_PATH, REVIEW_USER_ID, REVIEW_USER_NAME, REVIEW_USER_MOBILE, REVIEW_USER_EMAIL, 
+    REVIEW_TIME, REVIEW_TEXT, STATUS
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.QualificationApplicationViewExample" >
     select
@@ -104,16 +103,14 @@
   <insert id="insert" parameterType="com.medicalproj.common.domain.QualificationApplicationView" >
     insert into vw_qualification_application (ID, APPLY_TIME, APPLY_USER_ID, 
       APPLY_USER_NAME, APPLY_USER_MOOBILE, APPLY_USER_EMAIL, 
-      APPLY_USER_TYPE, YSZGZ_IMG_RELATIVE_PATH, REVIEW_USER_ID, 
-      REVIEW_USER_NAME, REVIEW_USER_MOBILE, REVIEW_USER_EMAIL, 
-      REVIEW_TIME, REVIEW_TEXT, STATUS
-      )
+      YSZGZ_IMG_RELATIVE_PATH, REVIEW_USER_ID, REVIEW_USER_NAME, 
+      REVIEW_USER_MOBILE, REVIEW_USER_EMAIL, REVIEW_TIME, 
+      REVIEW_TEXT, STATUS)
     values (#{id,jdbcType=INTEGER}, #{applyTime,jdbcType=VARCHAR}, #{applyUserId,jdbcType=INTEGER}, 
       #{applyUserName,jdbcType=VARCHAR}, #{applyUserMoobile,jdbcType=VARCHAR}, #{applyUserEmail,jdbcType=VARCHAR}, 
-      #{applyUserType,jdbcType=VARCHAR}, #{yszgzImgRelativePath,jdbcType=VARCHAR}, #{reviewUserId,jdbcType=INTEGER}, 
-      #{reviewUserName,jdbcType=VARCHAR}, #{reviewUserMobile,jdbcType=VARCHAR}, #{reviewUserEmail,jdbcType=VARCHAR}, 
-      #{reviewTime,jdbcType=VARCHAR}, #{reviewText,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
-      )
+      #{yszgzImgRelativePath,jdbcType=VARCHAR}, #{reviewUserId,jdbcType=INTEGER}, #{reviewUserName,jdbcType=VARCHAR}, 
+      #{reviewUserMobile,jdbcType=VARCHAR}, #{reviewUserEmail,jdbcType=VARCHAR}, #{reviewTime,jdbcType=VARCHAR}, 
+      #{reviewText,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.QualificationApplicationView" >
     insert into vw_qualification_application
@@ -135,9 +132,6 @@
       </if>
       <if test="applyUserEmail != null" >
         APPLY_USER_EMAIL,
-      </if>
-      <if test="applyUserType != null" >
-        APPLY_USER_TYPE,
       </if>
       <if test="yszgzImgRelativePath != null" >
         YSZGZ_IMG_RELATIVE_PATH,
@@ -182,9 +176,6 @@
       </if>
       <if test="applyUserEmail != null" >
         #{applyUserEmail,jdbcType=VARCHAR},
-      </if>
-      <if test="applyUserType != null" >
-        #{applyUserType,jdbcType=VARCHAR},
       </if>
       <if test="yszgzImgRelativePath != null" >
         #{yszgzImgRelativePath,jdbcType=VARCHAR},
@@ -239,9 +230,6 @@
       <if test="record.applyUserEmail != null" >
         APPLY_USER_EMAIL = #{record.applyUserEmail,jdbcType=VARCHAR},
       </if>
-      <if test="record.applyUserType != null" >
-        APPLY_USER_TYPE = #{record.applyUserType,jdbcType=VARCHAR},
-      </if>
       <if test="record.yszgzImgRelativePath != null" >
         YSZGZ_IMG_RELATIVE_PATH = #{record.yszgzImgRelativePath,jdbcType=VARCHAR},
       </if>
@@ -279,7 +267,6 @@
       APPLY_USER_NAME = #{record.applyUserName,jdbcType=VARCHAR},
       APPLY_USER_MOOBILE = #{record.applyUserMoobile,jdbcType=VARCHAR},
       APPLY_USER_EMAIL = #{record.applyUserEmail,jdbcType=VARCHAR},
-      APPLY_USER_TYPE = #{record.applyUserType,jdbcType=VARCHAR},
       YSZGZ_IMG_RELATIVE_PATH = #{record.yszgzImgRelativePath,jdbcType=VARCHAR},
       REVIEW_USER_ID = #{record.reviewUserId,jdbcType=INTEGER},
       REVIEW_USER_NAME = #{record.reviewUserName,jdbcType=VARCHAR},
