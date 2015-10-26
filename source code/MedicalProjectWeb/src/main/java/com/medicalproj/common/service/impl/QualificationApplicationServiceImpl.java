@@ -134,7 +134,7 @@ public class QualificationApplicationServiceImpl implements
 			// update application status
 			application.setReviewTime(new Date());
 			application.setReviewUserId(processUserId);
-			application.setStatus(Constants.QUALIFICATION_APPLICATION_STATUS_REJECT);
+			application.setStatus(Constants.QUALIFICATION_APPLICATION_STATUS_APPROVE);
 			
 			this.saveOrUpdate(application);
 		}

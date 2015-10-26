@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.medicalproj.common.dao.MedicalCaseViewMapper" >
+  <resultMap id="BaseResultMap" type="com.medicalproj.common.domain.MedicalCaseView" >
+    <result column="MEDICAL_CASE_ID" property="medicalCaseId" jdbcType="INTEGER" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="PATIENT_NAME" property="patientName" jdbcType="VARCHAR" />
+    <result column="PATIENT_BIRTHDAY" property="patientBirthday" jdbcType="VARCHAR" />
+    <result column="PATIENT_SEX" property="patientSex" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="CREATOR_USER_ID" property="creatorUserId" jdbcType="INTEGER" />
+    <result column="CREATOR_USER_NAME" property="creatorUserName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MEDICAL_CASE_ID, PATIENT_ID, PATIENT_NAME, PATIENT_BIRTHDAY, PATIENT_SEX, STATUS, 
+    CREATE_TIME, CREATOR_USER_ID, CREATOR_USER_NAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.MedicalCaseViewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vw_medical_case
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.medicalproj.common.domain.MedicalCaseViewExample" >
+    delete from vw_medical_case
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.medicalproj.common.domain.MedicalCaseView" >
+    insert into vw_medical_case (MEDICAL_CASE_ID, PATIENT_ID, PATIENT_NAME, 
+      PATIENT_BIRTHDAY, PATIENT_SEX, STATUS, 
+      CREATE_TIME, CREATOR_USER_ID, CREATOR_USER_NAME
+      )
+    values (#{medicalCaseId,jdbcType=INTEGER}, #{patientId,jdbcType=VARCHAR}, #{patientName,jdbcType=VARCHAR}, 
+      #{patientBirthday,jdbcType=VARCHAR}, #{patientSex,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{creatorUserId,jdbcType=INTEGER}, #{creatorUserName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.medicalproj.common.domain.MedicalCaseView" >
+    insert into vw_medical_case
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="medicalCaseId != null" >
+        MEDICAL_CASE_ID,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="patientName != null" >
+        PATIENT_NAME,
+      </if>
+      <if test="patientBirthday != null" >
+        PATIENT_BIRTHDAY,
+      </if>
+      <if test="patientSex != null" >
+        PATIENT_SEX,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="creatorUserId != null" >
+        CREATOR_USER_ID,
+      </if>
+      <if test="creatorUserName != null" >
+        CREATOR_USER_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="medicalCaseId != null" >
+        #{medicalCaseId,jdbcType=INTEGER},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="patientName != null" >
+        #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientBirthday != null" >
+        #{patientBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="patientSex != null" >
+        #{patientSex,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorUserId != null" >
+        #{creatorUserId,jdbcType=INTEGER},
+      </if>
+      <if test="creatorUserName != null" >
+        #{creatorUserName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.medicalproj.common.domain.MedicalCaseViewExample" resultType="java.lang.Integer" >
+    select count(*) from vw_medical_case
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vw_medical_case
+    <set >
+      <if test="record.medicalCaseId != null" >
+        MEDICAL_CASE_ID = #{record.medicalCaseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.patientId != null" >
+        PATIENT_ID = #{record.patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientName != null" >
+        PATIENT_NAME = #{record.patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientBirthday != null" >
+        PATIENT_BIRTHDAY = #{record.patientBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientSex != null" >
+        PATIENT_SEX = #{record.patientSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatorUserId != null" >
+        CREATOR_USER_ID = #{record.creatorUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.creatorUserName != null" >
+        CREATOR_USER_NAME = #{record.creatorUserName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vw_medical_case
+    set MEDICAL_CASE_ID = #{record.medicalCaseId,jdbcType=INTEGER},
+      PATIENT_ID = #{record.patientId,jdbcType=VARCHAR},
+      PATIENT_NAME = #{record.patientName,jdbcType=VARCHAR},
+      PATIENT_BIRTHDAY = #{record.patientBirthday,jdbcType=VARCHAR},
+      PATIENT_SEX = #{record.patientSex,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      CREATOR_USER_ID = #{record.creatorUserId,jdbcType=INTEGER},
+      CREATOR_USER_NAME = #{record.creatorUserName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.MedicalCaseViewExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vw_medical_case
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
