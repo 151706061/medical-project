@@ -28,4 +28,8 @@ public interface IMedicalCaseService {
 
 	int countMedicalCaseViewByCond(ListMedicalCaseParam param)throws ServiceException;
 
+	MedicalCase getById(Integer medicalCaseId)throws ServiceException;
+
+	void saveOrUpdate(MedicalCase mc)throws ServiceException;
+
 }

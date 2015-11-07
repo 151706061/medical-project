@@ -843,6 +843,136 @@ public class TaskViewExample {
             addCriterion("PATIENT_NAME not between", value1, value2, "patientName");
             return (Criteria) this;
         }
+
+        public Criteria andMedicalCaseCreatorUserIdIsNull() {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserIdIsNotNull() {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserIdEqualTo(Integer value) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_ID =", value, "medicalCaseCreatorUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserIdNotEqualTo(Integer value) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_ID <>", value, "medicalCaseCreatorUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserIdGreaterThan(Integer value) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_ID >", value, "medicalCaseCreatorUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_ID >=", value, "medicalCaseCreatorUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserIdLessThan(Integer value) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_ID <", value, "medicalCaseCreatorUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserIdLessThanOrEqualTo(Integer value) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_ID <=", value, "medicalCaseCreatorUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserIdIn(List<Integer> values) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_ID in", values, "medicalCaseCreatorUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserIdNotIn(List<Integer> values) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_ID not in", values, "medicalCaseCreatorUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserIdBetween(Integer value1, Integer value2) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_ID between", value1, value2, "medicalCaseCreatorUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_ID not between", value1, value2, "medicalCaseCreatorUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserNameIsNull() {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_NAME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserNameIsNotNull() {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_NAME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserNameEqualTo(String value) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_NAME =", value, "medicalCaseCreatorUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserNameNotEqualTo(String value) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_NAME <>", value, "medicalCaseCreatorUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserNameGreaterThan(String value) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_NAME >", value, "medicalCaseCreatorUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserNameGreaterThanOrEqualTo(String value) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_NAME >=", value, "medicalCaseCreatorUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserNameLessThan(String value) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_NAME <", value, "medicalCaseCreatorUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserNameLessThanOrEqualTo(String value) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_NAME <=", value, "medicalCaseCreatorUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserNameLike(String value) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_NAME like", value, "medicalCaseCreatorUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserNameNotLike(String value) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_NAME not like", value, "medicalCaseCreatorUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserNameIn(List<String> values) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_NAME in", values, "medicalCaseCreatorUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserNameNotIn(List<String> values) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_NAME not in", values, "medicalCaseCreatorUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserNameBetween(String value1, String value2) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_NAME between", value1, value2, "medicalCaseCreatorUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseCreatorUserNameNotBetween(String value1, String value2) {
+            addCriterion("MEDICAL_CASE_CREATOR_USER_NAME not between", value1, value2, "medicalCaseCreatorUserName");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -14,12 +14,14 @@ import com.medicalproj.common.dao.StudyMapper;
 import com.medicalproj.common.dao.StudyViewMapper;
 import com.medicalproj.common.domain.DetailedStudyView;
 import com.medicalproj.common.domain.DetailedStudyViewExample;
+import com.medicalproj.common.domain.MedicalCase;
 import com.medicalproj.common.domain.Study;
 import com.medicalproj.common.domain.StudyExample;
 import com.medicalproj.common.domain.StudyView;
 import com.medicalproj.common.domain.StudyViewExample;
 import com.medicalproj.common.domain.Task;
 import com.medicalproj.common.exception.ServiceException;
+import com.medicalproj.common.service.IMedicalCaseService;
 import com.medicalproj.common.service.IStudyService;
 import com.medicalproj.common.service.ITaskService;
 import com.medicalproj.common.util.AssertUtil;
@@ -42,6 +44,9 @@ public class StudyServiceImpl implements IStudyService {
 	
 	@Autowired
 	private ITaskService taskService;
+	
+	@Autowired
+	private IMedicalCaseService medicalCaseService;
 	
 	@Override
 	public List<StudyView> listAllStudyByMedicalCaseId(Integer medicalCaseId)
@@ -193,8 +198,11 @@ public class StudyServiceImpl implements IStudyService {
 			
 			this.saveOrUpdate(study);
 			
-			task.setStatus(Constants.TASK_STATUS_MEDICAL_CASE_DIAGNOSE_COMPLETE);
-			taskService.saveOrUpdate(task);
+			Integer medicalCaseId = study.getMedicalCaseId();
+			
+			MedicalCase mc = medicalCaseService.getById(medicalCaseId);
+			mc.setStatus(Constants.MEDICAL_CASE_STATUS_DIAGNOSE_COMPLETE);
+			medicalCaseService.saveOrUpdate(mc);
 			
 			//创建审核任务
 			taskService.createAuditTask(study.getId());
@@ -214,9 +222,13 @@ public class StudyServiceImpl implements IStudyService {
 			
 			this.saveOrUpdate(study);
 			
-			//更新任务状态
-			task.setStatus(Constants.TASK_STATUS_MEDICAL_CASE_AUDIT_COMPLETE);
-			taskService.saveOrUpdate(task);
+			//更新状态
+			Integer medicalCaseId = study.getMedicalCaseId();
+			
+			MedicalCase mc = medicalCaseService.getById(medicalCaseId);
+			mc.setStatus(Constants.MEDICAL_CASE_STATUS_AUDIT_COMPLETE);
+			medicalCaseService.saveOrUpdate(mc);
+			
 		}		
 	}
 

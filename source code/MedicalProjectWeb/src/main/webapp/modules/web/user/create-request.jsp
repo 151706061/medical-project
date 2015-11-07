@@ -65,7 +65,7 @@
 				</div>
 			</div>
 			<div class="col-sm-5  col-sm-offset-4">
-				<button class="btn btn-success" id="uploadDcmBtn">上传</button>
+				<button class="btn btn-success" id="uploadDcmBtn">选取文件</button>
 				<button class="btn btn-success" disabled id="completeUploadBtn">完成</button>
 				<button class="btn btn-danger" id="reUploadBtn">重新上传</button>
 			</div>

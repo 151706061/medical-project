@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-  <classPathEntry location="e:\libs\mysql-connector-java-5.1.35.jar" />
+  <classPathEntry location="d:\lib\mysql-connector-java-5.1.35.jar" />
 
   <context id="DB2Tables" targetRuntime="MyBatis3">
 		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
@@ -42,6 +42,7 @@
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 	
+		<!--
 		<table tableName="TBL_INSTANCE" domainObjectName="Instance">
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table>
@@ -84,9 +85,11 @@
 		
 		<table tableName="TBL_USER" domainObjectName="User">
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
-		</table>
+		</table> 
+		-->
 		
 		<!-- View -->
+		<!--
 		<table tableName="vw_notification" domainObjectName="NotificationView">
 		</table>
 		
@@ -119,6 +122,8 @@
 		
 		<table tableName="vw_detailed_study" domainObjectName="DetailedStudyView">
 		</table>
-
+		-->
+		<table tableName="vw_task" domainObjectName="TaskView">
+		</table>
 	</context>
 </generatorConfiguration>

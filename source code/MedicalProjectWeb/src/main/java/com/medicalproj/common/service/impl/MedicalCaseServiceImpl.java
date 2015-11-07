@@ -81,17 +81,6 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 		}
 	}
 
-	private void saveOrUpdate(MedicalCase domain) {
-		if( domain != null ){
-			if( domain.getId() == null ){
-				medicalCaseMapper.insertSelective(domain);
-			}else{
-				medicalCaseMapper.updateByPrimaryKeySelective(domain);
-			}
-		}
-		
-	}
-
 	/*@Override
 	public void doComplete(Integer medicalCaseId) throws ServiceException {
 		try {
@@ -121,10 +110,6 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 		
 		
 	}*/
-
-	private MedicalCase getById(Integer medicalCaseId) {
-		return medicalCaseMapper.selectByPrimaryKey(medicalCaseId);
-	}
 
 	@Override
 	public List<MedicalCaseView> listAllMedicalCaseViewByOwnerId(Integer ownerId)
@@ -382,6 +367,23 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 	public int countMedicalCaseViewByCond(ListMedicalCaseParam param) throws ServiceException {
 		MedicalCaseViewExample example = trans2MedicalCaseViewExample(param);
 		return medicalCaseViewMapper.countByExample(example);
+	}
+
+	@Override
+	public MedicalCase getById(Integer medicalCaseId) throws ServiceException {
+		return medicalCaseMapper.selectByPrimaryKey(medicalCaseId);
+	}
+
+	@Override
+	public void saveOrUpdate(MedicalCase domain) throws ServiceException {
+		if( domain != null ){
+			if( domain.getId() == null ){
+				medicalCaseMapper.insertSelective(domain);
+			}else{
+				medicalCaseMapper.updateByPrimaryKeySelective(domain);
+			}
+		}
+		
 	}
 	
 	

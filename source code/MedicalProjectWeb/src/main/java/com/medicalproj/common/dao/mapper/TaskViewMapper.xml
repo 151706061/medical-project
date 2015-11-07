@@ -13,6 +13,8 @@
     <result column="TASK_OWNER_USER_EMAIL" property="taskOwnerUserEmail" jdbcType="VARCHAR" />
     <result column="TASK_OWNER_USER_MOBILE" property="taskOwnerUserMobile" jdbcType="VARCHAR" />
     <result column="PATIENT_NAME" property="patientName" jdbcType="VARCHAR" />
+    <result column="MEDICAL_CASE_CREATOR_USER_ID" property="medicalCaseCreatorUserId" jdbcType="INTEGER" />
+    <result column="MEDICAL_CASE_CREATOR_USER_NAME" property="medicalCaseCreatorUserName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -74,7 +76,8 @@
   </sql>
   <sql id="Base_Column_List" >
     TASK_ID, TASK_TYPE, TASK_STATUS, RESOURCE_ID, TASK_CREATE_TIME, PROCESS_TIME, TASK_OWNER_USER_ID, 
-    TASK_OWNER_USER_NAME, TASK_OWNER_USER_EMAIL, TASK_OWNER_USER_MOBILE, PATIENT_NAME
+    TASK_OWNER_USER_NAME, TASK_OWNER_USER_EMAIL, TASK_OWNER_USER_MOBILE, PATIENT_NAME, 
+    MEDICAL_CASE_CREATOR_USER_ID, MEDICAL_CASE_CREATOR_USER_NAME
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.TaskViewExample" >
     select
@@ -100,11 +103,13 @@
     insert into vw_task (TASK_ID, TASK_TYPE, TASK_STATUS, 
       RESOURCE_ID, TASK_CREATE_TIME, PROCESS_TIME, 
       TASK_OWNER_USER_ID, TASK_OWNER_USER_NAME, TASK_OWNER_USER_EMAIL, 
-      TASK_OWNER_USER_MOBILE, PATIENT_NAME)
+      TASK_OWNER_USER_MOBILE, PATIENT_NAME, MEDICAL_CASE_CREATOR_USER_ID, 
+      MEDICAL_CASE_CREATOR_USER_NAME)
     values (#{taskId,jdbcType=INTEGER}, #{taskType,jdbcType=VARCHAR}, #{taskStatus,jdbcType=VARCHAR}, 
       #{resourceId,jdbcType=BIGINT}, #{taskCreateTime,jdbcType=VARCHAR}, #{processTime,jdbcType=VARCHAR}, 
       #{taskOwnerUserId,jdbcType=INTEGER}, #{taskOwnerUserName,jdbcType=VARCHAR}, #{taskOwnerUserEmail,jdbcType=VARCHAR}, 
-      #{taskOwnerUserMobile,jdbcType=VARCHAR}, #{patientName,jdbcType=VARCHAR})
+      #{taskOwnerUserMobile,jdbcType=VARCHAR}, #{patientName,jdbcType=VARCHAR}, #{medicalCaseCreatorUserId,jdbcType=INTEGER}, 
+      #{medicalCaseCreatorUserName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.TaskView" >
     insert into vw_task
@@ -142,6 +147,12 @@
       <if test="patientName != null" >
         PATIENT_NAME,
       </if>
+      <if test="medicalCaseCreatorUserId != null" >
+        MEDICAL_CASE_CREATOR_USER_ID,
+      </if>
+      <if test="medicalCaseCreatorUserName != null" >
+        MEDICAL_CASE_CREATOR_USER_NAME,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="taskId != null" >
@@ -176,6 +187,12 @@
       </if>
       <if test="patientName != null" >
         #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalCaseCreatorUserId != null" >
+        #{medicalCaseCreatorUserId,jdbcType=INTEGER},
+      </if>
+      <if test="medicalCaseCreatorUserName != null" >
+        #{medicalCaseCreatorUserName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -221,6 +238,12 @@
       <if test="record.patientName != null" >
         PATIENT_NAME = #{record.patientName,jdbcType=VARCHAR},
       </if>
+      <if test="record.medicalCaseCreatorUserId != null" >
+        MEDICAL_CASE_CREATOR_USER_ID = #{record.medicalCaseCreatorUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.medicalCaseCreatorUserName != null" >
+        MEDICAL_CASE_CREATOR_USER_NAME = #{record.medicalCaseCreatorUserName,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -238,7 +261,9 @@
       TASK_OWNER_USER_NAME = #{record.taskOwnerUserName,jdbcType=VARCHAR},
       TASK_OWNER_USER_EMAIL = #{record.taskOwnerUserEmail,jdbcType=VARCHAR},
       TASK_OWNER_USER_MOBILE = #{record.taskOwnerUserMobile,jdbcType=VARCHAR},
-      PATIENT_NAME = #{record.patientName,jdbcType=VARCHAR}
+      PATIENT_NAME = #{record.patientName,jdbcType=VARCHAR},
+      MEDICAL_CASE_CREATOR_USER_ID = #{record.medicalCaseCreatorUserId,jdbcType=INTEGER},
+      MEDICAL_CASE_CREATOR_USER_NAME = #{record.medicalCaseCreatorUserName,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

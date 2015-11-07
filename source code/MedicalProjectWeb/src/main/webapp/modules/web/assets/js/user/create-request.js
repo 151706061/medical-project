@@ -206,7 +206,11 @@ var CreateRequestModule = (function(){
 			if( data.data ){
 				isCurrentUploadComplete = true;
 				CommonModule.showConfirm('病例已生成，点确定查看病例，点取消上传新病例。',function(){
+					// ok on complete confirm box
+					
+					
 					routie('requests');
+					CommonModule.hideConfirm();
 				},
 				function(){
 					uploadNo = null;

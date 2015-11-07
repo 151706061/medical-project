@@ -49,6 +49,7 @@ var TaskModule = (function(){
 				if( result && result.data && result.data.tasks && result.data.tasks.length > 0 ){
 					var template = $('#taskListItemTmpl').html();
 					Mustache.parse(template);  
+					processTaskData(result.data.tasks);
 					var rendered = Mustache.render(template, {tasks: result.data.tasks});
 					
 					$('#taskListTbody').html(rendered);
@@ -63,6 +64,14 @@ var TaskModule = (function(){
 						assignParam.taskId = taskId;
 					});
 				}
+			}
+		});
+	};
+	
+	var processTaskData = function(tasks){
+		$.each(tasks,function(i,n){
+			if( n.taskStatus == '已分配待诊断'){
+				n.showDiagnoseBtn = true;
 			}
 		});
 	};

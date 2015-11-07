@@ -23,6 +23,10 @@ public class TaskView {
 
     private String patientName;
 
+    private Integer medicalCaseCreatorUserId;
+
+    private String medicalCaseCreatorUserName;
+
     public Integer getTaskId() {
         return taskId;
     }
@@ -109,5 +113,21 @@ public class TaskView {
 
     public void setPatientName(String patientName) {
         this.patientName = patientName == null ? null : patientName.trim();
+    }
+
+    public Integer getMedicalCaseCreatorUserId() {
+        return medicalCaseCreatorUserId;
+    }
+
+    public void setMedicalCaseCreatorUserId(Integer medicalCaseCreatorUserId) {
+        this.medicalCaseCreatorUserId = medicalCaseCreatorUserId;
+    }
+
+    public String getMedicalCaseCreatorUserName() {
+        return medicalCaseCreatorUserName;
+    }
+
+    public void setMedicalCaseCreatorUserName(String medicalCaseCreatorUserName) {
+        this.medicalCaseCreatorUserName = medicalCaseCreatorUserName == null ? null : medicalCaseCreatorUserName.trim();
     }
 }

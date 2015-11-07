@@ -152,7 +152,7 @@
       <div class="modal-body">
       	<form>
       	  <div class="form-group">
-      	  	<p>诊断医生： Jack Chen</p>
+      	  	<p class="doc-name"></p>
       	  </div>
 		  <div class="form-group">
 		    <label for="exampleInputEmail1">影像表现</label>
@@ -196,14 +196,14 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-      	  	<p>诊断医生： Jack Chen</p>
+      	  	<p class="doc-name"></p>
       	  </div>
 		  <div class="form-group">
-		    <label for="exampleInputEmail1">影像表现</label>
+		    <label>影像表现</label>
 		    <p class="performance">这里是影响表现</p>
 		  </div>
 		  <div class="form-group">
-		    <label for="exampleInputPassword1">影像结论</label>
+		    <label>影像结论</label>
 		    <p class="result">这里是影像结论</p>
 		  </div>
 		</form>
@@ -317,8 +317,11 @@ $(function(){
 			function(resp){
 				var performance = resp.data.diagnoseImagePerformance;
 				var result = resp.data.diagnoseImageResult;
+				var docName = resp.data.diagnoseUserName;
 				$('#viewReportModal .performance').text(performance);
 				$('#viewReportModal .result').text(result);
+				
+				$('#viewReportModal .doc-name').text("诊断医生："+docName);
 			},
 			'json'
 		);	
@@ -413,7 +416,7 @@ $(function(){
 		
 	});
 	
-	$('.auditBtn').on('click',function(){
+	$('#auditBtn').on('click',function(){
 		$.get(
 			appContext + 'web/dcmviewer/loadStudyView.do',
 			{
@@ -422,8 +425,11 @@ $(function(){
 			function(resp){
 				var performance = resp.data.diagnoseImagePerformance;
 				var result = resp.data.diagnoseImageResult;
+				var docName = resp.data.diagnoseUserName;
 				$('#auditModal .performance').text(performance);
 				$('#auditModal .result').text(result);
+				
+				$('#auditModal .doc-name').text("诊断医生： " + docName);
 			},
 			'json'
 		);	

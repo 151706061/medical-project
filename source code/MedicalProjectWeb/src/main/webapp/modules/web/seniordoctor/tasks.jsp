@@ -78,11 +78,11 @@
 	<td>{{taskCreateTime}}</td>
 	<td>{{taskType}}</td>
 	<td>{{patientName}}</td>
-	<td>{{taskOwnerUserName}}</td>
+	<td>{{medicalCaseCreatorUserName}}</td>
 	<td>{{taskStatus}}</td>
 	<td>
-		<a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs diagnose-btn" >诊断</button>
-		<a href='javascript:void(0)' target="_blank" class="btn btn-success btn-xs assign-btn" style="margin-left:5px">分配</button>
+		{{#showAuditBtn}}<a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs audit-btn" >审核</button>{{/showAuditBtn}}
+		{{#showAssignBtn}}<a href='javascript:void(0)' target="_blank" class="btn btn-success btn-xs assign-btn" style="margin-left:5px">分配</button>{{/showAssignBtn}}
 	</td>
 </tr>
 {{/tasks}}

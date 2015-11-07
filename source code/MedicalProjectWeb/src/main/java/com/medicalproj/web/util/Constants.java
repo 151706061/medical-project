@@ -30,14 +30,14 @@ public class Constants {
 	
 	/*任务状态*/
 	//病例诊断状态 ：1待审 2待诊断 3完成 4已分配待诊断 
-	public static final int TASK_STATUS_MEDICAL_CASE_WAIT_FOR_ASSIGNED = 0;
-	public static final int TASK_STATUS_MEDICAL_CASE_WAIT_FOR_AUDIT = 1;
+	public static final int MEDICAL_CASE_STATUS_WAIT_FOR_ASSIGNED = 0;
+	public static final int MEDICAL_CASE_STATUS_WAIT_FOR_AUDIT = 1;
 	//public static final int TASK_STATUS_MEDICAL_CASE_WAIT_FOR_DIAGNOSE = 2;
 	//public static final int TASK_STATUS_MEDICAL_CASE_COMPLETE = 3;
-	public static final int TASK_STATUS_MEDICAL_CASE_ASSIGNED_WAIT_FOR_DIAGNOSE = 4;
-	public static final int TASK_STATUS_MEDICAL_CASE_ASSIGN_COMPLETE = 10;
-	public static final int TASK_STATUS_MEDICAL_CASE_DIAGNOSE_COMPLETE = 11;
-	public static final int TASK_STATUS_MEDICAL_CASE_AUDIT_COMPLETE = 12;
+	public static final int MEDICAL_CASE_STATUS_ASSIGNED_WAIT_FOR_DIAGNOSE = 4;
+	public static final int MEDICAL_CASE_STATUS_ASSIGN_COMPLETE = 10;
+	public static final int MEDICAL_CASE_STATUS_DIAGNOSE_COMPLETE = 11;
+	public static final int MEDICAL_CASE_STATUS_AUDIT_COMPLETE = 12;
 	
 	//资格审批状态 ： 5待审 6批准 7拒绝 
 	public static final int TASK_STATUS_QUALIFICATION_AUDIT_WAIT_FOR_REVIEW = 5;
@@ -67,10 +67,9 @@ public class Constants {
 	public static final int STUDY_STATUS_COMPLETE_AUDIT = 3;
 
 	public static final String FILE_SUFFIX_JPG = "jpg";
-	public final static String FTP_HTTP_BASE_URL = "http://52.27.220.196/ftp/";
-	//public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp/";
-	
-	
+//	public final static String FTP_HTTP_BASE_URL = "http://52.27.220.196/ftp/";
+//	public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp/";
+	public final static String FTP_HTTP_BASE_URL = "http://101.200.199.13/ftp/";
 	
 
 	

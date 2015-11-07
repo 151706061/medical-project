@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.medicalproj.common.domain.InstanceView;
+import com.medicalproj.common.domain.MedicalCase;
 import com.medicalproj.common.domain.MedicalCaseView;
 import com.medicalproj.common.domain.SeriesView;
 import com.medicalproj.common.domain.Study;
@@ -196,7 +197,10 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 				Task task = taskService.getMyDiagnoseTask(studyId, userId);
 				if( task != null){
 					permission.setCanViewReport(true);
-					if( task.getStatus().equals(Constants.TASK_STATUS_MEDICAL_CASE_ASSIGNED_WAIT_FOR_DIAGNOSE) ){
+					
+					MedicalCase mc = medicalCaseService.getById(study.getMedicalCaseId());
+					
+					if( mc.getStatus().equals(Constants.MEDICAL_CASE_STATUS_ASSIGNED_WAIT_FOR_DIAGNOSE) ){
 						permission.setCanDiagnose(true);
 					}
 				}
@@ -206,7 +210,9 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 				
 				if( task != null ){
 					permission.setCanViewDiagnoseAndAuditReport(true);
-					if( task.getStatus().equals(Constants.TASK_STATUS_MEDICAL_CASE_WAIT_FOR_AUDIT) ){
+					
+					MedicalCase mc = medicalCaseService.getById(study.getMedicalCaseId());
+					if( mc.getStatus().equals(Constants.MEDICAL_CASE_STATUS_WAIT_FOR_AUDIT) ){
 						permission.setCanAudit(true);
 					}
 				}

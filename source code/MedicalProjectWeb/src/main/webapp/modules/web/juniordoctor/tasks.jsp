@@ -51,9 +51,11 @@
 	<td>{{taskCreateTime}}</td>
 	<td>{{taskType}}</td>
 	<td>{{patientName}}</td>
-	<td>{{taskOwnerUserName}}</td>
+	<td>{{medicalCaseCreatorUserName}}</td>
 	<td>{{taskStatus}}</td>
-	<td><a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs diagnose-btn" >诊断</button></td>
+	<td>
+		{{#showDiagnoseBtn}}<a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs diagnose-btn" >诊断</button>{{/showDiagnoseBtn}}
+	</td>
 </tr>
 {{/tasks}}
 </script>

@@ -6,10 +6,14 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.medicalproj.common.domain.MedicalCase;
+import com.medicalproj.common.domain.Study;
 import com.medicalproj.common.domain.Task;
 import com.medicalproj.common.domain.TaskView;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
+import com.medicalproj.common.service.IMedicalCaseService;
+import com.medicalproj.common.service.IStudyService;
 import com.medicalproj.common.service.ITaskService;
 import com.medicalproj.common.util.PagerHelper;
 import com.medicalproj.web.dto.param.ListTaskParam;
@@ -24,6 +28,13 @@ public class WebTaskServiceImpl implements IWebTaskService {
 	
 	@Autowired
 	private ITaskService taskService;
+	
+	
+	@Autowired
+	private IStudyService studyService;
+	
+	@Autowired
+	private IMedicalCaseService medicalCaseService;
 	
 	@Override
 	public View<TaskListView> listTask(ListTaskParam param)
@@ -59,8 +70,15 @@ public class WebTaskServiceImpl implements IWebTaskService {
 		View<Boolean> view = new View<Boolean>();
 		try {
 			Task task = taskService.getById(taskId);
-			task.setStatus(Constants.TASK_STATUS_MEDICAL_CASE_ASSIGN_COMPLETE);
 			taskService.saveOrUpdate(task);
+			
+			Integer studyId = task.getResourceId();
+			Study study = studyService.getById(studyId);
+			
+			Integer medicalCaseId = study.getMedicalCaseId();
+			MedicalCase mc = medicalCaseService.getById(medicalCaseId);
+			mc.setStatus(Constants.MEDICAL_CASE_STATUS_ASSIGN_COMPLETE);
+			medicalCaseService.saveOrUpdate(mc);
 			
 			taskService.createDiagnoseTask(task.getResourceId(),assignToUserId);
 			view.setData(true);
