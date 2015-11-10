@@ -79,9 +79,22 @@ function setupButtons(studyViewer) {
             cornerstoneTools.probe.activate(element, 1);
         });
     });
-
+    // remove measurements
+	$(buttons[8]).on('click touchstart', function() {
+        disableAllTools();
+        forEachViewport(function(element) {
+			cornerstoneTools.clearToolState(element, "length");
+			cornerstoneTools.clearToolState(element, "angle");
+			cornerstoneTools.clearToolState(element, "probe");
+			cornerstoneTools.clearToolState(element, "ellipticalRoi");
+			cornerstoneTools.clearToolState(element, "rectangleRoi");
+            cornerstone.updateImage(element);
+            
+        });
+    });
+	
     // Elliptical ROI
-    $(buttons[8]).on('click touchstart', function() {
+    $(buttons[9]).on('click touchstart', function() {
         disableAllTools();
         forEachViewport(function(element) {
             cornerstoneTools.ellipticalRoi.activate(element, 1);
@@ -89,7 +102,7 @@ function setupButtons(studyViewer) {
     });
 
     // Rectangle ROI
-    $(buttons[9]).on('click touchstart', function() {
+    $(buttons[10]).on('click touchstart', function() {
         disableAllTools();
         forEachViewport(function (element) {
             cornerstoneTools.rectangleRoi.activate(element, 1);
@@ -97,20 +110,20 @@ function setupButtons(studyViewer) {
     });
 
     // Play clip
-    $(buttons[10]).on('click touchstart', function() {
-        var frameRate = stack.frameRate;
-
-        // Play at a default 10 FPS if the framerate is not specified
-        if (frameRate === undefined) {
-            frameRate = 10;
-        }
+    $(buttons[11]).on('click touchstart', function() {
         forEachViewport(function(element) {
-            cornerstoneTools.playClip(element, frameRate);
+          var stackState = cornerstoneTools.getToolState(element, 'stack');
+          var frameRate = stackState.data[0].frameRate;
+          // Play at a default 10 FPS if the framerate is not specified
+          if (frameRate === undefined) {
+            frameRate = 10;
+          }
+          cornerstoneTools.playClip(element, frameRate);
         });
     });
 
     // Stop clip
-    $(buttons[11]).on('click touchstart', function() {
+    $(buttons[12]).on('click touchstart', function() {
         forEachViewport(function(element) {
             cornerstoneTools.stopClip(element);
         });
