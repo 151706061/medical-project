@@ -82,6 +82,7 @@ function setupButtons(studyViewer) {
     // remove measurements
 	$(buttons[8]).on('click touchstart', function() {
         disableAllTools();
+        console.log('remove');
         forEachViewport(function(element) {
 			cornerstoneTools.clearToolState(element, "length");
 			cornerstoneTools.clearToolState(element, "angle");
