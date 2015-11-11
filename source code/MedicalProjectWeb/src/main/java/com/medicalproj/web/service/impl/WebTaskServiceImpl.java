@@ -10,11 +10,13 @@ import com.medicalproj.common.domain.MedicalCase;
 import com.medicalproj.common.domain.Study;
 import com.medicalproj.common.domain.Task;
 import com.medicalproj.common.domain.TaskView;
+import com.medicalproj.common.domain.User;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IMedicalCaseService;
 import com.medicalproj.common.service.IStudyService;
 import com.medicalproj.common.service.ITaskService;
+import com.medicalproj.common.service.IUserService;
 import com.medicalproj.common.util.PagerHelper;
 import com.medicalproj.web.dto.param.ListTaskParam;
 import com.medicalproj.web.dto.view.PagerView;
@@ -35,6 +37,9 @@ public class WebTaskServiceImpl implements IWebTaskService {
 	
 	@Autowired
 	private IMedicalCaseService medicalCaseService;
+	
+	@Autowired
+	private IUserService userService;
 	
 	@Override
 	public View<TaskListView> listTask(ListTaskParam param)
@@ -90,5 +95,24 @@ public class WebTaskServiceImpl implements IWebTaskService {
 			return view;
 		}
 	}
+
+	@Override
+	public View<Boolean> hasNewTask(Integer userId) throws ServiceException {
+		View<Boolean> view = new View<Boolean>();
+		try {
+			
+			boolean hasNewTask = taskService.hasNewTask(userId);
+			
+			view.setData(hasNewTask);
+			return view;
+		} catch (Exception e) {
+			logger.error(e);
+			view.setMsg(e.getMessage());
+			view.setSuccess(false);
+			return view;
+		}
+	}
+	
+	
 
 }

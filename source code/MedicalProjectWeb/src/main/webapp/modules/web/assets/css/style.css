@@ -233,3 +233,8 @@ nav li.dropdown a .badge{
 .modal-body {
 	padding:15px;
 }
+
+#lg-menu .badge{
+    background-color: #FF4D4D;
+    padding: 0;
+}

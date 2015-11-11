@@ -19,7 +19,7 @@
    </div>
     <ul class="nav hidden-xs" id="lg-menu">
         <li><a href='#requests'><i class="glyphicon glyphicon-open"></i> 我的请求</a></li>
-        <li><a href='#tasks'><i class="glyphicon glyphicon-open"></i> 我的任务</a></li>
+        <li><a href='#tasks'><i class="glyphicon glyphicon-open"></i> 我的任务 <span class="badge" style="display:none;">&nbsp;</span></a></li>
         <li><a href='#recharge'><i class="glyphicon glyphicon-yen"></i> 预存诊费</a></li>
         <li><a href='#transactions'><i class="glyphicon glyphicon-transfer"></i> 交易记录</a></li>
         <li><a href='#qualification-audit'><i class="glyphicon glyphicon-book"></i> 资格审查</a></li>

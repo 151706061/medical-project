@@ -23,7 +23,7 @@
 	
 	
 	var page = 1;
-	var pageSize = 10;
+	var pageSize = 100;
 	$(function(){
 		RequestModule.listRequest(page, pageSize , function(data){
 			var medicalCaseList = data.data.medicalCaseList;

@@ -7,6 +7,8 @@ public class TaskView {
 
     private String taskStatus;
 
+    private Integer medicalCaseStatusCode;
+
     private Long resourceId;
 
     private String taskCreateTime;
@@ -49,6 +51,14 @@ public class TaskView {
 
     public void setTaskStatus(String taskStatus) {
         this.taskStatus = taskStatus == null ? null : taskStatus.trim();
+    }
+
+    public Integer getMedicalCaseStatusCode() {
+        return medicalCaseStatusCode;
+    }
+
+    public void setMedicalCaseStatusCode(Integer medicalCaseStatusCode) {
+        this.medicalCaseStatusCode = medicalCaseStatusCode;
     }
 
     public Long getResourceId() {

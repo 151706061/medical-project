@@ -444,73 +444,133 @@ public class MedicalCaseViewExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusIsNull() {
-            addCriterion("STATUS is null");
+        public Criteria andMedicalCaseStatusIsNull() {
+            addCriterion("MEDICAL_CASE_STATUS is null");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIsNotNull() {
-            addCriterion("STATUS is not null");
+        public Criteria andMedicalCaseStatusIsNotNull() {
+            addCriterion("MEDICAL_CASE_STATUS is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(String value) {
-            addCriterion("STATUS =", value, "status");
+        public Criteria andMedicalCaseStatusEqualTo(String value) {
+            addCriterion("MEDICAL_CASE_STATUS =", value, "medicalCaseStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(String value) {
-            addCriterion("STATUS <>", value, "status");
+        public Criteria andMedicalCaseStatusNotEqualTo(String value) {
+            addCriterion("MEDICAL_CASE_STATUS <>", value, "medicalCaseStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(String value) {
-            addCriterion("STATUS >", value, "status");
+        public Criteria andMedicalCaseStatusGreaterThan(String value) {
+            addCriterion("MEDICAL_CASE_STATUS >", value, "medicalCaseStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(String value) {
-            addCriterion("STATUS >=", value, "status");
+        public Criteria andMedicalCaseStatusGreaterThanOrEqualTo(String value) {
+            addCriterion("MEDICAL_CASE_STATUS >=", value, "medicalCaseStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(String value) {
-            addCriterion("STATUS <", value, "status");
+        public Criteria andMedicalCaseStatusLessThan(String value) {
+            addCriterion("MEDICAL_CASE_STATUS <", value, "medicalCaseStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(String value) {
-            addCriterion("STATUS <=", value, "status");
+        public Criteria andMedicalCaseStatusLessThanOrEqualTo(String value) {
+            addCriterion("MEDICAL_CASE_STATUS <=", value, "medicalCaseStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLike(String value) {
-            addCriterion("STATUS like", value, "status");
+        public Criteria andMedicalCaseStatusLike(String value) {
+            addCriterion("MEDICAL_CASE_STATUS like", value, "medicalCaseStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotLike(String value) {
-            addCriterion("STATUS not like", value, "status");
+        public Criteria andMedicalCaseStatusNotLike(String value) {
+            addCriterion("MEDICAL_CASE_STATUS not like", value, "medicalCaseStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<String> values) {
-            addCriterion("STATUS in", values, "status");
+        public Criteria andMedicalCaseStatusIn(List<String> values) {
+            addCriterion("MEDICAL_CASE_STATUS in", values, "medicalCaseStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<String> values) {
-            addCriterion("STATUS not in", values, "status");
+        public Criteria andMedicalCaseStatusNotIn(List<String> values) {
+            addCriterion("MEDICAL_CASE_STATUS not in", values, "medicalCaseStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusBetween(String value1, String value2) {
-            addCriterion("STATUS between", value1, value2, "status");
+        public Criteria andMedicalCaseStatusBetween(String value1, String value2) {
+            addCriterion("MEDICAL_CASE_STATUS between", value1, value2, "medicalCaseStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotBetween(String value1, String value2) {
-            addCriterion("STATUS not between", value1, value2, "status");
+        public Criteria andMedicalCaseStatusNotBetween(String value1, String value2) {
+            addCriterion("MEDICAL_CASE_STATUS not between", value1, value2, "medicalCaseStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeIsNull() {
+            addCriterion("MEDICAL_CASE_STATUS_CODE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeIsNotNull() {
+            addCriterion("MEDICAL_CASE_STATUS_CODE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeEqualTo(Integer value) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE =", value, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeNotEqualTo(Integer value) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE <>", value, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeGreaterThan(Integer value) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE >", value, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE >=", value, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeLessThan(Integer value) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE <", value, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeLessThanOrEqualTo(Integer value) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE <=", value, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeIn(List<Integer> values) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE in", values, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeNotIn(List<Integer> values) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE not in", values, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeBetween(Integer value1, Integer value2) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE between", value1, value2, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeNotBetween(Integer value1, Integer value2) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE not between", value1, value2, "medicalCaseStatusCode");
             return (Criteria) this;
         }
 

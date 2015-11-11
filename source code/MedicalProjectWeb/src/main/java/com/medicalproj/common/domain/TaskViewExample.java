@@ -304,6 +304,66 @@ public class TaskViewExample {
             return (Criteria) this;
         }
 
+        public Criteria andMedicalCaseStatusCodeIsNull() {
+            addCriterion("MEDICAL_CASE_STATUS_CODE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeIsNotNull() {
+            addCriterion("MEDICAL_CASE_STATUS_CODE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeEqualTo(Integer value) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE =", value, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeNotEqualTo(Integer value) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE <>", value, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeGreaterThan(Integer value) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE >", value, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE >=", value, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeLessThan(Integer value) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE <", value, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeLessThanOrEqualTo(Integer value) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE <=", value, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeIn(List<Integer> values) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE in", values, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeNotIn(List<Integer> values) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE not in", values, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeBetween(Integer value1, Integer value2) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE between", value1, value2, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalCaseStatusCodeNotBetween(Integer value1, Integer value2) {
+            addCriterion("MEDICAL_CASE_STATUS_CODE not between", value1, value2, "medicalCaseStatusCode");
+            return (Criteria) this;
+        }
+
         public Criteria andResourceIdIsNull() {
             addCriterion("RESOURCE_ID is null");
             return (Criteria) this;

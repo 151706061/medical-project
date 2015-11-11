@@ -17,6 +17,7 @@ import com.medicalproj.common.domain.Task;
 import com.medicalproj.common.domain.TaskExample;
 import com.medicalproj.common.domain.TaskView;
 import com.medicalproj.common.domain.TaskViewExample;
+import com.medicalproj.common.domain.User;
 import com.medicalproj.common.domain.UserView;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IMedicalCaseService;
@@ -80,6 +81,11 @@ public class TaskServiceImpl implements ITaskService {
 		if( AssertUtil.isNotEmpty(param.getOwnerId()) ){
 			c.andTaskOwnerUserIdEqualTo(param.getOwnerId());
 		}
+		
+		if( AssertUtil.isNotEmpty(param.getStatus()) ){
+			c.andMedicalCaseStatusCodeEqualTo(param.getStatus());
+		}
+		
 		return example;
 	}
 
@@ -229,6 +235,56 @@ public class TaskServiceImpl implements ITaskService {
 	@Override
 	public Task getById(Integer taskId) throws ServiceException {
 		return taskMapper.selectByPrimaryKey(taskId);
+	}
+
+	@Override
+	public boolean hasNewTask(Integer userId) throws ServiceException {
+		User user = userService.getById(userId);
+		if( user == null ){
+			throw new ServiceException("用户帐号不存在");
+		}
+		
+		if( user.getUserType().equals(Constants.USER_TYPE_JUNIOR_DOCTOR) ){
+			ListTaskParam param = new ListTaskParam();
+			param.setOwnerId(userId);
+			param.setStatus(Constants.MEDICAL_CASE_STATUS_ASSIGNED_WAIT_FOR_DIAGNOSE);
+			param.setPage(1);
+			param.setPageSize(1);
+			
+			List<TaskView> taskViewList = this.listTaskByCond(param);
+			if( taskViewList != null && taskViewList.size() > 0 ){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}else if( user.getUserType().equals(Constants.USER_TYPE_SENIOR_DOCTOR) ){
+			ListTaskParam param = new ListTaskParam();
+			param.setOwnerId(userId);
+			param.setStatus(Constants.MEDICAL_CASE_STATUS_WAIT_FOR_ASSIGNED);
+			param.setPage(1);
+			param.setPageSize(1);
+			
+			List<TaskView> taskViewList = this.listTaskByCond(param);
+			if( taskViewList != null && taskViewList.size() > 0 ){
+				return true;
+			}
+			else{
+				param = new ListTaskParam();
+				param.setOwnerId(userId);
+				param.setStatus(Constants.MEDICAL_CASE_STATUS_WAIT_FOR_AUDIT);
+				param.setPage(1);
+				param.setPageSize(1);
+				
+				taskViewList = this.listTaskByCond(param);
+				if( taskViewList != null && taskViewList.size() > 0 ){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
+		return false;
 	}
 
 

@@ -26,4 +26,6 @@ public interface ITaskService {
 	Task getById(Integer taskId)throws ServiceException;
 
 	void saveOrUpdate(Task task)throws ServiceException;
+
+	boolean hasNewTask(Integer userId)throws ServiceException;
 }

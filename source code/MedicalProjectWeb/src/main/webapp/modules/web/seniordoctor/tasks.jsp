@@ -81,8 +81,9 @@
 	<td>{{medicalCaseCreatorUserName}}</td>
 	<td>{{taskStatus}}</td>
 	<td>
-		{{#showAuditBtn}}<a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs audit-btn" >审核</button>{{/showAuditBtn}}
-		{{#showAssignBtn}}<a href='javascript:void(0)' target="_blank" class="btn btn-success btn-xs assign-btn" style="margin-left:5px">分配</button>{{/showAssignBtn}}
+		{{#showAuditBtn}}<a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs audit-btn" >审核</a>{{/showAuditBtn}}
+		{{#showAssignBtn}}<a href='javascript:void(0)' target="_blank" class="btn btn-success btn-xs assign-btn" style="margin-left:5px">分配</a>{{/showAssignBtn}}
+		<a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs diagnose-btn" >查看病例</a>
 	</td>
 </tr>
 {{/tasks}}
