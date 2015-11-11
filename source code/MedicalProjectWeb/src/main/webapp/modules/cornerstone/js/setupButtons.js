@@ -75,6 +75,7 @@ function setupButtons(studyViewer) {
     // Pixel probe
     $(buttons[7]).on('click touchstart', function() {
         disableAllTools();
+        console.log('probe');
         forEachViewport(function(element) {
             cornerstoneTools.probe.activate(element, 1);
         });
@@ -97,6 +98,7 @@ function setupButtons(studyViewer) {
     // Elliptical ROI
     $(buttons[9]).on('click touchstart', function() {
         disableAllTools();
+        console.log('elliptical ROI');
         forEachViewport(function(element) {
             cornerstoneTools.ellipticalRoi.activate(element, 1);
         });
@@ -105,6 +107,7 @@ function setupButtons(studyViewer) {
     // Rectangle ROI
     $(buttons[10]).on('click touchstart', function() {
         disableAllTools();
+        console.log('Rectangle ROI');
         forEachViewport(function (element) {
             cornerstoneTools.rectangleRoi.activate(element, 1);
         });
