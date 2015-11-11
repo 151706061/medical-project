@@ -61,6 +61,8 @@ public class DcmViewerController extends WebBaseController{
 	@ResponseBody
 	public View<Boolean> submitDignose(Integer taskId ,String performance,String result ,HttpSession session){
 		User user = super.getLoginUser(session);
+		System.out.println(performance);
+		System.out.println(result);
 		
 		View<Boolean> view = dcmViewerService.submitDignose(user.getId(),taskId,performance,result);
 		

@@ -50,6 +50,7 @@
 $(function(){
 	commonObj.loadUserInfo();
 	commonObj.getUnreadNotificationCount();
+	commonObj.hasNewTask();
 	
 });
 

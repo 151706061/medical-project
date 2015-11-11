@@ -7,7 +7,8 @@
     <result column="PATIENT_NAME" property="patientName" jdbcType="VARCHAR" />
     <result column="PATIENT_BIRTHDAY" property="patientBirthday" jdbcType="VARCHAR" />
     <result column="PATIENT_SEX" property="patientSex" jdbcType="VARCHAR" />
-    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="MEDICAL_CASE_STATUS" property="medicalCaseStatus" jdbcType="VARCHAR" />
+    <result column="MEDICAL_CASE_STATUS_CODE" property="medicalCaseStatusCode" jdbcType="INTEGER" />
     <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
     <result column="CREATOR_USER_ID" property="creatorUserId" jdbcType="INTEGER" />
     <result column="CREATOR_USER_NAME" property="creatorUserName" jdbcType="VARCHAR" />
@@ -71,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    MEDICAL_CASE_ID, PATIENT_ID, PATIENT_NAME, PATIENT_BIRTHDAY, PATIENT_SEX, STATUS, 
-    CREATE_TIME, CREATOR_USER_ID, CREATOR_USER_NAME
+    MEDICAL_CASE_ID, PATIENT_ID, PATIENT_NAME, PATIENT_BIRTHDAY, PATIENT_SEX, MEDICAL_CASE_STATUS, 
+    MEDICAL_CASE_STATUS_CODE, CREATE_TIME, CREATOR_USER_ID, CREATOR_USER_NAME
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.MedicalCaseViewExample" >
     select
@@ -96,13 +97,13 @@
   </delete>
   <insert id="insert" parameterType="com.medicalproj.common.domain.MedicalCaseView" >
     insert into vw_medical_case (MEDICAL_CASE_ID, PATIENT_ID, PATIENT_NAME, 
-      PATIENT_BIRTHDAY, PATIENT_SEX, STATUS, 
-      CREATE_TIME, CREATOR_USER_ID, CREATOR_USER_NAME
-      )
+      PATIENT_BIRTHDAY, PATIENT_SEX, MEDICAL_CASE_STATUS, 
+      MEDICAL_CASE_STATUS_CODE, CREATE_TIME, CREATOR_USER_ID, 
+      CREATOR_USER_NAME)
     values (#{medicalCaseId,jdbcType=INTEGER}, #{patientId,jdbcType=VARCHAR}, #{patientName,jdbcType=VARCHAR}, 
-      #{patientBirthday,jdbcType=VARCHAR}, #{patientSex,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=VARCHAR}, #{creatorUserId,jdbcType=INTEGER}, #{creatorUserName,jdbcType=VARCHAR}
-      )
+      #{patientBirthday,jdbcType=VARCHAR}, #{patientSex,jdbcType=VARCHAR}, #{medicalCaseStatus,jdbcType=VARCHAR}, 
+      #{medicalCaseStatusCode,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, #{creatorUserId,jdbcType=INTEGER}, 
+      #{creatorUserName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.MedicalCaseView" >
     insert into vw_medical_case
@@ -122,8 +123,11 @@
       <if test="patientSex != null" >
         PATIENT_SEX,
       </if>
-      <if test="status != null" >
-        STATUS,
+      <if test="medicalCaseStatus != null" >
+        MEDICAL_CASE_STATUS,
+      </if>
+      <if test="medicalCaseStatusCode != null" >
+        MEDICAL_CASE_STATUS_CODE,
       </if>
       <if test="createTime != null" >
         CREATE_TIME,
@@ -151,8 +155,11 @@
       <if test="patientSex != null" >
         #{patientSex,jdbcType=VARCHAR},
       </if>
-      <if test="status != null" >
-        #{status,jdbcType=VARCHAR},
+      <if test="medicalCaseStatus != null" >
+        #{medicalCaseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalCaseStatusCode != null" >
+        #{medicalCaseStatusCode,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=VARCHAR},
@@ -189,8 +196,11 @@
       <if test="record.patientSex != null" >
         PATIENT_SEX = #{record.patientSex,jdbcType=VARCHAR},
       </if>
-      <if test="record.status != null" >
-        STATUS = #{record.status,jdbcType=VARCHAR},
+      <if test="record.medicalCaseStatus != null" >
+        MEDICAL_CASE_STATUS = #{record.medicalCaseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicalCaseStatusCode != null" >
+        MEDICAL_CASE_STATUS_CODE = #{record.medicalCaseStatusCode,jdbcType=INTEGER},
       </if>
       <if test="record.createTime != null" >
         CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
@@ -213,7 +223,8 @@
       PATIENT_NAME = #{record.patientName,jdbcType=VARCHAR},
       PATIENT_BIRTHDAY = #{record.patientBirthday,jdbcType=VARCHAR},
       PATIENT_SEX = #{record.patientSex,jdbcType=VARCHAR},
-      STATUS = #{record.status,jdbcType=VARCHAR},
+      MEDICAL_CASE_STATUS = #{record.medicalCaseStatus,jdbcType=VARCHAR},
+      MEDICAL_CASE_STATUS_CODE = #{record.medicalCaseStatusCode,jdbcType=INTEGER},
       CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
       CREATOR_USER_ID = #{record.creatorUserId,jdbcType=INTEGER},
       CREATOR_USER_NAME = #{record.creatorUserName,jdbcType=VARCHAR}

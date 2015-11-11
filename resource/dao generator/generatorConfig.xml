@@ -123,6 +123,8 @@
 		<table tableName="vw_detailed_study" domainObjectName="DetailedStudyView">
 		</table>
 		-->
+		<table tableName="vw_medical_case" domainObjectName="MedicalCaseView">
+		</table>
 		<table tableName="vw_task" domainObjectName="TaskView">
 		</table>
 	</context>

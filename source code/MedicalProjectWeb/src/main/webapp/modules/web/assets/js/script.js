@@ -62,6 +62,22 @@ var commonObj = (function(){
 			});
 			
 			
+		},
+		hasNewTask : function(){
+			$.get(
+				appContext + 'web/task/hasNewTask.do',
+				{},
+				function(result){
+					if( result ){
+						if( result.data == true ){
+							$('#lg-menu .badge').show();
+						}else{
+							$('#lg-menu .badge').hide();
+						}
+					}
+				},
+				'json'
+			);
 		}
 	};
 })();

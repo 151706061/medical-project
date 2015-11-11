@@ -61,4 +61,14 @@ public class WebTaskController extends WebBaseController{
 		return view;
 	}
 	
+	@RequestMapping("/hasNewTask")
+	@ResponseBody
+	public View<Boolean> hasNewTask(HttpSession session){
+		User user = getLoginUser(session);
+		
+		View<Boolean> view = webTaskService.hasNewTask(user.getId());
+		
+		return view;
+	}
+	
 }

@@ -11,7 +11,9 @@ public class MedicalCaseView {
 
     private String patientSex;
 
-    private String status;
+    private String medicalCaseStatus;
+
+    private Integer medicalCaseStatusCode;
 
     private String createTime;
 
@@ -59,12 +61,20 @@ public class MedicalCaseView {
         this.patientSex = patientSex == null ? null : patientSex.trim();
     }
 
-    public String getStatus() {
-        return status;
+    public String getMedicalCaseStatus() {
+        return medicalCaseStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+    public void setMedicalCaseStatus(String medicalCaseStatus) {
+        this.medicalCaseStatus = medicalCaseStatus == null ? null : medicalCaseStatus.trim();
+    }
+
+    public Integer getMedicalCaseStatusCode() {
+        return medicalCaseStatusCode;
+    }
+
+    public void setMedicalCaseStatusCode(Integer medicalCaseStatusCode) {
+        this.medicalCaseStatusCode = medicalCaseStatusCode;
     }
 
     public String getCreateTime() {

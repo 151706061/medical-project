@@ -93,7 +93,7 @@
 				</div>
 				<div class="panel-footer">
 					<div class="row">
-						<div class="col-sm-6 left">{{status}}</div>
+						<div class="col-sm-6 left">{{medicalCaseStatus}}</div>
 						<div class="col-sm-6 right">
 							<a target="_blank" href='<c:url value="/modules/cornerstone/index.jsp?studyId={{id}}"/>' class="btn btn-xs btn-link">查看病例</a>
 						</div>

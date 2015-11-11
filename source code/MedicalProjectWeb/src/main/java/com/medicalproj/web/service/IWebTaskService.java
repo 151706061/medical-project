@@ -12,4 +12,6 @@ public interface IWebTaskService {
 
 	View<Boolean> assignTask(Integer taskId, Integer assignToUserId)throws ServiceException;
 
+	View<Boolean> hasNewTask(Integer userId)throws ServiceException;
+
 }

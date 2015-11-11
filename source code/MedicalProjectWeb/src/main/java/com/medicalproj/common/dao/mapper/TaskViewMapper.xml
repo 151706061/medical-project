@@ -5,6 +5,7 @@
     <result column="TASK_ID" property="taskId" jdbcType="INTEGER" />
     <result column="TASK_TYPE" property="taskType" jdbcType="VARCHAR" />
     <result column="TASK_STATUS" property="taskStatus" jdbcType="VARCHAR" />
+    <result column="MEDICAL_CASE_STATUS_CODE" property="medicalCaseStatusCode" jdbcType="INTEGER" />
     <result column="RESOURCE_ID" property="resourceId" jdbcType="BIGINT" />
     <result column="TASK_CREATE_TIME" property="taskCreateTime" jdbcType="VARCHAR" />
     <result column="PROCESS_TIME" property="processTime" jdbcType="VARCHAR" />
@@ -75,9 +76,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    TASK_ID, TASK_TYPE, TASK_STATUS, RESOURCE_ID, TASK_CREATE_TIME, PROCESS_TIME, TASK_OWNER_USER_ID, 
-    TASK_OWNER_USER_NAME, TASK_OWNER_USER_EMAIL, TASK_OWNER_USER_MOBILE, PATIENT_NAME, 
-    MEDICAL_CASE_CREATOR_USER_ID, MEDICAL_CASE_CREATOR_USER_NAME
+    TASK_ID, TASK_TYPE, TASK_STATUS, MEDICAL_CASE_STATUS_CODE, RESOURCE_ID, TASK_CREATE_TIME, 
+    PROCESS_TIME, TASK_OWNER_USER_ID, TASK_OWNER_USER_NAME, TASK_OWNER_USER_EMAIL, TASK_OWNER_USER_MOBILE, 
+    PATIENT_NAME, MEDICAL_CASE_CREATOR_USER_ID, MEDICAL_CASE_CREATOR_USER_NAME
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.TaskViewExample" >
     select
@@ -101,14 +102,16 @@
   </delete>
   <insert id="insert" parameterType="com.medicalproj.common.domain.TaskView" >
     insert into vw_task (TASK_ID, TASK_TYPE, TASK_STATUS, 
-      RESOURCE_ID, TASK_CREATE_TIME, PROCESS_TIME, 
-      TASK_OWNER_USER_ID, TASK_OWNER_USER_NAME, TASK_OWNER_USER_EMAIL, 
-      TASK_OWNER_USER_MOBILE, PATIENT_NAME, MEDICAL_CASE_CREATOR_USER_ID, 
+      MEDICAL_CASE_STATUS_CODE, RESOURCE_ID, TASK_CREATE_TIME, 
+      PROCESS_TIME, TASK_OWNER_USER_ID, TASK_OWNER_USER_NAME, 
+      TASK_OWNER_USER_EMAIL, TASK_OWNER_USER_MOBILE, 
+      PATIENT_NAME, MEDICAL_CASE_CREATOR_USER_ID, 
       MEDICAL_CASE_CREATOR_USER_NAME)
     values (#{taskId,jdbcType=INTEGER}, #{taskType,jdbcType=VARCHAR}, #{taskStatus,jdbcType=VARCHAR}, 
-      #{resourceId,jdbcType=BIGINT}, #{taskCreateTime,jdbcType=VARCHAR}, #{processTime,jdbcType=VARCHAR}, 
-      #{taskOwnerUserId,jdbcType=INTEGER}, #{taskOwnerUserName,jdbcType=VARCHAR}, #{taskOwnerUserEmail,jdbcType=VARCHAR}, 
-      #{taskOwnerUserMobile,jdbcType=VARCHAR}, #{patientName,jdbcType=VARCHAR}, #{medicalCaseCreatorUserId,jdbcType=INTEGER}, 
+      #{medicalCaseStatusCode,jdbcType=INTEGER}, #{resourceId,jdbcType=BIGINT}, #{taskCreateTime,jdbcType=VARCHAR}, 
+      #{processTime,jdbcType=VARCHAR}, #{taskOwnerUserId,jdbcType=INTEGER}, #{taskOwnerUserName,jdbcType=VARCHAR}, 
+      #{taskOwnerUserEmail,jdbcType=VARCHAR}, #{taskOwnerUserMobile,jdbcType=VARCHAR}, 
+      #{patientName,jdbcType=VARCHAR}, #{medicalCaseCreatorUserId,jdbcType=INTEGER}, 
       #{medicalCaseCreatorUserName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.TaskView" >
@@ -122,6 +125,9 @@
       </if>
       <if test="taskStatus != null" >
         TASK_STATUS,
+      </if>
+      <if test="medicalCaseStatusCode != null" >
+        MEDICAL_CASE_STATUS_CODE,
       </if>
       <if test="resourceId != null" >
         RESOURCE_ID,
@@ -163,6 +169,9 @@
       </if>
       <if test="taskStatus != null" >
         #{taskStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalCaseStatusCode != null" >
+        #{medicalCaseStatusCode,jdbcType=INTEGER},
       </if>
       <if test="resourceId != null" >
         #{resourceId,jdbcType=BIGINT},
@@ -214,6 +223,9 @@
       <if test="record.taskStatus != null" >
         TASK_STATUS = #{record.taskStatus,jdbcType=VARCHAR},
       </if>
+      <if test="record.medicalCaseStatusCode != null" >
+        MEDICAL_CASE_STATUS_CODE = #{record.medicalCaseStatusCode,jdbcType=INTEGER},
+      </if>
       <if test="record.resourceId != null" >
         RESOURCE_ID = #{record.resourceId,jdbcType=BIGINT},
       </if>
@@ -254,6 +266,7 @@
     set TASK_ID = #{record.taskId,jdbcType=INTEGER},
       TASK_TYPE = #{record.taskType,jdbcType=VARCHAR},
       TASK_STATUS = #{record.taskStatus,jdbcType=VARCHAR},
+      MEDICAL_CASE_STATUS_CODE = #{record.medicalCaseStatusCode,jdbcType=INTEGER},
       RESOURCE_ID = #{record.resourceId,jdbcType=BIGINT},
       TASK_CREATE_TIME = #{record.taskCreateTime,jdbcType=VARCHAR},
       PROCESS_TIME = #{record.processTime,jdbcType=VARCHAR},
