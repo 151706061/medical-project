@@ -1,6 +1,7 @@
 var medicalCaseId = null;
 var uploadNo = null;
 var uploadIndex = 1;
+var isCurrentUploadComplete = null;
 var CreateRequestModule = (function(){
 	return {
 		checkIncompleteRequest:function(successFn){
