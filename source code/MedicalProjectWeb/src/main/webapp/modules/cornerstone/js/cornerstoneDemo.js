@@ -1,18 +1,16 @@
 // Load in HTML templates
-
 var viewportTemplate; // the viewport template
-var studyViewerTemplate; // the study viewer template
 loadTemplate("templates/viewport.html", function(element) {
     viewportTemplate = element;
-    
-    loadTemplate("templates/studyViewer.html", function(element) {
-        studyViewerTemplate = element;
-        
-        openViewer();
-    });
 });
 
+var studyViewerTemplate; // the study viewer template
+loadTemplate("templates/studyViewer.html", function(element) {
+    studyViewerTemplate = element;
+});
 
+openViewer();
+//testViewer();
 
 function openViewer(){
 	//Add new tab for this study and switch to it
@@ -43,7 +41,8 @@ function openViewer(){
     // Now load the study.json
     loadStudy(studyViewerCopy, viewportTemplate, studyId);
 }
-/*
+function testViewer(){
+
 // Get study list from JSON manifest
 $.getJSON('studyList.json', function(data) {
   data.studyList.forEach(function(study) {
@@ -94,8 +93,8 @@ $.getJSON('studyList.json', function(data) {
     });
   });
 });
-*/
 
+}
 
 // Show tabs on click
 $('#tabs a').click (function(e) {

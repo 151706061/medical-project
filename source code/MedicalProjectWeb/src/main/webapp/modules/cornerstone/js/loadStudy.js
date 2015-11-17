@@ -1,7 +1,8 @@
 
 // Load JSON study information for each study
-function loadStudy(studyViewer, viewportModel, studyId) {
+function loadStudy(studyViewer, viewportModel, studyId) {	
     // Get the JSON data for the selected studyId
+	//$.getJSON('studies/' + studyId, function(data) {
     $.getJSON(appContext  + '/web/dcmviewer/loadStudy.do?studyId=' + studyId, function(data) {
 
         var imageViewer = new ImageViewer(studyViewer, viewportModel);
@@ -152,9 +153,8 @@ function loadStudy(studyViewer, viewportModel, studyId) {
             });
 
             // Handle thumbnail click
-            $(seriesElement).on('click touchstart', function() {
-                    //currentStackIndex = stack.seriesIndex;
-                //displayThumbnail(seriesList, seriesElement, element, stack);
+            $(seriesElement).on('click touchstart', function() {             
+			  useItemStack(0, stackIndex);
             }).data('stack', stackIndex);
         });
 
