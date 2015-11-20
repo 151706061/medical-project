@@ -5,6 +5,7 @@
 				$.ajax({
 					url: appContext + 'web/task/listTask.do',
 					data: {
+						t: Math.random(),
 						page: page,
 						pageSize: pageSize
 					},

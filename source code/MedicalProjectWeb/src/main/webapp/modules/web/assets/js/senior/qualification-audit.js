@@ -32,6 +32,9 @@ var QualificationAuditModule = (function(){
 	
 	var search = function(){
 		var me = this;
+		if( param ){
+			param.t = Math.random();
+		}
 		$.ajax({
 			url: appContext + 'web/qualificationApply/listQualificationApplication.do',
 			data:param,

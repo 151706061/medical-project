@@ -5,6 +5,7 @@
 				$.ajax({
 					url: appContext + '/web/enterprise/userManage/listAuthorizeUser.do',
 					data: {
+						t: Math.random(),
 						page: page,
 						pageSize: pageSize
 					},

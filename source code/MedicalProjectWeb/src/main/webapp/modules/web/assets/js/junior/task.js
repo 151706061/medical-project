@@ -32,6 +32,9 @@ var TaskModule = (function(){
 	
 	var listTask = function(){
 		var me = this;
+		if( param ){
+			param.t = Math.random();
+		}
 		$.ajax({
 			url: appContext + 'web/task/listTask.do',
 			data:param,

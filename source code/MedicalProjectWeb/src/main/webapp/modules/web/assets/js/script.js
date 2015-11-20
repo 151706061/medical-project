@@ -6,6 +6,9 @@ var commonObj = (function(){
 			$.ajax({
 				url: appContext + '/web/common/getLoginUserInfo.do',
 				//data: $regForm.serialize(),
+				data:{
+					t: Math.random()
+				},
 				type:"GET",
 				beforeSend:function()
 				{  
@@ -36,6 +39,9 @@ var commonObj = (function(){
 			$.ajax({
 				url: appContext + '/web/common/getUnreadNotificationCount.do',
 				//data: $regForm.serialize(),
+				data:{
+					t: Math.random()
+				},
 				type:"GET",
 				beforeSend:function()
 				{  

@@ -5,7 +5,9 @@
 			loadMySetting:function(successFn){
 				jQuery.ajax({
 					url: appContext + 'web/setting/loadMySetting.do',
-					data: {},
+					data: {
+						t: Math.random()
+					},
 					type:"GET",
 					beforeSend:function()
 					{  

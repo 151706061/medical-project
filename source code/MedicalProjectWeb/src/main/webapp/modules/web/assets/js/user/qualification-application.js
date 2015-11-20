@@ -35,6 +35,7 @@
 				$.ajax({
 					url: appContext + 'web/qualificationApply/listAllSeniorDoctor.do',
 					data: {
+						t: Math.random()
 					},
 					type:"GET",
 					beforeSend:function()

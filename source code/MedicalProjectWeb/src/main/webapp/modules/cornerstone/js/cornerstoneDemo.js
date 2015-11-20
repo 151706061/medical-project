@@ -1,15 +1,35 @@
 // Load in HTML templates
+var loadCnt = 2;
+var isViewerOpen = false;
 var viewportTemplate; // the viewport template
 loadTemplate("templates/viewport.html", function(element) {
     viewportTemplate = element;
+    
+    loadCnt--;
+    if( loadFinish() == true && isViewerOpen == false){
+    	isViewerOpen = true;
+    	openViewer();
+    }
 });
 
 var studyViewerTemplate; // the study viewer template
 loadTemplate("templates/studyViewer.html", function(element) {
     studyViewerTemplate = element;
+    
+    loadCnt--;
+    if( loadFinish() == true && isViewerOpen == false){
+    	isViewerOpen == true;
+    	openViewer();
+    }
 });
 
-openViewer();
+function loadFinish(){
+	if( loadCnt == 0 ){
+		return true;
+	}
+	return false;
+}
+//openViewer();
 //testViewer();
 
 function openViewer(){

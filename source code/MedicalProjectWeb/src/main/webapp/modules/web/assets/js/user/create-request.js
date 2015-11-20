@@ -8,6 +8,7 @@ var CreateRequestModule = (function(){
 			$.ajax({
 				url: appContext + 'web/request/checkIncompleteRequest.do',
 				data: {
+					t: Math.random()
 				},
 				type:"GET",
 				beforeSend:function()

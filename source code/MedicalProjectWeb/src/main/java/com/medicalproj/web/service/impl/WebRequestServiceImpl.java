@@ -99,10 +99,11 @@ public class WebRequestServiceImpl implements IWebRequestService {
 	}
 	
 	private boolean isDicomFile(MultipartFile dicomFile){
-		if( FileUtil.isDicomFile(dicomFile.getContentType()) ){
+		/*if( FileUtil.isDicomFile(dicomFile.getContentType()) ){
 			return true;
 		}
-		return false;
+		return false;*/
+		return true;
 	}
 
 	@Override

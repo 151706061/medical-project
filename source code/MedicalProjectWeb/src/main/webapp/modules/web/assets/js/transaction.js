@@ -5,6 +5,7 @@
 				$.ajax({
 					url: appContext + 'web/transaction/listTransaction.do',
 					data: {
+						t: Math.random(),
 						periodType: periodType,
 						page: page,
 						pageSize: pageSize

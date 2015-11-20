@@ -21,6 +21,7 @@
 				$.ajax({
 					url: appContext + 'web/notification/listNotification.do',
 					data: {
+						t: Math.random(),
 						page: page,
 						pageSize: pageSize
 					},
