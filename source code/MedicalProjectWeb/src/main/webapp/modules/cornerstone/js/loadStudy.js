@@ -54,6 +54,7 @@ function loadStudy(studyViewer, viewportModel, studyId) {
 
         // Create a stack object for each series
         data.seriesList.forEach(function(series) {
+        	console.log(series);
             var stack = {
                 seriesDescription: series.seriesDescription,
                 stackId: series.seriesNumber,

@@ -78,9 +78,9 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 		}
 		view.setStudyDescription(studyView.getStudyDescription());
 		view.setStudyId(studyView.getStudyId());
-		view.setNumImages("");
 		
 		List<SeriesView> seriesViewList = seriesService.listAllSeriesByStudyId(studyView.getId());
+		view.setNumImages(String.valueOf(seriesViewList.size()));
 		view.setSeriesList(trans2SeriesViewerViewList(seriesViewList));
 		return view;
 	}
