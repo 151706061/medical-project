@@ -387,9 +387,10 @@ if(typeof cornerstone === 'undefined'){
         var storedPixels = [];
         var index = 0;
         var pixelData = ee.image.getPixelData();
+		var unitnum = Math.round(ee.image.sizeInBytes/ee.image.columns/ee.image.rows);
         for(var row=0; row < height; row++) {
             for(var column=0; column < width; column++) {
-                var spIndex = ((row + y) * ee.image.columns) + (column + x);
+                var spIndex = (((row + y) * ee.image.columns) + (column + x)-1) * unitnum + 1;
                 storedPixels[index++] = pixelData[spIndex];
             }
         }
