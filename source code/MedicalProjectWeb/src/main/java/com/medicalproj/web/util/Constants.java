@@ -11,6 +11,10 @@ public class Constants {
 	public static final int USER_TYPE_JUNIOR_DOCTOR = 2;
 	public static final int USER_TYPE_SENIOR_DOCTOR = 3;
 	public static final int USER_TYPE_ENTERPRISE_USER = 4;
+	public static final int USER_TYPE_SECRETARY = 5;				//秘书
+	public static final int USER_TYPE_CHIEF_CENSOR_DOCTOR = 6;		//主检医师
+	public static final int USER_TYPE_CHIEF_PHSICIAN = 7;			//主任医师
+	
 
 	public static final int NOTIFICATION_IS_READ_FALSE = 0;
 	public static final int NOTIFICATION_IS_READ_TRUE = 1;
@@ -68,9 +72,9 @@ public class Constants {
 
 	public static final String FILE_SUFFIX_JPG = "jpg";
 //	public final static String FTP_HTTP_BASE_URL = "http://52.27.220.196/ftp/";
-	public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp/";
+//	public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp/";
 	//public final static String FTP_HTTP_BASE_URL = "http://101.200.199.13/ftp/";
 	
-	//public final static String FTP_HTTP_BASE_URL = "http://123.57.95.30/ftp/";
+	public final static String FTP_HTTP_BASE_URL = "http://123.57.95.30/ftp/";
 	
 }
