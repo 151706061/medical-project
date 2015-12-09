@@ -112,6 +112,7 @@ public class FileUploadServiceImpl implements IFileUploadService {
 		uploadFileMapper.deleteByExample(example);
 	}
 
+	
 	@Override
 	public List<Integer> generateMedicalCaseUsingUploadDicom(Integer processUserId) {
 		Map<String,List<InputStream>> map = null;

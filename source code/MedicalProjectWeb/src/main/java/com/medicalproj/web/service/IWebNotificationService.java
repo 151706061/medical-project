@@ -10,4 +10,8 @@ public interface IWebNotificationService {
 
 	View<Boolean> doReadNotification(Integer notificationId)throws ServiceException;
 
+	View<Boolean> doApprove(Integer notificationId,Integer processUserId)throws ServiceException;
+
+	View<Boolean> doReject(Integer notificationId,Integer processUserId)throws ServiceException;
+
 }

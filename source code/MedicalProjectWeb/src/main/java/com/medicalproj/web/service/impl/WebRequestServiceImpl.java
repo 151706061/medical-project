@@ -275,7 +275,8 @@ public class WebRequestServiceImpl implements IWebRequestService {
 			List<Integer> medicalCaseIdList = fileUploadService.generateMedicalCaseUsingUploadDicom(processUserId);
 			view.setData(medicalCaseIdList);
 			
-			// 创建任务随机分配给Senior Doctor
+			// ### 创建任务随机分配给Senior Doctor###
+			// 2015.12 修改 , 不在创建完成病历后进行分配，改为由秘书分配
 			taskService.createAssignTask(medicalCaseIdList);
 			
 			return view;

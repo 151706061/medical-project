@@ -35,5 +35,25 @@ public class WebNotificationController extends WebBaseController {
 		return view;
 	}
 	
+	@RequestMapping("/doApprove")
+	@ResponseBody
+	public View<Boolean> doApprove(Integer notificationId,HttpSession session){
+		User user = super.getLoginUser(session);
+		
+		View<Boolean> view = webNotificationService.doApprove(notificationId,user.getId());
+		
+		return view;
+	}
+	
+	@RequestMapping("/doReject")
+	@ResponseBody
+	public View<Boolean> doReject(Integer notificationId,HttpSession session){
+		User user = super.getLoginUser(session);
+		
+		View<Boolean> view = webNotificationService.doReject(notificationId, user.getId());
+		
+		return view;
+	}
+	
 	
 }

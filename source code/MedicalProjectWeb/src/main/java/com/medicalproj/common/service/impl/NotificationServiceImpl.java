@@ -1,5 +1,6 @@
 package com.medicalproj.common.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -12,10 +13,14 @@ import com.medicalproj.common.domain.Notification;
 import com.medicalproj.common.domain.NotificationExample;
 import com.medicalproj.common.domain.NotificationView;
 import com.medicalproj.common.domain.NotificationViewExample;
+import com.medicalproj.common.domain.User;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.INotificationService;
+import com.medicalproj.common.service.ITaskService;
+import com.medicalproj.common.service.IUserService;
 import com.medicalproj.common.util.PagerHelper;
 import com.medicalproj.web.util.Constants;
+import com.sun.org.apache.bcel.internal.classfile.ConstantObject;
 
 @Service
 public class NotificationServiceImpl implements INotificationService {
@@ -24,6 +29,12 @@ public class NotificationServiceImpl implements INotificationService {
 	
 	@Autowired
 	private NotificationViewMapper notificationViewMapper;
+	
+	@Autowired
+	private IUserService userService;
+	
+	@Autowired
+	private ITaskService taskService;
 	
 	@Override
 	public Integer getUnreadNotificationCountByUser(Integer userId) throws ServiceException {
@@ -98,5 +109,65 @@ public class NotificationServiceImpl implements INotificationService {
 		return mapper.selectByPrimaryKey(notificationId);
 	}
 
-	
+	@Override
+	public void createDiagnoseInviteNotification(Integer processUserId, Integer sourceMedicalCaseId, Integer toUserId)
+			throws ServiceException {
+		User processUser = userService.getById(processUserId);
+		
+		Notification notification = new Notification();
+		notification.setContent("收到" + processUser.getName() + "发来的诊断邀请.");
+		notification.setCreateTime(new Date());
+		notification.setFromId(processUserId);
+		notification.setFromType(Constants.NOTIFICATION_FROM_TYPE_USER);
+		notification.setIsRead(Constants.NOTIFICATION_IS_READ_FALSE);
+		notification.setOwnerUserId(toUserId);
+		notification.setSourceId(sourceMedicalCaseId);
+		notification.setStatus(Constants.NOTIFICATION_STATUS_WAIT_FOR_REVIEW);
+		notification.setTitle("诊断邀请通知");
+		notification.setType(Constants.NOTIFICATION_TYPE_DIAGNOSE_INVITATION);
+		
+		this.saveOrUpdate(notification);
+	}
+
+	@Override
+	public void approve(Integer notificationId, Integer processUserId) throws ServiceException {
+		Notification notification = this.getById(notificationId);
+		if( notification.getOwnerUserId() == null || !notification.getOwnerUserId().equals(processUserId)){
+			throw new ServiceException("无权操作");
+		}
+		
+		if( notification.getType() != null){
+			if( notification.getType().equals(Constants.NOTIFICATION_TYPE_DIAGNOSE_INVITATION) ){
+				
+				Integer toUserId = notification.getOwnerUserId();
+				Integer medicalCaseId = notification.getSourceId();
+				taskService.createDiagnoseTask(medicalCaseId, toUserId);
+				
+				notification.setStatus(Constants.NOTIFICATION_STATUS_APPROVE);
+				this.saveOrUpdate(notification);
+			}
+		}
+	}
+
+	@Override
+	public void reject(Integer notificationId, Integer processUserId) throws ServiceException {
+		Notification notification = this.getById(notificationId);
+		if( notification.getOwnerUserId() == null || !notification.getOwnerUserId().equals(processUserId)){
+			throw new ServiceException("无权操作");
+		}
+		
+		if( notification.getType() != null){
+			if( notification.getType().equals(Constants.NOTIFICATION_TYPE_DIAGNOSE_INVITATION) ){
+				
+				Integer toUserId = notification.getOwnerUserId();
+				Integer medicalCaseId = notification.getSourceId();
+				taskService.createDiagnoseTask(medicalCaseId, toUserId);
+				
+				notification.setStatus(Constants.NOTIFICATION_STATUS_REJECT);
+				this.saveOrUpdate(notification);
+			}
+		}
+		
+	}
+
 }

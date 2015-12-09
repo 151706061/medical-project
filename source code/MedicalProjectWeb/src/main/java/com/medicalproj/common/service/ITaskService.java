@@ -19,7 +19,7 @@ public interface ITaskService {
 	
 	Task getMyAuditTask(Integer studyId,Integer userId)throws ServiceException;
 
-	void createDiagnoseTask(Integer studyId, Integer assignToUserId)throws ServiceException;
+	void createDiagnoseTask(Integer medicalCaseId, Integer assignToUserId)throws ServiceException;
 
 	void createAuditTask(Integer studyId)throws ServiceException;
 

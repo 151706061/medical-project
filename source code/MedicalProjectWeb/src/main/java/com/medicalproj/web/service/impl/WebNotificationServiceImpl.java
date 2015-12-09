@@ -59,4 +59,37 @@ public class WebNotificationServiceImpl implements IWebNotificationService {
 		}
 	}
 
+	@Override
+	public View<Boolean> doApprove(Integer notificationId,Integer processUserId) throws ServiceException {
+		View<Boolean> view = new View<Boolean>();
+		
+		try {
+			notificationService.approve(notificationId,processUserId);
+			view.setData(true);
+			return view;
+		} catch (Exception e) {
+			view.setData(false);
+			view.setMsg(e.getMessage());
+			view.setSuccess(false);
+			return view;
+		}
+	}
+
+	@Override
+	public View<Boolean> doReject(Integer notificationId,Integer processUserId) throws ServiceException {
+		View<Boolean> view = new View<Boolean>();
+		
+		try {
+			notificationService.reject(notificationId,processUserId);
+			view.setData(true);
+			return view;
+		} catch (Exception e) {
+			view.setData(false);
+			view.setMsg(e.getMessage());
+			view.setSuccess(false);
+			return view;
+		}
+	}
+	
+
 }

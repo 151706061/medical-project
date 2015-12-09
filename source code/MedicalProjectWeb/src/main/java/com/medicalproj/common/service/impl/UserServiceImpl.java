@@ -167,6 +167,21 @@ public class UserServiceImpl implements IUserService {
 			throw new ServiceException(e);
 		}
 	}
+	
+	
+
+	@Override
+	public List<UserView> listAllSecretary() throws ServiceException {
+		try {
+			UserViewExample example = new UserViewExample();
+			UserViewExample.Criteria c = example.createCriteria();
+			c.andUserTypeCodeEqualTo(Constants.USER_TYPE_SECRETARY);
+			
+			return userViewMapper.selectByExample(example);
+		} catch (Exception e) {
+			throw new ServiceException(e);
+		}
+	}
 
 	@Override
 	public List<UserView> listUserViewByCond(ListUserParam param) throws ServiceException {

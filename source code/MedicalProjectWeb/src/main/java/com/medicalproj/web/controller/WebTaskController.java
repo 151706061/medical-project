@@ -56,7 +56,9 @@ public class WebTaskController extends WebBaseController{
 	@RequestMapping("/assignTask")
 	@ResponseBody
 	public View<Boolean> assignTask(Integer taskId,Integer assignToUserId,HttpSession session){
-		View<Boolean> view = webTaskService.assignTask(taskId,assignToUserId);
+		User user = getLoginUser(session);
+		
+		View<Boolean> view = webTaskService.assignTask(taskId,assignToUserId,user.getId());
 		
 		return view;
 	}

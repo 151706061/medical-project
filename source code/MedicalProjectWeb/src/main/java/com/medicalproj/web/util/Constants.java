@@ -15,10 +15,20 @@ public class Constants {
 	public static final int USER_TYPE_CHIEF_CENSOR_DOCTOR = 6;		//主检医师
 	public static final int USER_TYPE_CHIEF_PHSICIAN = 7;			//主任医师
 	
-
+	// notification read status
 	public static final int NOTIFICATION_IS_READ_FALSE = 0;
 	public static final int NOTIFICATION_IS_READ_TRUE = 1;
 
+	/* notification status */
+	public static final int NOTIFICATION_STATUS_WAIT_FOR_REVIEW = 1;	//待审核
+	public static final int NOTIFICATION_STATUS_APPROVE = 2;			//同意
+	public static final int NOTIFICATION_STATUS_REJECT = 3;				//拒绝
+	public static final int NOTIFICATION_STATUS_EXPIRE = 4;				//过期
+	/* notification type */
+	public static final int NOTIFICATION_TYPE_DIAGNOSE_INVITATION = 1;	//诊断邀请 
+	/* notification from type */
+	public static final int NOTIFICATION_FROM_TYPE_USER = 1;	//来源是用户(用户操作产生的通知)
+	
 	public static final int PAY_AUTHORIZE_STATUS_AUTHORIZED = 1;
 	public static final int PAY_AUTHORIZE_STATUS_NOT_AUTHORIZED = 2;
 
@@ -72,9 +82,10 @@ public class Constants {
 
 	public static final String FILE_SUFFIX_JPG = "jpg";
 //	public final static String FTP_HTTP_BASE_URL = "http://52.27.220.196/ftp/";
-//	public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp/";
+	public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp/";
 	//public final static String FTP_HTTP_BASE_URL = "http://101.200.199.13/ftp/";
 	
-	public final static String FTP_HTTP_BASE_URL = "http://123.57.95.30/ftp/";
+	//public final static String FTP_HTTP_BASE_URL = "http://123.57.95.30/ftp/";
+	
 	
 }

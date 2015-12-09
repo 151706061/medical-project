@@ -32,4 +32,6 @@ public interface IUserService {
 
 	void delUserById(Integer userId)throws ServiceException;
 
+	List<UserView> listAllSecretary()throws ServiceException;
+
 }

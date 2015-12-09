@@ -91,9 +91,9 @@ public class TaskServiceImpl implements ITaskService {
 
 	@Override
 	public void createAssignTask(List<Integer> medicalCaseIdList) throws ServiceException {
-		List<UserView> seniorList = userService.listAllSeniorDoctor();
-		if( seniorList != null && seniorList.size() > 0 ){
-			UserView senor = seniorList.get(0);
+		List<UserView> secretaryList = userService.listAllSecretary();
+		if( secretaryList != null && secretaryList.size() > 0 ){
+			UserView senor = secretaryList.get(0);
 			
 			if( medicalCaseIdList != null ){
 				for( Integer mcId :medicalCaseIdList ){
@@ -108,7 +108,8 @@ public class TaskServiceImpl implements ITaskService {
 							task.setType(Constants.TASK_TYPE_MEDICAL_CASE_ASSIGN);
 
 							this.saveOrUpdate(task);
-							//新建的病例，待分配状态，之后由专家分配
+							// ### 新建的病例，待分配状态，之后由专家分配 ### 
+							// 2015.12 修改为分配给秘书
 							Integer medicalCaseId = studyView.getMedicalCaseId();
 							MedicalCase mc = medicalCaseService.getById(medicalCaseId);
 							
@@ -182,7 +183,7 @@ public class TaskServiceImpl implements ITaskService {
 	}
 
 	@Override
-	public void createDiagnoseTask(Integer studyId, Integer assignToUserId)
+	public void createDiagnoseTask(Integer medicalCaseId, Integer assignToUserId)
 			throws ServiceException {
 		try {
 			Task task = new Task();

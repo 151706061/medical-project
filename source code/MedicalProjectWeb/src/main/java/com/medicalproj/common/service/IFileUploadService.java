@@ -17,6 +17,9 @@ public interface IFileUploadService {
 
 	void clearOldUpload(Integer userId)throws ServiceException;
 
+	/**
+	 * 拆分上传文件，相同的病人并入一个病历
+	 */
 	List<Integer> generateMedicalCaseUsingUploadDicom(Integer processUserId);
 
 }

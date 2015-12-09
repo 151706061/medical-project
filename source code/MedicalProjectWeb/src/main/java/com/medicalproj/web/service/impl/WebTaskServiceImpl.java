@@ -10,10 +10,10 @@ import com.medicalproj.common.domain.MedicalCase;
 import com.medicalproj.common.domain.Study;
 import com.medicalproj.common.domain.Task;
 import com.medicalproj.common.domain.TaskView;
-import com.medicalproj.common.domain.User;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IMedicalCaseService;
+import com.medicalproj.common.service.INotificationService;
 import com.medicalproj.common.service.IStudyService;
 import com.medicalproj.common.service.ITaskService;
 import com.medicalproj.common.service.IUserService;
@@ -40,6 +40,9 @@ public class WebTaskServiceImpl implements IWebTaskService {
 	
 	@Autowired
 	private IUserService userService;
+	
+	@Autowired
+	private INotificationService notificationService;
 	
 	@Override
 	public View<TaskListView> listTask(ListTaskParam param)
@@ -70,22 +73,27 @@ public class WebTaskServiceImpl implements IWebTaskService {
 	}
 
 	@Override
-	public View<Boolean> assignTask(Integer taskId, Integer assignToUserId)
+	public View<Boolean> assignTask(Integer taskId, Integer assignToUserId,Integer processUserId)
 			throws ServiceException {
 		View<Boolean> view = new View<Boolean>();
 		try {
 			Task task = taskService.getById(taskId);
 			taskService.saveOrUpdate(task);
 			
-			Integer studyId = task.getResourceId();
+			/*Integer studyId = task.getResourceId();
 			Study study = studyService.getById(studyId);
 			
-			Integer medicalCaseId = study.getMedicalCaseId();
+			Integer medicalCaseId = study.getMedicalCaseId();*/
+			Integer medicalCaseId = task.getResourceId();
 			MedicalCase mc = medicalCaseService.getById(medicalCaseId);
 			mc.setStatus(Constants.MEDICAL_CASE_STATUS_ASSIGN_COMPLETE);
 			medicalCaseService.saveOrUpdate(mc);
 			
-			taskService.createDiagnoseTask(task.getResourceId(),assignToUserId);
+			// 2015.12 修改, 不立刻创建诊断任务，改为发送诊断邀请通知
+			// old -> taskService.createDiagnoseTask(task.getResourceId(),assignToUserId);
+			Integer sourceMedicalCaseId = medicalCaseId;
+			notificationService.createDiagnoseInviteNotification(processUserId, sourceMedicalCaseId, assignToUserId);
+			
 			view.setData(true);
 			return view;
 		} catch (Exception e) {
