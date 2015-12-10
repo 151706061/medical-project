@@ -93,7 +93,9 @@ public class TaskServiceImpl implements ITaskService {
 	public void createAssignTask(List<Integer> medicalCaseIdList) throws ServiceException {
 		List<UserView> secretaryList = userService.listAllSecretary();
 		if( secretaryList != null && secretaryList.size() > 0 ){
-			UserView senor = secretaryList.get(0);
+			// ### 新建的病例，待分配状态，之后由专家分配 ### 
+			// 2015.12 修改为分配给秘书
+			UserView secretary = secretaryList.get(0);
 			
 			if( medicalCaseIdList != null ){
 				for( Integer mcId :medicalCaseIdList ){
@@ -103,13 +105,13 @@ public class TaskServiceImpl implements ITaskService {
 						for( StudyView studyView : studyList ){
 							Task task = new Task();
 							task.setCreateTime(new Date());
-							task.setOwnerUserId(senor.getId());
+							task.setOwnerUserId(secretary.getId());
 							task.setResourceId(studyView.getId());
 							task.setType(Constants.TASK_TYPE_MEDICAL_CASE_ASSIGN);
 
 							this.saveOrUpdate(task);
-							// ### 新建的病例，待分配状态，之后由专家分配 ### 
-							// 2015.12 修改为分配给秘书
+							
+							// 更新病例 状态为 待分配
 							Integer medicalCaseId = studyView.getMedicalCaseId();
 							MedicalCase mc = medicalCaseService.getById(medicalCaseId);
 							
@@ -286,6 +288,31 @@ public class TaskServiceImpl implements ITaskService {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void activeSecretaryMedicalCaseAssignTask(Integer studyId)
+			throws ServiceException {
+		List<UserView> secretaryList = userService.listAllSecretary();
+		if( secretaryList != null && secretaryList.size() > 0 ){
+			UserView secretary = secretaryList.get(0);
+			
+			Task task = this.getByCond(secretary.getId(), studyId, Constants.TASK_TYPE_MEDICAL_CASE_ASSIGN);
+			task.setProcessTime(null);
+			this.saveOrUpdate(task);
+			
+			// 更新病例 状态为 待分配
+			Study study = studyService.getById(task.getResourceId());
+			
+			if( study != null ){
+				Integer medicalCaseId = study.getMedicalCaseId();
+				MedicalCase mc = medicalCaseService.getById(medicalCaseId);
+				
+				mc.setStatus(Constants.MEDICAL_CASE_STATUS_WAIT_FOR_ASSIGNED);
+				medicalCaseService.saveOrUpdate(mc);
+			}
+			
+		}
 	}
 
 

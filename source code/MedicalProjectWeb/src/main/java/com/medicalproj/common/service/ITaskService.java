@@ -28,4 +28,11 @@ public interface ITaskService {
 	void saveOrUpdate(Task task)throws ServiceException;
 
 	boolean hasNewTask(Integer userId)throws ServiceException;
+
+	/**
+	 * 重新激活诊断分配任务(秘书的分配任务)
+	 * @param studyId
+	 * @throws ServiceException
+	 */
+	void activeSecretaryMedicalCaseAssignTask(Integer studyId)throws ServiceException;
 }

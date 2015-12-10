@@ -236,4 +236,22 @@ public class StudyServiceImpl implements IStudyService {
 	public Study getById(Integer studyId) throws ServiceException {
 		return studyMapper.selectByPrimaryKey(studyId);
 	}
+
+	@Override
+	public Study getByMedicalCaseId(Integer medicalCaseId)
+			throws ServiceException {
+		StudyExample example = new StudyExample();
+		StudyExample.Criteria c = example.createCriteria();
+		
+		c.andMedicalCaseIdEqualTo(medicalCaseId);
+		
+		List<Study> list = studyMapper.selectByExample(example);
+		if( list != null && list.size() > 0 ){
+			return list.get(0);
+		}
+		return null;
+	}
+	
+	
+	
 }

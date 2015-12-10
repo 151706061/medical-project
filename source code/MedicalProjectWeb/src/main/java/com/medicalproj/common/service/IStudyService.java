@@ -29,4 +29,6 @@ public interface IStudyService {
 
 	Study getById(Integer studyId)throws ServiceException;
 
+	Study getByMedicalCaseId(Integer medicalCaseId)throws ServiceException;
+
 }

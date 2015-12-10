@@ -13,14 +13,15 @@ import com.medicalproj.common.domain.Notification;
 import com.medicalproj.common.domain.NotificationExample;
 import com.medicalproj.common.domain.NotificationView;
 import com.medicalproj.common.domain.NotificationViewExample;
+import com.medicalproj.common.domain.Study;
 import com.medicalproj.common.domain.User;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.INotificationService;
+import com.medicalproj.common.service.IStudyService;
 import com.medicalproj.common.service.ITaskService;
 import com.medicalproj.common.service.IUserService;
 import com.medicalproj.common.util.PagerHelper;
 import com.medicalproj.web.util.Constants;
-import com.sun.org.apache.bcel.internal.classfile.ConstantObject;
 
 @Service
 public class NotificationServiceImpl implements INotificationService {
@@ -35,6 +36,9 @@ public class NotificationServiceImpl implements INotificationService {
 	
 	@Autowired
 	private ITaskService taskService;
+	
+	@Autowired
+	private IStudyService studyService;
 	
 	@Override
 	public Integer getUnreadNotificationCountByUser(Integer userId) throws ServiceException {
@@ -165,6 +169,15 @@ public class NotificationServiceImpl implements INotificationService {
 				
 				notification.setStatus(Constants.NOTIFICATION_STATUS_REJECT);
 				this.saveOrUpdate(notification);
+				
+				Study study = studyService.getByMedicalCaseId(medicalCaseId);
+				if( study != null ){
+					Integer studyId = study.getId();
+					
+					//重新激活分配任务,由秘书重新分配
+					taskService.activeSecretaryMedicalCaseAssignTask(studyId);
+				}
+				
 			}
 		}
 		

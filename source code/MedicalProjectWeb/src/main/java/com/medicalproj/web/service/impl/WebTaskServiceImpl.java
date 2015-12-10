@@ -80,11 +80,10 @@ public class WebTaskServiceImpl implements IWebTaskService {
 			Task task = taskService.getById(taskId);
 			taskService.saveOrUpdate(task);
 			
-			/*Integer studyId = task.getResourceId();
+			Integer studyId = task.getResourceId();
 			Study study = studyService.getById(studyId);
 			
-			Integer medicalCaseId = study.getMedicalCaseId();*/
-			Integer medicalCaseId = task.getResourceId();
+			Integer medicalCaseId = study.getMedicalCaseId();
 			MedicalCase mc = medicalCaseService.getById(medicalCaseId);
 			mc.setStatus(Constants.MEDICAL_CASE_STATUS_ASSIGN_COMPLETE);
 			medicalCaseService.saveOrUpdate(mc);
