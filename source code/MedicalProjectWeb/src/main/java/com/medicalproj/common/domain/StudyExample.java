@@ -962,6 +962,126 @@ public class StudyExample {
             return (Criteria) this;
         }
 
+        public Criteria andIsFinalReviewedIsNull() {
+            addCriterion("IS_FINAL_REVIEWED is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinalReviewedIsNotNull() {
+            addCriterion("IS_FINAL_REVIEWED is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinalReviewedEqualTo(Integer value) {
+            addCriterion("IS_FINAL_REVIEWED =", value, "isFinalReviewed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinalReviewedNotEqualTo(Integer value) {
+            addCriterion("IS_FINAL_REVIEWED <>", value, "isFinalReviewed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinalReviewedGreaterThan(Integer value) {
+            addCriterion("IS_FINAL_REVIEWED >", value, "isFinalReviewed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinalReviewedGreaterThanOrEqualTo(Integer value) {
+            addCriterion("IS_FINAL_REVIEWED >=", value, "isFinalReviewed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinalReviewedLessThan(Integer value) {
+            addCriterion("IS_FINAL_REVIEWED <", value, "isFinalReviewed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinalReviewedLessThanOrEqualTo(Integer value) {
+            addCriterion("IS_FINAL_REVIEWED <=", value, "isFinalReviewed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinalReviewedIn(List<Integer> values) {
+            addCriterion("IS_FINAL_REVIEWED in", values, "isFinalReviewed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinalReviewedNotIn(List<Integer> values) {
+            addCriterion("IS_FINAL_REVIEWED not in", values, "isFinalReviewed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinalReviewedBetween(Integer value1, Integer value2) {
+            addCriterion("IS_FINAL_REVIEWED between", value1, value2, "isFinalReviewed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinalReviewedNotBetween(Integer value1, Integer value2) {
+            addCriterion("IS_FINAL_REVIEWED not between", value1, value2, "isFinalReviewed");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewRemarkIsNull() {
+            addCriterion("FINAL_REVIEW_REMARK is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewRemarkIsNotNull() {
+            addCriterion("FINAL_REVIEW_REMARK is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewRemarkEqualTo(Integer value) {
+            addCriterion("FINAL_REVIEW_REMARK =", value, "finalReviewRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewRemarkNotEqualTo(Integer value) {
+            addCriterion("FINAL_REVIEW_REMARK <>", value, "finalReviewRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewRemarkGreaterThan(Integer value) {
+            addCriterion("FINAL_REVIEW_REMARK >", value, "finalReviewRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewRemarkGreaterThanOrEqualTo(Integer value) {
+            addCriterion("FINAL_REVIEW_REMARK >=", value, "finalReviewRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewRemarkLessThan(Integer value) {
+            addCriterion("FINAL_REVIEW_REMARK <", value, "finalReviewRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewRemarkLessThanOrEqualTo(Integer value) {
+            addCriterion("FINAL_REVIEW_REMARK <=", value, "finalReviewRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewRemarkIn(List<Integer> values) {
+            addCriterion("FINAL_REVIEW_REMARK in", values, "finalReviewRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewRemarkNotIn(List<Integer> values) {
+            addCriterion("FINAL_REVIEW_REMARK not in", values, "finalReviewRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewRemarkBetween(Integer value1, Integer value2) {
+            addCriterion("FINAL_REVIEW_REMARK between", value1, value2, "finalReviewRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewRemarkNotBetween(Integer value1, Integer value2) {
+            addCriterion("FINAL_REVIEW_REMARK not between", value1, value2, "finalReviewRemark");
+            return (Criteria) this;
+        }
+
         public Criteria andStatusIsNull() {
             addCriterion("STATUS is null");
             return (Criteria) this;

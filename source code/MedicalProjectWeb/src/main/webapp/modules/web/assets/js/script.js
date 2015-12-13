@@ -20,13 +20,18 @@ var commonObj = (function(){
 						
 						if( $userInfoWrap ){
 							var userData = data.data;
+							
 							var userName = userData.name;
 							var email = userData.email;
 							var mobile = userData.mobile;
 							var userType = userData.userTypeStr;
+							var userRemark = userData.userRemark;
 							
 							$userInfoWrap.find('.username').html(userName);
 							$userInfoWrap.find('.usertype').html(userType);
+							if( userRemark ){
+								$userInfoWrap.find('.userremark').html('综合评分:' + userRemark + "/5");
+							}
 							$userInfoWrap.find('.mobile').html(mobile);
 							$userInfoWrap.find('.email').html(email);
 						}

@@ -114,7 +114,7 @@ public class NotificationServiceImpl implements INotificationService {
 	}
 
 	@Override
-	public void createDiagnoseInviteNotification(Integer processUserId, Integer sourceMedicalCaseId, Integer toUserId)
+	public void createDiagnoseInviteNotification(Integer processUserId, Integer studyId, Integer toUserId)
 			throws ServiceException {
 		User processUser = userService.getById(processUserId);
 		
@@ -125,7 +125,7 @@ public class NotificationServiceImpl implements INotificationService {
 		notification.setFromType(Constants.NOTIFICATION_FROM_TYPE_USER);
 		notification.setIsRead(Constants.NOTIFICATION_IS_READ_FALSE);
 		notification.setOwnerUserId(toUserId);
-		notification.setSourceId(sourceMedicalCaseId);
+		notification.setSourceId(studyId);
 		notification.setStatus(Constants.NOTIFICATION_STATUS_WAIT_FOR_REVIEW);
 		notification.setTitle("诊断邀请通知");
 		notification.setType(Constants.NOTIFICATION_TYPE_DIAGNOSE_INVITATION);
@@ -144,8 +144,8 @@ public class NotificationServiceImpl implements INotificationService {
 			if( notification.getType().equals(Constants.NOTIFICATION_TYPE_DIAGNOSE_INVITATION) ){
 				
 				Integer toUserId = notification.getOwnerUserId();
-				Integer medicalCaseId = notification.getSourceId();
-				taskService.createDiagnoseTask(medicalCaseId, toUserId);
+				Integer studyId = notification.getSourceId();
+				taskService.createDiagnoseTask(studyId, toUserId);
 				
 				notification.setStatus(Constants.NOTIFICATION_STATUS_APPROVE);
 				this.saveOrUpdate(notification);
@@ -162,21 +162,12 @@ public class NotificationServiceImpl implements INotificationService {
 		
 		if( notification.getType() != null){
 			if( notification.getType().equals(Constants.NOTIFICATION_TYPE_DIAGNOSE_INVITATION) ){
-				
-				Integer toUserId = notification.getOwnerUserId();
-				Integer medicalCaseId = notification.getSourceId();
-				taskService.createDiagnoseTask(medicalCaseId, toUserId);
-				
 				notification.setStatus(Constants.NOTIFICATION_STATUS_REJECT);
 				this.saveOrUpdate(notification);
 				
-				Study study = studyService.getByMedicalCaseId(medicalCaseId);
-				if( study != null ){
-					Integer studyId = study.getId();
-					
-					//重新激活分配任务,由秘书重新分配
-					taskService.activeSecretaryMedicalCaseAssignTask(studyId);
-				}
+				Integer studyId = notification.getSourceId();
+				//重新激活分配任务,由秘书重新分配
+				taskService.activeSecretaryMedicalCaseAssignTask(studyId);
 				
 			}
 		}

@@ -47,17 +47,21 @@ public class WebCommonController extends WebBaseController{
 			return new ModelAndView("redirect:/modules/web/juniordoctor/main.jsp#requests");
 		}else if( user.getUserType().equals( Constants.USER_TYPE_SENIOR_DOCTOR) ){
 			return new ModelAndView("redirect:/modules/web/seniordoctor/main.jsp#requests");
-		}else{
+		}
+		else if( user.getUserType().equals( Constants.USER_TYPE_SECRETARY) ){
+			return new ModelAndView("redirect:/modules/web/secretary/main.jsp#requests");
+		}
+		else{
 			return null;
 		}
 	}
 	
 	@RequestMapping("/getLoginUserInfo")
 	@ResponseBody
-	public View<User> getLoginUserInfo(HttpSession session){
-		View<User> view = new View<User>();
+	public View<UserView> getLoginUserInfo(HttpSession session){
 		User user = super.getLoginUser(session);
-		view.setData(user);
+		
+		View<UserView> view = webCommonService.getLoginUserInfo(user.getId());
 		return view;
 	}
 	

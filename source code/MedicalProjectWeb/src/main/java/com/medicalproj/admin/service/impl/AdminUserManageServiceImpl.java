@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.medicalproj.admin.dto.param.AddUserParam;
 import com.medicalproj.admin.dto.param.ListUserParam;
 import com.medicalproj.admin.dto.view.UserListView;
 import com.medicalproj.admin.service.IAdminUserManageService;
@@ -58,6 +59,16 @@ public class AdminUserManageServiceImpl implements IAdminUserManageService{
 			view.setMsg(e.getMessage());
 			return view;
 		}
+	}
+
+	@Override
+	public View<Boolean> addUser(AddUserParam param) throws ServiceException {
+		View<Boolean> view = new View<Boolean>();
+		
+		userService.addUser(param);
+		
+		view.setData(true);
+		return view;
 	}
 	
 }

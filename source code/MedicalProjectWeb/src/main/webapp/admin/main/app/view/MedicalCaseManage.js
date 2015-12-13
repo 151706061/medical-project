@@ -230,11 +230,11 @@ Ext.define('MedicalProject.view.MedicalCaseManage', {
                                     xtype: 'toolbar',
                                     dock: 'top',
                                     items: [
-                                        /*{
+                                        {
                                             xtype: 'button',
                                             id:'medicalCaseManage_tbDeleteBtn',
                                             text: '删除'
-                                        }*/
+                                        }
                                     ]
                                 }
                             ]
@@ -263,25 +263,25 @@ Ext.define('MedicalProject.view.MedicalCaseManage', {
     	var studyGrid = Ext.getCmp('medicalCaseManage_studyGrid');
     	var searchBtn = Ext.getCmp('medicalCaseManage_searchBtn');
     	
-    	
-    	/*Ext.getCmp('userManage_tbDeleteUserBtn').on('click',function(){
-    		var selection = userGrid.getSelectionModel().getSelection();
+    	Ext.getCmp('medicalCaseManage_tbDeleteBtn').on('click',function(){
+    		var selection = studyGrid.getSelectionModel().getSelection();
 
     		if( selection.length > 0 ){
-    			var userId = selection[0].data.id;
+    			var medicalCaseId = selection[0].data.medicalCaseId;
+    			
     			Ext.Ajax.request({
-    				url:appContext + 'admin/userManage/delUser.do',
+    				url:appContext + 'admin/medicalCaseManage/delMedicalCase.do',
     				params:{
-    					userId: userId
+    					medicalCaseId: medicalCaseId
     				},
     				success:function(){
-    					userGrid.getStore().reload();
+    					studyGrid.getStore().reload();
     				}
     			});
     		}else{
-    			Ext.Msg.alert('提示','请选择用户');
+    			Ext.Msg.alert('提示','请选择病例');
     		}
-    	});*/
+    	});
     	
     	searchBtn.on('click',function(){
     		var medicalCaseSearchForm = Ext.getCmp('medicalCaseManage_medicalCaseSearchForm').getForm();

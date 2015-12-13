@@ -24,15 +24,15 @@
 	
 	
 	var page = 1;
-	var pageSize = 100;
+	var pageSize = 500;
 	$(function(){
 		RequestModule.listRequest(page, pageSize , function(data){
 			var medicalCaseList = data.data.medicalCaseList;
-			var template = $('#medicalCaseTmpl').html();
+			var template = $('#requestListItemTmpl').html();
 			Mustache.parse(template);  
 			var rendered = Mustache.render(template, {medicalCaseList: medicalCaseList});
 			
-			$('#medicalCaseListWrap').html(rendered); 
+			$('#requestListTbody').html(rendered); 
 		});
 	});
 	

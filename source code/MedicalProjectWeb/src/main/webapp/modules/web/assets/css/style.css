@@ -238,3 +238,14 @@ nav li.dropdown a .badge{
     background-color: #FF4D4D;
     padding: 0;
 }
+
+.reddot{
+  display:block;
+  background:#f00;
+  border-radius:50%;
+  width:5px;
+  height:5px;
+  top:0px;
+  right:0px;
+  position:absolute;
+}

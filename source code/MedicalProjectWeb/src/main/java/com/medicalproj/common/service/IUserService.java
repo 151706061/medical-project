@@ -2,6 +2,7 @@ package com.medicalproj.common.service;
 
 import java.util.List;
 
+import com.medicalproj.admin.dto.param.AddUserParam;
 import com.medicalproj.admin.dto.param.ListUserParam;
 import com.medicalproj.common.domain.User;
 import com.medicalproj.common.domain.UserView;
@@ -33,5 +34,9 @@ public interface IUserService {
 	void delUserById(Integer userId)throws ServiceException;
 
 	List<UserView> listAllSecretary()throws ServiceException;
+
+	void addUser(AddUserParam param)throws ServiceException;
+
+	UserView getUserViewByUserId(Integer userId)throws ServiceException;
 
 }

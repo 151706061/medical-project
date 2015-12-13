@@ -27,4 +27,10 @@ public class MedicalCaseManageController {
 		return view;
 	}
 	
+	@RequestMapping("/delMedicalCase")
+	@ResponseBody
+	public View<Boolean> delMedicalCase( Integer medicalCaseId){
+		View<Boolean> view = adminMedicalCaseManageService.delMedicalCase(medicalCaseId);
+		return view;
+	}
 }

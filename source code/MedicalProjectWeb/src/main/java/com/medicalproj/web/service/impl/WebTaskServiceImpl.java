@@ -90,8 +90,7 @@ public class WebTaskServiceImpl implements IWebTaskService {
 			
 			// 2015.12 修改, 不立刻创建诊断任务，改为发送诊断邀请通知
 			// old -> taskService.createDiagnoseTask(task.getResourceId(),assignToUserId);
-			Integer sourceMedicalCaseId = medicalCaseId;
-			notificationService.createDiagnoseInviteNotification(processUserId, sourceMedicalCaseId, assignToUserId);
+			notificationService.createDiagnoseInviteNotification(processUserId, studyId, assignToUserId);
 			
 			view.setData(true);
 			return view;

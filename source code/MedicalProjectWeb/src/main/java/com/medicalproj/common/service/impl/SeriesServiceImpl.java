@@ -29,7 +29,7 @@ public class SeriesServiceImpl implements ISeriesService {
 	private SeriesMapper seriesMapper;
 
 	@Override
-	public List<SeriesView> listAllSeriesByStudyId(Integer studyId)
+	public List<SeriesView> listAllSeriesViewByStudyId(Integer studyId)
 			throws ServiceException {
 		try {
 			SeriesViewExample example = new SeriesViewExample();
@@ -94,6 +94,27 @@ public class SeriesServiceImpl implements ISeriesService {
 			}
 		}
 		
+	}
+
+	@Override
+	public List<Series> listAllSeriesByStudyId(Integer studyId) throws ServiceException {
+		SeriesExample example = new SeriesExample();
+		SeriesExample.Criteria c = example.createCriteria();
+		
+		c.andStudyIdEqualTo(studyId);
+		
+		return seriesMapper.selectByExample(example);
+	}
+
+	@Override
+	public void delete(List<Series> seriesList) throws ServiceException {
+		for(Series series: seriesList ) {
+			this.deleteById(series.getId());
+		}
+	}
+
+	private void deleteById(Integer seriesId) {
+		seriesMapper.deleteByPrimaryKey(seriesId);
 	}
 	
 	

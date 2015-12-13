@@ -12,6 +12,7 @@
    		<div class="userinfo" id="user-info-wrap">
    			<div><img class="user-head" src='<c:url value="/modules/web/assets/img/head.png"/>'> <h3 class="username"></h3> </div> 
    			<ul class="list-unstyled user-info-extra">
+   				<li class="userremark"></li>
    				<li class="usertype"></li>
    				<li class="mobile"></li>
    				<li class="email"></li>

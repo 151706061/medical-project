@@ -24,8 +24,11 @@ public class Constants {
 	public static final int NOTIFICATION_STATUS_APPROVE = 2;			//同意
 	public static final int NOTIFICATION_STATUS_REJECT = 3;				//拒绝
 	public static final int NOTIFICATION_STATUS_EXPIRE = 4;				//过期
+	
 	/* notification type */
+	public static final int NOTIFICATION_TYPE_NORMAL = 0;				//普通通知(仅文字，无后续操作)
 	public static final int NOTIFICATION_TYPE_DIAGNOSE_INVITATION = 1;	//诊断邀请 
+	
 	/* notification from type */
 	public static final int NOTIFICATION_FROM_TYPE_USER = 1;	//来源是用户(用户操作产生的通知)
 	

@@ -16,4 +16,6 @@ public interface IWebCommonService {
 
 	View<List<UserView>> listAllJuniorDoctor()throws ServiceException;
 
+	View<UserView> getLoginUserInfo(Integer userId)throws ServiceException;
+
 }

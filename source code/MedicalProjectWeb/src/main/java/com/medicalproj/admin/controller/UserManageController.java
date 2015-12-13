@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.medicalproj.admin.dto.param.AddUserParam;
 import com.medicalproj.admin.dto.param.ListUserParam;
 import com.medicalproj.admin.dto.view.UserListView;
 import com.medicalproj.admin.service.IAdminUserManageService;
@@ -31,4 +32,10 @@ public class UserManageController {
 		return view;
 	}
 	
+	@RequestMapping("/addUser")
+	@ResponseBody
+	public View<Boolean> addUser( AddUserParam param ){
+		View<Boolean> view = adminUserManageService.addUser(param);
+		return view;
+	}
 }

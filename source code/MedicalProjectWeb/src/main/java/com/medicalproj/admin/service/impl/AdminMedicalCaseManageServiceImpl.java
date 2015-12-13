@@ -12,6 +12,7 @@ import com.medicalproj.admin.service.IAdminMedicalCaseManageService;
 import com.medicalproj.common.domain.DetailedStudyView;
 import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
+import com.medicalproj.common.service.IMedicalCaseService;
 import com.medicalproj.common.service.IStudyService;
 import com.medicalproj.common.util.PagerHelper;
 import com.medicalproj.web.dto.view.PagerView;
@@ -23,6 +24,9 @@ public class AdminMedicalCaseManageServiceImpl implements
 	@Autowired
 	private IStudyService studyService;
 
+	@Autowired
+	private IMedicalCaseService medicalCaseService;
+	
 	@Override
 	public View<StudyListView> listStudy(ListStudyParam param)
 			throws ServiceException {
@@ -45,6 +49,16 @@ public class AdminMedicalCaseManageServiceImpl implements
 			view.setMsg(e.getMessage());
 			return view;
 		}
+	}
+
+	@Override
+	public View<Boolean> delMedicalCase(Integer medicalCaseId) throws ServiceException {
+		View<Boolean> view = new View<Boolean>();
+		
+		medicalCaseService.delMedicalCase(medicalCaseId);
+		
+		view.setData(true);
+		return view;
 	}
 	
 }

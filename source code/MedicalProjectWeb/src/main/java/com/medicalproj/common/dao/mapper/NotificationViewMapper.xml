@@ -7,6 +7,13 @@
     <result column="READ_STATUS" property="readStatus" jdbcType="VARCHAR" />
     <result column="SEND_TIME" property="sendTime" jdbcType="VARCHAR" />
     <result column="OWNER_USER_ID" property="ownerUserId" jdbcType="INTEGER" />
+    <result column="FROM_TYPE_CODE" property="fromTypeCode" jdbcType="INTEGER" />
+    <result column="FROM_TYPE" property="fromType" jdbcType="VARCHAR" />
+    <result column="FROM_USER_ID" property="fromUserId" jdbcType="BIGINT" />
+    <result column="STATUS_CODE" property="statusCode" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="TYPE_CODE" property="typeCode" jdbcType="INTEGER" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    NOTIFICATION_ID, CONTENT, READ_STATUS, SEND_TIME, OWNER_USER_ID
+    NOTIFICATION_ID, CONTENT, READ_STATUS, SEND_TIME, OWNER_USER_ID, FROM_TYPE_CODE, 
+    FROM_TYPE, FROM_USER_ID, STATUS_CODE, STATUS, TYPE_CODE, TYPE
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.NotificationViewExample" >
     select
@@ -91,9 +99,15 @@
   </delete>
   <insert id="insert" parameterType="com.medicalproj.common.domain.NotificationView" >
     insert into vw_notification (NOTIFICATION_ID, CONTENT, READ_STATUS, 
-      SEND_TIME, OWNER_USER_ID)
+      SEND_TIME, OWNER_USER_ID, FROM_TYPE_CODE, 
+      FROM_TYPE, FROM_USER_ID, STATUS_CODE, 
+      STATUS, TYPE_CODE, TYPE
+      )
     values (#{notificationId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{readStatus,jdbcType=VARCHAR}, 
-      #{sendTime,jdbcType=VARCHAR}, #{ownerUserId,jdbcType=INTEGER})
+      #{sendTime,jdbcType=VARCHAR}, #{ownerUserId,jdbcType=INTEGER}, #{fromTypeCode,jdbcType=INTEGER}, 
+      #{fromType,jdbcType=VARCHAR}, #{fromUserId,jdbcType=BIGINT}, #{statusCode,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{typeCode,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.NotificationView" >
     insert into vw_notification
@@ -113,6 +127,27 @@
       <if test="ownerUserId != null" >
         OWNER_USER_ID,
       </if>
+      <if test="fromTypeCode != null" >
+        FROM_TYPE_CODE,
+      </if>
+      <if test="fromType != null" >
+        FROM_TYPE,
+      </if>
+      <if test="fromUserId != null" >
+        FROM_USER_ID,
+      </if>
+      <if test="statusCode != null" >
+        STATUS_CODE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="typeCode != null" >
+        TYPE_CODE,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="notificationId != null" >
@@ -129,6 +164,27 @@
       </if>
       <if test="ownerUserId != null" >
         #{ownerUserId,jdbcType=INTEGER},
+      </if>
+      <if test="fromTypeCode != null" >
+        #{fromTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="fromType != null" >
+        #{fromType,jdbcType=VARCHAR},
+      </if>
+      <if test="fromUserId != null" >
+        #{fromUserId,jdbcType=BIGINT},
+      </if>
+      <if test="statusCode != null" >
+        #{statusCode,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null" >
+        #{typeCode,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -156,6 +212,27 @@
       <if test="record.ownerUserId != null" >
         OWNER_USER_ID = #{record.ownerUserId,jdbcType=INTEGER},
       </if>
+      <if test="record.fromTypeCode != null" >
+        FROM_TYPE_CODE = #{record.fromTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.fromType != null" >
+        FROM_TYPE = #{record.fromType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromUserId != null" >
+        FROM_USER_ID = #{record.fromUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.statusCode != null" >
+        STATUS_CODE = #{record.statusCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeCode != null" >
+        TYPE_CODE = #{record.typeCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -167,7 +244,14 @@
       CONTENT = #{record.content,jdbcType=VARCHAR},
       READ_STATUS = #{record.readStatus,jdbcType=VARCHAR},
       SEND_TIME = #{record.sendTime,jdbcType=VARCHAR},
-      OWNER_USER_ID = #{record.ownerUserId,jdbcType=INTEGER}
+      OWNER_USER_ID = #{record.ownerUserId,jdbcType=INTEGER},
+      FROM_TYPE_CODE = #{record.fromTypeCode,jdbcType=INTEGER},
+      FROM_TYPE = #{record.fromType,jdbcType=VARCHAR},
+      FROM_USER_ID = #{record.fromUserId,jdbcType=BIGINT},
+      STATUS_CODE = #{record.statusCode,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      TYPE_CODE = #{record.typeCode,jdbcType=INTEGER},
+      TYPE = #{record.type,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

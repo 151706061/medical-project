@@ -9,4 +9,6 @@ public interface IAdminMedicalCaseManageService {
 	
 	View<StudyListView> listStudy(ListStudyParam param)throws ServiceException;
 
+	View<Boolean> delMedicalCase(Integer medicalCaseId)throws ServiceException;
+
 }

@@ -11,6 +11,7 @@ public class User {
     private String userTypeStr;
     private Integer balance;
     private Date regTime;
+    private String userRemark;
 	public Integer getId() {
 		return id;
 	}
@@ -58,5 +59,11 @@ public class User {
 	}
 	public void setUserTypeStr(String userTypeStr) {
 		this.userTypeStr = userTypeStr;
+	}
+	public String getUserRemark() {
+		return userRemark;
+	}
+	public void setUserRemark(String userRemark) {
+		this.userRemark = userRemark;
 	}
 }

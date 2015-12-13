@@ -66,5 +66,14 @@ public class WebCommonServiceImpl implements IWebCommonService {
 		return view;
 	}
 
+	@Override
+	public View<UserView> getLoginUserInfo(Integer userId) throws ServiceException {
+		View<UserView> view = new View<UserView>();
+		UserView userView = userService.getUserViewByUserId(userId);
+		
+		view.setData(userView);
+		return view;
+	}
+
 	
 }

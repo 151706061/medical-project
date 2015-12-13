@@ -129,8 +129,7 @@
 		</table>
 		-->
 		
-		<table tableName="TBL_NOTIFICATION" domainObjectName="Notification">
-			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
+		<table tableName="vw_user" domainObjectName="UserView">
 		</table> 
 	</context>
 </generatorConfiguration>

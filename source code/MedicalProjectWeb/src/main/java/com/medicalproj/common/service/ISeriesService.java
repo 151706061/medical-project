@@ -9,9 +9,13 @@ import eden.dicomparser.data.DicomData;
 
 public interface ISeriesService {
 
-	List<com.medicalproj.common.domain.SeriesView> listAllSeriesByStudyId(
+	List<com.medicalproj.common.domain.SeriesView> listAllSeriesViewByStudyId(
 			Integer studyId)throws ServiceException;
 
 	Series createSeriesIfNotExists(Integer studyDomainId, DicomData dicom)throws ServiceException;
+
+	List<Series> listAllSeriesByStudyId(Integer studyId)throws ServiceException;
+
+	void delete(List<Series> seriesList)throws ServiceException;
 
 }

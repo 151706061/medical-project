@@ -9,6 +9,7 @@
     <result column="USER_TYPE_CODE" property="userTypeCode" jdbcType="INTEGER" />
     <result column="USER_TYPE" property="userType" jdbcType="VARCHAR" />
     <result column="REG_TIME" property="regTime" jdbcType="VARCHAR" />
+    <result column="USER_REMARK" property="userRemark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, NAME, MOBILE, EMAIL, USER_TYPE_CODE, USER_TYPE, REG_TIME
+    ID, NAME, MOBILE, EMAIL, USER_TYPE_CODE, USER_TYPE, REG_TIME, USER_REMARK
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.UserViewExample" >
     select
@@ -94,10 +95,10 @@
   <insert id="insert" parameterType="com.medicalproj.common.domain.UserView" >
     insert into vw_user (ID, NAME, MOBILE, 
       EMAIL, USER_TYPE_CODE, USER_TYPE, 
-      REG_TIME)
+      REG_TIME, USER_REMARK)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{userTypeCode,jdbcType=INTEGER}, #{userType,jdbcType=VARCHAR}, 
-      #{regTime,jdbcType=VARCHAR})
+      #{regTime,jdbcType=VARCHAR}, #{userRemark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.UserView" >
     insert into vw_user
@@ -123,6 +124,9 @@
       <if test="regTime != null" >
         REG_TIME,
       </if>
+      <if test="userRemark != null" >
+        USER_REMARK,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -145,6 +149,9 @@
       </if>
       <if test="regTime != null" >
         #{regTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userRemark != null" >
+        #{userRemark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -178,6 +185,9 @@
       <if test="record.regTime != null" >
         REG_TIME = #{record.regTime,jdbcType=VARCHAR},
       </if>
+      <if test="record.userRemark != null" >
+        USER_REMARK = #{record.userRemark,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -191,7 +201,8 @@
       EMAIL = #{record.email,jdbcType=VARCHAR},
       USER_TYPE_CODE = #{record.userTypeCode,jdbcType=INTEGER},
       USER_TYPE = #{record.userType,jdbcType=VARCHAR},
-      REG_TIME = #{record.regTime,jdbcType=VARCHAR}
+      REG_TIME = #{record.regTime,jdbcType=VARCHAR},
+      USER_REMARK = #{record.userRemark,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

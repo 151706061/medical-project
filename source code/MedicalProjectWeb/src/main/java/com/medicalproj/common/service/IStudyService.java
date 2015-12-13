@@ -12,7 +12,7 @@ import eden.dicomparser.data.DicomData;
 
 public interface IStudyService {
 
-	List<com.medicalproj.common.domain.StudyView> listAllStudyByMedicalCaseId(
+	List<com.medicalproj.common.domain.StudyView> listAllStudyViewByMedicalCaseId(
 			Integer medicalCaseId)throws ServiceException;
 
 	Study createStydyIfNotExists(Integer medicalCaseId, DicomData dicom)throws ServiceException;
@@ -30,5 +30,9 @@ public interface IStudyService {
 	Study getById(Integer studyId)throws ServiceException;
 
 	Study getByMedicalCaseId(Integer medicalCaseId)throws ServiceException;
+
+	List<Study> listAllStudyByMedicalCaseId(Integer medicalCaseId)throws ServiceException;
+
+	void delete(List<Study> studyList)throws ServiceException;
 
 }

@@ -99,7 +99,7 @@ public class TaskServiceImpl implements ITaskService {
 			
 			if( medicalCaseIdList != null ){
 				for( Integer mcId :medicalCaseIdList ){
-					List<StudyView> studyList = studyService.listAllStudyByMedicalCaseId(mcId);
+					List<StudyView> studyList = studyService.listAllStudyViewByMedicalCaseId(mcId);
 					
 					if( studyList != null ){
 						for( StudyView studyView : studyList ){
@@ -185,7 +185,7 @@ public class TaskServiceImpl implements ITaskService {
 	}
 
 	@Override
-	public void createDiagnoseTask(Integer medicalCaseId, Integer assignToUserId)
+	public void createDiagnoseTask(Integer studyId, Integer assignToUserId)
 			throws ServiceException {
 		try {
 			Task task = new Task();
@@ -311,7 +311,6 @@ public class TaskServiceImpl implements ITaskService {
 				mc.setStatus(Constants.MEDICAL_CASE_STATUS_WAIT_FOR_ASSIGNED);
 				medicalCaseService.saveOrUpdate(mc);
 			}
-			
 		}
 	}
 

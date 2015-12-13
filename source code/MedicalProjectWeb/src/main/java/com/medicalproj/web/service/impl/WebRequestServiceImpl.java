@@ -162,7 +162,7 @@ public class WebRequestServiceImpl implements IWebRequestService {
 		
 		BeanUtils.copyProperties(mcv, view);
 		
-		List<com.medicalproj.common.domain.StudyView> domainStudyViewList = studyService.listAllStudyByMedicalCaseId(mcv.getMedicalCaseId());
+		List<com.medicalproj.common.domain.StudyView> domainStudyViewList = studyService.listAllStudyViewByMedicalCaseId(mcv.getMedicalCaseId());
 		List<StudyView> studys = trans2StudyView(domainStudyViewList);
 		
 		view.setStudys(studys);
@@ -193,7 +193,7 @@ public class WebRequestServiceImpl implements IWebRequestService {
 		BeanUtils.copyProperties(domainStudyView, view);
 		
 		
-		List<com.medicalproj.common.domain.SeriesView> domainSeriesViewList = seriesService.listAllSeriesByStudyId(domainStudyView.getId());
+		List<com.medicalproj.common.domain.SeriesView> domainSeriesViewList = seriesService.listAllSeriesViewByStudyId(domainStudyView.getId());
 		List<SeriesView> seriesViewList = trans2SeriesViewList(domainSeriesViewList);
 		view.setSeriesList(seriesViewList);
 		

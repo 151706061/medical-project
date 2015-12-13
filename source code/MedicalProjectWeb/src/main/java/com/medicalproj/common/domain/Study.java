@@ -29,6 +29,10 @@ public class Study {
 
     private Date reviewTime;
 
+    private Integer isFinalReviewed;
+
+    private Integer finalReviewRemark;
+
     private Integer status;
 
     private String modality;
@@ -139,6 +143,22 @@ public class Study {
 
     public void setReviewTime(Date reviewTime) {
         this.reviewTime = reviewTime;
+    }
+
+    public Integer getIsFinalReviewed() {
+        return isFinalReviewed;
+    }
+
+    public void setIsFinalReviewed(Integer isFinalReviewed) {
+        this.isFinalReviewed = isFinalReviewed;
+    }
+
+    public Integer getFinalReviewRemark() {
+        return finalReviewRemark;
+    }
+
+    public void setFinalReviewRemark(Integer finalReviewRemark) {
+        this.finalReviewRemark = finalReviewRemark;
     }
 
     public Integer getStatus() {

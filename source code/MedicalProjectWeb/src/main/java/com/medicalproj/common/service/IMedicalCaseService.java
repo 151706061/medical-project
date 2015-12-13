@@ -32,4 +32,6 @@ public interface IMedicalCaseService {
 
 	void saveOrUpdate(MedicalCase mc)throws ServiceException;
 
+	void delMedicalCase(Integer medicalCaseId)throws ServiceException;
+
 }

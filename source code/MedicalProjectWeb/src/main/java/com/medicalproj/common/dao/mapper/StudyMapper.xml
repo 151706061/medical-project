@@ -15,6 +15,8 @@
     <result column="REVIEW_IMAGE_PERFORMANCE" property="reviewImagePerformance" jdbcType="VARCHAR" />
     <result column="REVIEW_IMAGE_RESULT" property="reviewImageResult" jdbcType="VARCHAR" />
     <result column="REVIEW_TIME" property="reviewTime" jdbcType="TIMESTAMP" />
+    <result column="IS_FINAL_REVIEWED" property="isFinalReviewed" jdbcType="INTEGER" />
+    <result column="FINAL_REVIEW_REMARK" property="finalReviewRemark" jdbcType="INTEGER" />
     <result column="STATUS" property="status" jdbcType="INTEGER" />
     <result column="MODALITY" property="modality" jdbcType="VARCHAR" />
     <result column="BODY_PART_EXAMINED" property="bodyPartExamined" jdbcType="VARCHAR" />
@@ -81,7 +83,8 @@
   <sql id="Base_Column_List" >
     ID, MEDICAL_CASE_ID, STUDY_ID, STUDY_DATE, CREATE_TIME, DIAGNOSE_IMAGE_PERFORMANCE, 
     DIAGNOSE_IMAGE_RESULT, DIAGNOSE_USER_ID, DIAGNOSE_TIME, REVIEW_USER_ID, REVIEW_IMAGE_PERFORMANCE, 
-    REVIEW_IMAGE_RESULT, REVIEW_TIME, STATUS, MODALITY, BODY_PART_EXAMINED, STUDY_DESCRIPTION
+    REVIEW_IMAGE_RESULT, REVIEW_TIME, IS_FINAL_REVIEWED, FINAL_REVIEW_REMARK, STATUS, 
+    MODALITY, BODY_PART_EXAMINED, STUDY_DESCRIPTION
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.StudyExample" >
     select
@@ -114,28 +117,27 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.medicalproj.common.domain.Study" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into tbl_study (MEDICAL_CASE_ID, STUDY_ID, STUDY_DATE, 
-      CREATE_TIME, DIAGNOSE_IMAGE_PERFORMANCE, 
+    insert into tbl_study (ID, MEDICAL_CASE_ID, STUDY_ID, 
+      STUDY_DATE, CREATE_TIME, DIAGNOSE_IMAGE_PERFORMANCE, 
       DIAGNOSE_IMAGE_RESULT, DIAGNOSE_USER_ID, DIAGNOSE_TIME, 
       REVIEW_USER_ID, REVIEW_IMAGE_PERFORMANCE, REVIEW_IMAGE_RESULT, 
-      REVIEW_TIME, STATUS, MODALITY, 
-      BODY_PART_EXAMINED, STUDY_DESCRIPTION)
-    values (#{medicalCaseId,jdbcType=INTEGER}, #{studyId,jdbcType=VARCHAR}, #{studyDate,jdbcType=DATE}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{diagnoseImagePerformance,jdbcType=VARCHAR}, 
+      REVIEW_TIME, IS_FINAL_REVIEWED, FINAL_REVIEW_REMARK, 
+      STATUS, MODALITY, BODY_PART_EXAMINED, 
+      STUDY_DESCRIPTION)
+    values (#{id,jdbcType=INTEGER}, #{medicalCaseId,jdbcType=INTEGER}, #{studyId,jdbcType=VARCHAR}, 
+      #{studyDate,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP}, #{diagnoseImagePerformance,jdbcType=VARCHAR}, 
       #{diagnoseImageResult,jdbcType=VARCHAR}, #{diagnoseUserId,jdbcType=INTEGER}, #{diagnoseTime,jdbcType=TIMESTAMP}, 
       #{reviewUserId,jdbcType=INTEGER}, #{reviewImagePerformance,jdbcType=VARCHAR}, #{reviewImageResult,jdbcType=VARCHAR}, 
-      #{reviewTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{modality,jdbcType=VARCHAR}, 
-      #{bodyPartExamined,jdbcType=VARCHAR}, #{studyDescription,jdbcType=VARCHAR})
+      #{reviewTime,jdbcType=TIMESTAMP}, #{isFinalReviewed,jdbcType=INTEGER}, #{finalReviewRemark,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{modality,jdbcType=VARCHAR}, #{bodyPartExamined,jdbcType=VARCHAR}, 
+      #{studyDescription,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.Study" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into tbl_study
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
       <if test="medicalCaseId != null" >
         MEDICAL_CASE_ID,
       </if>
@@ -172,6 +174,12 @@
       <if test="reviewTime != null" >
         REVIEW_TIME,
       </if>
+      <if test="isFinalReviewed != null" >
+        IS_FINAL_REVIEWED,
+      </if>
+      <if test="finalReviewRemark != null" >
+        FINAL_REVIEW_REMARK,
+      </if>
       <if test="status != null" >
         STATUS,
       </if>
@@ -186,6 +194,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
       <if test="medicalCaseId != null" >
         #{medicalCaseId,jdbcType=INTEGER},
       </if>
@@ -221,6 +232,12 @@
       </if>
       <if test="reviewTime != null" >
         #{reviewTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isFinalReviewed != null" >
+        #{isFinalReviewed,jdbcType=INTEGER},
+      </if>
+      <if test="finalReviewRemark != null" >
+        #{finalReviewRemark,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -284,6 +301,12 @@
       <if test="record.reviewTime != null" >
         REVIEW_TIME = #{record.reviewTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.isFinalReviewed != null" >
+        IS_FINAL_REVIEWED = #{record.isFinalReviewed,jdbcType=INTEGER},
+      </if>
+      <if test="record.finalReviewRemark != null" >
+        FINAL_REVIEW_REMARK = #{record.finalReviewRemark,jdbcType=INTEGER},
+      </if>
       <if test="record.status != null" >
         STATUS = #{record.status,jdbcType=INTEGER},
       </if>
@@ -316,6 +339,8 @@
       REVIEW_IMAGE_PERFORMANCE = #{record.reviewImagePerformance,jdbcType=VARCHAR},
       REVIEW_IMAGE_RESULT = #{record.reviewImageResult,jdbcType=VARCHAR},
       REVIEW_TIME = #{record.reviewTime,jdbcType=TIMESTAMP},
+      IS_FINAL_REVIEWED = #{record.isFinalReviewed,jdbcType=INTEGER},
+      FINAL_REVIEW_REMARK = #{record.finalReviewRemark,jdbcType=INTEGER},
       STATUS = #{record.status,jdbcType=INTEGER},
       MODALITY = #{record.modality,jdbcType=VARCHAR},
       BODY_PART_EXAMINED = #{record.bodyPartExamined,jdbcType=VARCHAR},
@@ -363,6 +388,12 @@
       <if test="reviewTime != null" >
         REVIEW_TIME = #{reviewTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="isFinalReviewed != null" >
+        IS_FINAL_REVIEWED = #{isFinalReviewed,jdbcType=INTEGER},
+      </if>
+      <if test="finalReviewRemark != null" >
+        FINAL_REVIEW_REMARK = #{finalReviewRemark,jdbcType=INTEGER},
+      </if>
       <if test="status != null" >
         STATUS = #{status,jdbcType=INTEGER},
       </if>
@@ -392,6 +423,8 @@
       REVIEW_IMAGE_PERFORMANCE = #{reviewImagePerformance,jdbcType=VARCHAR},
       REVIEW_IMAGE_RESULT = #{reviewImageResult,jdbcType=VARCHAR},
       REVIEW_TIME = #{reviewTime,jdbcType=TIMESTAMP},
+      IS_FINAL_REVIEWED = #{isFinalReviewed,jdbcType=INTEGER},
+      FINAL_REVIEW_REMARK = #{finalReviewRemark,jdbcType=INTEGER},
       STATUS = #{status,jdbcType=INTEGER},
       MODALITY = #{modality,jdbcType=VARCHAR},
       BODY_PART_EXAMINED = #{bodyPartExamined,jdbcType=VARCHAR},

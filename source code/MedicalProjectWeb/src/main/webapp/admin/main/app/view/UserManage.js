@@ -161,6 +161,11 @@ Ext.define('MedicalProject.view.UserManage', {
                                     xtype: 'toolbar',
                                     dock: 'top',
                                     items: [
+										{
+										    xtype: 'button',
+										    id:'userManage_tbAddUserBtn',
+										    text: '添加用户'
+										},    
                                         {
                                             xtype: 'button',
                                             id:'userManage_tbDeleteUserBtn',
@@ -181,6 +186,21 @@ Ext.define('MedicalProject.view.UserManage', {
     bindEvent: function(){
     	var me = this;
     	var userGrid = Ext.getCmp('userManage_userGrid');
+    	
+    	Ext.getCmp('userManage_tbAddUserBtn').on('click',function(){
+    		var addUserWin = Ext.getCmp('addUserWin');
+    		if( addUserWin ){
+    			addUserWin.show();
+    		}else{
+    			addUserWin = Ext.create('MedicalProject.view.AddUserWin',{
+    				onUserCreated:function(){
+    					Ext.getCmp('userManage_userGrid').store.reload();
+    				}
+    			});
+    			addUserWin.show();
+    		}
+    	});
+    	
     	Ext.getCmp('userManage_tbDeleteUserBtn').on('click',function(){
     		var selection = userGrid.getSelectionModel().getSelection();
 

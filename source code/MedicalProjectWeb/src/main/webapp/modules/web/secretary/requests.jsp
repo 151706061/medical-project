@@ -20,29 +20,10 @@
 				</div>
 			</div>
 			<div class="col-sm-12" id="req-history-list-wrap">
-				<!-- <ul class="list-unstyled" id="medicalCaseListWrap">
+				<ul class="list-unstyled" id="medicalCaseListWrap">
 					
-				</ul> -->
-				<div class="col-sm-12">
-					<table class="table table-hover table-with-bg-color">
-						<thead>
-							<tr>
-								<th>病人ID</th>
-								<th>病人姓名</th>
-								<th>Study日期</th>
-								<th>Study描述</th>
-								<th>Series</th>
-								<th>创建时间</th>
-								<th>创建者</th>
-								<th>病例状态</th>
-								<th>操作</th>
-							</tr>
-						</thead>
-						<tbody id="requestListTbody">
-							
-						</tbody>
-					</table>
-				</div>
+				</ul>
+
 
 				<div class="col-sm-12">
 					<nav>
@@ -61,25 +42,6 @@
 	</div>
 </div>
 <!-- /padding -->
-
-<script id="requestListItemTmpl" type="x-tmpl-mustache">
-{{#medicalCaseList}}
-<tr data-mcid="{{medicalCaseId}}">
-	<td>{{patientId}}</td>
-	<td>{{patientName}}</td>
-	<td>{{#studys}}{{studyDate}}{{/studys}}</td>
-	<td>{{#studys}}{{studyDescription}}{{/studys}}</td>
-	<td>{{#studys}} {{#seriesList}} {{seriesNumber}} &nbsp; {{/seriesList}} {{/studys}}</td>
-	<td>{{createTime}}</td>
-	<td>{{creatorUserName}}</td>
-	<td>{{medicalCaseStatus}}</td>
-	<td>
-		{{#studys}}<a target="_blank" href='<c:url value="/modules/cornerstone/index.jsp?studyId={{id}}"/>' class="btn btn-xs btn-link">查看病例</a>{{/studys}}
-	</td>
-</tr>
-{{/medicalCaseList}}
-</script>
-
 
 <script id="medicalCaseTmpl" type="x-tmpl-mustache">
 {{#medicalCaseList}}
@@ -115,7 +77,7 @@
 						</div>
 						<div class="panel-body">
 							<div class="row">
-								<%--
+								<%-- 
 								{{#instanceList}}
 								<div class="col-sm-2">
 									<img src="/ftp/{{jpgFilePath}}" alt="" class="img-thumbnail case-img" />
@@ -131,7 +93,7 @@
 				</div>
 				<div class="panel-footer">
 					<div class="row">
-						<div class="col-sm-6 left">{{medicalCaseStatus}}</div>
+						<div class="col-sm-6 left">{{status}}</div>
 						<div class="col-sm-6 right">
 							<a target="_blank" href='<c:url value="/modules/cornerstone/index.jsp?studyId={{id}}"/>' class="btn btn-xs btn-link">查看病例</a>
 						</div>

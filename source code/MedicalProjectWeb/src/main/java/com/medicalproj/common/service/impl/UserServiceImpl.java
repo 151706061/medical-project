@@ -1,5 +1,6 @@
 package com.medicalproj.common.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -7,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.medicalproj.admin.dto.param.AddUserParam;
 import com.medicalproj.admin.dto.param.ListUserParam;
 import com.medicalproj.common.dao.UserMapper;
 import com.medicalproj.common.dao.UserViewMapper;
@@ -14,7 +16,6 @@ import com.medicalproj.common.domain.User;
 import com.medicalproj.common.domain.UserExample;
 import com.medicalproj.common.domain.UserView;
 import com.medicalproj.common.domain.UserViewExample;
-import com.medicalproj.common.dto.view.View;
 import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IUserService;
 import com.medicalproj.common.util.AssertUtil;
@@ -227,5 +228,31 @@ public class UserServiceImpl implements IUserService {
 	public void delUserById(Integer userId) throws ServiceException {
 		userMapper.deleteByPrimaryKey(userId);
 	}
+
+	@Override
+	public void addUser(AddUserParam param) throws ServiceException {
+		User user = new User();
+		user.setName(param.getUserName());
+		user.setMobile(param.getMobile());
+		user.setEmail(param.getEmail());
+		user.setPassword(param.getPassword());
+		user.setRegTime(new Date());
+		user.setUserType(param.getUserType());
+		this.saveOrUpdate(user);
+	}
+
+	@Override
+	public UserView getUserViewByUserId(Integer userId) throws ServiceException {
+		UserViewExample example = new UserViewExample();
+		UserViewExample.Criteria c = example.createCriteria();
+		
+		c.andIdEqualTo(userId);
+		List<UserView> list = userViewMapper.selectByExample(example);
+		if( list != null && list.size() > 0 ){
+			return list.get(0);
+		}
+		return null;
+	}
+	
 	
 }

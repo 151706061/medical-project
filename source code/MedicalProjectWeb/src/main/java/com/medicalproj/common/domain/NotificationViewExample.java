@@ -433,6 +433,456 @@ public class NotificationViewExample {
             addCriterion("OWNER_USER_ID not between", value1, value2, "ownerUserId");
             return (Criteria) this;
         }
+
+        public Criteria andFromTypeCodeIsNull() {
+            addCriterion("FROM_TYPE_CODE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeCodeIsNotNull() {
+            addCriterion("FROM_TYPE_CODE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeCodeEqualTo(Integer value) {
+            addCriterion("FROM_TYPE_CODE =", value, "fromTypeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeCodeNotEqualTo(Integer value) {
+            addCriterion("FROM_TYPE_CODE <>", value, "fromTypeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeCodeGreaterThan(Integer value) {
+            addCriterion("FROM_TYPE_CODE >", value, "fromTypeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeCodeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("FROM_TYPE_CODE >=", value, "fromTypeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeCodeLessThan(Integer value) {
+            addCriterion("FROM_TYPE_CODE <", value, "fromTypeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeCodeLessThanOrEqualTo(Integer value) {
+            addCriterion("FROM_TYPE_CODE <=", value, "fromTypeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeCodeIn(List<Integer> values) {
+            addCriterion("FROM_TYPE_CODE in", values, "fromTypeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeCodeNotIn(List<Integer> values) {
+            addCriterion("FROM_TYPE_CODE not in", values, "fromTypeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeCodeBetween(Integer value1, Integer value2) {
+            addCriterion("FROM_TYPE_CODE between", value1, value2, "fromTypeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeCodeNotBetween(Integer value1, Integer value2) {
+            addCriterion("FROM_TYPE_CODE not between", value1, value2, "fromTypeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeIsNull() {
+            addCriterion("FROM_TYPE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeIsNotNull() {
+            addCriterion("FROM_TYPE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeEqualTo(String value) {
+            addCriterion("FROM_TYPE =", value, "fromType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeNotEqualTo(String value) {
+            addCriterion("FROM_TYPE <>", value, "fromType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeGreaterThan(String value) {
+            addCriterion("FROM_TYPE >", value, "fromType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("FROM_TYPE >=", value, "fromType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeLessThan(String value) {
+            addCriterion("FROM_TYPE <", value, "fromType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeLessThanOrEqualTo(String value) {
+            addCriterion("FROM_TYPE <=", value, "fromType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeLike(String value) {
+            addCriterion("FROM_TYPE like", value, "fromType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeNotLike(String value) {
+            addCriterion("FROM_TYPE not like", value, "fromType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeIn(List<String> values) {
+            addCriterion("FROM_TYPE in", values, "fromType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeNotIn(List<String> values) {
+            addCriterion("FROM_TYPE not in", values, "fromType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeBetween(String value1, String value2) {
+            addCriterion("FROM_TYPE between", value1, value2, "fromType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromTypeNotBetween(String value1, String value2) {
+            addCriterion("FROM_TYPE not between", value1, value2, "fromType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromUserIdIsNull() {
+            addCriterion("FROM_USER_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromUserIdIsNotNull() {
+            addCriterion("FROM_USER_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromUserIdEqualTo(Long value) {
+            addCriterion("FROM_USER_ID =", value, "fromUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromUserIdNotEqualTo(Long value) {
+            addCriterion("FROM_USER_ID <>", value, "fromUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromUserIdGreaterThan(Long value) {
+            addCriterion("FROM_USER_ID >", value, "fromUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromUserIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("FROM_USER_ID >=", value, "fromUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromUserIdLessThan(Long value) {
+            addCriterion("FROM_USER_ID <", value, "fromUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromUserIdLessThanOrEqualTo(Long value) {
+            addCriterion("FROM_USER_ID <=", value, "fromUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromUserIdIn(List<Long> values) {
+            addCriterion("FROM_USER_ID in", values, "fromUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromUserIdNotIn(List<Long> values) {
+            addCriterion("FROM_USER_ID not in", values, "fromUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromUserIdBetween(Long value1, Long value2) {
+            addCriterion("FROM_USER_ID between", value1, value2, "fromUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFromUserIdNotBetween(Long value1, Long value2) {
+            addCriterion("FROM_USER_ID not between", value1, value2, "fromUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusCodeIsNull() {
+            addCriterion("STATUS_CODE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusCodeIsNotNull() {
+            addCriterion("STATUS_CODE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusCodeEqualTo(Integer value) {
+            addCriterion("STATUS_CODE =", value, "statusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusCodeNotEqualTo(Integer value) {
+            addCriterion("STATUS_CODE <>", value, "statusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusCodeGreaterThan(Integer value) {
+            addCriterion("STATUS_CODE >", value, "statusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusCodeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("STATUS_CODE >=", value, "statusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusCodeLessThan(Integer value) {
+            addCriterion("STATUS_CODE <", value, "statusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusCodeLessThanOrEqualTo(Integer value) {
+            addCriterion("STATUS_CODE <=", value, "statusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusCodeIn(List<Integer> values) {
+            addCriterion("STATUS_CODE in", values, "statusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusCodeNotIn(List<Integer> values) {
+            addCriterion("STATUS_CODE not in", values, "statusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusCodeBetween(Integer value1, Integer value2) {
+            addCriterion("STATUS_CODE between", value1, value2, "statusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusCodeNotBetween(Integer value1, Integer value2) {
+            addCriterion("STATUS_CODE not between", value1, value2, "statusCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNull() {
+            addCriterion("STATUS is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNotNull() {
+            addCriterion("STATUS is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusEqualTo(String value) {
+            addCriterion("STATUS =", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotEqualTo(String value) {
+            addCriterion("STATUS <>", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThan(String value) {
+            addCriterion("STATUS >", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThanOrEqualTo(String value) {
+            addCriterion("STATUS >=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThan(String value) {
+            addCriterion("STATUS <", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThanOrEqualTo(String value) {
+            addCriterion("STATUS <=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLike(String value) {
+            addCriterion("STATUS like", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotLike(String value) {
+            addCriterion("STATUS not like", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIn(List<String> values) {
+            addCriterion("STATUS in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotIn(List<String> values) {
+            addCriterion("STATUS not in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusBetween(String value1, String value2) {
+            addCriterion("STATUS between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotBetween(String value1, String value2) {
+            addCriterion("STATUS not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeCodeIsNull() {
+            addCriterion("TYPE_CODE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeCodeIsNotNull() {
+            addCriterion("TYPE_CODE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeCodeEqualTo(Integer value) {
+            addCriterion("TYPE_CODE =", value, "typeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeCodeNotEqualTo(Integer value) {
+            addCriterion("TYPE_CODE <>", value, "typeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeCodeGreaterThan(Integer value) {
+            addCriterion("TYPE_CODE >", value, "typeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeCodeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("TYPE_CODE >=", value, "typeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeCodeLessThan(Integer value) {
+            addCriterion("TYPE_CODE <", value, "typeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeCodeLessThanOrEqualTo(Integer value) {
+            addCriterion("TYPE_CODE <=", value, "typeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeCodeIn(List<Integer> values) {
+            addCriterion("TYPE_CODE in", values, "typeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeCodeNotIn(List<Integer> values) {
+            addCriterion("TYPE_CODE not in", values, "typeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeCodeBetween(Integer value1, Integer value2) {
+            addCriterion("TYPE_CODE between", value1, value2, "typeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeCodeNotBetween(Integer value1, Integer value2) {
+            addCriterion("TYPE_CODE not between", value1, value2, "typeCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNull() {
+            addCriterion("TYPE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNotNull() {
+            addCriterion("TYPE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeEqualTo(String value) {
+            addCriterion("TYPE =", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotEqualTo(String value) {
+            addCriterion("TYPE <>", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThan(String value) {
+            addCriterion("TYPE >", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("TYPE >=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThan(String value) {
+            addCriterion("TYPE <", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThanOrEqualTo(String value) {
+            addCriterion("TYPE <=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLike(String value) {
+            addCriterion("TYPE like", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotLike(String value) {
+            addCriterion("TYPE not like", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIn(List<String> values) {
+            addCriterion("TYPE in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotIn(List<String> values) {
+            addCriterion("TYPE not in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeBetween(String value1, String value2) {
+            addCriterion("TYPE between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotBetween(String value1, String value2) {
+            addCriterion("TYPE not between", value1, value2, "type");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

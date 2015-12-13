@@ -385,6 +385,30 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 		}
 		
 	}
-	
+
+	@Override
+	public void delMedicalCase(Integer medicalCaseId) throws ServiceException {
+		List<Study> studyList = studyService.listAllStudyByMedicalCaseId(medicalCaseId);
+		
+		for(Study study : studyList ) {
+			List<Series> seriesList = seriesService.listAllSeriesByStudyId(study.getId());
+			
+			for(Series series : seriesList ){
+				List<Instance> instanceList = instanceService.listAllInstanceBySeriesId(series.getId());
+				
+				instanceService.delete(instanceList);
+			}
+			
+			seriesService.delete(seriesList);
+		}
+		
+		studyService.delete(studyList);
+		
+		this.deleteById(medicalCaseId);
+	}
+
+	private void deleteById(Integer medicalCaseId) {
+		medicalCaseMapper.deleteByPrimaryKey(medicalCaseId);
+	}
 	
 }

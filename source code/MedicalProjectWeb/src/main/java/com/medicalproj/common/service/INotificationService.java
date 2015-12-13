@@ -18,7 +18,7 @@ public interface INotificationService {
 
 	Notification getById(Integer notificationId)throws ServiceException;
 
-	void createDiagnoseInviteNotification(Integer processUserId, Integer sourceMedicalCaseId, Integer toUserId)throws ServiceException;
+	void createDiagnoseInviteNotification(Integer processUserId, Integer studyId, Integer toUserId)throws ServiceException;
 
 	void approve(Integer notificationId, Integer processUserId)throws ServiceException;
 

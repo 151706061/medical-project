@@ -15,6 +15,8 @@ public class UserView {
 
     private String regTime;
 
+    private String userRemark;
+
     public Integer getId() {
         return id;
     }
@@ -69,5 +71,13 @@ public class UserView {
 
     public void setRegTime(String regTime) {
         this.regTime = regTime == null ? null : regTime.trim();
+    }
+
+    public String getUserRemark() {
+        return userRemark;
+    }
+
+    public void setUserRemark(String userRemark) {
+        this.userRemark = userRemark == null ? null : userRemark.trim();
     }
 }

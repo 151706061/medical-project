@@ -14,4 +14,8 @@ public interface IInstanceService {
 
 	Instance createInstanceIfNotExists(Integer seriesDomainId, DicomData dicom,Integer uploadDicomFileId,Integer uploadJpgFileId)throws ServiceException;
 
+	List<Instance> listAllInstanceBySeriesId(Integer seriesId)throws ServiceException;
+
+	void delete(List<Instance> instanceList)throws ServiceException;
+
 }

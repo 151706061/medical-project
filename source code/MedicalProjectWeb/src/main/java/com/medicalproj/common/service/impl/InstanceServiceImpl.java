@@ -97,6 +97,27 @@ public class InstanceServiceImpl implements IInstanceService {
 		}
 		return null;
 	}
+
+	@Override
+	public List<Instance> listAllInstanceBySeriesId(Integer seriesId) throws ServiceException {
+		InstanceExample example = new InstanceExample();
+		InstanceExample.Criteria c = example.createCriteria();
+		
+		c.andSeriesIdEqualTo(seriesId);
+		
+		return instanceMapper.selectByExample(example);
+	}
+
+	@Override
+	public void delete(List<Instance> instanceList) throws ServiceException {
+		for(Instance instance: instanceList){
+			this.deleteById(instance.getId());
+		}
+	}
+
+	private void deleteById(Integer instanceId) {
+		instanceMapper.deleteByPrimaryKey(instanceId);
+	}
 	
 	
 	

@@ -49,7 +49,7 @@ public class StudyServiceImpl implements IStudyService {
 	private IMedicalCaseService medicalCaseService;
 	
 	@Override
-	public List<StudyView> listAllStudyByMedicalCaseId(Integer medicalCaseId)
+	public List<StudyView> listAllStudyViewByMedicalCaseId(Integer medicalCaseId)
 			throws ServiceException {
 		try {
 			StudyViewExample example = new StudyViewExample();
@@ -251,7 +251,26 @@ public class StudyServiceImpl implements IStudyService {
 		}
 		return null;
 	}
-	
+
+	@Override
+	public List<Study> listAllStudyByMedicalCaseId(Integer medicalCaseId) throws ServiceException {
+		StudyExample example = new StudyExample();
+		StudyExample.Criteria c = example.createCriteria();
+		c.andMedicalCaseIdEqualTo(medicalCaseId);
+		
+		return studyMapper.selectByExample(example);
+	}
+
+	@Override
+	public void delete(List<Study> studyList) throws ServiceException {
+		for(Study study: studyList ){
+			this.deleteById( study.getId());
+		}
+	}
+
+	private void deleteById(Integer studyId) {
+		studyMapper.deleteByPrimaryKey(studyId);
+	}
 	
 	
 }
