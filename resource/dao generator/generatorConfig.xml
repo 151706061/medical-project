@@ -129,7 +129,8 @@
 		</table>
 		-->
 		
-		<table tableName="vw_user" domainObjectName="UserView">
+		<table tableName="tbl_study" domainObjectName="Study">
+			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table> 
 	</context>
 </generatorConfiguration>

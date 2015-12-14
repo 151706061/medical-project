@@ -73,8 +73,10 @@ var TaskModule = (function(){
 	
 	var processTaskData = function(tasks){
 		$.each(tasks,function(i,n){
-			if( n.taskStatus == '已分配待诊断'){
+			if( userType ==2 && n.taskStatus == '已分配待诊断'){
 				n.showDiagnoseBtn = true;
+			}else if( userType == 6 && n.taskStatus == '待初审' ){
+				n.showFirstReviewBtn = true;
 			}
 		});
 	};
@@ -140,7 +142,7 @@ var TaskModule = (function(){
 
 $(function(){
 	TaskModule.listTask();
-	
+
 	$('#assignTaskModal .assignBtn').off();
 	$('#assignTaskModal .assignBtn').on('click',function(){
 		var assignToUserId = $('#juniorDoctorSelect').val();

@@ -55,6 +55,7 @@
 	<td>{{taskStatus}}</td>
 	<td>
 		{{#showDiagnoseBtn}}<a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs diagnose-btn" >诊断</a>{{/showDiagnoseBtn}}
+		{{#showFirstReviewBtn}}<a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs first-review-btn" >审核</a>{{/showFirstReviewBtn}}
 		<a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs diagnose-btn" >查看病例</a>
 	</td>
 </tr>

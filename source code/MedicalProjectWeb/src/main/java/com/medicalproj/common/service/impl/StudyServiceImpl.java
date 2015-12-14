@@ -195,6 +195,7 @@ public class StudyServiceImpl implements IStudyService {
 			study.setDiagnoseImageResult(result);
 			study.setDiagnoseTime(new Date());
 			study.setDiagnoseUserId(userId);
+			study.setIsDiagnosed(Constants.IS_DIAGNOSED_TRUE);
 			
 			this.saveOrUpdate(study);
 			
@@ -204,15 +205,15 @@ public class StudyServiceImpl implements IStudyService {
 			mc.setStatus(Constants.MEDICAL_CASE_STATUS_DIAGNOSE_COMPLETE);
 			medicalCaseService.saveOrUpdate(mc);
 			
-			//创建审核任务
-			taskService.createAuditTask(study.getId());
+			//创建初审任务
+			taskService.createFirstReviewTask(study.getId());
 		}
 		
 	}
 
 	@Override
 	public void audit(Integer userId, Integer taskId, String performance, String result) throws ServiceException {
-		Task task = taskService.getById(taskId);
+		/*Task task = taskService.getById(taskId);
 		Study study = this.getById(task.getResourceId());
 		if( study != null ){
 			study.setReviewImagePerformance(performance);
@@ -229,7 +230,7 @@ public class StudyServiceImpl implements IStudyService {
 			mc.setStatus(Constants.MEDICAL_CASE_STATUS_AUDIT_COMPLETE);
 			medicalCaseService.saveOrUpdate(mc);
 			
-		}		
+		}	*/	
 	}
 
 	@Override
@@ -270,6 +271,54 @@ public class StudyServiceImpl implements IStudyService {
 
 	private void deleteById(Integer studyId) {
 		studyMapper.deleteByPrimaryKey(studyId);
+	}
+
+	@Override
+	public void doFirstReview(Integer userId, Integer taskId, String performance, String result)
+			throws ServiceException {
+		Task task = taskService.getById(taskId);
+		Study study = this.getById(task.getResourceId());
+		if( study != null ){
+			study.setFirstReviewImagePerformance(performance);
+			study.setFirstReviewImageResult(result);
+			study.setFirstReviewTime(new Date());
+			study.setFirstReviewUserId(userId);
+			study.setIsFirstReviewed(Constants.IS_FIRST_REVIEWED_TRUE);
+			
+			this.saveOrUpdate(study);
+			
+			Integer medicalCaseId = study.getMedicalCaseId();
+			
+			MedicalCase mc = medicalCaseService.getById(medicalCaseId);
+			mc.setStatus(Constants.MEDICAL_CASE_STATUS_WAIT_FOR_FINAL_REVIEW);
+			medicalCaseService.saveOrUpdate(mc);
+			
+			//创建初审任务
+			taskService.createFinalReviewTask(study.getId());
+		}
+	}
+
+	@Override
+	public void doFinalReview(Integer userId, Integer taskId, String performance, String result,int remark)
+			throws ServiceException {
+		Task task = taskService.getById(taskId);
+		Study study = this.getById(task.getResourceId());
+		if( study != null ){
+			study.setFinalReviewImagePerformance(performance);
+			study.setFinalReviewImageResult(result);
+			study.setFinalReviewTime(new Date());
+			study.setFinalReviewUserId(userId);
+			study.setIsFinalReviewed(Constants.IS_FINAL_REVIEWED_TRUE);
+			study.setFinalReviewRemark(remark);
+			this.saveOrUpdate(study);
+			
+			Integer medicalCaseId = study.getMedicalCaseId();
+			
+			MedicalCase mc = medicalCaseService.getById(medicalCaseId);
+			mc.setStatus(Constants.MEDICAL_CASE_STATUS_FINAL_REVIEW_COMPLETE);
+			medicalCaseService.saveOrUpdate(mc);
+		}
+		
 	}
 	
 	

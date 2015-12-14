@@ -35,4 +35,8 @@ public interface IStudyService {
 
 	void delete(List<Study> studyList)throws ServiceException;
 
+	void doFirstReview(Integer userId, Integer taskId, String performance, String result)throws ServiceException;
+
+	void doFinalReview(Integer userId, Integer taskId, String performance, String result,int remark)throws ServiceException;
+
 }

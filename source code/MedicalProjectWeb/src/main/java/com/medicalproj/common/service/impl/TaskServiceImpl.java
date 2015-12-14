@@ -314,5 +314,67 @@ public class TaskServiceImpl implements ITaskService {
 		}
 	}
 
+	@Override
+	public void createFirstReviewTask(Integer studyId) throws ServiceException {
+		List<UserView> seniorList = userService.listAllChiefCensorDoctor();
+		if( seniorList != null && seniorList.size() > 0 ){
+			UserView chiefCensor = seniorList.get(0);
+			
+			Task task = new Task();
+			task.setType(Constants.TASK_TYPE_MEDICAL_CASE_FIRST_REVIEW);
+			task.setResourceId(studyId);
+			task.setOwnerUserId(chiefCensor.getId());
+			task.setCreateTime(new Date());
+			
+			this.saveOrUpdate(task);
+			
+			
+			Study study = studyService.getById(studyId);
+			Integer medicalCaseId = study.getMedicalCaseId();
+			MedicalCase mc = medicalCaseService.getById(medicalCaseId);
+			mc.setStatus(Constants.MEDICAL_CASE_STATUS_WAIT_FOR_FIRST_REVIEW);
+			
+			medicalCaseService.saveOrUpdate(mc);
+		}
+		
+	}
+
+	@Override
+	public Task getMyFirstReviewTask(Integer studyId, Integer userId) throws ServiceException {
+		Task task = this.getByCond( userId, studyId);
+		return task;
+	}
+
+	@Override
+	public Task getMyFinalReviewTask(Integer studyId, Integer userId) throws ServiceException {
+		Task task = this.getByCond( userId, studyId);
+		return task;
+	}
+
+	@Override
+	public void createFinalReviewTask(Integer studyId) throws ServiceException {
+		List<UserView> chiefPhsicianList = userService.listAllChiefPhsicianDoctor(); 
+		if( chiefPhsicianList != null && chiefPhsicianList.size() > 0 ){
+			UserView chiefCensor = chiefPhsicianList.get(0);
+			
+			Task task = new Task();
+			task.setType(Constants.TASK_TYPE_MEDICAL_CASE_FINAL_REVIEW);
+			task.setResourceId(studyId);
+			task.setOwnerUserId(chiefCensor.getId());
+			task.setCreateTime(new Date());
+			
+			this.saveOrUpdate(task);
+			
+			
+			Study study = studyService.getById(studyId);
+			Integer medicalCaseId = study.getMedicalCaseId();
+			MedicalCase mc = medicalCaseService.getById(medicalCaseId);
+			mc.setStatus(Constants.MEDICAL_CASE_STATUS_WAIT_FOR_FINAL_REVIEW);
+			
+			medicalCaseService.saveOrUpdate(mc);
+		}
+		
+	}
+
 
 }

@@ -13,6 +13,16 @@ public class Study {
 
     private Date createTime;
 
+    private Integer status;
+
+    private String modality;
+
+    private String bodyPartExamined;
+
+    private String studyDescription;
+
+    private Integer isDiagnosed;
+
     private String diagnoseImagePerformance;
 
     private String diagnoseImageResult;
@@ -21,25 +31,27 @@ public class Study {
 
     private Date diagnoseTime;
 
-    private Integer reviewUserId;
+    private Integer isFirstReviewed;
 
-    private String reviewImagePerformance;
+    private String firstReviewImagePerformance;
 
-    private String reviewImageResult;
+    private String firstReviewImageResult;
 
-    private Date reviewTime;
+    private Integer firstReviewUserId;
+
+    private Date firstReviewTime;
 
     private Integer isFinalReviewed;
 
+    private String finalReviewImagePerformance;
+
+    private String finalReviewImageResult;
+
     private Integer finalReviewRemark;
 
-    private Integer status;
+    private Integer finalReviewUserId;
 
-    private String modality;
-
-    private String bodyPartExamined;
-
-    private String studyDescription;
+    private Date finalReviewTime;
 
     public Integer getId() {
         return id;
@@ -81,6 +93,46 @@ public class Study {
         this.createTime = createTime;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getModality() {
+        return modality;
+    }
+
+    public void setModality(String modality) {
+        this.modality = modality == null ? null : modality.trim();
+    }
+
+    public String getBodyPartExamined() {
+        return bodyPartExamined;
+    }
+
+    public void setBodyPartExamined(String bodyPartExamined) {
+        this.bodyPartExamined = bodyPartExamined == null ? null : bodyPartExamined.trim();
+    }
+
+    public String getStudyDescription() {
+        return studyDescription;
+    }
+
+    public void setStudyDescription(String studyDescription) {
+        this.studyDescription = studyDescription == null ? null : studyDescription.trim();
+    }
+
+    public Integer getIsDiagnosed() {
+        return isDiagnosed;
+    }
+
+    public void setIsDiagnosed(Integer isDiagnosed) {
+        this.isDiagnosed = isDiagnosed;
+    }
+
     public String getDiagnoseImagePerformance() {
         return diagnoseImagePerformance;
     }
@@ -113,36 +165,44 @@ public class Study {
         this.diagnoseTime = diagnoseTime;
     }
 
-    public Integer getReviewUserId() {
-        return reviewUserId;
+    public Integer getIsFirstReviewed() {
+        return isFirstReviewed;
     }
 
-    public void setReviewUserId(Integer reviewUserId) {
-        this.reviewUserId = reviewUserId;
+    public void setIsFirstReviewed(Integer isFirstReviewed) {
+        this.isFirstReviewed = isFirstReviewed;
     }
 
-    public String getReviewImagePerformance() {
-        return reviewImagePerformance;
+    public String getFirstReviewImagePerformance() {
+        return firstReviewImagePerformance;
     }
 
-    public void setReviewImagePerformance(String reviewImagePerformance) {
-        this.reviewImagePerformance = reviewImagePerformance == null ? null : reviewImagePerformance.trim();
+    public void setFirstReviewImagePerformance(String firstReviewImagePerformance) {
+        this.firstReviewImagePerformance = firstReviewImagePerformance == null ? null : firstReviewImagePerformance.trim();
     }
 
-    public String getReviewImageResult() {
-        return reviewImageResult;
+    public String getFirstReviewImageResult() {
+        return firstReviewImageResult;
     }
 
-    public void setReviewImageResult(String reviewImageResult) {
-        this.reviewImageResult = reviewImageResult == null ? null : reviewImageResult.trim();
+    public void setFirstReviewImageResult(String firstReviewImageResult) {
+        this.firstReviewImageResult = firstReviewImageResult == null ? null : firstReviewImageResult.trim();
     }
 
-    public Date getReviewTime() {
-        return reviewTime;
+    public Integer getFirstReviewUserId() {
+        return firstReviewUserId;
     }
 
-    public void setReviewTime(Date reviewTime) {
-        this.reviewTime = reviewTime;
+    public void setFirstReviewUserId(Integer firstReviewUserId) {
+        this.firstReviewUserId = firstReviewUserId;
+    }
+
+    public Date getFirstReviewTime() {
+        return firstReviewTime;
+    }
+
+    public void setFirstReviewTime(Date firstReviewTime) {
+        this.firstReviewTime = firstReviewTime;
     }
 
     public Integer getIsFinalReviewed() {
@@ -153,6 +213,22 @@ public class Study {
         this.isFinalReviewed = isFinalReviewed;
     }
 
+    public String getFinalReviewImagePerformance() {
+        return finalReviewImagePerformance;
+    }
+
+    public void setFinalReviewImagePerformance(String finalReviewImagePerformance) {
+        this.finalReviewImagePerformance = finalReviewImagePerformance == null ? null : finalReviewImagePerformance.trim();
+    }
+
+    public String getFinalReviewImageResult() {
+        return finalReviewImageResult;
+    }
+
+    public void setFinalReviewImageResult(String finalReviewImageResult) {
+        this.finalReviewImageResult = finalReviewImageResult == null ? null : finalReviewImageResult.trim();
+    }
+
     public Integer getFinalReviewRemark() {
         return finalReviewRemark;
     }
@@ -161,35 +237,19 @@ public class Study {
         this.finalReviewRemark = finalReviewRemark;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getFinalReviewUserId() {
+        return finalReviewUserId;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setFinalReviewUserId(Integer finalReviewUserId) {
+        this.finalReviewUserId = finalReviewUserId;
     }
 
-    public String getModality() {
-        return modality;
+    public Date getFinalReviewTime() {
+        return finalReviewTime;
     }
 
-    public void setModality(String modality) {
-        this.modality = modality == null ? null : modality.trim();
-    }
-
-    public String getBodyPartExamined() {
-        return bodyPartExamined;
-    }
-
-    public void setBodyPartExamined(String bodyPartExamined) {
-        this.bodyPartExamined = bodyPartExamined == null ? null : bodyPartExamined.trim();
-    }
-
-    public String getStudyDescription() {
-        return studyDescription;
-    }
-
-    public void setStudyDescription(String studyDescription) {
-        this.studyDescription = studyDescription == null ? null : studyDescription.trim();
+    public void setFinalReviewTime(Date finalReviewTime) {
+        this.finalReviewTime = finalReviewTime;
     }
 }

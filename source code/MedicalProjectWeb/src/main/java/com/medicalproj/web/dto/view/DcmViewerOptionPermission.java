@@ -5,15 +5,19 @@ public class DcmViewerOptionPermission {
 	private boolean canDiagnose;
 	private boolean canAudit;
 	private boolean canViewDiagnoseAndAuditReport;
+	private boolean canFirstReview;
+	private boolean canFinalReview;
 	
 	public DcmViewerOptionPermission(boolean canViewReport,
 			boolean canDiagnose, boolean canAudit,
-			boolean canViewDiagnoseAndAuditReport) {
+			boolean canViewDiagnoseAndAuditReport,boolean canFirstReview,boolean canFinalReview) {
 		super();
 		this.canViewReport = canViewReport;
 		this.canDiagnose = canDiagnose;
 		this.canAudit = canAudit;
 		this.canViewDiagnoseAndAuditReport = canViewDiagnoseAndAuditReport;
+		this.canFirstReview = canFirstReview;
+		this.canFinalReview = canFinalReview;
 	}
 	public boolean isCanViewReport() {
 		return canViewReport;
@@ -39,5 +43,17 @@ public class DcmViewerOptionPermission {
 	public void setCanViewDiagnoseAndAuditReport(
 			boolean canViewDiagnoseAndAuditReport) {
 		this.canViewDiagnoseAndAuditReport = canViewDiagnoseAndAuditReport;
+	}
+	public boolean isCanFirstReview() {
+		return canFirstReview;
+	}
+	public void setCanFirstReview(boolean canFirstReview) {
+		this.canFirstReview = canFirstReview;
+	}
+	public boolean isCanFinalReview() {
+		return canFinalReview;
+	}
+	public void setCanFinalReview(boolean canFinalReview) {
+		this.canFinalReview = canFinalReview;
 	}
 }

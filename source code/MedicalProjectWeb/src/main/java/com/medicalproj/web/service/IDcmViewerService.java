@@ -19,5 +19,9 @@ public interface IDcmViewerService {
 	View<DcmViewerOptionPermission> getDcmViewerOptionPermission(
 			Integer studyId, Integer userId)throws ServiceException;
 
+	View<Boolean> submitFirstReview(Integer userId, Integer taskId, String performance, String result)throws ServiceException;
+
+	View<Boolean> submitFinalReview(Integer userId, Integer taskId, String performance, String result,int remark)throws ServiceException;
+
 
 }

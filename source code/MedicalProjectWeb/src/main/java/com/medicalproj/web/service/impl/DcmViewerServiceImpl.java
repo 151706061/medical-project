@@ -175,7 +175,7 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 			Integer studyId, Integer userId) throws ServiceException {
 		View<DcmViewerOptionPermission>  view = new View<DcmViewerOptionPermission> ();
 		try {
-			DcmViewerOptionPermission permission = new DcmViewerOptionPermission(false,false,false,false);
+			DcmViewerOptionPermission permission = new DcmViewerOptionPermission(false,false,false,false,false,false);
 			
 			User user = userService.getById(userId);
 			if( user == null || user.getUserType() == null){
@@ -216,6 +216,28 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 						permission.setCanAudit(true);
 					}
 				}
+			}else if( user.getUserType().equals(Constants.USER_TYPE_CHIEF_CENSOR_DOCTOR) ){
+				Task task = taskService.getMyFirstReviewTask(studyId, userId);
+				
+				if( task != null ){
+					permission.setCanViewReport(true);
+					
+					MedicalCase mc = medicalCaseService.getById(study.getMedicalCaseId());
+					if( mc.getStatus().equals(Constants.MEDICAL_CASE_STATUS_WAIT_FOR_FIRST_REVIEW) ){
+						permission.setCanFirstReview(true);
+					}
+				}
+			}else if( user.getUserType().equals(Constants.USER_TYPE_CHIEF_PHSICIAN) ){
+				Task task = taskService.getMyFinalReviewTask(studyId, userId);
+				
+				if( task != null ){
+					permission.setCanViewReport(true);
+					
+					MedicalCase mc = medicalCaseService.getById(study.getMedicalCaseId());
+					if( mc.getStatus().equals(Constants.MEDICAL_CASE_STATUS_WAIT_FOR_FINAL_REVIEW) ){
+						permission.setCanFinalReview(true);
+					}
+				}
 			}else if( user.getUserType().equals(Constants.USER_TYPE_ENTERPRISE_USER) ){
 				
 			}else{
@@ -232,5 +254,24 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 		}
 	}
 
-	
+	@Override
+	public View<Boolean> submitFirstReview(Integer userId, Integer taskId, String performance, String result)
+			throws ServiceException {
+		View<Boolean> view = new View<Boolean>();
+		studyService.doFirstReview(userId,taskId,performance,result);
+		
+		view.setData(true);
+		return view;
+	}
+
+	@Override
+	public View<Boolean> submitFinalReview(Integer userId, Integer taskId, String performance, String result, int remark)
+			throws ServiceException {
+		View<Boolean> view = new View<Boolean>();
+		studyService.doFinalReview(userId,taskId,performance,result,remark);
+		
+		view.setData(true);
+		return view;
+	}
+
 }

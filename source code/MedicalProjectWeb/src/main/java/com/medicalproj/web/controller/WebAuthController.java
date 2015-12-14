@@ -26,11 +26,9 @@ public class WebAuthController{
 	@ResponseBody
 	public View<Boolean> login( String account,String password, HttpSession session){
 		View<Boolean> view = webAuthService.login(account,password);
-		if( view != null &&  view.getData() == true ){
-			User user = webAuthService.getSessionUserByAccount(account);
-			session.setAttribute(Constants.SESSION_KEY_LOGIN_USER, user);
-			session.setAttribute(Constants.SESSION_KEY_FILE_BASE_PATH, Constants.FTP_HTTP_BASE_URL);
-		}
+		User user = webAuthService.getSessionUserByAccount(account);
+		session.setAttribute(Constants.SESSION_KEY_LOGIN_USER, user);
+		session.setAttribute(Constants.SESSION_KEY_FILE_BASE_PATH, Constants.FTP_HTTP_BASE_URL);
 		return view;
 	}
 	

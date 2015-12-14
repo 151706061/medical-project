@@ -67,6 +67,12 @@
 				<button id="auditBtn" class="btn btn-success hide" data-toggle="modal" data-target="#auditModal" style="margin:10px 0 0 0;">
 			  	审查
 				</button>
+				<button id="firstReviewBtn" class="btn btn-success hide" data-toggle="modal" data-target="#auditModal" style="margin:10px 0 0 0;">
+			  	初审
+				</button>
+				<button id="finalReviewBtn" class="btn btn-success hide" data-toggle="modal" data-target="#auditModal" style="margin:10px 0 0 0;">
+			  	终审
+				</button>
           </li>
           
           </li>
@@ -173,6 +179,17 @@
 		    <label for="auditInputResult">影像结论</label>
 		    <textarea class="form-control" id="auditInputResult" placeholder="请输入影像结论" style="height:120px"></textarea>
 		  </div>
+		  <div class="form-group hide" id="remarkWrap">
+		    <label for="auditInputRemark">评分</label>
+		    <select class="form-control" id="auditInputRemark">
+		    	<option value="1">1分</option>
+		    	<option value="2">2分</option>
+		    	<option value="3">3分</option>
+		    	<option value="4">4分</option>
+		    	<option value="5">5分</option>
+		    </select>
+		  </div>
+		  
 		</form>
 
 
@@ -264,6 +281,7 @@
 <script src="js/cornerstoneDemo.js"></script>
 
 <script>
+var auditType = null;
 $(function(){
 	$.get(
 		appContext + 'web/dcmviewer/getOptionPermission.do',
@@ -275,6 +293,8 @@ $(function(){
 			var canDiagnose = resp.data.canDiagnose;
 			var canAudit = resp.data.canAudit;
 			var canViewDiagnoseAndAuditReport = resp.data.canViewDiagnoseAndAuditReport;
+			var canFirstReview = resp.data.canFirstReview;
+			var canFinalReview = resp.data.canFinalReview;
 			
 			if( canDiagnose == true){
 				$('#diagnoseBtn').removeClass('hide');
@@ -285,7 +305,12 @@ $(function(){
 			if( canViewReport == true){
 				$('#viewReportBtn').removeClass('hide');
 			}
-			
+			if( canFirstReview == true ){
+				$('#firstReviewBtn').removeClass('hide');
+			}
+			if( canFinalReview == true ){
+				$('#finalReviewBtn').removeClass('hide');
+			}
 			
 			/* 
 			if( !$('.nav > li.options').hasClass('hide') ){
@@ -341,7 +366,48 @@ $(function(){
 			alert('影像结论不可为空');
 			return false;
 		}
-		
+		if( auditType == 1 ){
+			$.post(
+					appContext + 'web/dcmviewer/submitFirstReview.do',
+					{
+						taskId: taskId,
+						performance:performance,
+						result : result
+					},
+					function(resp){
+						if( resp.data == true ){
+							window.location.reload();
+							
+						}
+					},
+					'json'
+				);
+		}else if( auditType == 2 ){
+			$('#remarkWrap').removeClass('hide');
+			var remark = $.trim($('#auditInputRemark').val());
+			console.log(remark);
+			if( remark == '' ){
+				alert('请填写分数');
+				return false;
+			}
+			
+			$.post(
+				appContext + 'web/dcmviewer/submitFinalReview.do',
+				{
+					taskId: taskId,
+					performance:performance,
+					result : result,
+					remark : remark
+				},
+				function(resp){
+					if( resp.data == true ){
+						window.location.reload();
+						
+					}
+				},
+				'json'
+			);
+		}
 		$.post(
 				appContext + 'web/dcmviewer/submitAudit.do',
 				{
@@ -415,6 +481,51 @@ $(function(){
 		);	
 		
 	});
+	
+	
+	
+	$('#firstReviewBtn').on('click',function(){
+		auditType = 1; //初审
+		$.get(
+			appContext + 'web/dcmviewer/loadStudyView.do',
+			{
+				studyId: studyId
+			},	
+			function(resp){
+				var performance = resp.data.diagnoseImagePerformance;
+				var result = resp.data.diagnoseImageResult;
+				var docName = resp.data.diagnoseUserName;
+				$('#auditModal .performance').text(performance);
+				$('#auditModal .result').text(result);
+				
+				$('#auditModal .doc-name').text("诊断医生： " + docName);
+			},
+			'json'
+		);	
+		
+	});
+	
+	$('#finalReviewBtn').on('click',function(){
+		auditType = 2; //终审
+		$.get(
+			appContext + 'web/dcmviewer/loadStudyView.do',
+			{
+				studyId: studyId
+			},	
+			function(resp){
+				var performance = resp.data.firstReviewImagePerformance;
+				var result = resp.data.firstReviewImageResult;
+				var docName = resp.data.firstReviewUserName;
+				$('#auditModal .performance').text(performance);
+				$('#auditModal .result').text(result);
+				
+				$('#auditModal .doc-name').text("诊断医生： " + docName);
+			},
+			'json'
+		);	
+		
+	});
+	
 	
 	$('#auditBtn').on('click',function(){
 		$.get(

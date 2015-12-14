@@ -44,6 +44,8 @@ public class Constants {
 	public static final int TASK_TYPE_QUALIFICATION_AUDIT = 2;
 	public static final int TASK_TYPE_MEDICAL_CASE_AUDIT = 3;
 	public static final int TASK_TYPE_MEDICAL_CASE_ASSIGN = 4;
+	public static final int TASK_TYPE_MEDICAL_CASE_FIRST_REVIEW = 5;
+	public static final int TASK_TYPE_MEDICAL_CASE_FINAL_REVIEW = 6;
 	
 	/*任务状态*/
 	//病例诊断状态 ：1待审 2待诊断 3完成 4已分配待诊断 
@@ -55,6 +57,10 @@ public class Constants {
 	public static final int MEDICAL_CASE_STATUS_ASSIGN_COMPLETE = 10;
 	public static final int MEDICAL_CASE_STATUS_DIAGNOSE_COMPLETE = 11;
 	public static final int MEDICAL_CASE_STATUS_AUDIT_COMPLETE = 12;
+	public static final int MEDICAL_CASE_STATUS_WAIT_FOR_FIRST_REVIEW = 13;
+	public static final int MEDICAL_CASE_STATUS_FIRST_REVIEW_COMPLETE = 14;
+	public static final int MEDICAL_CASE_STATUS_WAIT_FOR_FINAL_REVIEW = 15;
+	public static final int MEDICAL_CASE_STATUS_FINAL_REVIEW_COMPLETE = 16;
 	
 	//资格审批状态 ： 5待审 6批准 7拒绝 
 	public static final int TASK_STATUS_QUALIFICATION_AUDIT_WAIT_FOR_REVIEW = 5;
@@ -89,6 +95,16 @@ public class Constants {
 	//public final static String FTP_HTTP_BASE_URL = "http://101.200.199.13/ftp/";
 	
 	//public final static String FTP_HTTP_BASE_URL = "http://123.57.95.30/ftp/";
+
+	// 未操作通知过期时间 
+	public static final int NOTIFICATION_CONFIRM_EXPIRE_PERIOD = 3600*24*5;
+	
+	public static final int IS_DIAGNOSED_TRUE = 1;
+	public static final int IS_DIAGNOSED_FALSE = 0;
+	public static final int IS_FIRST_REVIEWED_TRUE = 1;
+	public static final int IS_FIRST_REVIEWED_FALSE = 0;
+	public static final int IS_FINAL_REVIEWED_TRUE = 1;
+	
 	
 	
 }

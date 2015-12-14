@@ -39,4 +39,7 @@ public interface IUserService {
 
 	UserView getUserViewByUserId(Integer userId)throws ServiceException;
 
+	List<UserView> listAllChiefCensorDoctor()throws ServiceException;
+
+	List<UserView> listAllChiefPhsicianDoctor()throws ServiceException;
 }

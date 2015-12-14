@@ -23,4 +23,8 @@ public interface INotificationService {
 	void approve(Integer notificationId, Integer processUserId)throws ServiceException;
 
 	void reject(Integer notificationId, Integer processUserId)throws ServiceException;
+
+	void doExpireNotificationByPeriod(int notificationConfirmExpirePeriod)throws ServiceException;
+	
+	List<Notification> listAllByStatus(int status)throws ServiceException;
 }

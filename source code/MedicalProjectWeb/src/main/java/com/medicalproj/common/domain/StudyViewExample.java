@@ -774,343 +774,683 @@ public class StudyViewExample {
             return (Criteria) this;
         }
 
-        public Criteria andReviewImagePerformanceIsNull() {
-            addCriterion("REVIEW_IMAGE_PERFORMANCE is null");
+        public Criteria andFirstReviewImagePerformanceIsNull() {
+            addCriterion("FIRST_REVIEW_IMAGE_PERFORMANCE is null");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImagePerformanceIsNotNull() {
-            addCriterion("REVIEW_IMAGE_PERFORMANCE is not null");
+        public Criteria andFirstReviewImagePerformanceIsNotNull() {
+            addCriterion("FIRST_REVIEW_IMAGE_PERFORMANCE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImagePerformanceEqualTo(String value) {
-            addCriterion("REVIEW_IMAGE_PERFORMANCE =", value, "reviewImagePerformance");
+        public Criteria andFirstReviewImagePerformanceEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_PERFORMANCE =", value, "firstReviewImagePerformance");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImagePerformanceNotEqualTo(String value) {
-            addCriterion("REVIEW_IMAGE_PERFORMANCE <>", value, "reviewImagePerformance");
+        public Criteria andFirstReviewImagePerformanceNotEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_PERFORMANCE <>", value, "firstReviewImagePerformance");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImagePerformanceGreaterThan(String value) {
-            addCriterion("REVIEW_IMAGE_PERFORMANCE >", value, "reviewImagePerformance");
+        public Criteria andFirstReviewImagePerformanceGreaterThan(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_PERFORMANCE >", value, "firstReviewImagePerformance");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImagePerformanceGreaterThanOrEqualTo(String value) {
-            addCriterion("REVIEW_IMAGE_PERFORMANCE >=", value, "reviewImagePerformance");
+        public Criteria andFirstReviewImagePerformanceGreaterThanOrEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_PERFORMANCE >=", value, "firstReviewImagePerformance");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImagePerformanceLessThan(String value) {
-            addCriterion("REVIEW_IMAGE_PERFORMANCE <", value, "reviewImagePerformance");
+        public Criteria andFirstReviewImagePerformanceLessThan(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_PERFORMANCE <", value, "firstReviewImagePerformance");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImagePerformanceLessThanOrEqualTo(String value) {
-            addCriterion("REVIEW_IMAGE_PERFORMANCE <=", value, "reviewImagePerformance");
+        public Criteria andFirstReviewImagePerformanceLessThanOrEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_PERFORMANCE <=", value, "firstReviewImagePerformance");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImagePerformanceLike(String value) {
-            addCriterion("REVIEW_IMAGE_PERFORMANCE like", value, "reviewImagePerformance");
+        public Criteria andFirstReviewImagePerformanceLike(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_PERFORMANCE like", value, "firstReviewImagePerformance");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImagePerformanceNotLike(String value) {
-            addCriterion("REVIEW_IMAGE_PERFORMANCE not like", value, "reviewImagePerformance");
+        public Criteria andFirstReviewImagePerformanceNotLike(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_PERFORMANCE not like", value, "firstReviewImagePerformance");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImagePerformanceIn(List<String> values) {
-            addCriterion("REVIEW_IMAGE_PERFORMANCE in", values, "reviewImagePerformance");
+        public Criteria andFirstReviewImagePerformanceIn(List<String> values) {
+            addCriterion("FIRST_REVIEW_IMAGE_PERFORMANCE in", values, "firstReviewImagePerformance");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImagePerformanceNotIn(List<String> values) {
-            addCriterion("REVIEW_IMAGE_PERFORMANCE not in", values, "reviewImagePerformance");
+        public Criteria andFirstReviewImagePerformanceNotIn(List<String> values) {
+            addCriterion("FIRST_REVIEW_IMAGE_PERFORMANCE not in", values, "firstReviewImagePerformance");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImagePerformanceBetween(String value1, String value2) {
-            addCriterion("REVIEW_IMAGE_PERFORMANCE between", value1, value2, "reviewImagePerformance");
+        public Criteria andFirstReviewImagePerformanceBetween(String value1, String value2) {
+            addCriterion("FIRST_REVIEW_IMAGE_PERFORMANCE between", value1, value2, "firstReviewImagePerformance");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImagePerformanceNotBetween(String value1, String value2) {
-            addCriterion("REVIEW_IMAGE_PERFORMANCE not between", value1, value2, "reviewImagePerformance");
+        public Criteria andFirstReviewImagePerformanceNotBetween(String value1, String value2) {
+            addCriterion("FIRST_REVIEW_IMAGE_PERFORMANCE not between", value1, value2, "firstReviewImagePerformance");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImageResultIsNull() {
-            addCriterion("REVIEW_IMAGE_RESULT is null");
+        public Criteria andFirstReviewImageResultIsNull() {
+            addCriterion("FIRST_REVIEW_IMAGE_RESULT is null");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImageResultIsNotNull() {
-            addCriterion("REVIEW_IMAGE_RESULT is not null");
+        public Criteria andFirstReviewImageResultIsNotNull() {
+            addCriterion("FIRST_REVIEW_IMAGE_RESULT is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImageResultEqualTo(String value) {
-            addCriterion("REVIEW_IMAGE_RESULT =", value, "reviewImageResult");
+        public Criteria andFirstReviewImageResultEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_RESULT =", value, "firstReviewImageResult");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImageResultNotEqualTo(String value) {
-            addCriterion("REVIEW_IMAGE_RESULT <>", value, "reviewImageResult");
+        public Criteria andFirstReviewImageResultNotEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_RESULT <>", value, "firstReviewImageResult");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImageResultGreaterThan(String value) {
-            addCriterion("REVIEW_IMAGE_RESULT >", value, "reviewImageResult");
+        public Criteria andFirstReviewImageResultGreaterThan(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_RESULT >", value, "firstReviewImageResult");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImageResultGreaterThanOrEqualTo(String value) {
-            addCriterion("REVIEW_IMAGE_RESULT >=", value, "reviewImageResult");
+        public Criteria andFirstReviewImageResultGreaterThanOrEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_RESULT >=", value, "firstReviewImageResult");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImageResultLessThan(String value) {
-            addCriterion("REVIEW_IMAGE_RESULT <", value, "reviewImageResult");
+        public Criteria andFirstReviewImageResultLessThan(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_RESULT <", value, "firstReviewImageResult");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImageResultLessThanOrEqualTo(String value) {
-            addCriterion("REVIEW_IMAGE_RESULT <=", value, "reviewImageResult");
+        public Criteria andFirstReviewImageResultLessThanOrEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_RESULT <=", value, "firstReviewImageResult");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImageResultLike(String value) {
-            addCriterion("REVIEW_IMAGE_RESULT like", value, "reviewImageResult");
+        public Criteria andFirstReviewImageResultLike(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_RESULT like", value, "firstReviewImageResult");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImageResultNotLike(String value) {
-            addCriterion("REVIEW_IMAGE_RESULT not like", value, "reviewImageResult");
+        public Criteria andFirstReviewImageResultNotLike(String value) {
+            addCriterion("FIRST_REVIEW_IMAGE_RESULT not like", value, "firstReviewImageResult");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImageResultIn(List<String> values) {
-            addCriterion("REVIEW_IMAGE_RESULT in", values, "reviewImageResult");
+        public Criteria andFirstReviewImageResultIn(List<String> values) {
+            addCriterion("FIRST_REVIEW_IMAGE_RESULT in", values, "firstReviewImageResult");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImageResultNotIn(List<String> values) {
-            addCriterion("REVIEW_IMAGE_RESULT not in", values, "reviewImageResult");
+        public Criteria andFirstReviewImageResultNotIn(List<String> values) {
+            addCriterion("FIRST_REVIEW_IMAGE_RESULT not in", values, "firstReviewImageResult");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImageResultBetween(String value1, String value2) {
-            addCriterion("REVIEW_IMAGE_RESULT between", value1, value2, "reviewImageResult");
+        public Criteria andFirstReviewImageResultBetween(String value1, String value2) {
+            addCriterion("FIRST_REVIEW_IMAGE_RESULT between", value1, value2, "firstReviewImageResult");
             return (Criteria) this;
         }
 
-        public Criteria andReviewImageResultNotBetween(String value1, String value2) {
-            addCriterion("REVIEW_IMAGE_RESULT not between", value1, value2, "reviewImageResult");
+        public Criteria andFirstReviewImageResultNotBetween(String value1, String value2) {
+            addCriterion("FIRST_REVIEW_IMAGE_RESULT not between", value1, value2, "firstReviewImageResult");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserIdIsNull() {
-            addCriterion("REVIEW_USER_ID is null");
+        public Criteria andFirstReviewUserIdIsNull() {
+            addCriterion("FIRST_REVIEW_USER_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserIdIsNotNull() {
-            addCriterion("REVIEW_USER_ID is not null");
+        public Criteria andFirstReviewUserIdIsNotNull() {
+            addCriterion("FIRST_REVIEW_USER_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserIdEqualTo(Integer value) {
-            addCriterion("REVIEW_USER_ID =", value, "reviewUserId");
+        public Criteria andFirstReviewUserIdEqualTo(Integer value) {
+            addCriterion("FIRST_REVIEW_USER_ID =", value, "firstReviewUserId");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserIdNotEqualTo(Integer value) {
-            addCriterion("REVIEW_USER_ID <>", value, "reviewUserId");
+        public Criteria andFirstReviewUserIdNotEqualTo(Integer value) {
+            addCriterion("FIRST_REVIEW_USER_ID <>", value, "firstReviewUserId");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserIdGreaterThan(Integer value) {
-            addCriterion("REVIEW_USER_ID >", value, "reviewUserId");
+        public Criteria andFirstReviewUserIdGreaterThan(Integer value) {
+            addCriterion("FIRST_REVIEW_USER_ID >", value, "firstReviewUserId");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("REVIEW_USER_ID >=", value, "reviewUserId");
+        public Criteria andFirstReviewUserIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("FIRST_REVIEW_USER_ID >=", value, "firstReviewUserId");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserIdLessThan(Integer value) {
-            addCriterion("REVIEW_USER_ID <", value, "reviewUserId");
+        public Criteria andFirstReviewUserIdLessThan(Integer value) {
+            addCriterion("FIRST_REVIEW_USER_ID <", value, "firstReviewUserId");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserIdLessThanOrEqualTo(Integer value) {
-            addCriterion("REVIEW_USER_ID <=", value, "reviewUserId");
+        public Criteria andFirstReviewUserIdLessThanOrEqualTo(Integer value) {
+            addCriterion("FIRST_REVIEW_USER_ID <=", value, "firstReviewUserId");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserIdIn(List<Integer> values) {
-            addCriterion("REVIEW_USER_ID in", values, "reviewUserId");
+        public Criteria andFirstReviewUserIdIn(List<Integer> values) {
+            addCriterion("FIRST_REVIEW_USER_ID in", values, "firstReviewUserId");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserIdNotIn(List<Integer> values) {
-            addCriterion("REVIEW_USER_ID not in", values, "reviewUserId");
+        public Criteria andFirstReviewUserIdNotIn(List<Integer> values) {
+            addCriterion("FIRST_REVIEW_USER_ID not in", values, "firstReviewUserId");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserIdBetween(Integer value1, Integer value2) {
-            addCriterion("REVIEW_USER_ID between", value1, value2, "reviewUserId");
+        public Criteria andFirstReviewUserIdBetween(Integer value1, Integer value2) {
+            addCriterion("FIRST_REVIEW_USER_ID between", value1, value2, "firstReviewUserId");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("REVIEW_USER_ID not between", value1, value2, "reviewUserId");
+        public Criteria andFirstReviewUserIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("FIRST_REVIEW_USER_ID not between", value1, value2, "firstReviewUserId");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserNameIsNull() {
-            addCriterion("REVIEW_USER_NAME is null");
+        public Criteria andFirstReviewUserNameIsNull() {
+            addCriterion("FIRST_REVIEW_USER_NAME is null");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserNameIsNotNull() {
-            addCriterion("REVIEW_USER_NAME is not null");
+        public Criteria andFirstReviewUserNameIsNotNull() {
+            addCriterion("FIRST_REVIEW_USER_NAME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserNameEqualTo(String value) {
-            addCriterion("REVIEW_USER_NAME =", value, "reviewUserName");
+        public Criteria andFirstReviewUserNameEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_USER_NAME =", value, "firstReviewUserName");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserNameNotEqualTo(String value) {
-            addCriterion("REVIEW_USER_NAME <>", value, "reviewUserName");
+        public Criteria andFirstReviewUserNameNotEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_USER_NAME <>", value, "firstReviewUserName");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserNameGreaterThan(String value) {
-            addCriterion("REVIEW_USER_NAME >", value, "reviewUserName");
+        public Criteria andFirstReviewUserNameGreaterThan(String value) {
+            addCriterion("FIRST_REVIEW_USER_NAME >", value, "firstReviewUserName");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserNameGreaterThanOrEqualTo(String value) {
-            addCriterion("REVIEW_USER_NAME >=", value, "reviewUserName");
+        public Criteria andFirstReviewUserNameGreaterThanOrEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_USER_NAME >=", value, "firstReviewUserName");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserNameLessThan(String value) {
-            addCriterion("REVIEW_USER_NAME <", value, "reviewUserName");
+        public Criteria andFirstReviewUserNameLessThan(String value) {
+            addCriterion("FIRST_REVIEW_USER_NAME <", value, "firstReviewUserName");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserNameLessThanOrEqualTo(String value) {
-            addCriterion("REVIEW_USER_NAME <=", value, "reviewUserName");
+        public Criteria andFirstReviewUserNameLessThanOrEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_USER_NAME <=", value, "firstReviewUserName");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserNameLike(String value) {
-            addCriterion("REVIEW_USER_NAME like", value, "reviewUserName");
+        public Criteria andFirstReviewUserNameLike(String value) {
+            addCriterion("FIRST_REVIEW_USER_NAME like", value, "firstReviewUserName");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserNameNotLike(String value) {
-            addCriterion("REVIEW_USER_NAME not like", value, "reviewUserName");
+        public Criteria andFirstReviewUserNameNotLike(String value) {
+            addCriterion("FIRST_REVIEW_USER_NAME not like", value, "firstReviewUserName");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserNameIn(List<String> values) {
-            addCriterion("REVIEW_USER_NAME in", values, "reviewUserName");
+        public Criteria andFirstReviewUserNameIn(List<String> values) {
+            addCriterion("FIRST_REVIEW_USER_NAME in", values, "firstReviewUserName");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserNameNotIn(List<String> values) {
-            addCriterion("REVIEW_USER_NAME not in", values, "reviewUserName");
+        public Criteria andFirstReviewUserNameNotIn(List<String> values) {
+            addCriterion("FIRST_REVIEW_USER_NAME not in", values, "firstReviewUserName");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserNameBetween(String value1, String value2) {
-            addCriterion("REVIEW_USER_NAME between", value1, value2, "reviewUserName");
+        public Criteria andFirstReviewUserNameBetween(String value1, String value2) {
+            addCriterion("FIRST_REVIEW_USER_NAME between", value1, value2, "firstReviewUserName");
             return (Criteria) this;
         }
 
-        public Criteria andReviewUserNameNotBetween(String value1, String value2) {
-            addCriterion("REVIEW_USER_NAME not between", value1, value2, "reviewUserName");
+        public Criteria andFirstReviewUserNameNotBetween(String value1, String value2) {
+            addCriterion("FIRST_REVIEW_USER_NAME not between", value1, value2, "firstReviewUserName");
             return (Criteria) this;
         }
 
-        public Criteria andReviewTimeIsNull() {
-            addCriterion("REVIEW_TIME is null");
+        public Criteria andFirstReviewTimeIsNull() {
+            addCriterion("FIRST_REVIEW_TIME is null");
             return (Criteria) this;
         }
 
-        public Criteria andReviewTimeIsNotNull() {
-            addCriterion("REVIEW_TIME is not null");
+        public Criteria andFirstReviewTimeIsNotNull() {
+            addCriterion("FIRST_REVIEW_TIME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReviewTimeEqualTo(String value) {
-            addCriterion("REVIEW_TIME =", value, "reviewTime");
+        public Criteria andFirstReviewTimeEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_TIME =", value, "firstReviewTime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewTimeNotEqualTo(String value) {
-            addCriterion("REVIEW_TIME <>", value, "reviewTime");
+        public Criteria andFirstReviewTimeNotEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_TIME <>", value, "firstReviewTime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewTimeGreaterThan(String value) {
-            addCriterion("REVIEW_TIME >", value, "reviewTime");
+        public Criteria andFirstReviewTimeGreaterThan(String value) {
+            addCriterion("FIRST_REVIEW_TIME >", value, "firstReviewTime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewTimeGreaterThanOrEqualTo(String value) {
-            addCriterion("REVIEW_TIME >=", value, "reviewTime");
+        public Criteria andFirstReviewTimeGreaterThanOrEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_TIME >=", value, "firstReviewTime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewTimeLessThan(String value) {
-            addCriterion("REVIEW_TIME <", value, "reviewTime");
+        public Criteria andFirstReviewTimeLessThan(String value) {
+            addCriterion("FIRST_REVIEW_TIME <", value, "firstReviewTime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewTimeLessThanOrEqualTo(String value) {
-            addCriterion("REVIEW_TIME <=", value, "reviewTime");
+        public Criteria andFirstReviewTimeLessThanOrEqualTo(String value) {
+            addCriterion("FIRST_REVIEW_TIME <=", value, "firstReviewTime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewTimeLike(String value) {
-            addCriterion("REVIEW_TIME like", value, "reviewTime");
+        public Criteria andFirstReviewTimeLike(String value) {
+            addCriterion("FIRST_REVIEW_TIME like", value, "firstReviewTime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewTimeNotLike(String value) {
-            addCriterion("REVIEW_TIME not like", value, "reviewTime");
+        public Criteria andFirstReviewTimeNotLike(String value) {
+            addCriterion("FIRST_REVIEW_TIME not like", value, "firstReviewTime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewTimeIn(List<String> values) {
-            addCriterion("REVIEW_TIME in", values, "reviewTime");
+        public Criteria andFirstReviewTimeIn(List<String> values) {
+            addCriterion("FIRST_REVIEW_TIME in", values, "firstReviewTime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewTimeNotIn(List<String> values) {
-            addCriterion("REVIEW_TIME not in", values, "reviewTime");
+        public Criteria andFirstReviewTimeNotIn(List<String> values) {
+            addCriterion("FIRST_REVIEW_TIME not in", values, "firstReviewTime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewTimeBetween(String value1, String value2) {
-            addCriterion("REVIEW_TIME between", value1, value2, "reviewTime");
+        public Criteria andFirstReviewTimeBetween(String value1, String value2) {
+            addCriterion("FIRST_REVIEW_TIME between", value1, value2, "firstReviewTime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewTimeNotBetween(String value1, String value2) {
-            addCriterion("REVIEW_TIME not between", value1, value2, "reviewTime");
+        public Criteria andFirstReviewTimeNotBetween(String value1, String value2) {
+            addCriterion("FIRST_REVIEW_TIME not between", value1, value2, "firstReviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImagePerformanceIsNull() {
+            addCriterion("FINAL_REVIEW_IMAGE_PERFORMANCE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImagePerformanceIsNotNull() {
+            addCriterion("FINAL_REVIEW_IMAGE_PERFORMANCE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImagePerformanceEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_PERFORMANCE =", value, "finalReviewImagePerformance");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImagePerformanceNotEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_PERFORMANCE <>", value, "finalReviewImagePerformance");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImagePerformanceGreaterThan(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_PERFORMANCE >", value, "finalReviewImagePerformance");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImagePerformanceGreaterThanOrEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_PERFORMANCE >=", value, "finalReviewImagePerformance");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImagePerformanceLessThan(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_PERFORMANCE <", value, "finalReviewImagePerformance");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImagePerformanceLessThanOrEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_PERFORMANCE <=", value, "finalReviewImagePerformance");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImagePerformanceLike(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_PERFORMANCE like", value, "finalReviewImagePerformance");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImagePerformanceNotLike(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_PERFORMANCE not like", value, "finalReviewImagePerformance");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImagePerformanceIn(List<String> values) {
+            addCriterion("FINAL_REVIEW_IMAGE_PERFORMANCE in", values, "finalReviewImagePerformance");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImagePerformanceNotIn(List<String> values) {
+            addCriterion("FINAL_REVIEW_IMAGE_PERFORMANCE not in", values, "finalReviewImagePerformance");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImagePerformanceBetween(String value1, String value2) {
+            addCriterion("FINAL_REVIEW_IMAGE_PERFORMANCE between", value1, value2, "finalReviewImagePerformance");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImagePerformanceNotBetween(String value1, String value2) {
+            addCriterion("FINAL_REVIEW_IMAGE_PERFORMANCE not between", value1, value2, "finalReviewImagePerformance");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImageResultIsNull() {
+            addCriterion("FINAL_REVIEW_IMAGE_RESULT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImageResultIsNotNull() {
+            addCriterion("FINAL_REVIEW_IMAGE_RESULT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImageResultEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_RESULT =", value, "finalReviewImageResult");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImageResultNotEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_RESULT <>", value, "finalReviewImageResult");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImageResultGreaterThan(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_RESULT >", value, "finalReviewImageResult");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImageResultGreaterThanOrEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_RESULT >=", value, "finalReviewImageResult");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImageResultLessThan(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_RESULT <", value, "finalReviewImageResult");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImageResultLessThanOrEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_RESULT <=", value, "finalReviewImageResult");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImageResultLike(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_RESULT like", value, "finalReviewImageResult");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImageResultNotLike(String value) {
+            addCriterion("FINAL_REVIEW_IMAGE_RESULT not like", value, "finalReviewImageResult");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImageResultIn(List<String> values) {
+            addCriterion("FINAL_REVIEW_IMAGE_RESULT in", values, "finalReviewImageResult");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImageResultNotIn(List<String> values) {
+            addCriterion("FINAL_REVIEW_IMAGE_RESULT not in", values, "finalReviewImageResult");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImageResultBetween(String value1, String value2) {
+            addCriterion("FINAL_REVIEW_IMAGE_RESULT between", value1, value2, "finalReviewImageResult");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewImageResultNotBetween(String value1, String value2) {
+            addCriterion("FINAL_REVIEW_IMAGE_RESULT not between", value1, value2, "finalReviewImageResult");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserIdIsNull() {
+            addCriterion("FINAL_REVIEW_USER_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserIdIsNotNull() {
+            addCriterion("FINAL_REVIEW_USER_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserIdEqualTo(Integer value) {
+            addCriterion("FINAL_REVIEW_USER_ID =", value, "finalReviewUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserIdNotEqualTo(Integer value) {
+            addCriterion("FINAL_REVIEW_USER_ID <>", value, "finalReviewUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserIdGreaterThan(Integer value) {
+            addCriterion("FINAL_REVIEW_USER_ID >", value, "finalReviewUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("FINAL_REVIEW_USER_ID >=", value, "finalReviewUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserIdLessThan(Integer value) {
+            addCriterion("FINAL_REVIEW_USER_ID <", value, "finalReviewUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserIdLessThanOrEqualTo(Integer value) {
+            addCriterion("FINAL_REVIEW_USER_ID <=", value, "finalReviewUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserIdIn(List<Integer> values) {
+            addCriterion("FINAL_REVIEW_USER_ID in", values, "finalReviewUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserIdNotIn(List<Integer> values) {
+            addCriterion("FINAL_REVIEW_USER_ID not in", values, "finalReviewUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserIdBetween(Integer value1, Integer value2) {
+            addCriterion("FINAL_REVIEW_USER_ID between", value1, value2, "finalReviewUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("FINAL_REVIEW_USER_ID not between", value1, value2, "finalReviewUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserNameIsNull() {
+            addCriterion("FINAL_REVIEW_USER_NAME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserNameIsNotNull() {
+            addCriterion("FINAL_REVIEW_USER_NAME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserNameEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_USER_NAME =", value, "finalReviewUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserNameNotEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_USER_NAME <>", value, "finalReviewUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserNameGreaterThan(String value) {
+            addCriterion("FINAL_REVIEW_USER_NAME >", value, "finalReviewUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserNameGreaterThanOrEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_USER_NAME >=", value, "finalReviewUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserNameLessThan(String value) {
+            addCriterion("FINAL_REVIEW_USER_NAME <", value, "finalReviewUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserNameLessThanOrEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_USER_NAME <=", value, "finalReviewUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserNameLike(String value) {
+            addCriterion("FINAL_REVIEW_USER_NAME like", value, "finalReviewUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserNameNotLike(String value) {
+            addCriterion("FINAL_REVIEW_USER_NAME not like", value, "finalReviewUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserNameIn(List<String> values) {
+            addCriterion("FINAL_REVIEW_USER_NAME in", values, "finalReviewUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserNameNotIn(List<String> values) {
+            addCriterion("FINAL_REVIEW_USER_NAME not in", values, "finalReviewUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserNameBetween(String value1, String value2) {
+            addCriterion("FINAL_REVIEW_USER_NAME between", value1, value2, "finalReviewUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewUserNameNotBetween(String value1, String value2) {
+            addCriterion("FINAL_REVIEW_USER_NAME not between", value1, value2, "finalReviewUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewTimeIsNull() {
+            addCriterion("FINAL_REVIEW_TIME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewTimeIsNotNull() {
+            addCriterion("FINAL_REVIEW_TIME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewTimeEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_TIME =", value, "finalReviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewTimeNotEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_TIME <>", value, "finalReviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewTimeGreaterThan(String value) {
+            addCriterion("FINAL_REVIEW_TIME >", value, "finalReviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewTimeGreaterThanOrEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_TIME >=", value, "finalReviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewTimeLessThan(String value) {
+            addCriterion("FINAL_REVIEW_TIME <", value, "finalReviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewTimeLessThanOrEqualTo(String value) {
+            addCriterion("FINAL_REVIEW_TIME <=", value, "finalReviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewTimeLike(String value) {
+            addCriterion("FINAL_REVIEW_TIME like", value, "finalReviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewTimeNotLike(String value) {
+            addCriterion("FINAL_REVIEW_TIME not like", value, "finalReviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewTimeIn(List<String> values) {
+            addCriterion("FINAL_REVIEW_TIME in", values, "finalReviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewTimeNotIn(List<String> values) {
+            addCriterion("FINAL_REVIEW_TIME not in", values, "finalReviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewTimeBetween(String value1, String value2) {
+            addCriterion("FINAL_REVIEW_TIME between", value1, value2, "finalReviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinalReviewTimeNotBetween(String value1, String value2) {
+            addCriterion("FINAL_REVIEW_TIME not between", value1, value2, "finalReviewTime");
             return (Criteria) this;
         }
 

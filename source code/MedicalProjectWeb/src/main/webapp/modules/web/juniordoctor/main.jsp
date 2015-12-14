@@ -6,6 +6,9 @@
 		<title>首页</title>
 		<%@include file="/modules/web/include/common-head.jsp" %>
 	</head>
+	<script>
+	var userType = ${param.userType};
+	</script>
 	<body>
 <div class="wrapper">
     <div class="box">

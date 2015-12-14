@@ -12,11 +12,16 @@
     <result column="DIAGNOSE_USER_ID" property="diagnoseUserId" jdbcType="INTEGER" />
     <result column="DIAGNOSE_USER_NAME" property="diagnoseUserName" jdbcType="VARCHAR" />
     <result column="DIAGNOSE_TIME" property="diagnoseTime" jdbcType="VARCHAR" />
-    <result column="REVIEW_IMAGE_PERFORMANCE" property="reviewImagePerformance" jdbcType="VARCHAR" />
-    <result column="REVIEW_IMAGE_RESULT" property="reviewImageResult" jdbcType="VARCHAR" />
-    <result column="REVIEW_USER_ID" property="reviewUserId" jdbcType="INTEGER" />
-    <result column="REVIEW_USER_NAME" property="reviewUserName" jdbcType="VARCHAR" />
-    <result column="REVIEW_TIME" property="reviewTime" jdbcType="VARCHAR" />
+    <result column="FIRST_REVIEW_IMAGE_PERFORMANCE" property="firstReviewImagePerformance" jdbcType="VARCHAR" />
+    <result column="FIRST_REVIEW_IMAGE_RESULT" property="firstReviewImageResult" jdbcType="VARCHAR" />
+    <result column="FIRST_REVIEW_USER_ID" property="firstReviewUserId" jdbcType="INTEGER" />
+    <result column="FIRST_REVIEW_USER_NAME" property="firstReviewUserName" jdbcType="VARCHAR" />
+    <result column="FIRST_REVIEW_TIME" property="firstReviewTime" jdbcType="VARCHAR" />
+    <result column="FINAL_REVIEW_IMAGE_PERFORMANCE" property="finalReviewImagePerformance" jdbcType="VARCHAR" />
+    <result column="FINAL_REVIEW_IMAGE_RESULT" property="finalReviewImageResult" jdbcType="VARCHAR" />
+    <result column="FINAL_REVIEW_USER_ID" property="finalReviewUserId" jdbcType="INTEGER" />
+    <result column="FINAL_REVIEW_USER_NAME" property="finalReviewUserName" jdbcType="VARCHAR" />
+    <result column="FINAL_REVIEW_TIME" property="finalReviewTime" jdbcType="VARCHAR" />
     <result column="STATUS" property="status" jdbcType="VARCHAR" />
     <result column="MODALITY" property="modality" jdbcType="VARCHAR" />
     <result column="BODY_PART_EXAMINED" property="bodyPartExamined" jdbcType="VARCHAR" />
@@ -82,9 +87,11 @@
   </sql>
   <sql id="Base_Column_List" >
     ID, MEDICAL_CASE_ID, STUDY_ID, STUDY_DATE, CREATE_TIME, DIAGNOSE_IMAGE_PERFORMANCE, 
-    DIAGNOSE_IMAGE_RESULT, DIAGNOSE_USER_ID, DIAGNOSE_USER_NAME, DIAGNOSE_TIME, REVIEW_IMAGE_PERFORMANCE, 
-    REVIEW_IMAGE_RESULT, REVIEW_USER_ID, REVIEW_USER_NAME, REVIEW_TIME, STATUS, MODALITY, 
-    BODY_PART_EXAMINED, STUDY_DESCRIPTION
+    DIAGNOSE_IMAGE_RESULT, DIAGNOSE_USER_ID, DIAGNOSE_USER_NAME, DIAGNOSE_TIME, FIRST_REVIEW_IMAGE_PERFORMANCE, 
+    FIRST_REVIEW_IMAGE_RESULT, FIRST_REVIEW_USER_ID, FIRST_REVIEW_USER_NAME, FIRST_REVIEW_TIME, 
+    FINAL_REVIEW_IMAGE_PERFORMANCE, FINAL_REVIEW_IMAGE_RESULT, FINAL_REVIEW_USER_ID, 
+    FINAL_REVIEW_USER_NAME, FINAL_REVIEW_TIME, STATUS, MODALITY, BODY_PART_EXAMINED, 
+    STUDY_DESCRIPTION
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.StudyViewExample" >
     select
@@ -110,17 +117,23 @@
     insert into vw_study (ID, MEDICAL_CASE_ID, STUDY_ID, 
       STUDY_DATE, CREATE_TIME, DIAGNOSE_IMAGE_PERFORMANCE, 
       DIAGNOSE_IMAGE_RESULT, DIAGNOSE_USER_ID, DIAGNOSE_USER_NAME, 
-      DIAGNOSE_TIME, REVIEW_IMAGE_PERFORMANCE, REVIEW_IMAGE_RESULT, 
-      REVIEW_USER_ID, REVIEW_USER_NAME, REVIEW_TIME, 
-      STATUS, MODALITY, BODY_PART_EXAMINED, 
-      STUDY_DESCRIPTION)
+      DIAGNOSE_TIME, FIRST_REVIEW_IMAGE_PERFORMANCE, 
+      FIRST_REVIEW_IMAGE_RESULT, FIRST_REVIEW_USER_ID, 
+      FIRST_REVIEW_USER_NAME, FIRST_REVIEW_TIME, FINAL_REVIEW_IMAGE_PERFORMANCE, 
+      FINAL_REVIEW_IMAGE_RESULT, FINAL_REVIEW_USER_ID, 
+      FINAL_REVIEW_USER_NAME, FINAL_REVIEW_TIME, STATUS, 
+      MODALITY, BODY_PART_EXAMINED, STUDY_DESCRIPTION
+      )
     values (#{id,jdbcType=INTEGER}, #{medicalCaseId,jdbcType=INTEGER}, #{studyId,jdbcType=VARCHAR}, 
       #{studyDate,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{diagnoseImagePerformance,jdbcType=VARCHAR}, 
       #{diagnoseImageResult,jdbcType=VARCHAR}, #{diagnoseUserId,jdbcType=INTEGER}, #{diagnoseUserName,jdbcType=VARCHAR}, 
-      #{diagnoseTime,jdbcType=VARCHAR}, #{reviewImagePerformance,jdbcType=VARCHAR}, #{reviewImageResult,jdbcType=VARCHAR}, 
-      #{reviewUserId,jdbcType=INTEGER}, #{reviewUserName,jdbcType=VARCHAR}, #{reviewTime,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR}, #{modality,jdbcType=VARCHAR}, #{bodyPartExamined,jdbcType=VARCHAR}, 
-      #{studyDescription,jdbcType=VARCHAR})
+      #{diagnoseTime,jdbcType=VARCHAR}, #{firstReviewImagePerformance,jdbcType=VARCHAR}, 
+      #{firstReviewImageResult,jdbcType=VARCHAR}, #{firstReviewUserId,jdbcType=INTEGER}, 
+      #{firstReviewUserName,jdbcType=VARCHAR}, #{firstReviewTime,jdbcType=VARCHAR}, #{finalReviewImagePerformance,jdbcType=VARCHAR}, 
+      #{finalReviewImageResult,jdbcType=VARCHAR}, #{finalReviewUserId,jdbcType=INTEGER}, 
+      #{finalReviewUserName,jdbcType=VARCHAR}, #{finalReviewTime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{modality,jdbcType=VARCHAR}, #{bodyPartExamined,jdbcType=VARCHAR}, #{studyDescription,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.StudyView" >
     insert into vw_study
@@ -155,20 +168,35 @@
       <if test="diagnoseTime != null" >
         DIAGNOSE_TIME,
       </if>
-      <if test="reviewImagePerformance != null" >
-        REVIEW_IMAGE_PERFORMANCE,
+      <if test="firstReviewImagePerformance != null" >
+        FIRST_REVIEW_IMAGE_PERFORMANCE,
       </if>
-      <if test="reviewImageResult != null" >
-        REVIEW_IMAGE_RESULT,
+      <if test="firstReviewImageResult != null" >
+        FIRST_REVIEW_IMAGE_RESULT,
       </if>
-      <if test="reviewUserId != null" >
-        REVIEW_USER_ID,
+      <if test="firstReviewUserId != null" >
+        FIRST_REVIEW_USER_ID,
       </if>
-      <if test="reviewUserName != null" >
-        REVIEW_USER_NAME,
+      <if test="firstReviewUserName != null" >
+        FIRST_REVIEW_USER_NAME,
       </if>
-      <if test="reviewTime != null" >
-        REVIEW_TIME,
+      <if test="firstReviewTime != null" >
+        FIRST_REVIEW_TIME,
+      </if>
+      <if test="finalReviewImagePerformance != null" >
+        FINAL_REVIEW_IMAGE_PERFORMANCE,
+      </if>
+      <if test="finalReviewImageResult != null" >
+        FINAL_REVIEW_IMAGE_RESULT,
+      </if>
+      <if test="finalReviewUserId != null" >
+        FINAL_REVIEW_USER_ID,
+      </if>
+      <if test="finalReviewUserName != null" >
+        FINAL_REVIEW_USER_NAME,
+      </if>
+      <if test="finalReviewTime != null" >
+        FINAL_REVIEW_TIME,
       </if>
       <if test="status != null" >
         STATUS,
@@ -214,20 +242,35 @@
       <if test="diagnoseTime != null" >
         #{diagnoseTime,jdbcType=VARCHAR},
       </if>
-      <if test="reviewImagePerformance != null" >
-        #{reviewImagePerformance,jdbcType=VARCHAR},
+      <if test="firstReviewImagePerformance != null" >
+        #{firstReviewImagePerformance,jdbcType=VARCHAR},
       </if>
-      <if test="reviewImageResult != null" >
-        #{reviewImageResult,jdbcType=VARCHAR},
+      <if test="firstReviewImageResult != null" >
+        #{firstReviewImageResult,jdbcType=VARCHAR},
       </if>
-      <if test="reviewUserId != null" >
-        #{reviewUserId,jdbcType=INTEGER},
+      <if test="firstReviewUserId != null" >
+        #{firstReviewUserId,jdbcType=INTEGER},
       </if>
-      <if test="reviewUserName != null" >
-        #{reviewUserName,jdbcType=VARCHAR},
+      <if test="firstReviewUserName != null" >
+        #{firstReviewUserName,jdbcType=VARCHAR},
       </if>
-      <if test="reviewTime != null" >
-        #{reviewTime,jdbcType=VARCHAR},
+      <if test="firstReviewTime != null" >
+        #{firstReviewTime,jdbcType=VARCHAR},
+      </if>
+      <if test="finalReviewImagePerformance != null" >
+        #{finalReviewImagePerformance,jdbcType=VARCHAR},
+      </if>
+      <if test="finalReviewImageResult != null" >
+        #{finalReviewImageResult,jdbcType=VARCHAR},
+      </if>
+      <if test="finalReviewUserId != null" >
+        #{finalReviewUserId,jdbcType=INTEGER},
+      </if>
+      <if test="finalReviewUserName != null" >
+        #{finalReviewUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="finalReviewTime != null" >
+        #{finalReviewTime,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
@@ -282,20 +325,35 @@
       <if test="record.diagnoseTime != null" >
         DIAGNOSE_TIME = #{record.diagnoseTime,jdbcType=VARCHAR},
       </if>
-      <if test="record.reviewImagePerformance != null" >
-        REVIEW_IMAGE_PERFORMANCE = #{record.reviewImagePerformance,jdbcType=VARCHAR},
+      <if test="record.firstReviewImagePerformance != null" >
+        FIRST_REVIEW_IMAGE_PERFORMANCE = #{record.firstReviewImagePerformance,jdbcType=VARCHAR},
       </if>
-      <if test="record.reviewImageResult != null" >
-        REVIEW_IMAGE_RESULT = #{record.reviewImageResult,jdbcType=VARCHAR},
+      <if test="record.firstReviewImageResult != null" >
+        FIRST_REVIEW_IMAGE_RESULT = #{record.firstReviewImageResult,jdbcType=VARCHAR},
       </if>
-      <if test="record.reviewUserId != null" >
-        REVIEW_USER_ID = #{record.reviewUserId,jdbcType=INTEGER},
+      <if test="record.firstReviewUserId != null" >
+        FIRST_REVIEW_USER_ID = #{record.firstReviewUserId,jdbcType=INTEGER},
       </if>
-      <if test="record.reviewUserName != null" >
-        REVIEW_USER_NAME = #{record.reviewUserName,jdbcType=VARCHAR},
+      <if test="record.firstReviewUserName != null" >
+        FIRST_REVIEW_USER_NAME = #{record.firstReviewUserName,jdbcType=VARCHAR},
       </if>
-      <if test="record.reviewTime != null" >
-        REVIEW_TIME = #{record.reviewTime,jdbcType=VARCHAR},
+      <if test="record.firstReviewTime != null" >
+        FIRST_REVIEW_TIME = #{record.firstReviewTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finalReviewImagePerformance != null" >
+        FINAL_REVIEW_IMAGE_PERFORMANCE = #{record.finalReviewImagePerformance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finalReviewImageResult != null" >
+        FINAL_REVIEW_IMAGE_RESULT = #{record.finalReviewImageResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finalReviewUserId != null" >
+        FINAL_REVIEW_USER_ID = #{record.finalReviewUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.finalReviewUserName != null" >
+        FINAL_REVIEW_USER_NAME = #{record.finalReviewUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finalReviewTime != null" >
+        FINAL_REVIEW_TIME = #{record.finalReviewTime,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null" >
         STATUS = #{record.status,jdbcType=VARCHAR},
@@ -326,11 +384,16 @@
       DIAGNOSE_USER_ID = #{record.diagnoseUserId,jdbcType=INTEGER},
       DIAGNOSE_USER_NAME = #{record.diagnoseUserName,jdbcType=VARCHAR},
       DIAGNOSE_TIME = #{record.diagnoseTime,jdbcType=VARCHAR},
-      REVIEW_IMAGE_PERFORMANCE = #{record.reviewImagePerformance,jdbcType=VARCHAR},
-      REVIEW_IMAGE_RESULT = #{record.reviewImageResult,jdbcType=VARCHAR},
-      REVIEW_USER_ID = #{record.reviewUserId,jdbcType=INTEGER},
-      REVIEW_USER_NAME = #{record.reviewUserName,jdbcType=VARCHAR},
-      REVIEW_TIME = #{record.reviewTime,jdbcType=VARCHAR},
+      FIRST_REVIEW_IMAGE_PERFORMANCE = #{record.firstReviewImagePerformance,jdbcType=VARCHAR},
+      FIRST_REVIEW_IMAGE_RESULT = #{record.firstReviewImageResult,jdbcType=VARCHAR},
+      FIRST_REVIEW_USER_ID = #{record.firstReviewUserId,jdbcType=INTEGER},
+      FIRST_REVIEW_USER_NAME = #{record.firstReviewUserName,jdbcType=VARCHAR},
+      FIRST_REVIEW_TIME = #{record.firstReviewTime,jdbcType=VARCHAR},
+      FINAL_REVIEW_IMAGE_PERFORMANCE = #{record.finalReviewImagePerformance,jdbcType=VARCHAR},
+      FINAL_REVIEW_IMAGE_RESULT = #{record.finalReviewImageResult,jdbcType=VARCHAR},
+      FINAL_REVIEW_USER_ID = #{record.finalReviewUserId,jdbcType=INTEGER},
+      FINAL_REVIEW_USER_NAME = #{record.finalReviewUserName,jdbcType=VARCHAR},
+      FINAL_REVIEW_TIME = #{record.finalReviewTime,jdbcType=VARCHAR},
       STATUS = #{record.status,jdbcType=VARCHAR},
       MODALITY = #{record.modality,jdbcType=VARCHAR},
       BODY_PART_EXAMINED = #{record.bodyPartExamined,jdbcType=VARCHAR},

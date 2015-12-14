@@ -21,15 +21,25 @@ public class StudyView {
 
     private String diagnoseTime;
 
-    private String reviewImagePerformance;
+    private String firstReviewImagePerformance;
 
-    private String reviewImageResult;
+    private String firstReviewImageResult;
 
-    private Integer reviewUserId;
+    private Integer firstReviewUserId;
 
-    private String reviewUserName;
+    private String firstReviewUserName;
 
-    private String reviewTime;
+    private String firstReviewTime;
+
+    private String finalReviewImagePerformance;
+
+    private String finalReviewImageResult;
+
+    private Integer finalReviewUserId;
+
+    private String finalReviewUserName;
+
+    private String finalReviewTime;
 
     private String status;
 
@@ -119,44 +129,84 @@ public class StudyView {
         this.diagnoseTime = diagnoseTime == null ? null : diagnoseTime.trim();
     }
 
-    public String getReviewImagePerformance() {
-        return reviewImagePerformance;
+    public String getFirstReviewImagePerformance() {
+        return firstReviewImagePerformance;
     }
 
-    public void setReviewImagePerformance(String reviewImagePerformance) {
-        this.reviewImagePerformance = reviewImagePerformance == null ? null : reviewImagePerformance.trim();
+    public void setFirstReviewImagePerformance(String firstReviewImagePerformance) {
+        this.firstReviewImagePerformance = firstReviewImagePerformance == null ? null : firstReviewImagePerformance.trim();
     }
 
-    public String getReviewImageResult() {
-        return reviewImageResult;
+    public String getFirstReviewImageResult() {
+        return firstReviewImageResult;
     }
 
-    public void setReviewImageResult(String reviewImageResult) {
-        this.reviewImageResult = reviewImageResult == null ? null : reviewImageResult.trim();
+    public void setFirstReviewImageResult(String firstReviewImageResult) {
+        this.firstReviewImageResult = firstReviewImageResult == null ? null : firstReviewImageResult.trim();
     }
 
-    public Integer getReviewUserId() {
-        return reviewUserId;
+    public Integer getFirstReviewUserId() {
+        return firstReviewUserId;
     }
 
-    public void setReviewUserId(Integer reviewUserId) {
-        this.reviewUserId = reviewUserId;
+    public void setFirstReviewUserId(Integer firstReviewUserId) {
+        this.firstReviewUserId = firstReviewUserId;
     }
 
-    public String getReviewUserName() {
-        return reviewUserName;
+    public String getFirstReviewUserName() {
+        return firstReviewUserName;
     }
 
-    public void setReviewUserName(String reviewUserName) {
-        this.reviewUserName = reviewUserName == null ? null : reviewUserName.trim();
+    public void setFirstReviewUserName(String firstReviewUserName) {
+        this.firstReviewUserName = firstReviewUserName == null ? null : firstReviewUserName.trim();
     }
 
-    public String getReviewTime() {
-        return reviewTime;
+    public String getFirstReviewTime() {
+        return firstReviewTime;
     }
 
-    public void setReviewTime(String reviewTime) {
-        this.reviewTime = reviewTime == null ? null : reviewTime.trim();
+    public void setFirstReviewTime(String firstReviewTime) {
+        this.firstReviewTime = firstReviewTime == null ? null : firstReviewTime.trim();
+    }
+
+    public String getFinalReviewImagePerformance() {
+        return finalReviewImagePerformance;
+    }
+
+    public void setFinalReviewImagePerformance(String finalReviewImagePerformance) {
+        this.finalReviewImagePerformance = finalReviewImagePerformance == null ? null : finalReviewImagePerformance.trim();
+    }
+
+    public String getFinalReviewImageResult() {
+        return finalReviewImageResult;
+    }
+
+    public void setFinalReviewImageResult(String finalReviewImageResult) {
+        this.finalReviewImageResult = finalReviewImageResult == null ? null : finalReviewImageResult.trim();
+    }
+
+    public Integer getFinalReviewUserId() {
+        return finalReviewUserId;
+    }
+
+    public void setFinalReviewUserId(Integer finalReviewUserId) {
+        this.finalReviewUserId = finalReviewUserId;
+    }
+
+    public String getFinalReviewUserName() {
+        return finalReviewUserName;
+    }
+
+    public void setFinalReviewUserName(String finalReviewUserName) {
+        this.finalReviewUserName = finalReviewUserName == null ? null : finalReviewUserName.trim();
+    }
+
+    public String getFinalReviewTime() {
+        return finalReviewTime;
+    }
+
+    public void setFinalReviewTime(String finalReviewTime) {
+        this.finalReviewTime = finalReviewTime == null ? null : finalReviewTime.trim();
     }
 
     public String getStatus() {

@@ -35,4 +35,12 @@ public interface ITaskService {
 	 * @throws ServiceException
 	 */
 	void activeSecretaryMedicalCaseAssignTask(Integer studyId)throws ServiceException;
+
+	void createFirstReviewTask(Integer studyId)throws ServiceException;
+
+	Task getMyFirstReviewTask(Integer studyId, Integer userId)throws ServiceException;
+
+	Task getMyFinalReviewTask(Integer studyId, Integer userId)throws ServiceException;
+
+	void createFinalReviewTask(Integer studyId)throws ServiceException;
 }

@@ -253,6 +253,32 @@ public class UserServiceImpl implements IUserService {
 		}
 		return null;
 	}
+
+	@Override
+	public List<UserView> listAllChiefCensorDoctor() throws ServiceException {
+		try {
+			UserViewExample example = new UserViewExample();
+			UserViewExample.Criteria c = example.createCriteria();
+			c.andUserTypeCodeEqualTo(Constants.USER_TYPE_CHIEF_CENSOR_DOCTOR);
+			
+			return userViewMapper.selectByExample(example);
+		} catch (Exception e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	public List<UserView> listAllChiefPhsicianDoctor() throws ServiceException {
+		try {
+			UserViewExample example = new UserViewExample();
+			UserViewExample.Criteria c = example.createCriteria();
+			c.andUserTypeCodeEqualTo(Constants.USER_TYPE_CHIEF_PHSICIAN);
+			
+			return userViewMapper.selectByExample(example);
+		} catch (Exception e) {
+			throw new ServiceException(e);
+		}
+	}
 	
 	
 }

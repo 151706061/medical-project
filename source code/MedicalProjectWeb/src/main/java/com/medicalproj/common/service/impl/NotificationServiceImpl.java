@@ -174,4 +174,32 @@ public class NotificationServiceImpl implements INotificationService {
 		
 	}
 
+	@Override
+	public void doExpireNotificationByPeriod(int expirePeriod) throws ServiceException {
+		List<Notification> notificationList = listAllByStatus(Constants.NOTIFICATION_STATUS_WAIT_FOR_REVIEW);
+		if( notificationList != null && notificationList.size() > 0 ){
+			Date now = new Date();
+			for(Notification notification : notificationList ){
+				if( (now.getTime() - notification.getCreateTime().getTime())/1000 > Constants.NOTIFICATION_CONFIRM_EXPIRE_PERIOD ){
+					// expire
+					notification.setStatus(Constants.NOTIFICATION_STATUS_EXPIRE);
+					this.saveOrUpdate(notification);
+					
+					Integer studyId = notification.getSourceId();
+					//重新激活分配任务,由秘书重新分配
+					taskService.activeSecretaryMedicalCaseAssignTask(studyId);
+				}
+			}
+		}
+	}
+
+	@Override
+	public List<Notification> listAllByStatus(int status) throws ServiceException {
+		NotificationExample example = new NotificationExample();
+		NotificationExample.Criteria c = example.createCriteria();
+		c.andStatusEqualTo(status);
+		
+		return mapper.selectByExample(example);
+	}
+
 }

@@ -77,4 +77,23 @@ public class DcmViewerController extends WebBaseController{
 		
 		return view;
 	}
+	
+	@RequestMapping("/submitFirstReview")
+	@ResponseBody
+	public View<Boolean> submitFirstReview(Integer taskId ,String performance,String result ,HttpSession session){
+		User user = super.getLoginUser(session);
+		View<Boolean> view = dcmViewerService.submitFirstReview(user.getId(),taskId,performance,result);
+		
+		return view;
+	}
+	
+	@RequestMapping("/submitFinalReview")
+	@ResponseBody
+	public View<Boolean> submitFinalReview(Integer taskId ,String performance,String result ,int remark,HttpSession session){
+		User user = super.getLoginUser(session);
+		View<Boolean> view = dcmViewerService.submitFinalReview(user.getId(),taskId,performance,result,remark);
+		
+		return view;
+	}
+	
 }
