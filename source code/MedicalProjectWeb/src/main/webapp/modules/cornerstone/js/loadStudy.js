@@ -1,10 +1,10 @@
-
+﻿
 // Load JSON study information for each study
-function loadStudy(studyViewer, viewportModel, studyId) {	
+function loadStudy(studyViewer, viewportModel, studyId) {
     // Get the JSON data for the selected studyId
-	//$.getJSON('studies/' + studyId, function(data) {
+    //$.getJSON('studies/' + studyId, function(data) {
     $.getJSON(appContext  + '/web/dcmviewer/loadStudy.do?studyId=' + studyId, function(data) {
-
+		
         var imageViewer = new ImageViewer(studyViewer, viewportModel);
         imageViewer.setLayout('1x1'); // default layout
 
@@ -19,9 +19,51 @@ function loadStudy(studyViewer, viewportModel, studyId) {
                 });
             });            
         }
+		
+		// image process choose
+        $(studyViewer).find('.choose-process a').click(function(){
+            
+            var type = $(this).text();
+			if (type == "三维重建")
+			{
+				disableAllTools();        
+				var previousUsed = [];
+				imageViewer.forEachElement(function(el, vp, i){
+					if (!isNaN($(el).data('useStack'))) {
+						previousUsed.push($(el).data('useStack'));
+						}
+						}
+						);
+				imageViewer.setLayout('2x2'); // default layout
+				initViewports();
+				resizeStudyViewer();
+				if (previousUsed.length > 0) {
+					previousUsed = previousUsed.slice(0, imageViewer.viewports.length);
+					var item = 0;
+					previousUsed.forEach(function(v){
+						useItemStack(item++, v);
+						});
+				} 
+				cornerstoneTools.mpr.activate(imageViewer.getElement(0), 1, imageViewer.getElement(1), imageViewer.getElement(2));	
+				cornerstoneTools.mprTouch.activate(imageViewer.getElement(0), 1, imageViewer.getElement(1), imageViewer.getElement(2));
+			}
+			else {	
+            // setup the tool buttons
+            setupButtons(studyViewer, viewportModel, type);
+			}
+            //return false;
+        });
+		
+		// measurements choose
+        $(studyViewer).find('.choose-measurement a').click(function(){
+           
+            var type = $(this).text();
+            // setup the tool buttons
+            setupButtons(studyViewer, viewportModel, type);
 
-        // setup the tool buttons
-        setupButtons(studyViewer);
+            //return false;
+        });
+		
 
         // layout choose
         $(studyViewer).find('.choose-layout a').click(function(){
@@ -54,7 +96,6 @@ function loadStudy(studyViewer, viewportModel, studyId) {
 
         // Create a stack object for each series
         data.seriesList.forEach(function(series) {
-        	console.log(series);
             var stack = {
                 seriesDescription: series.seriesDescription,
                 stackId: series.seriesNumber,
@@ -93,6 +134,8 @@ function loadStudy(studyViewer, viewportModel, studyId) {
             // Add the series stack to the stacks array
             imageViewer.stacks.push(stack);
         });
+		
+		
 
         // Resize the parent div of the viewport to fit the screen
         var imageViewerElement = $(studyViewer).find('.imageViewer')[0];
@@ -135,10 +178,11 @@ function loadStudy(studyViewer, viewportModel, studyId) {
 
             // Add to series list
             var seriesElement = $(seriesEntry).appendTo(seriesList);
-
+            
             // Find thumbnail
             var thumbnail = $(seriesElement).find('div')[0];
-
+			
+            
             // Enable cornerstone on the thumbnail
             cornerstone.enable(thumbnail);
 
@@ -154,10 +198,11 @@ function loadStudy(studyViewer, viewportModel, studyId) {
             });
 
             // Handle thumbnail click
-            $(seriesElement).on('click touchstart', function() {             
-			  useItemStack(0, stackIndex);
+            $(seriesElement).on('click touchstart', function() {
+              useItemStack(0, stackIndex);
             }).data('stack', stackIndex);
         });
+	
 
         function useItemStack(item, stack) {
             var imageId = imageViewer.stacks[stack].imageIds[0], element = imageViewer.getElement(item);
@@ -183,11 +228,23 @@ function loadStudy(studyViewer, viewportModel, studyId) {
         function resizeStudyViewer() {
             var studyRow = $(studyViewer).find('.studyContainer')[0];
             var height = $(studyRow).height();
-            var width = $(studyRow).width();	//console.log($(studyRow).innerWidth(),$(studyRow).outerWidth(),$(studyRow).width());
-            $(seriesList).height("100%");
+            var width = $(studyRow).width();
+			console.log($(studyRow).innerWidth(),$(studyRow).outerWidth(),$(studyRow).width());
+			
+			if ($(window).height()<$(window).width()){
+			$($(studyViewer).find('.thumbnailSelector')[0]).width($($(studyViewer).find('.csthumbnail')[0]).width());
+            $(seriesList).height("100%");			
             $(parentDiv).width(width - $(studyViewer).find('.thumbnailSelector:eq(0)').width());
             $(parentDiv).css({height : '100%'});
             $(imageViewerElement).css({height : $(parentDiv).height() - $(parentDiv).find('.text-center:eq(0)').height()});
+			}
+			else{
+			$($(studyViewer).find('.thumbnailSelector')[0]).width($($(studyViewer).find('.csthumbnail')[0]).width()*(seriesIndex+1));
+			$(seriesList).width("100%");
+            $(parentDiv).height(height - $(studyViewer).find('.thumbnailSelector:eq(0)').height());
+            $(parentDiv).css({width : '100%'});
+            $(imageViewerElement).css({height : $(parentDiv).height() - $(parentDiv).find('.text-center:eq(0)').height()});
+			}
 
             imageViewer.forEachElement(function(el, vp) {
                 cornerstone.resize(el, true);

@@ -1,21 +1,22 @@
-
-function setupButtons(studyViewer) {
-    // Get the button elements
-    var buttons = $(studyViewer).find('button');
-
+﻿
+function setupButtons(studyViewer, viewportModel, type) {
+   
     // Tool button event handlers that set the new active tool
 
     // WW/WL
-    $(buttons[0]).on('click touchstart', function() {
+	
+	if (type == "明暗")
+    {
         disableAllTools();
         forEachViewport(function(element) {
             cornerstoneTools.wwwc.activate(element, 1);
             cornerstoneTools.wwwcTouchDrag.activate(element);
         });
-    });
+    }
 
     // Invert
-    $(buttons[1]).on('click touchstart', function() {
+	if (type == "反色")
+    {
         disableAllTools();
         forEachViewport(function(element) {
             var viewport = cornerstone.getViewport(element);
@@ -27,61 +28,95 @@ function setupButtons(studyViewer) {
             }
             cornerstone.setViewport(element, viewport);
         });
-    });
+    }
 
     // Zoom
-    $(buttons[2]).on('click touchstart', function() {
+	if (type == "缩放")
+    {
         disableAllTools();
         forEachViewport(function(element) {
             cornerstoneTools.zoom.activate(element, 5); // 5 is right mouse button and left mouse button
             cornerstoneTools.zoomTouchDrag.activate(element);
         });
-    });
+    }
 
     // Pan
-    $(buttons[3]).on('click touchstart', function() {
+	if (type == "移动")
+    {
         disableAllTools();
         forEachViewport(function(element) {
             cornerstoneTools.pan.activate(element, 3); // 3 is middle mouse button and left mouse button
             cornerstoneTools.panTouchDrag.activate(element);
         });
-    });
+    }
 
     // Stack scroll
-    $(buttons[4]).on('click touchstart', function() {
+	if (type == "卷轴")
+    {
         disableAllTools();
         forEachViewport(function(element) {
             cornerstoneTools.stackScroll.activate(element, 1);
             cornerstoneTools.stackScrollTouchDrag.activate(element);
         });
-    });
+    }
 
     // Length measurement
-    $(buttons[5]).on('click touchstart', function() {
+	if (type == "长度")
+    {
         disableAllTools();
         forEachViewport(function(element) {
             cornerstoneTools.length.activate(element, 1);
+			cornerstoneTools.lengthTouch.activate(element);
         });
-    });
+    }
 
     // Angle measurement
-    $(buttons[6]).on('click touchstart', function() {
+	if (type == "角度")
+    {
         disableAllTools();
         forEachViewport(function(element) {
             cornerstoneTools.angle.activate(element, 1);
+			cornerstoneTools.angleTouch.activate(element);
         });
-    });
+    }
 
     // Pixel probe
-    $(buttons[7]).on('click touchstart', function() {
+	if (type == "单点")
+    {
         disableAllTools();
        
         forEachViewport(function(element) {
             cornerstoneTools.probe.activate(element, 1);
+			cornerstoneTools.probeTouch.activate(element);
         });
-    });
-    // remove measurements
-	$(buttons[8]).on('click touchstart', function() {
+    }
+   
+	
+    // Elliptical ROI
+	if (type == "椭圆")
+    {
+        disableAllTools();
+       
+        forEachViewport(function(element) {
+            cornerstoneTools.ellipticalRoi.activate(element, 1);
+			cornerstoneTools.ellipticalRoiTouch.activate(element);
+        });
+    }
+
+    // Rectangle ROI
+	if (type == "矩形")
+    {
+        disableAllTools();
+       
+        forEachViewport(function (element) {
+            cornerstoneTools.rectangleRoi.activate(element, 1);
+			cornerstoneTools.rectangleRoiTouch.activate(element);
+        });
+    }
+
+	 // remove measurements
+	 if (type == "清除")
+	{
         disableAllTools();
        
         forEachViewport(function(element) {
@@ -93,28 +128,12 @@ function setupButtons(studyViewer) {
             cornerstone.updateImage(element);
             
         });
-    });
+    } 
 	
-    // Elliptical ROI
-    $(buttons[9]).on('click touchstart', function() {
-        disableAllTools();
-       
-        forEachViewport(function(element) {
-            cornerstoneTools.ellipticalRoi.activate(element, 1);
-        });
-    });
-
-    // Rectangle ROI
-    $(buttons[10]).on('click touchstart', function() {
-        disableAllTools();
-        console.log('Rectangle ROI');
-        forEachViewport(function (element) {
-            cornerstoneTools.rectangleRoi.activate(element, 1);
-        });
-    });
-
+	
     // Play clip
-    $(buttons[11]).on('click touchstart', function() {
+	if (type == "播放")
+    {
         forEachViewport(function(element) {
           var stackState = cornerstoneTools.getToolState(element, 'stack');
           var frameRate = stackState.data[0].frameRate;
@@ -124,28 +143,15 @@ function setupButtons(studyViewer) {
           }
           cornerstoneTools.playClip(element, frameRate);
         });
-    });
+    }
 
     // Stop clip
-    $(buttons[12]).on('click touchstart', function() {
+	if (type == "停止")
+    {
         forEachViewport(function(element) {
             cornerstoneTools.stopClip(element);
         });
-    });
-
-    // Tooltips
-    $(buttons[0]).tooltip();
-    $(buttons[1]).tooltip();
-    $(buttons[2]).tooltip();
-    $(buttons[3]).tooltip();
-    $(buttons[4]).tooltip();
-    $(buttons[5]).tooltip();
-    $(buttons[6]).tooltip();
-    $(buttons[7]).tooltip();
-    $(buttons[8]).tooltip();
-    $(buttons[9]).tooltip();
-    $(buttons[10]).tooltip();
-    $(buttons[11]).tooltip();
-    $(buttons[12]).tooltip();
+    }
+	
 
 };

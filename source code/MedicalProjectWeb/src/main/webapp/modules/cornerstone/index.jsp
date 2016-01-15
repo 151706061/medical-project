@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE HTML>
@@ -53,9 +53,7 @@
     <!-- Nav bar -->
     <nav class="myNav navbar navbar-default" role="navigation">
       <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="javascript:void(0)">病例诊断</a>
-        </div>
+        
         <ul class="nav navbar-nav navbar-right">
           <li>
           		<button id="viewReportBtn" class="btn btn-success hide" data-toggle="modal" data-target="#viewReportModal" style="margin:10px 0 0 0;">
@@ -74,45 +72,18 @@
 			  	终审
 				</button>
           </li>
-          
-          </li>
-          <li><a id="help" href="#" class="button hidden-xs">Help</a></li>
+       
+          <li><a id="help" href="#" class="button hidden-xs">帮助</a></li>
         </ul>
       </div>
     </nav>
 
     <div class='main'>
 
-      <!-- Tabs bar -->
-      <ul id="tabs" class="nav nav-tabs" >
-        <%-- <li class="active"><a href="#studyList" data-toggle="tab">Study List</a></li> --%>
-      </ul>
-
       <!-- Tab content -->
       <div id="tabContent" class="tab-content">
-        <!-- Study list -->
-        <div id="studyList" class="tab-pane active">
-          <div class="row">
-            <table  class="col-md-12 table table-striped">
-              <thead>
-                <tr>
-                  <th>Patient Name</th>
-                  <th>Patient ID</th>
-                  <th>Study Date</th>
-                  <th>Modality</th>
-                  <th>Study Description</th>
-                  <th># Images</th>
-                </tr>
-              </thead>
-              
-              <tbody id="studyListData">
-                <!-- Table rows get populated from the JSON studyList manifest -->
-              </tbody>
-            </table>
-          </div>
-        </div>
+        
       </div>
-
       <!-- Study viewer tab content template -->
   </div>
 </div>
