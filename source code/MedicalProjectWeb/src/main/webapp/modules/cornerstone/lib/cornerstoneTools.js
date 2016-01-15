@@ -149,7 +149,7 @@ if (typeof cornerstoneTools === 'undefined') {
             return storedPixelsV;
         }
 
-        // Extract the various attributes we need
+		// Extract the various attributes we need
         var horizontalImg = {
             imageId : seriesIndex.toString()+'.'+x.toString()+'.'+y.toString()+'.'+'H',
             minPixelValue : minMax.min,
@@ -160,6 +160,7 @@ if (typeof cornerstoneTools === 'undefined') {
             windowWidth : sampleImg.windowWidth,
             render: sampleImg.render,
             getPixelData: getPixelData,
+			
             rows: imageList.length,
             columns: sampleImg.columns,
             height: imageList.length,
