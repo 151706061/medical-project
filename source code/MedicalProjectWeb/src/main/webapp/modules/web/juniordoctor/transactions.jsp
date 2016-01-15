@@ -3,11 +3,7 @@
 <%-- 内容部分 --%>
 <div class="padding">
 	<div class="full col-sm-12">
-		<div class="page-header">
-			<h1>
-				交易记录<small></small>
-			</h1>
-		</div>
+		
 
 		<div id="transactions-wrap">
 			<div class="col-sm-6  col-sm-offset-3 trans-period-groupbtn">

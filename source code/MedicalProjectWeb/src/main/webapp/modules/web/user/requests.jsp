@@ -4,12 +4,7 @@
 <%-- 内容部分 --%>
 <div class="padding">
 	<div class="full col-sm-12">
-		<div class="page-header">
-			<h1>
-				我的请求<small></small>
-			</h1>
-		</div>
-
+		
 		<div id="requests-wrap">
 			<div class="col-sm-3  col-sm-offset-4 tab-wrap">
 				<div class="btn-group btn-group-justified" role="group">
@@ -27,13 +22,14 @@
 					<table class="table table-hover table-with-bg-color">
 						<thead>
 							<tr>
-								<th>病人ID</th>
+							<!--	<th>病人ID</th> -->
 								<th>病人姓名</th>
-								<th>Study日期</th>
-								<th>Study描述</th>
-								<th>Series</th>
+							<!--	<th>Study日期</th> -->
+							<!--	<th>病例描述</th> -->
+								<th>图片总数</th>
+							<!--	<th>Series</th> -->
 								<th>创建时间</th>
-								<th>创建者</th>
+							<!--	<th>创建者</th> -->
 								<th>病例状态</th>
 								<th>操作</th>
 							</tr>
@@ -65,13 +61,14 @@
 <script id="requestListItemTmpl" type="x-tmpl-mustache">
 {{#medicalCaseList}}
 <tr data-mcid="{{medicalCaseId}}">
-	<td>{{patientId}}</td>
+	<!-- <td>{{patientId}}</td> -->
 	<td>{{patientName}}</td>
-	<td>{{#studys}}{{studyDate}}{{/studys}}</td>
-	<td>{{#studys}}{{studyDescription}}{{/studys}}</td>
-	<td>{{#studys}} {{#seriesList}} {{seriesNumber}} &nbsp; {{/seriesList}} {{/studys}}</td>
+	<!-- <td>{{#studys}}{{studyDate}}{{/studys}}</td> -->
+	<!-- <td>{{#studys}}{{studyDescription}}{{/studys}}</td> -->
+	<td></td>
+	<!-- <td>{{#studys}} {{#seriesList}} {{seriesNumber}} &nbsp; {{/seriesList}} {{/studys}}</td> -->
 	<td>{{createTime}}</td>
-	<td>{{creatorUserName}}</td>
+	<!-- <td>{{creatorUserName}}</td> -->
 	<td>{{medicalCaseStatus}}</td>
 	<td>
 		{{#studys}}<a target="_blank" href='<c:url value="/modules/cornerstone/index.jsp?studyId={{id}}"/>' class="btn btn-xs btn-link">查看病例</a>{{/studys}}

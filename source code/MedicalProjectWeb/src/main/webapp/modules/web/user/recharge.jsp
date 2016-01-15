@@ -4,11 +4,7 @@
 <%-- 内容部分 --%>
 <div class="padding">
 	<div class="full col-sm-12">
-		<div class="page-header">
-			<h1>
-				预存诊费<small></small>
-			</h1>
-		</div>
+		
 		<p class="text-muted">您可以使用支付宝充值到您的帐户，帐户余额可用于xxx,xxx,xxxx。</p>
 
 		<div id="recharge-wrap">

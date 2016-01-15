@@ -3,11 +3,7 @@
 <%-- 内容部分 --%>
 <div class="padding">
 	<div class="full col-sm-12">
-		<div class="page-header">
-			<h1>
-				我的设置 <small></small>
-			</h1>
-		</div>
+		
 
 		<div class="col-sm-8" id="settings-wrap">
 

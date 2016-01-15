@@ -4,11 +4,7 @@
 <%-- 内容部分 --%>
 <div class="padding" id="qualification-application-wrap">
 	<div class="full col-sm-12">
-		<div class="page-header">
-			<h1>
-				资格申请<small></small>
-			</h1>
-		</div>
+		
 		<p class="text-muted">您可以申请成为影像医师或影像专家，申请需要上传医师资格证扫描件。</p>
 		<div id="qualification-application-wrap">
 			<label>上传医师资格证</label> 

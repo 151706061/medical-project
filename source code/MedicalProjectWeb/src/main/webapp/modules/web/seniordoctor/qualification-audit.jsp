@@ -5,11 +5,7 @@
 <%-- 内容部分 --%>
 <div class="padding" id="qualification-application-wrap">
 	<div class="full col-sm-12">
-		<div class="page-header">
-			<h1>
-				资格审查<small></small>
-			</h1>
-		</div>
+		
 		<div class="col-sm-12">
 			<table class="table table-hover table-with-bg-color">
 				<thead>

@@ -5,11 +5,7 @@
 <div class="padding">
 
 	<div class="full col-sm-12">
-		<div class="page-header">
-			<h1>
-				我的消息 <small></small>
-			</h1>
-		</div>
+		
 		<div id="my-notification-wrap"></div>
 
 

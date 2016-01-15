@@ -4,11 +4,7 @@
 <%-- 内容部分 --%>
 <div class="padding">
 	<div class="full col-sm-12">
-		<div class="page-header">
-			<h1>
-				我的请求<small></small>
-			</h1>
-		</div>
+		
 
 		<div id="create-req-wrap">
 			<div class="col-sm-3  col-sm-offset-4 tab-wrap">
