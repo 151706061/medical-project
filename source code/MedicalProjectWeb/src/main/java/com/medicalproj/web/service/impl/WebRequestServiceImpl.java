@@ -34,6 +34,7 @@ import com.medicalproj.web.dto.view.RequestListView;
 import com.medicalproj.web.dto.view.SeriesView;
 import com.medicalproj.web.dto.view.StudyView;
 import com.medicalproj.web.service.IWebRequestService;
+import com.medicalproj.web.util.Constants;
 
 @Service
 public class WebRequestServiceImpl implements IWebRequestService {
@@ -161,6 +162,13 @@ public class WebRequestServiceImpl implements IWebRequestService {
 		MedicalCaseView view = new MedicalCaseView();
 		
 		BeanUtils.copyProperties(mcv, view);
+		
+		if( mcv.getMedicalCaseStatusCode() != null && 
+				(mcv.getMedicalCaseStatusCode() == Constants.MEDICAL_CASE_STATUS_DIAGNOSE_COMPLETE || mcv.getMedicalCaseStatusCode() == Constants.MEDICAL_CASE_STATUS_FINAL_REVIEW_COMPLETE ) ){
+			view.setCanViewMedicalCase(true);
+		}else{
+			view.setCanViewMedicalCase(false);
+		}
 		
 		List<com.medicalproj.common.domain.StudyView> domainStudyViewList = studyService.listAllStudyViewByMedicalCaseId(mcv.getMedicalCaseId());
 		List<StudyView> studys = trans2StudyView(domainStudyViewList);

@@ -2,6 +2,8 @@ var medicalCaseId = null;
 var uploadNo = null;
 var uploadIndex = 1;
 var isCurrentUploadComplete = null;
+var uploadTotalCount = 0;
+
 var CreateRequestModule = (function(){
 	return {
 		checkIncompleteRequest:function(successFn){
@@ -115,11 +117,12 @@ var CreateRequestModule = (function(){
 	    done:function(e,data){
 	    	var result = data.result;
 	    	if( result.data == true ){
+	    		uploadTotalCount ++;
 	    		CommonModule.onDicomUploadComplete();
 	    		
 	    		var tipText = $('#uploadBox .tip-text');
 		        if( tipText.length > 0 ){
-		        	tipText.text('所有文件上传完成.');
+		        	tipText.text('已上传' + uploadTotalCount + '张图片，点“选取文件”继续上传图片，点“完成”结束图片上传，生成病例');
 		        	$('#completeUploadBtn').attr('disabled',false);
 		        }
 	    	}
@@ -157,10 +160,12 @@ var CreateRequestModule = (function(){
 								
 								$('#case-container').html(rendered);
 								
+								uploadTotalCount = alreadyUploadCount;
 								CommonModule.hideConfirm();
 							},
 							function(){
 								// cancel
+								uploadTotalCount = 0;
 								CreateRequestModule.clearOldUpload(function(data){
 									if( data.data == true ){
 										uploadNo = null;
@@ -226,6 +231,7 @@ var CreateRequestModule = (function(){
 	
 	$(document).off("click","#reUploadBtn"); 
 	$(document).on("click","#reUploadBtn",function(){
+		uploadTotalCount = 0;
 		CreateRequestModule.clearOldUpload(function(data){
 			if( data.data == true ){
 				uploadNo = null;

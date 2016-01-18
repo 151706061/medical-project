@@ -36,6 +36,7 @@ public class WebAuthServiceImpl extends WebBaseServiceImpl implements IWebAuthSe
 		} catch (Exception e) {
 			view.setMsg(e.getMessage());
 			view.setData(false);
+			view.setSuccess(false);
 			return view;
 		}
 	}

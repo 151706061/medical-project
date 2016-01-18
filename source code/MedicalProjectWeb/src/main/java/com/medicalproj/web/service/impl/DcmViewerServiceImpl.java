@@ -53,15 +53,38 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 	private ITaskService taskService;
 	
 	@Override
-	public View<StudyViewerView> loadStudy(Integer studyId) throws ServiceException {
+	public View<StudyViewerView> loadStudy(Integer loginUserId,Integer studyId) throws ServiceException {
 		View<StudyViewerView> view = new View<StudyViewerView>();
+		
+		User user = userService.getById(loginUserId);
+		if( user == null ){
+			throw new ServiceException("用户账号异常，无权访问");
+		}
+		
 		StudyView studyView = studyService.getStudyViewById(studyId);
 		
+		if( studyView == null || studyView.getMedicalCaseId() == null  ){
+			throw new ServiceException("病例数据异常");
+		}
+		
 		MedicalCaseView medicalCaseView = medicalCaseService.getMedicalCaseViewById(studyView.getMedicalCaseId());
+		if( medicalCaseView == null ){
+			throw new ServiceException("病例不存在");
+		}
 		
-		StudyViewerView studyViewerView = trans2StudyViewerView(medicalCaseView,studyView);
 		
-		view.setData(studyViewerView);
+		if( medicalCaseView.getCreatorUserId().equals(user.getId()) && 
+				( medicalCaseView.getMedicalCaseStatusCode().equals(Constants.MEDICAL_CASE_STATUS_DIAGNOSE_COMPLETE) ||  medicalCaseView.getMedicalCaseStatusCode().equals(Constants.MEDICAL_CASE_STATUS_FINAL_REVIEW_COMPLETE) )){
+			//病例上传者，只有当病例诊断完成或终审完成，才可以查看病例
+			
+			StudyViewerView studyViewerView = trans2StudyViewerView(medicalCaseView,studyView);
+			view.setData(studyViewerView);
+		}else{
+			view.setMsg("病例还未诊断完成，无法查看");
+			view.setSuccess(false);
+			return view;
+		}
+		
 		return view;
 	}
 
@@ -141,10 +164,25 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 	}
 
 	@Override
-	public View<StudyView> loadStudyView(Integer studyId) throws ServiceException {
+	public View<StudyView> loadStudyView(Integer loginUserId,Integer studyId) throws ServiceException {
 		View<StudyView> view = new View<StudyView>();
 		
+		User user = userService.getById(loginUserId);
+		if( user == null ){
+			throw new ServiceException("用户账号异常，无权访问");
+		}
+		
 		StudyView studyView = studyService.getStudyViewById(studyId);
+
+		if( studyView == null || studyView.getMedicalCaseId() == null  ){
+			throw new ServiceException("病例数据异常");
+		}
+		
+		MedicalCase medicalCase = medicalCaseService.getById(studyView.getMedicalCaseId());
+		if( medicalCase == null ){
+			throw new ServiceException("病例不存在");
+		}
+		
 		view.setData(studyView);
 		return view;
 	}

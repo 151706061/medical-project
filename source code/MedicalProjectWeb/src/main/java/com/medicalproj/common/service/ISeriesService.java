@@ -18,4 +18,6 @@ public interface ISeriesService {
 
 	void delete(List<Series> seriesList)throws ServiceException;
 
+	Series createSeriesForJpgIfNotExists(Integer studyDomainId, String seriesNumber)throws ServiceException;
+
 }

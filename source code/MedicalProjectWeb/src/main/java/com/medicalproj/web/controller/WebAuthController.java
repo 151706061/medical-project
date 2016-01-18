@@ -26,10 +26,14 @@ public class WebAuthController{
 	@ResponseBody
 	public View<Boolean> login( String account,String password, HttpSession session){
 		View<Boolean> view = webAuthService.login(account,password);
-		User user = webAuthService.getSessionUserByAccount(account);
-		session.setAttribute(Constants.SESSION_KEY_LOGIN_USER, user);
-		session.setAttribute(Constants.SESSION_KEY_FILE_BASE_PATH, Constants.FTP_HTTP_BASE_URL);
-		return view;
+		if( view != null && view.isSuccess() == true ){
+			User user = webAuthService.getSessionUserByAccount(account);
+			session.setAttribute(Constants.SESSION_KEY_LOGIN_USER, user);
+			session.setAttribute(Constants.SESSION_KEY_FILE_BASE_PATH, Constants.FTP_HTTP_BASE_URL);
+			return view;
+		}else{
+			return view;
+		}
 	}
 	
 	@RequestMapping("/reg")

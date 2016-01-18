@@ -18,4 +18,6 @@ public interface IInstanceService {
 
 	void delete(List<Instance> instanceList)throws ServiceException;
 
+	Instance createInstanceForJpgIfNotExists(Integer seriesDomainId, String instanceNumber, Integer uploadJpgFileId)throws ServiceException;
+
 }

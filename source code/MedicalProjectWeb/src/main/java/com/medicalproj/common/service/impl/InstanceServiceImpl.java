@@ -74,6 +74,35 @@ public class InstanceServiceImpl implements IInstanceService {
 		}
 	}
 
+	@Override
+	public Instance createInstanceForJpgIfNotExists(Integer seriesDomainId, String instanceNumber,
+			Integer uploadJpgFileId) throws ServiceException {
+		try {
+			if( seriesDomainId == null || instanceNumber == null || uploadJpgFileId == null){
+				throw new ServiceException("参数错误");
+			}
+			
+			Instance instance = this.getByCond(seriesDomainId,instanceNumber);
+			if( instance != null ){
+				logger.info("Instance 已存在,使用新Instance数据覆盖旧数据");
+			}else{
+				instance = new Instance();
+			}
+			
+			instance.setCreateTime(new Date());
+			//instance.setDicomFileId(uploadDicomFileId);
+			instance.setJpgFileId(uploadJpgFileId);
+			instance.setInstanceNumber(instanceNumber);
+			instance.setSeriesId(seriesDomainId);
+			this.saveOrUpdate(instance);
+			
+			return instance;
+		} catch (Exception e) {
+			logger.error(e);
+			throw new ServiceException(e.getMessage(),e);
+		}
+	}
+
 	private void saveOrUpdate(Instance instance) {
 		if( instance != null ){
 			if( instance.getId() == null ){

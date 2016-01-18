@@ -311,13 +311,15 @@ $(function(){
 				studyId: studyId
 			},	
 			function(resp){
-				var performance = resp.data.diagnoseImagePerformance;
-				var result = resp.data.diagnoseImageResult;
-				var docName = resp.data.diagnoseUserName;
-				$('#viewReportModal .performance').text(performance);
-				$('#viewReportModal .result').text(result);
-				
-				$('#viewReportModal .doc-name').text("诊断医生："+docName);
+				if( resp && resp.data ){
+					var performance = resp.data.diagnoseImagePerformance;
+					var result = resp.data.diagnoseImageResult;
+					var docName = resp.data.diagnoseUserName;
+					$('#viewReportModal .performance').text(performance);
+					$('#viewReportModal .result').text(result);
+					
+					$('#viewReportModal .doc-name').text("诊断医生："+docName);
+				}
 			},
 			'json'
 		);	

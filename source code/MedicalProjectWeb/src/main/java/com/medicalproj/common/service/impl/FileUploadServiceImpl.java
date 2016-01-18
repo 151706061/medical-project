@@ -23,6 +23,8 @@ import com.medicalproj.common.exception.ServiceException;
 import com.medicalproj.common.service.IFileUploadService;
 import com.medicalproj.common.service.IMedicalCaseService;
 import com.medicalproj.common.util.FtpUtil;
+import com.medicalproj.common.util.UUIDUtil;
+import com.medicalproj.web.util.Constants;
 
 import eden.dicomparser.DicomParser;
 import eden.dicomparser.data.DicomData;
@@ -123,39 +125,68 @@ public class FileUploadServiceImpl implements IFileUploadService {
 			if( uploadDicomList != null ){
 				map = new HashMap<String,List<InputStream>>();
 				uploadFileMap = new HashMap<String,List<UploadFile>>();
+				
+				List<UploadFile> jpgFileList = new ArrayList<UploadFile>();
+				
+				String firstPatientId = null;
+				boolean isAllJpe = true;
 				for( UploadFile file : uploadDicomList ){
-					InputStream in = null;
-					
-					try {
-						String filePath = file.getPath().substring(0, file.getPath().lastIndexOf("/"));
-						String fileName = file.getPath().substring(file.getPath().lastIndexOf("/")+1);
-						in = FtpUtil.readFile(filePath, fileName);
-						
-						DicomData dicomData = DicomParser.getInstance().read(in);
-						String patientId = dicomData.getPatientId();
-						// add input stream
-						List<InputStream> dicomFileInputStreamList = map.get(patientId);
-						if( dicomFileInputStreamList == null ){
-							dicomFileInputStreamList = new ArrayList<InputStream>();
-							map.put(patientId, dicomFileInputStreamList);
+					if( file.getType() != null && file.getType().equals(Constants.UPLOAD_FILE_TYPE_JPEG) ){
+						jpgFileList.add(file);
+					}else{
+						if( isAllJpe == true ){
+							isAllJpe = false;
 						}
-						dicomFileInputStreamList.add(in);
+						InputStream in = null;
 						
-						// add upload file
-						List<UploadFile> uploadFileList = uploadFileMap.get(patientId);
-						if( uploadFileList == null ){
-							uploadFileList = new ArrayList<UploadFile>();
-							uploadFileMap.put(patientId, uploadFileList);
+						try {
+							String filePath = file.getPath().substring(0, file.getPath().lastIndexOf("/"));
+							String fileName = file.getPath().substring(file.getPath().lastIndexOf("/")+1);
+							in = FtpUtil.readFile(filePath, fileName);
+							
+							DicomData dicomData = DicomParser.getInstance().read(in);
+							String patientId = dicomData.getPatientId();
+							
+							// save first patient id
+							if( firstPatientId == null ){
+								firstPatientId = patientId;
+							}
+							
+							// add input stream
+							List<InputStream> dicomFileInputStreamList = map.get(patientId);
+							if( dicomFileInputStreamList == null ){
+								dicomFileInputStreamList = new ArrayList<InputStream>();
+								map.put(patientId, dicomFileInputStreamList);
+							}
+							dicomFileInputStreamList.add(in);
+							
+							// add upload file
+							List<UploadFile> uploadFileList = uploadFileMap.get(patientId);
+							if( uploadFileList == null ){
+								uploadFileList = new ArrayList<UploadFile>();
+								uploadFileMap.put(patientId, uploadFileList);
+							}
+							uploadFileList.add(file);
+						} catch (Exception e) {
+							logger.error(e);
+							e.printStackTrace();
+						}finally{
 						}
-						uploadFileList.add(file);
-					} catch (Exception e) {
-						logger.error(e);
-						e.printStackTrace();
-					}finally{
 					}
 				}
 				
-				//生成病例
+				if( isAllJpe ){
+					String patientId = UUIDUtil.getUUID();
+					uploadFileMap.put(patientId, jpgFileList);
+				}else{
+					if( jpgFileList.size() > 0 ){
+						// contains jpg/jpeg files , append jpg/jpeg files to first patient instance
+						List<UploadFile> firstPatientUploadFileList = uploadFileMap.get(firstPatientId);
+						firstPatientUploadFileList.addAll(jpgFileList);
+					}
+				}
+				
+				//生成病例,每个patient 生成一个
 				medicalCaseIdList = new ArrayList<Integer>();
 				for(Iterator<Entry<String,List<UploadFile>>> it = uploadFileMap.entrySet().iterator();it.hasNext();){
 					Entry<String,List<UploadFile>> entry = it.next();

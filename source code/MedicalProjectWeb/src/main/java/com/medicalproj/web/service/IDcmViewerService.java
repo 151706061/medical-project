@@ -8,9 +8,9 @@ import com.medicalproj.web.dto.view.StudyViewerView;
 
 public interface IDcmViewerService {
 
-	View<StudyViewerView> loadStudy(Integer studyId)throws ServiceException;
+	View<StudyViewerView> loadStudy(Integer loginUserId,Integer studyId)throws ServiceException;
 
-	View<StudyView> loadStudyView(Integer studyId)throws ServiceException;
+	View<StudyView> loadStudyView(Integer loginUserId,Integer studyId)throws ServiceException;
 
 	View<Boolean> submitDignose(Integer userId, Integer taskId, String performance, String result)throws ServiceException;
 

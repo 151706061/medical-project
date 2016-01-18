@@ -218,110 +218,177 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 			if( mcase == null ){
 				throw new ServiceException("病例创建失败");
 			}
-				
-			for(UploadFile file: dcmUploadFileList){
-				Integer uploadJpgFileId = null;
-				InputStream in = null;
-				// convert to jpg, upload to ftp and save to db
-				FileInputStream jpgFileIn = null;
-				File jpgFile = null;
-				File dcmFile = null;
-				String jpgFilePath = null;
-				FileOutputStream dcmFileOutputStream = null;
-				try{
-					String filePath = file.getPath().substring(0, file.getPath().lastIndexOf("/"));
-					String fileName = file.getPath().substring(file.getPath().lastIndexOf("/")+1);
-					in = FtpUtil.readFile(filePath, fileName);
-					in.mark( in.available() + 1);
-					
-					/* convert to jpg and save */
-					// convert dcm to jpg
-					String tmpdir = System.getProperty("java.io.tmpdir");
-					
-					jpgFilePath = tmpdir + UUIDUtil.getUUID() + ".jpg";
-					logger.info("创建图片临时文件:" + jpgFilePath);
-					
-					String dcmFilePath = tmpdir + file.getFileName();
-					dcmFileOutputStream = new FileOutputStream(dcmFilePath);
-					IOUtils.copy(in, dcmFileOutputStream);
-					DicomParser.getInstance().dcm2jpg(dcmFilePath, jpgFilePath);
-					
-					// upload and save jpg to db
-					jpgFile = new File(jpgFilePath);
-					jpgFileIn = new FileInputStream(jpgFile);
-	
-					FtpUtil.UploadResult jpgRes = FtpUtil.upload(jpgFileIn,Constants.FILE_SUFFIX_JPG);
-					uploadJpgFileId = fileUploadServcie.save(jpgRes.getFileName(), jpgRes.getRelativePath(), jpgFile.length(), Constants.UPLOAD_FILE_TYPE_DICOM, processUserId);
-				
-					/* create study ,series , instance */
-					in.reset();
-					DicomData dicom = DicomParser.getInstance().read(in);
-					
+			boolean isAllJpg = isAllJpgFiles(dcmUploadFileList);
+			if( isAllJpg ){
+				// generate a studyId
+				String studyId = UUIDUtil.getUUID();
+				for(UploadFile file: dcmUploadFileList){
+					// all file is jpg type
 					//update medical case
-					this.update(mcase,dicom);
+					mcase.setPatientName("未知");
+					this.saveOrUpdate(mcase);
 					
 					// create study
-					Study study = studyService.createStydyIfNotExists(mcase.getId() ,dicom);
+					Study study = studyService.createStydyForJpgIfNotExists(mcase.getId() ,studyId);
 					
 					if( study != null ){
 						Integer studyDomainId = study.getId();
 						
-						Series series = seriesService.createSeriesIfNotExists(studyDomainId,dicom);
+						String seriesNumber = UUIDUtil.getUUID();
+						Series series = seriesService.createSeriesForJpgIfNotExists(studyDomainId,seriesNumber);
 						
 						if( series != null ){
 							Integer seriesDomainId = series.getId();
 							
-							Instance instance = instanceService.createInstanceIfNotExists(seriesDomainId, dicom, file.getId(),uploadJpgFileId);
-						}
-					}
-					
-				}catch(Exception e){
-					logger.error(e);
-					throw new ServiceException(e.getMessage(),e);
-				}finally{
-					if( jpgFileIn != null ){
-						try {
-							jpgFileIn.close();
-						} catch (Exception e) {
-							logger.error(e);
-							e.printStackTrace();
-						}
-						try {
-							if( dcmFile != null ){
-								dcmFile.delete();
-							}
-							if( jpgFile != null ){
-								jpgFile.delete();
-							}
-
-						} catch (Exception e) {
-							logger.error(e);
-							e.printStackTrace();
-						}
-					}
-					
-					if( dcmFileOutputStream != null ){
-						try {
-							dcmFileOutputStream.close();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-					
-					if( in != null ){
-						try {
-							in.close();
-						} catch (Exception e) {
-							e.printStackTrace();
+							String instanceNumber = UUIDUtil.getUUID();
+							Instance instance = instanceService.createInstanceForJpgIfNotExists(seriesDomainId, instanceNumber,file.getId());
 						}
 					}
 				}
+			}else{
+				String dicomFirstStydyId = null;
+				for(UploadFile file: dcmUploadFileList){
+					if( file.getType() != null && file.getType().equals(Constants.UPLOAD_FILE_TYPE_JPEG)){
+						// create study
+						Study study = studyService.createStydyForJpgIfNotExists(mcase.getId() ,dicomFirstStydyId);
+						
+						if( study != null ){
+							Integer studyDomainId = study.getId();
+							
+							String seriesNumber = UUIDUtil.getUUID();
+							Series series = seriesService.createSeriesForJpgIfNotExists(studyDomainId,seriesNumber);
+							
+							if( series != null ){
+								Integer seriesDomainId = series.getId();
+								
+								String instanceNumber = UUIDUtil.getUUID();
+								Instance instance = instanceService.createInstanceForJpgIfNotExists(seriesDomainId, instanceNumber,file.getId());
+							}
+						}
+						
+					}else{
+						Integer uploadJpgFileId = null;
+						InputStream in = null;
+						// convert to jpg, upload to ftp and save to db
+						FileInputStream jpgFileIn = null;
+						File jpgFile = null;
+						File dcmFile = null;
+						String jpgFilePath = null;
+						FileOutputStream dcmFileOutputStream = null;
+						try{
+							String filePath = file.getPath().substring(0, file.getPath().lastIndexOf("/"));
+							String fileName = file.getPath().substring(file.getPath().lastIndexOf("/")+1);
+							in = FtpUtil.readFile(filePath, fileName);
+							in.mark( in.available() + 1);
+							
+							/* convert to jpg and save */
+							// convert dcm to jpg
+							String tmpdir = System.getProperty("java.io.tmpdir");
+							
+							jpgFilePath = tmpdir + UUIDUtil.getUUID() + ".jpg";
+							logger.info("创建图片临时文件:" + jpgFilePath);
+							
+							String dcmFilePath = tmpdir + file.getFileName();
+							dcmFileOutputStream = new FileOutputStream(dcmFilePath);
+							IOUtils.copy(in, dcmFileOutputStream);
+							DicomParser.getInstance().dcm2jpg(dcmFilePath, jpgFilePath);
+							
+							// upload and save jpg to db
+							jpgFile = new File(jpgFilePath);
+							jpgFileIn = new FileInputStream(jpgFile);
+			
+							FtpUtil.UploadResult jpgRes = FtpUtil.upload(jpgFileIn,Constants.FILE_SUFFIX_JPG);
+							uploadJpgFileId = fileUploadServcie.save(jpgRes.getFileName(), jpgRes.getRelativePath(), jpgFile.length(), Constants.UPLOAD_FILE_TYPE_DICOM, processUserId);
+						
+							/* create study ,series , instance */
+							in.reset();
+							DicomData dicom = DicomParser.getInstance().read(in);
+							
+							if(dicomFirstStydyId == null ){
+								dicomFirstStydyId = dicom.getStudyId();
+							}
+							
+							//update medical case
+							this.update(mcase,dicom);
+							
+							// create study
+							Study study = studyService.createStydyIfNotExists(mcase.getId() ,dicom);
+							
+							if( study != null ){
+								Integer studyDomainId = study.getId();
+								
+								Series series = seriesService.createSeriesIfNotExists(studyDomainId,dicom);
+								
+								if( series != null ){
+									Integer seriesDomainId = series.getId();
+									
+									Instance instance = instanceService.createInstanceIfNotExists(seriesDomainId, dicom, file.getId(),uploadJpgFileId);
+								}
+							}
+							
+						}catch(Exception e){
+							logger.error(e);
+						}finally{
+							if( jpgFileIn != null ){
+								try {
+									jpgFileIn.close();
+								} catch (Exception e) {
+									logger.error(e);
+									e.printStackTrace();
+								}
+								try {
+									if( dcmFile != null ){
+										dcmFile.delete();
+									}
+									if( jpgFile != null ){
+										jpgFile.delete();
+									}
+
+								} catch (Exception e) {
+									logger.error(e);
+									e.printStackTrace();
+								}
+							}
+							
+							if( dcmFileOutputStream != null ){
+								try {
+									dcmFileOutputStream.close();
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}
+							
+							if( in != null ){
+								try {
+									in.close();
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}
+						}
+					}
+					
+				}
 			}
+			
 			return mcase.getId();
 		} catch (Exception e) {
 			logger.error(e);
 			throw new ServiceException(e);
 		}
+	}
+
+	private boolean isAllJpgFiles(List<UploadFile> uploadFileList) {
+		if( uploadFileList == null ){
+			throw new ServiceException("参数不可为空");
+		}
+
+		for(UploadFile file :uploadFileList ){
+			if( !file.getType().equals(Constants.UPLOAD_FILE_TYPE_JPEG) ){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private void update(MedicalCase mcase, DicomData dicom) {
@@ -333,7 +400,6 @@ public class MedicalCaseServiceImpl implements IMedicalCaseService {
 			mcase.setPatientWeight(dicom.getPatientWeight());
 			this.saveOrUpdate(mcase);
 		}
-		
 	}
 
 	@Override

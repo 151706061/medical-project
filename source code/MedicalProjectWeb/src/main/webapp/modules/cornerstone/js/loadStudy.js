@@ -4,7 +4,24 @@ function loadStudy(studyViewer, viewportModel, studyId) {
     // Get the JSON data for the selected studyId
     //$.getJSON('studies/' + studyId, function(data) {
     $.getJSON(appContext  + '/web/dcmviewer/loadStudy.do?studyId=' + studyId, function(data) {
-		
+    	if( data && data.success == true){
+    		data = data.data;
+    	}else{
+    		var errMsg = data.msg;
+    		alert( errMsg );
+    		
+    		var userAgent = navigator.userAgent;
+    		if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Presto") != -1) {
+    		    window.location.replace("about:blank");
+    		} else {
+    		    window.opener = null;
+    		    window.open("", "_self");
+    		    window.close();
+    		}
+    		
+    		return ;
+    	}
+    	
         var imageViewer = new ImageViewer(studyViewer, viewportModel);
         imageViewer.setLayout('1x1'); // default layout
 

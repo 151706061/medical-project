@@ -39,4 +39,6 @@ public interface IStudyService {
 
 	void doFinalReview(Integer userId, Integer taskId, String performance, String result,int remark)throws ServiceException;
 
+	Study createStydyForJpgIfNotExists(Integer medicalCaseId, String studyId)throws ServiceException;
+
 }

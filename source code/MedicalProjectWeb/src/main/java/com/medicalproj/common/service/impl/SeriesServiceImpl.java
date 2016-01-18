@@ -71,6 +71,32 @@ public class SeriesServiceImpl implements ISeriesService {
 		}
 	}
 
+	@Override
+	public Series createSeriesForJpgIfNotExists(Integer studyDomainId, String seriesNumber) throws ServiceException {
+		try {
+			if( studyDomainId == null || seriesNumber == null ){
+				throw new ServiceException("参数错误");
+			}
+			
+			Series series = this.getByCond(studyDomainId,seriesNumber);
+			if( series != null ){
+				logger.info("Series 已存在,使用新Series数据覆盖旧数据");
+			}else{
+				series = new Series();
+			}
+			
+			series.setCreateTime(new Date());
+			series.setSeriesNumber(seriesNumber);
+			series.setStudyId(studyDomainId);
+			this.saveOrUpdate(series);
+			
+			return series;
+		} catch (Exception e) {
+			logger.error(e);
+			throw new ServiceException(e.getMessage(),e);
+		}
+	}
+
 	private Series getByCond(Integer studyDomainId, String seriesNumber) {
 		SeriesExample example = new SeriesExample();
 		SeriesExample.Criteria c = example.createCriteria();

@@ -18,6 +18,7 @@ import com.medicalproj.common.service.IFileUploadService;
 import com.medicalproj.common.service.IUploadService;
 import com.medicalproj.common.util.FileUtil;
 import com.medicalproj.common.util.FtpUtil;
+import com.medicalproj.web.util.Constants;
 
 @Service
 public class UploadServiceImpl implements IUploadService {
@@ -85,7 +86,6 @@ public class UploadServiceImpl implements IUploadService {
 			//int month = DateUtil.getMonth(now);
 			long fileSize = file.getSize();
 			
-			
 			if( !FileUtil.isFileSupport(file.getContentType()) ){
 				throw new ServiceException("文件格式不支持.");
 			}
@@ -123,6 +123,16 @@ public class UploadServiceImpl implements IUploadService {
 			view.setMsg(e.getMessage());
 			return view;
 		}
+	}
+
+	private boolean isJpgOrJpeg(MultipartFile file) {
+		String contentType = file.getContentType();
+		if( contentType.equals(Constants.CONTENT_TYPE_JPG_JPEG )){
+			return true;
+		}else if( file.getOriginalFilename().toUpperCase().endsWith(".JPG") || file.getOriginalFilename().toUpperCase().endsWith(".JPEG")){
+			return true;
+		}
+		return false;
 	}
 
 }

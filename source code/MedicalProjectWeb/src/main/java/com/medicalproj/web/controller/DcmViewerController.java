@@ -43,16 +43,19 @@ public class DcmViewerController extends WebBaseController{
 	
 	@RequestMapping("/loadStudy")
 	@ResponseBody
-	public StudyViewerView loadStudy(Integer studyId,HttpSession session){
-		View<StudyViewerView> view = dcmViewerService.loadStudy(studyId);
+	public View<StudyViewerView> loadStudy(Integer studyId,HttpSession session){
+		User user = super.getLoginUser(session);
+		View<StudyViewerView> view = dcmViewerService.loadStudy(user.getId(),studyId);
 		
-		return view.getData();
+		return view;
 	}	
 	
 	@RequestMapping("/loadStudyView")
 	@ResponseBody
 	public View<StudyView> loadStudyView(Integer studyId,HttpSession session){
-		View<StudyView> view = dcmViewerService.loadStudyView(studyId);
+		User user = super.getLoginUser(session);
+		
+		View<StudyView> view = dcmViewerService.loadStudyView(user.getId(),studyId);
 		
 		return view;
 	}

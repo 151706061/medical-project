@@ -92,6 +92,33 @@ public class StudyServiceImpl implements IStudyService {
 		
 		return study;
 	}
+	
+	@Override
+	public Study createStydyForJpgIfNotExists(Integer medicalCaseId, String studyId) throws ServiceException {
+		if( studyId == null ){
+			throw new ServiceException("参数错误");
+		}
+		
+		Study study = this.getByCond(medicalCaseId,studyId);
+		if( study != null ){
+			logger.info("study 已经存在,使用新的替换旧的Study数据");
+		}else{
+			logger.info("新建Study数据");
+			study = new Study();
+		}
+		
+		//study.setBodyPartExamined(dicom.getBodyPartExamined());
+		study.setCreateTime(new Date());
+		study.setMedicalCaseId(medicalCaseId);
+		//study.setModality(dicom.getModality());
+		study.setStatus(Constants.STUDY_STATUS_WAIT_FOR_DIAGNOSE);
+		//study.setStudyDate(dicom.getStudyDate());
+		study.setStudyId(studyId);
+		//study.setStudyDescription(dicom.getStudyDescription());
+		this.saveOrUpdate(study);
+		
+		return study;
+	}
 
 	private Study getByCond(Integer medicalCaseId, String studyId) {
 		try {

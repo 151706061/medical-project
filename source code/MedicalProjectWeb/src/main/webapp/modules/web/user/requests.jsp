@@ -71,7 +71,9 @@
 	<!-- <td>{{creatorUserName}}</td> -->
 	<td>{{medicalCaseStatus}}</td>
 	<td>
+		{{#canViewMedicalCase}}
 		{{#studys}}<a target="_blank" href='<c:url value="/modules/cornerstone/index.jsp?studyId={{id}}"/>' class="btn btn-xs btn-link">查看病例</a>{{/studys}}
+		{{/canViewMedicalCase}}
 	</td>
 </tr>
 {{/medicalCaseList}}
