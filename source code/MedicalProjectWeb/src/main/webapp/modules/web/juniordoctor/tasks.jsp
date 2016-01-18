@@ -15,6 +15,7 @@
 						<th>病人姓名</th>
 						<th>请求用户</th>
 						<th>任务状态</th>
+						<th>图像总数</th>
 						<th>操作</th>
 					</tr>
 				</thead>
@@ -49,6 +50,7 @@
 	<td>{{patientName}}</td>
 	<td>{{medicalCaseCreatorUserName}}</td>
 	<td>{{taskStatus}}</td>
+	<td>{{totalImageCount}}</td>
 	<td>
 		{{#showDiagnoseBtn}}<a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs diagnose-btn" >诊断</a>{{/showDiagnoseBtn}}
 		{{#showFirstReviewBtn}}<a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs first-review-btn" >审核</a>{{/showFirstReviewBtn}}

@@ -15,6 +15,7 @@
 						<th>病人姓名</th>
 						<th>请求用户</th>
 						<th>任务状态</th>
+						<th>图像总数</th>
 						<th>操作</th>
 					</tr>
 				</thead>
@@ -76,6 +77,7 @@
 	<td>{{patientName}}</td>
 	<td>{{medicalCaseCreatorUserName}}</td>
 	<td>{{taskStatus}}</td>
+	<td>{{totalImageCount}}</td>
 	<td>
 		{{#showAuditBtn}}<a href="../../cornerstone/index.jsp?studyId={{resourceId}}&taskId={{taskId}}" target="_blank" class="btn btn-success btn-xs audit-btn" >审核</a>{{/showAuditBtn}}
 		{{#showAssignBtn}}<a href='javascript:void(0)' target="_blank" class="btn btn-success btn-xs assign-btn" style="margin-left:5px">分配</a>{{/showAssignBtn}}
