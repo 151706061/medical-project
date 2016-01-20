@@ -74,15 +74,15 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 		
 		
 		if( medicalCaseView.getCreatorUserId().equals(user.getId()) && 
-				( medicalCaseView.getMedicalCaseStatusCode().equals(Constants.MEDICAL_CASE_STATUS_DIAGNOSE_COMPLETE) ||  medicalCaseView.getMedicalCaseStatusCode().equals(Constants.MEDICAL_CASE_STATUS_FINAL_REVIEW_COMPLETE) )){
+				( !medicalCaseView.getMedicalCaseStatusCode().equals(Constants.MEDICAL_CASE_STATUS_DIAGNOSE_COMPLETE) &&  !medicalCaseView.getMedicalCaseStatusCode().equals(Constants.MEDICAL_CASE_STATUS_FINAL_REVIEW_COMPLETE) )){
 			//病例上传者，只有当病例诊断完成或终审完成，才可以查看病例
-			
-			StudyViewerView studyViewerView = trans2StudyViewerView(medicalCaseView,studyView);
-			view.setData(studyViewerView);
-		}else{
 			view.setMsg("病例还未诊断完成，无法查看");
 			view.setSuccess(false);
 			return view;
+			
+		}else{
+			StudyViewerView studyViewerView = trans2StudyViewerView(medicalCaseView,studyView);
+			view.setData(studyViewerView);
 		}
 		
 		return view;
