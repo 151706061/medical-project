@@ -90,12 +90,10 @@ public class Constants {
 	public static final int STUDY_STATUS_COMPLETE_AUDIT = 3;
 
 	public static final String FILE_SUFFIX_JPG = "jpg";
-//	public final static String FTP_HTTP_BASE_URL = "http://52.27.220.196/ftp/";
-	public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp/";
-	//public final static String FTP_HTTP_BASE_URL = "http://101.200.199.13/ftp/";
+	public final static String FTP_HTTP_BASE_URL = "http://123.57.95.30/ftp/";
 	
-//	public final static String FTP_HTTP_BASE_URL = "http://123.57.95.30/ftp/";
-
+	//public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp/";
+	
 	// 未操作通知过期时间 
 	public static final int NOTIFICATION_CONFIRM_EXPIRE_PERIOD = 3600*24*5;
 	
