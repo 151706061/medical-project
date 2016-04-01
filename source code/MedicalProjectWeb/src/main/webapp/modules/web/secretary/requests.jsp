@@ -16,9 +16,31 @@
 				</div>
 			</div>
 			<div class="col-sm-12" id="req-history-list-wrap">
-				<ul class="list-unstyled" id="medicalCaseListWrap">
+				<!-- <ul class="list-unstyled" id="medicalCaseListWrap">
 					
-				</ul>
+				</ul> -->
+
+				<div class="col-sm-12">
+					<table class="table table-hover table-with-bg-color">
+						<thead>
+							<tr>
+							<!--	<th>病人ID</th> -->
+								<th>病人姓名</th>
+							<!--	<th>Study日期</th> -->
+							<!--	<th>病例描述</th> -->
+								<th>图片总数</th>
+							<!--	<th>Series</th> -->
+								<th>创建时间</th>
+							<!--	<th>创建者</th> -->
+								<th>病例状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="requestListTbody">
+							
+						</tbody>
+					</table>
+				</div>
 
 
 				<div class="col-sm-12">
@@ -38,6 +60,22 @@
 	</div>
 </div>
 <!-- /padding -->
+
+<script id="requestListItemTmpl" type="x-tmpl-mustache">
+{{#medicalCaseList}}
+<tr data-mcid="{{medicalCaseId}}">
+	<td>{{patientName}}</td>
+	<td></td>
+	<td>{{createTime}}</td>
+	<td>{{medicalCaseStatus}}</td>
+	<td>
+		{{#canViewMedicalCase}}
+		{{#studys}}<a target="_blank" href='<c:url value="/modules/cornerstone/index.jsp?studyId={{id}}"/>' class="btn btn-xs btn-link">查看病例</a>{{/studys}}
+		{{/canViewMedicalCase}}
+	</td>
+</tr>
+{{/medicalCaseList}}
+</script>
 
 <script id="medicalCaseTmpl" type="x-tmpl-mustache">
 {{#medicalCaseList}}

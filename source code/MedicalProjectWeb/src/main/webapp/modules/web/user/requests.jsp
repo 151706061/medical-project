@@ -61,14 +61,9 @@
 <script id="requestListItemTmpl" type="x-tmpl-mustache">
 {{#medicalCaseList}}
 <tr data-mcid="{{medicalCaseId}}">
-	<!-- <td>{{patientId}}</td> -->
 	<td>{{patientName}}</td>
-	<!-- <td>{{#studys}}{{studyDate}}{{/studys}}</td> -->
-	<!-- <td>{{#studys}}{{studyDescription}}{{/studys}}</td> -->
 	<td></td>
-	<!-- <td>{{#studys}} {{#seriesList}} {{seriesNumber}} &nbsp; {{/seriesList}} {{/studys}}</td> -->
 	<td>{{createTime}}</td>
-	<!-- <td>{{creatorUserName}}</td> -->
 	<td>{{medicalCaseStatus}}</td>
 	<td>
 		{{#canViewMedicalCase}}
