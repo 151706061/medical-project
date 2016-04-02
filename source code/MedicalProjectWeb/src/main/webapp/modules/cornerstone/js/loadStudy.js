@@ -3,7 +3,7 @@
 function loadStudy(studyViewer, viewportModel, studyId) {
     // Get the JSON data for the selected studyId
     //$.getJSON('studies/' + studyId, function(data) {
-    $.getJSON(appContext  + '/web/dcmviewer/loadStudy.do?studyId=' + studyId, function(data) {
+    $.getJSON(appContext  + 'web/dcmviewer/loadStudy.do?studyId=' + studyId, function(data) {
     	if( data && data.success == true){
     		data = data.data;
     	}else{

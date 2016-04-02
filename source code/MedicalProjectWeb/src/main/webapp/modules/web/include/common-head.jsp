@@ -12,6 +12,6 @@
 <link href='<c:url value="/modules/web/assets/css/style.css"/>' rel="stylesheet">
 
 <script>
-var appContext = '/MedicalProjectWeb/';
+var appContext = '/';
 var isCurrentUploadComplete = null;
 </script>

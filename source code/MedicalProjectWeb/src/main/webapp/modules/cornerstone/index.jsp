@@ -26,7 +26,7 @@
   <link href="css/cornerstoneDemo.css" rel="stylesheet">
   
   <script>
-  	var appContext = '/MedicalProjectWeb/';
+  	var appContext = '/';
 	<c:if test="${not empty param.taskId}">
 	var taskId = ${param.taskId };
 	</c:if>
