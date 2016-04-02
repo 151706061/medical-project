@@ -90,7 +90,7 @@ public class Constants {
 	public static final int STUDY_STATUS_COMPLETE_AUDIT = 3;
 
 	public static final String FILE_SUFFIX_JPG = "jpg";
-	public final static String FTP_HTTP_BASE_URL = "http://dupiange.com/ftp/";
+	public final static String FTP_HTTP_BASE_URL = "http://app.dupiange.com/ftp/";
 	
 	//public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp/";
 	
