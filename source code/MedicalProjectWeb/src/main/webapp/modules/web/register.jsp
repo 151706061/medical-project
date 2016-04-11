@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>注册</title>
+		<title>注册读片哥</title>
 		<%@include file="/modules/web/include/common-head.jsp" %>
 		<style>
 		body {
-		  padding-top: 40px;
-		  padding-bottom: 40px;
-		  background-color: #eee;
+		  padding-top: 0px;
+		  padding-bottom: 0px;
+		  background-color: #ffe342;
 		}
 		</style>
 	</head>
@@ -17,7 +17,7 @@
 	<div class="container">
 
 		<form class="form-reg" id="regForm" method="POST" action='<c:url value="/web/auth/reg.do"/>'>
-			<h2 class="form-reg-heading">注册</h2>
+			<h2 class="form-reg-heading"></h2>
 			<label for="selectUserType" class="sr-only">用户类型</label> 
 			<select name="userType" class="form-control" id="selectUserType" required>
 			  <option value="1">普通用户</option>
@@ -27,10 +27,10 @@
 				
 			</div>
 			<div class="user-input-wrap">
-				<label for="inputUsername" class="sr-only">用户名</label> 
+				<label for="inputUsername" class="sr-only">名称</label> 
 				<input
 					type="text" name="userName" id="inputUsername" class="form-control"
-					placeholder="请输入用户名" required />
+					placeholder="请输入您的名称" required />
 				
 				<label for="inputMobile" class="sr-only">手机号</label> 
 				<input
@@ -55,12 +55,12 @@
 				type="password" id="inputPasswordAgain" class="form-control"
 				placeholder="请再次输入密码" required />
 				
-			<div class="checkbox">
+<!--			<div class="checkbox">
 			  <label>
 			    <input type="checkbox" id="agreementCheckbox" />
 			        我同意xxx条款
 			  </label>
-			</div>
+			</div>    -->
 			<button id="regBtn" class="btn btn-lg btn-success btn-block" type="submit">注册</button>
 			<a class="btn btn-link" href="login.jsp" style="display:block;text-align:center">已有账号? 登录</a>
 		</form>

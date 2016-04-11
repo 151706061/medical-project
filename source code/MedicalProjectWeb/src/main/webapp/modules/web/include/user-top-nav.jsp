@@ -46,17 +46,17 @@
                           <li><a href="javascript:void(0)"><i class="glyphicon glyphicon-cog"></i>我的设置</a></li>
                           <li><a href="javascript:void(0)"><i class="glyphicon glyphicon-off"></i>退出</a></li>
                         </ul> --%></li>
-			<li class="dropdown"><a href="#" class="dropdown-toggle"
+<!--			<li class="dropdown"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
 				<ul class="dropdown-menu">
-					<li><a href='#settings'><i
-							class="glyphicon glyphicon-cog"></i>我的设置</a></li>
+					<li><a href='#settings'>
+					    <i class="glyphicon glyphicon-cog"></i>我的设置</a></li>
 					<li>
-						<a class="logout" href='<c:url value="/web/common/logout.do" />'>
+						<a href='<c:url value="/web/common/logout.do" />'>
 							<i class="glyphicon glyphicon-off"></i>退出
 						</a>
 					</li>
-				</ul></li>
+				</ul></li> -->
 		</ul>
 	</nav>
 </div>

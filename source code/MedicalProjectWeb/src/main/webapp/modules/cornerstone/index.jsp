@@ -73,7 +73,7 @@
 				</button>
           </li>
        
-          <li><a id="help" href="#" class="button hidden-xs">帮助</a></li>
+          <!--<li><a id="help" href="#" class="button hidden-xs">帮助</a></li>-->
         </ul>
       </div>
     </nav>
