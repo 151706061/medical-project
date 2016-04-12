@@ -55,12 +55,12 @@
 				type="password" id="inputPasswordAgain" class="form-control"
 				placeholder="请再次输入密码" required />
 				
-<!--			<div class="checkbox">
+			<div class="checkbox">
 			  <label>
-			    <input type="checkbox" id="agreementCheckbox" />
-			        我同意xxx条款
+			    <input type="checkbox" id="agreementCheckbox" style="display:none" checked />
+			        
 			  </label>
-			</div>    -->
+			</div>    
 			<button id="regBtn" class="btn btn-lg btn-success btn-block" type="submit">注册</button>
 			<a class="btn btn-link" href="login.jsp" style="display:block;text-align:center">已有账号? 登录</a>
 		</form>
