@@ -66,9 +66,9 @@
 	<td>{{createTime}}</td>
 	<td>{{medicalCaseStatus}}</td>
 	<td>
-	<!--	{{#canViewMedicalCase}} -->
-		{{#studys}}<a target="_blank" href='<c:url value="/modules/cornerstone/index.jsp?studyId={{studyId}}"/>' class="btn btn-xs btn-link">查看报告</a>{{/studys}}
-	<!--	{{/canViewMedicalCase}}  -->
+		{{#canViewMedicalCase}} 
+		{{#studys}}<a target="_blank" href='<c:url value="/modules/cornerstone/index.jsp?studyId={{id}}"/>' class="btn btn-xs btn-link">查看报告</a>{{/studys}}
+		{{/canViewMedicalCase}}  
 		
 	</td>
 </tr>
