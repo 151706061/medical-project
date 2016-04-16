@@ -1,6 +1,7 @@
 package com.medicalproj.common.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TaskViewExample {
@@ -434,133 +435,193 @@ public class TaskViewExample {
             return (Criteria) this;
         }
 
-        public Criteria andTaskCreateTimeEqualTo(String value) {
+        public Criteria andTaskCreateTimeEqualTo(Date value) {
             addCriterion("TASK_CREATE_TIME =", value, "taskCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskCreateTimeNotEqualTo(String value) {
+        public Criteria andTaskCreateTimeNotEqualTo(Date value) {
             addCriterion("TASK_CREATE_TIME <>", value, "taskCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskCreateTimeGreaterThan(String value) {
+        public Criteria andTaskCreateTimeGreaterThan(Date value) {
             addCriterion("TASK_CREATE_TIME >", value, "taskCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskCreateTimeGreaterThanOrEqualTo(String value) {
+        public Criteria andTaskCreateTimeGreaterThanOrEqualTo(Date value) {
             addCriterion("TASK_CREATE_TIME >=", value, "taskCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskCreateTimeLessThan(String value) {
+        public Criteria andTaskCreateTimeLessThan(Date value) {
             addCriterion("TASK_CREATE_TIME <", value, "taskCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskCreateTimeLessThanOrEqualTo(String value) {
+        public Criteria andTaskCreateTimeLessThanOrEqualTo(Date value) {
             addCriterion("TASK_CREATE_TIME <=", value, "taskCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskCreateTimeLike(String value) {
-            addCriterion("TASK_CREATE_TIME like", value, "taskCreateTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andTaskCreateTimeNotLike(String value) {
-            addCriterion("TASK_CREATE_TIME not like", value, "taskCreateTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andTaskCreateTimeIn(List<String> values) {
+        public Criteria andTaskCreateTimeIn(List<Date> values) {
             addCriterion("TASK_CREATE_TIME in", values, "taskCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskCreateTimeNotIn(List<String> values) {
+        public Criteria andTaskCreateTimeNotIn(List<Date> values) {
             addCriterion("TASK_CREATE_TIME not in", values, "taskCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskCreateTimeBetween(String value1, String value2) {
+        public Criteria andTaskCreateTimeBetween(Date value1, Date value2) {
             addCriterion("TASK_CREATE_TIME between", value1, value2, "taskCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskCreateTimeNotBetween(String value1, String value2) {
+        public Criteria andTaskCreateTimeNotBetween(Date value1, Date value2) {
             addCriterion("TASK_CREATE_TIME not between", value1, value2, "taskCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andProcessTimeIsNull() {
-            addCriterion("PROCESS_TIME is null");
+        public Criteria andTaskCreateTimeStrIsNull() {
+            addCriterion("TASK_CREATE_TIME_STR is null");
             return (Criteria) this;
         }
 
-        public Criteria andProcessTimeIsNotNull() {
-            addCriterion("PROCESS_TIME is not null");
+        public Criteria andTaskCreateTimeStrIsNotNull() {
+            addCriterion("TASK_CREATE_TIME_STR is not null");
             return (Criteria) this;
         }
 
-        public Criteria andProcessTimeEqualTo(String value) {
-            addCriterion("PROCESS_TIME =", value, "processTime");
+        public Criteria andTaskCreateTimeStrEqualTo(String value) {
+            addCriterion("TASK_CREATE_TIME_STR =", value, "taskCreateTimeStr");
             return (Criteria) this;
         }
 
-        public Criteria andProcessTimeNotEqualTo(String value) {
-            addCriterion("PROCESS_TIME <>", value, "processTime");
+        public Criteria andTaskCreateTimeStrNotEqualTo(String value) {
+            addCriterion("TASK_CREATE_TIME_STR <>", value, "taskCreateTimeStr");
             return (Criteria) this;
         }
 
-        public Criteria andProcessTimeGreaterThan(String value) {
-            addCriterion("PROCESS_TIME >", value, "processTime");
+        public Criteria andTaskCreateTimeStrGreaterThan(String value) {
+            addCriterion("TASK_CREATE_TIME_STR >", value, "taskCreateTimeStr");
             return (Criteria) this;
         }
 
-        public Criteria andProcessTimeGreaterThanOrEqualTo(String value) {
-            addCriterion("PROCESS_TIME >=", value, "processTime");
+        public Criteria andTaskCreateTimeStrGreaterThanOrEqualTo(String value) {
+            addCriterion("TASK_CREATE_TIME_STR >=", value, "taskCreateTimeStr");
             return (Criteria) this;
         }
 
-        public Criteria andProcessTimeLessThan(String value) {
-            addCriterion("PROCESS_TIME <", value, "processTime");
+        public Criteria andTaskCreateTimeStrLessThan(String value) {
+            addCriterion("TASK_CREATE_TIME_STR <", value, "taskCreateTimeStr");
             return (Criteria) this;
         }
 
-        public Criteria andProcessTimeLessThanOrEqualTo(String value) {
-            addCriterion("PROCESS_TIME <=", value, "processTime");
+        public Criteria andTaskCreateTimeStrLessThanOrEqualTo(String value) {
+            addCriterion("TASK_CREATE_TIME_STR <=", value, "taskCreateTimeStr");
             return (Criteria) this;
         }
 
-        public Criteria andProcessTimeLike(String value) {
-            addCriterion("PROCESS_TIME like", value, "processTime");
+        public Criteria andTaskCreateTimeStrLike(String value) {
+            addCriterion("TASK_CREATE_TIME_STR like", value, "taskCreateTimeStr");
             return (Criteria) this;
         }
 
-        public Criteria andProcessTimeNotLike(String value) {
-            addCriterion("PROCESS_TIME not like", value, "processTime");
+        public Criteria andTaskCreateTimeStrNotLike(String value) {
+            addCriterion("TASK_CREATE_TIME_STR not like", value, "taskCreateTimeStr");
             return (Criteria) this;
         }
 
-        public Criteria andProcessTimeIn(List<String> values) {
-            addCriterion("PROCESS_TIME in", values, "processTime");
+        public Criteria andTaskCreateTimeStrIn(List<String> values) {
+            addCriterion("TASK_CREATE_TIME_STR in", values, "taskCreateTimeStr");
             return (Criteria) this;
         }
 
-        public Criteria andProcessTimeNotIn(List<String> values) {
-            addCriterion("PROCESS_TIME not in", values, "processTime");
+        public Criteria andTaskCreateTimeStrNotIn(List<String> values) {
+            addCriterion("TASK_CREATE_TIME_STR not in", values, "taskCreateTimeStr");
             return (Criteria) this;
         }
 
-        public Criteria andProcessTimeBetween(String value1, String value2) {
-            addCriterion("PROCESS_TIME between", value1, value2, "processTime");
+        public Criteria andTaskCreateTimeStrBetween(String value1, String value2) {
+            addCriterion("TASK_CREATE_TIME_STR between", value1, value2, "taskCreateTimeStr");
             return (Criteria) this;
         }
 
-        public Criteria andProcessTimeNotBetween(String value1, String value2) {
-            addCriterion("PROCESS_TIME not between", value1, value2, "processTime");
+        public Criteria andTaskCreateTimeStrNotBetween(String value1, String value2) {
+            addCriterion("TASK_CREATE_TIME_STR not between", value1, value2, "taskCreateTimeStr");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeStrIsNull() {
+            addCriterion("PROCESS_TIME_STR is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeStrIsNotNull() {
+            addCriterion("PROCESS_TIME_STR is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeStrEqualTo(String value) {
+            addCriterion("PROCESS_TIME_STR =", value, "processTimeStr");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeStrNotEqualTo(String value) {
+            addCriterion("PROCESS_TIME_STR <>", value, "processTimeStr");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeStrGreaterThan(String value) {
+            addCriterion("PROCESS_TIME_STR >", value, "processTimeStr");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeStrGreaterThanOrEqualTo(String value) {
+            addCriterion("PROCESS_TIME_STR >=", value, "processTimeStr");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeStrLessThan(String value) {
+            addCriterion("PROCESS_TIME_STR <", value, "processTimeStr");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeStrLessThanOrEqualTo(String value) {
+            addCriterion("PROCESS_TIME_STR <=", value, "processTimeStr");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeStrLike(String value) {
+            addCriterion("PROCESS_TIME_STR like", value, "processTimeStr");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeStrNotLike(String value) {
+            addCriterion("PROCESS_TIME_STR not like", value, "processTimeStr");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeStrIn(List<String> values) {
+            addCriterion("PROCESS_TIME_STR in", values, "processTimeStr");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeStrNotIn(List<String> values) {
+            addCriterion("PROCESS_TIME_STR not in", values, "processTimeStr");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeStrBetween(String value1, String value2) {
+            addCriterion("PROCESS_TIME_STR between", value1, value2, "processTimeStr");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeStrNotBetween(String value1, String value2) {
+            addCriterion("PROCESS_TIME_STR not between", value1, value2, "processTimeStr");
             return (Criteria) this;
         }
 

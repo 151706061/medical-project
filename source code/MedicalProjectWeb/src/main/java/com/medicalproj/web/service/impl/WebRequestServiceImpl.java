@@ -147,7 +147,7 @@ public class WebRequestServiceImpl implements IWebRequestService {
 		MedicalCaseView view = null;
 		
 		for( com.medicalproj.common.domain.MedicalCaseView mcv : domainMedicalCaseViewList){
-			view = trans2MedicalCaseView(mcv);
+			view = trans2MedicalCaseView(mcv , null);
 			if( view != null ){
 				list.add(view);
 			}
@@ -155,7 +155,7 @@ public class WebRequestServiceImpl implements IWebRequestService {
 		return list;
 	}
 
-	private MedicalCaseView trans2MedicalCaseView(com.medicalproj.common.domain.MedicalCaseView mcv) {
+	private MedicalCaseView trans2MedicalCaseView(com.medicalproj.common.domain.MedicalCaseView mcv , Integer ownerUserType) {
 		if( mcv == null ){
 			return null;
 		}
@@ -163,11 +163,15 @@ public class WebRequestServiceImpl implements IWebRequestService {
 		
 		BeanUtils.copyProperties(mcv, view);
 		
-		if( mcv.getMedicalCaseStatusCode() != null && 
-				(mcv.getMedicalCaseStatusCode() == Constants.MEDICAL_CASE_STATUS_DIAGNOSE_COMPLETE || mcv.getMedicalCaseStatusCode() == Constants.MEDICAL_CASE_STATUS_FINAL_REVIEW_COMPLETE ) ){
+		if( ownerUserType != null &&  ownerUserType == Constants.USER_TYPE_USER ){
 			view.setCanViewMedicalCase(true);
 		}else{
-			view.setCanViewMedicalCase(false);
+			if( mcv.getMedicalCaseStatusCode() != null && 
+					(mcv.getMedicalCaseStatusCode() == Constants.MEDICAL_CASE_STATUS_DIAGNOSE_COMPLETE || mcv.getMedicalCaseStatusCode() == Constants.MEDICAL_CASE_STATUS_FINAL_REVIEW_COMPLETE ) ){
+				view.setCanViewMedicalCase(true);
+			}else{
+				view.setCanViewMedicalCase(false);
+			}
 		}
 		
 		List<com.medicalproj.common.domain.StudyView> domainStudyViewList = studyService.listAllStudyViewByMedicalCaseId(mcv.getMedicalCaseId());
@@ -302,7 +306,7 @@ public class WebRequestServiceImpl implements IWebRequestService {
 		try {
 			com.medicalproj.common.domain.MedicalCaseView domainMedicalCase = this.medicalCaseService.getMedicalCaseViewById(medicalCaseId);
 			
-			MedicalCaseView medicalCaseView = trans2MedicalCaseView(domainMedicalCase);
+			MedicalCaseView medicalCaseView = trans2MedicalCaseView(domainMedicalCase, null);
 			view.setData(medicalCaseView);
 			
 			return view;
@@ -319,7 +323,7 @@ public class WebRequestServiceImpl implements IWebRequestService {
 		try {
 			MedicalCaseListView medicalCaseListView = new MedicalCaseListView();
 			List<com.medicalproj.common.domain.MedicalCaseView> domainMedicalCaseList = this.medicalCaseService.listMedicalCaseViewByCond(param);
-			List<MedicalCaseView> medicalCaseViewList = trans2MedicalCaseViewList(domainMedicalCaseList);
+			List<MedicalCaseView> medicalCaseViewList = trans2MedicalCaseViewList(domainMedicalCaseList ,param.getOwnerUserType());
 			medicalCaseListView.setMedicalCaseList(medicalCaseViewList);
 			
 			int totalCount = medicalCaseService.countMedicalCaseViewByCond(param);
@@ -336,11 +340,11 @@ public class WebRequestServiceImpl implements IWebRequestService {
 	}
 
 	private List<MedicalCaseView> trans2MedicalCaseViewList(
-			List<com.medicalproj.common.domain.MedicalCaseView> domainMedicalCaseList) {
+			List<com.medicalproj.common.domain.MedicalCaseView> domainMedicalCaseList , Integer ownerUserType) {
 		if( domainMedicalCaseList != null ){
 			List<MedicalCaseView> list = new ArrayList<MedicalCaseView>();
 			for( com.medicalproj.common.domain.MedicalCaseView mcv: domainMedicalCaseList){
-				MedicalCaseView mcvNew = trans2MedicalCaseView(mcv);
+				MedicalCaseView mcvNew = trans2MedicalCaseView(mcv,ownerUserType);
 				if( mcvNew != null ){
 					list.add(mcvNew);
 				}

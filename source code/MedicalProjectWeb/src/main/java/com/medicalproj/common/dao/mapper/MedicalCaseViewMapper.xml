@@ -12,6 +12,7 @@
     <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
     <result column="CREATOR_USER_ID" property="creatorUserId" jdbcType="INTEGER" />
     <result column="CREATOR_USER_NAME" property="creatorUserName" jdbcType="VARCHAR" />
+    <result column="TOTAL_IMAGE_COUNT" property="totalImageCount" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List" >
     MEDICAL_CASE_ID, PATIENT_ID, PATIENT_NAME, PATIENT_BIRTHDAY, PATIENT_SEX, MEDICAL_CASE_STATUS, 
-    MEDICAL_CASE_STATUS_CODE, CREATE_TIME, CREATOR_USER_ID, CREATOR_USER_NAME
+    MEDICAL_CASE_STATUS_CODE, CREATE_TIME, CREATOR_USER_ID, CREATOR_USER_NAME, TOTAL_IMAGE_COUNT
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.MedicalCaseViewExample" >
     select
@@ -99,11 +100,11 @@
     insert into vw_medical_case (MEDICAL_CASE_ID, PATIENT_ID, PATIENT_NAME, 
       PATIENT_BIRTHDAY, PATIENT_SEX, MEDICAL_CASE_STATUS, 
       MEDICAL_CASE_STATUS_CODE, CREATE_TIME, CREATOR_USER_ID, 
-      CREATOR_USER_NAME)
+      CREATOR_USER_NAME, TOTAL_IMAGE_COUNT)
     values (#{medicalCaseId,jdbcType=INTEGER}, #{patientId,jdbcType=VARCHAR}, #{patientName,jdbcType=VARCHAR}, 
       #{patientBirthday,jdbcType=VARCHAR}, #{patientSex,jdbcType=VARCHAR}, #{medicalCaseStatus,jdbcType=VARCHAR}, 
       #{medicalCaseStatusCode,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, #{creatorUserId,jdbcType=INTEGER}, 
-      #{creatorUserName,jdbcType=VARCHAR})
+      #{creatorUserName,jdbcType=VARCHAR}, #{totalImageCount,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.medicalproj.common.domain.MedicalCaseView" >
     insert into vw_medical_case
@@ -138,6 +139,9 @@
       <if test="creatorUserName != null" >
         CREATOR_USER_NAME,
       </if>
+      <if test="totalImageCount != null" >
+        TOTAL_IMAGE_COUNT,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="medicalCaseId != null" >
@@ -169,6 +173,9 @@
       </if>
       <if test="creatorUserName != null" >
         #{creatorUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalImageCount != null" >
+        #{totalImageCount,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -211,6 +218,9 @@
       <if test="record.creatorUserName != null" >
         CREATOR_USER_NAME = #{record.creatorUserName,jdbcType=VARCHAR},
       </if>
+      <if test="record.totalImageCount != null" >
+        TOTAL_IMAGE_COUNT = #{record.totalImageCount,jdbcType=BIGINT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -227,7 +237,8 @@
       MEDICAL_CASE_STATUS_CODE = #{record.medicalCaseStatusCode,jdbcType=INTEGER},
       CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
       CREATOR_USER_ID = #{record.creatorUserId,jdbcType=INTEGER},
-      CREATOR_USER_NAME = #{record.creatorUserName,jdbcType=VARCHAR}
+      CREATOR_USER_NAME = #{record.creatorUserName,jdbcType=VARCHAR},
+      TOTAL_IMAGE_COUNT = #{record.totalImageCount,jdbcType=BIGINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

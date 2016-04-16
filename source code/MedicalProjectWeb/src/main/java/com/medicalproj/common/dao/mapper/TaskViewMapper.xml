@@ -7,8 +7,9 @@
     <result column="TASK_STATUS" property="taskStatus" jdbcType="VARCHAR" />
     <result column="MEDICAL_CASE_STATUS_CODE" property="medicalCaseStatusCode" jdbcType="INTEGER" />
     <result column="RESOURCE_ID" property="resourceId" jdbcType="BIGINT" />
-    <result column="TASK_CREATE_TIME" property="taskCreateTime" jdbcType="VARCHAR" />
-    <result column="PROCESS_TIME" property="processTime" jdbcType="VARCHAR" />
+    <result column="TASK_CREATE_TIME" property="taskCreateTime" jdbcType="TIMESTAMP" />
+    <result column="TASK_CREATE_TIME_STR" property="taskCreateTimeStr" jdbcType="VARCHAR" />
+    <result column="PROCESS_TIME_STR" property="processTimeStr" jdbcType="VARCHAR" />
     <result column="TASK_OWNER_USER_ID" property="taskOwnerUserId" jdbcType="INTEGER" />
     <result column="TASK_OWNER_USER_NAME" property="taskOwnerUserName" jdbcType="VARCHAR" />
     <result column="TASK_OWNER_USER_EMAIL" property="taskOwnerUserEmail" jdbcType="VARCHAR" />
@@ -78,8 +79,9 @@
   </sql>
   <sql id="Base_Column_List" >
     TASK_ID, TASK_TYPE, TASK_STATUS, MEDICAL_CASE_STATUS_CODE, RESOURCE_ID, TASK_CREATE_TIME, 
-    PROCESS_TIME, TASK_OWNER_USER_ID, TASK_OWNER_USER_NAME, TASK_OWNER_USER_EMAIL, TASK_OWNER_USER_MOBILE, 
-    PATIENT_NAME, MEDICAL_CASE_CREATOR_USER_ID, MEDICAL_CASE_CREATOR_USER_NAME, TOTAL_IMAGE_COUNT
+    TASK_CREATE_TIME_STR, PROCESS_TIME_STR, TASK_OWNER_USER_ID, TASK_OWNER_USER_NAME, 
+    TASK_OWNER_USER_EMAIL, TASK_OWNER_USER_MOBILE, PATIENT_NAME, MEDICAL_CASE_CREATOR_USER_ID, 
+    MEDICAL_CASE_CREATOR_USER_NAME, TOTAL_IMAGE_COUNT
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.medicalproj.common.domain.TaskViewExample" >
     select
@@ -104,16 +106,16 @@
   <insert id="insert" parameterType="com.medicalproj.common.domain.TaskView" >
     insert into vw_task (TASK_ID, TASK_TYPE, TASK_STATUS, 
       MEDICAL_CASE_STATUS_CODE, RESOURCE_ID, TASK_CREATE_TIME, 
-      PROCESS_TIME, TASK_OWNER_USER_ID, TASK_OWNER_USER_NAME, 
-      TASK_OWNER_USER_EMAIL, TASK_OWNER_USER_MOBILE, 
-      PATIENT_NAME, MEDICAL_CASE_CREATOR_USER_ID, 
+      TASK_CREATE_TIME_STR, PROCESS_TIME_STR, TASK_OWNER_USER_ID, 
+      TASK_OWNER_USER_NAME, TASK_OWNER_USER_EMAIL, 
+      TASK_OWNER_USER_MOBILE, PATIENT_NAME, MEDICAL_CASE_CREATOR_USER_ID, 
       MEDICAL_CASE_CREATOR_USER_NAME, TOTAL_IMAGE_COUNT
       )
     values (#{taskId,jdbcType=INTEGER}, #{taskType,jdbcType=VARCHAR}, #{taskStatus,jdbcType=VARCHAR}, 
-      #{medicalCaseStatusCode,jdbcType=INTEGER}, #{resourceId,jdbcType=BIGINT}, #{taskCreateTime,jdbcType=VARCHAR}, 
-      #{processTime,jdbcType=VARCHAR}, #{taskOwnerUserId,jdbcType=INTEGER}, #{taskOwnerUserName,jdbcType=VARCHAR}, 
-      #{taskOwnerUserEmail,jdbcType=VARCHAR}, #{taskOwnerUserMobile,jdbcType=VARCHAR}, 
-      #{patientName,jdbcType=VARCHAR}, #{medicalCaseCreatorUserId,jdbcType=INTEGER}, 
+      #{medicalCaseStatusCode,jdbcType=INTEGER}, #{resourceId,jdbcType=BIGINT}, #{taskCreateTime,jdbcType=TIMESTAMP}, 
+      #{taskCreateTimeStr,jdbcType=VARCHAR}, #{processTimeStr,jdbcType=VARCHAR}, #{taskOwnerUserId,jdbcType=INTEGER}, 
+      #{taskOwnerUserName,jdbcType=VARCHAR}, #{taskOwnerUserEmail,jdbcType=VARCHAR}, 
+      #{taskOwnerUserMobile,jdbcType=VARCHAR}, #{patientName,jdbcType=VARCHAR}, #{medicalCaseCreatorUserId,jdbcType=INTEGER}, 
       #{medicalCaseCreatorUserName,jdbcType=VARCHAR}, #{totalImageCount,jdbcType=BIGINT}
       )
   </insert>
@@ -138,8 +140,11 @@
       <if test="taskCreateTime != null" >
         TASK_CREATE_TIME,
       </if>
-      <if test="processTime != null" >
-        PROCESS_TIME,
+      <if test="taskCreateTimeStr != null" >
+        TASK_CREATE_TIME_STR,
+      </if>
+      <if test="processTimeStr != null" >
+        PROCESS_TIME_STR,
       </if>
       <if test="taskOwnerUserId != null" >
         TASK_OWNER_USER_ID,
@@ -183,10 +188,13 @@
         #{resourceId,jdbcType=BIGINT},
       </if>
       <if test="taskCreateTime != null" >
-        #{taskCreateTime,jdbcType=VARCHAR},
+        #{taskCreateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="processTime != null" >
-        #{processTime,jdbcType=VARCHAR},
+      <if test="taskCreateTimeStr != null" >
+        #{taskCreateTimeStr,jdbcType=VARCHAR},
+      </if>
+      <if test="processTimeStr != null" >
+        #{processTimeStr,jdbcType=VARCHAR},
       </if>
       <if test="taskOwnerUserId != null" >
         #{taskOwnerUserId,jdbcType=INTEGER},
@@ -239,10 +247,13 @@
         RESOURCE_ID = #{record.resourceId,jdbcType=BIGINT},
       </if>
       <if test="record.taskCreateTime != null" >
-        TASK_CREATE_TIME = #{record.taskCreateTime,jdbcType=VARCHAR},
+        TASK_CREATE_TIME = #{record.taskCreateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.processTime != null" >
-        PROCESS_TIME = #{record.processTime,jdbcType=VARCHAR},
+      <if test="record.taskCreateTimeStr != null" >
+        TASK_CREATE_TIME_STR = #{record.taskCreateTimeStr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.processTimeStr != null" >
+        PROCESS_TIME_STR = #{record.processTimeStr,jdbcType=VARCHAR},
       </if>
       <if test="record.taskOwnerUserId != null" >
         TASK_OWNER_USER_ID = #{record.taskOwnerUserId,jdbcType=INTEGER},
@@ -280,8 +291,9 @@
       TASK_STATUS = #{record.taskStatus,jdbcType=VARCHAR},
       MEDICAL_CASE_STATUS_CODE = #{record.medicalCaseStatusCode,jdbcType=INTEGER},
       RESOURCE_ID = #{record.resourceId,jdbcType=BIGINT},
-      TASK_CREATE_TIME = #{record.taskCreateTime,jdbcType=VARCHAR},
-      PROCESS_TIME = #{record.processTime,jdbcType=VARCHAR},
+      TASK_CREATE_TIME = #{record.taskCreateTime,jdbcType=TIMESTAMP},
+      TASK_CREATE_TIME_STR = #{record.taskCreateTimeStr,jdbcType=VARCHAR},
+      PROCESS_TIME_STR = #{record.processTimeStr,jdbcType=VARCHAR},
       TASK_OWNER_USER_ID = #{record.taskOwnerUserId,jdbcType=INTEGER},
       TASK_OWNER_USER_NAME = #{record.taskOwnerUserName,jdbcType=VARCHAR},
       TASK_OWNER_USER_EMAIL = #{record.taskOwnerUserEmail,jdbcType=VARCHAR},

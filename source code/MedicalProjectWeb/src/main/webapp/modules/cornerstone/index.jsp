@@ -16,6 +16,8 @@
   <!-- Bootstrap CSS -->
   <link href="lib/bootstrap.min.css" rel="stylesheet">
 
+  <link href='<c:url value="/modules/web/assets/libs/ajaxmask/ajaxmask.css"/>' rel="stylesheet" type="text/css"/>
+
   <!-- UI CSS -->
   <link href="lib/jquery-ui.min.css" rel="stylesheet">  
 
@@ -188,11 +190,11 @@
       	  </div>
 		  <div class="form-group">
 		    <label>影像表现</label>
-		    <p class="performance">这里是影响表现</p>
+		    <p class="performance">正在读取报告内容...</p>
 		  </div>
 		  <div class="form-group">
 		    <label>影像结论</label>
-		    <p class="result">这里是影像结论</p>
+		    <p class="result">正在读取报告内容...</p>
 		  </div>
 		</form>
 
@@ -236,6 +238,7 @@
 
 <!-- include the dicomParser library -->
 <script src="lib/dicomParser.js"></script>
+<script type="text/javascript" src='<c:url value="/modules/web/assets/libs/ajaxmask/ajaxmask.js"/>'></script>
 
 <!-- include cornerstoneDemo.js -->
 <script src="js/setupViewport.js"></script>
@@ -305,6 +308,7 @@ $(function(){
 	);
 	
 	$('#viewReportBtn').on('click',function(){
+		//$('body').ajaxMask();
 		$.get(
 			appContext + 'web/dcmviewer/loadStudyView.do',
 			{
@@ -312,6 +316,7 @@ $(function(){
 			},	
 			function(resp){
 				if( resp && resp.data ){
+					//$('body').ajaxMask({stop:true});
 					var performance = resp.data.diagnoseImagePerformance;
 					var result = resp.data.diagnoseImageResult;
 					var docName = resp.data.diagnoseUserName;
@@ -339,6 +344,7 @@ $(function(){
 			alert('影像结论不可为空');
 			return false;
 		}
+		
 		if( auditType == 1 ){
 			$.post(
 					appContext + 'web/dcmviewer/submitFirstReview.do',
@@ -358,7 +364,6 @@ $(function(){
 		}else if( auditType == 2 ){
 			$('#remarkWrap').removeClass('hide');
 			var remark = $.trim($('#auditInputRemark').val());
-			console.log(remark);
 			if( remark == '' ){
 				alert('请填写分数');
 				return false;
@@ -480,6 +485,7 @@ $(function(){
 	
 	$('#finalReviewBtn').on('click',function(){
 		auditType = 2; //终审
+		$('#remarkWrap').removeClass('hide');
 		$.get(
 			appContext + 'web/dcmviewer/loadStudyView.do',
 			{

@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-  <!--<classPathEntry location="d:\lib\mysql-connector-java-5.1.35.jar" />-->
-  <classPathEntry location="c:\eden\libs\mysql-connector-java-5.1.35.jar" />
+  <classPathEntry location="d:\lib\mysql-connector-java-5.1.35.jar" />
+  <!--<classPathEntry location="c:\eden\libs\mysql-connector-java-5.1.35.jar" />-->
 
   <context id="DB2Tables" targetRuntime="MyBatis3">
 		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
@@ -131,6 +131,6 @@
 		-->
 		
 		<table tableName="vw_task" domainObjectName="TaskView">
-		</table> 
+		</table>
 	</context>
 </generatorConfiguration>

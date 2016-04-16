@@ -1,0 +1,23 @@
+.ajax-mask {
+   z-index: 2000;
+  background: #000;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}
+
+.ajax-mask .loading {
+  width: 50px;
+  height: 50px;
+  background: #333 url('loading_mask.gif') center center no-repeat;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  position: relative;
+  left:50%;
+  margin-left:-25px;
+  top:50%;
+  margin-top: -25px;
+  opacity: 0.9;
+  -moz-opacity: 0.9;
+}
