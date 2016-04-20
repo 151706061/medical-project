@@ -3915,6 +3915,12 @@ if (typeof cornerstoneTools === 'undefined') {
 
     function onImageRendered(e, eventData) {
         // if we have no toolData for this element, return immediately as there is nothing to do
+		var tempId=eventData.image.imageId;
+		if (tempId.indexOf("jpeg")||tempId.indexOf("jpg")||tempId.indexOf("tiff")||tempId.indexOf("tif")||tempId.indexOf("png")||tempId.indexOf("bmp")){
+			
+			return;
+		}
+		
         var toolData = cornerstoneTools.getToolState(e.currentTarget, toolType);
         if (!toolData) {
             return;
