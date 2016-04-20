@@ -773,6 +773,66 @@ public class MedicalCaseViewExample {
             addCriterion("CREATOR_USER_NAME not between", value1, value2, "creatorUserName");
             return (Criteria) this;
         }
+
+        public Criteria andTotalImageCountIsNull() {
+            addCriterion("TOTAL_IMAGE_COUNT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalImageCountIsNotNull() {
+            addCriterion("TOTAL_IMAGE_COUNT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalImageCountEqualTo(Long value) {
+            addCriterion("TOTAL_IMAGE_COUNT =", value, "totalImageCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalImageCountNotEqualTo(Long value) {
+            addCriterion("TOTAL_IMAGE_COUNT <>", value, "totalImageCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalImageCountGreaterThan(Long value) {
+            addCriterion("TOTAL_IMAGE_COUNT >", value, "totalImageCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalImageCountGreaterThanOrEqualTo(Long value) {
+            addCriterion("TOTAL_IMAGE_COUNT >=", value, "totalImageCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalImageCountLessThan(Long value) {
+            addCriterion("TOTAL_IMAGE_COUNT <", value, "totalImageCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalImageCountLessThanOrEqualTo(Long value) {
+            addCriterion("TOTAL_IMAGE_COUNT <=", value, "totalImageCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalImageCountIn(List<Long> values) {
+            addCriterion("TOTAL_IMAGE_COUNT in", values, "totalImageCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalImageCountNotIn(List<Long> values) {
+            addCriterion("TOTAL_IMAGE_COUNT not in", values, "totalImageCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalImageCountBetween(Long value1, Long value2) {
+            addCriterion("TOTAL_IMAGE_COUNT between", value1, value2, "totalImageCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalImageCountNotBetween(Long value1, Long value2) {
+            addCriterion("TOTAL_IMAGE_COUNT not between", value1, value2, "totalImageCount");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

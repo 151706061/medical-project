@@ -53,6 +53,9 @@ public class TaskServiceImpl implements ITaskService {
 			int start = PagerHelper.getStart(param.getPage(),param.getPageSize());
 			int limit = param.getPageSize();
 			RowBounds bounds = new RowBounds(start,limit);
+
+			
+			example.setOrderByClause("TASK_CREATE_TIME DESC");
 			return taskViewMapper.selectByExampleWithRowbounds(example, bounds);
 		} catch (Exception e) {
 			logger.error(e);

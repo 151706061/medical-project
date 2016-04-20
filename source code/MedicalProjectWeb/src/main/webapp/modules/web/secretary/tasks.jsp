@@ -72,7 +72,7 @@
 <script id="taskListItemTmpl" type="x-tmpl-mustache">
 {{#tasks}}
 <tr data-taskid={{taskId}}>
-	<td>{{taskCreateTime}}</td>
+	<td>{{taskCreateTimeStr}}</td>
 	<td>{{taskType}}</td>
 	<td>{{patientName}}</td>
 	<td>{{medicalCaseCreatorUserName}}</td>

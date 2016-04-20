@@ -73,18 +73,21 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 		}
 		
 		
+		StudyViewerView studyViewerView = trans2StudyViewerView(medicalCaseView,studyView);
+
+		/*List<String> hiddenBtnList = new ArrayList<String>();
+		studyViewerView.setHiddenBtnList(hiddenBtnList);
 		if( medicalCaseView.getCreatorUserId().equals(user.getId()) && 
 				( !medicalCaseView.getMedicalCaseStatusCode().equals(Constants.MEDICAL_CASE_STATUS_DIAGNOSE_COMPLETE) &&  !medicalCaseView.getMedicalCaseStatusCode().equals(Constants.MEDICAL_CASE_STATUS_FINAL_REVIEW_COMPLETE) )){
-			//病例上传者，只有当病例诊断完成或终审完成，才可以查看病例
+			//病例上传者，只有当病例诊断完成或终审完成，才可以查看报告
+			
 			view.setMsg("病例还未诊断完成，无法查看");
 			view.setSuccess(false);
 			return view;
 			
-		}else{
-			StudyViewerView studyViewerView = trans2StudyViewerView(medicalCaseView,studyView);
-			view.setData(studyViewerView);
-		}
+		}*/
 		
+		view.setData(studyViewerView);
 		return view;
 	}
 
@@ -225,9 +228,16 @@ public class DcmViewerServiceImpl implements IDcmViewerService {
 				throw new ServiceException("Study 不存在");
 			}
 			
+			
 			if( user.getUserType().equals(Constants.USER_TYPE_USER) ){
+				MedicalCaseView medicalCaseView = medicalCaseService.getMedicalCaseViewById(study.getMedicalCaseId());
+				if( medicalCaseView.getCreatorUserId().equals(user.getId()) && 
+						( !medicalCaseView.getMedicalCaseStatusCode().equals(Constants.MEDICAL_CASE_STATUS_DIAGNOSE_COMPLETE) &&  !medicalCaseView.getMedicalCaseStatusCode().equals(Constants.MEDICAL_CASE_STATUS_FINAL_REVIEW_COMPLETE) )){
+					permission.setCanViewReport(false);
+				}
+				
 				if( study.getDiagnoseTime() == null ){
-					
+					permission.setCanViewReport(false);
 				}else{
 					permission.setCanViewReport(true);
 				}

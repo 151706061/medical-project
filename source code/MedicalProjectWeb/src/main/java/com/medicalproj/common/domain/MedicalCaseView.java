@@ -21,6 +21,8 @@ public class MedicalCaseView {
 
     private String creatorUserName;
 
+    private Long totalImageCount;
+
     public Integer getMedicalCaseId() {
         return medicalCaseId;
     }
@@ -99,5 +101,13 @@ public class MedicalCaseView {
 
     public void setCreatorUserName(String creatorUserName) {
         this.creatorUserName = creatorUserName == null ? null : creatorUserName.trim();
+    }
+
+    public Long getTotalImageCount() {
+        return totalImageCount;
+    }
+
+    public void setTotalImageCount(Long totalImageCount) {
+        this.totalImageCount = totalImageCount;
     }
 }

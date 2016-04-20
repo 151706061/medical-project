@@ -45,6 +45,8 @@
 <script src='<c:url value="/modules/web/assets/libs/routie.js"/>'></script>
 <script src='<c:url value="/modules/web/assets/libs/mustache.min.js"/>'></script>
 <script src='<c:url value="/modules/web/assets/js/fbscripts.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/modules/web/assets/libs/ajaxmask/ajaxmask.js"/>'></script>
+  
 <script src='<c:url value="/modules/web/assets/js/script.js"/>'></script>
 <script>
 $(function(){
