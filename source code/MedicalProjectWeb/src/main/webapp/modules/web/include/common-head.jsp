@@ -14,6 +14,6 @@
 
 
 <script>
-var appContext = '/';
+var appContext = '${pageContext.request.contextPath}/';
 var isCurrentUploadComplete = null;
 </script>
