@@ -201,7 +201,7 @@ h1,h2,h3 {
   letter-spacing:2px;
 }
 
-.panel-default .panel-heading {
+.panel-default > .panel-heading {
   background-color:#f9fafb;
   color:#555555;
 }

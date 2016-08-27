@@ -102,6 +102,7 @@ public class WebRequestController extends WebBaseController{
 	public View<MedicalCaseListView> listRequest(@ModelAttribute("param")ListMedicalCaseParam param,HttpSession session){
 		User user = super.getLoginUser(session);
 		if( user != null ){
+			param.setOwnerUserType(user.getUserType());
 			param.setOwnerUserId(user.getId());
 		}
 		View<MedicalCaseListView> view = webRequestService.listMedicalCase(param);

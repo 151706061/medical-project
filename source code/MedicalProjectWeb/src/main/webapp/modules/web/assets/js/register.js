@@ -16,7 +16,7 @@ $(document).ready(function(){
 		
 		// 异步提交表单
 		jQuery.ajax({
-			url: appContext + '/web/auth/reg.do',
+			url: appContext + 'web/auth/reg.do',
 			data: $regForm.serialize(),
 			type:"POST",
 			beforeSend:function()

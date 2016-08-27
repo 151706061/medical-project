@@ -1,5 +1,7 @@
 package com.medicalproj.common.domain;
 
+import java.util.Date;
+
 public class TaskView {
     private Integer taskId;
 
@@ -11,9 +13,11 @@ public class TaskView {
 
     private Long resourceId;
 
-    private String taskCreateTime;
+    private Date taskCreateTime;
 
-    private String processTime;
+    private String taskCreateTimeStr;
+
+    private String processTimeStr;
 
     private Integer taskOwnerUserId;
 
@@ -71,20 +75,28 @@ public class TaskView {
         this.resourceId = resourceId;
     }
 
-    public String getTaskCreateTime() {
+    public Date getTaskCreateTime() {
         return taskCreateTime;
     }
 
-    public void setTaskCreateTime(String taskCreateTime) {
-        this.taskCreateTime = taskCreateTime == null ? null : taskCreateTime.trim();
+    public void setTaskCreateTime(Date taskCreateTime) {
+        this.taskCreateTime = taskCreateTime;
     }
 
-    public String getProcessTime() {
-        return processTime;
+    public String getTaskCreateTimeStr() {
+        return taskCreateTimeStr;
     }
 
-    public void setProcessTime(String processTime) {
-        this.processTime = processTime == null ? null : processTime.trim();
+    public void setTaskCreateTimeStr(String taskCreateTimeStr) {
+        this.taskCreateTimeStr = taskCreateTimeStr == null ? null : taskCreateTimeStr.trim();
+    }
+
+    public String getProcessTimeStr() {
+        return processTimeStr;
+    }
+
+    public void setProcessTimeStr(String processTimeStr) {
+        this.processTimeStr = processTimeStr == null ? null : processTimeStr.trim();
     }
 
     public Integer getTaskOwnerUserId() {

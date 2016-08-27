@@ -1,5 +1,24 @@
 *{font-family:Verdana, "ºÚÌå", Arial,Sans;} 
 
+.container{
+	position: relative;	
+	background-color: #ffe342;
+	width:100%;
+	height:100%;	
+}
+.img-center{
+	display: block;
+	position: relative;	
+	margin: auto 30%;
+	margin-top:10px;
+	
+}
+	.img-center img { 
+    width:100%;
+    height:auto;
+	}
+
+
 .no-padding{
 	padding:0;
 }

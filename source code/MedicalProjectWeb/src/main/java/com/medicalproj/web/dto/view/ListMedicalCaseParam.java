@@ -1,9 +1,17 @@
 package com.medicalproj.web.dto.view;
 
 public class ListMedicalCaseParam {
+	private Integer ownerUserType;
 	private Integer ownerUserId;
 	private Integer page;
 	private Integer pageSize;
+	
+	public Integer getOwnerUserType() {
+		return ownerUserType;
+	}
+	public void setOwnerUserType(Integer ownerUserType) {
+		this.ownerUserType = ownerUserType;
+	}
 	public Integer getOwnerUserId() {
 		return ownerUserId;
 	}

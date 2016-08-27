@@ -1,6 +1,9 @@
 package com.medicalproj.web.util;
 
 public class Constants {
+	public final static String FTP_HTTP_BASE_URL = "http://app.dupiange.com/ftp/";
+//	public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp/";
+
 	public static final String SESSION_KEY_LOGIN_ADMIN_ID = "SESSION_KEY_LOGIN_ADMIN_ID";
 	public static final String SESSION_KEY_LOGIN_USER = "SESSION_KEY_LOGIN_USER";
 	public static final String SESSION_KEY_FILE_BASE_PATH = "SESSION_KEY_FILE_BASE_PATH";
@@ -90,12 +93,8 @@ public class Constants {
 	public static final int STUDY_STATUS_COMPLETE_AUDIT = 3;
 
 	public static final String FILE_SUFFIX_JPG = "jpg";
-//	public final static String FTP_HTTP_BASE_URL = "http://52.27.220.196/ftp/";
-	public final static String FTP_HTTP_BASE_URL = "http://localhost:8080/ftp/";
-	//public final static String FTP_HTTP_BASE_URL = "http://101.200.199.13/ftp/";
 	
-//	public final static String FTP_HTTP_BASE_URL = "http://123.57.95.30/ftp/";
-
+	
 	// 未操作通知过期时间 
 	public static final int NOTIFICATION_CONFIRM_EXPIRE_PERIOD = 3600*24*5;
 	

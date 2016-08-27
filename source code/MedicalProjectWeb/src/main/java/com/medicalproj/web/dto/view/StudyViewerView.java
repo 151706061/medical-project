@@ -3,6 +3,7 @@ package com.medicalproj.web.dto.view;
 import java.util.List;
 
 public class StudyViewerView {
+	private List<String> hiddenBtnList;
 	private String patientName;
 	private String patientId;
 	private String studyDate;
@@ -59,5 +60,10 @@ public class StudyViewerView {
 	public void setSeriesList(List<SeriesViewerView> seriesList) {
 		this.seriesList = seriesList;
 	}
-	
+	public List<String> getHiddenBtnList() {
+		return hiddenBtnList;
+	}
+	public void setHiddenBtnList(List<String> hiddenBtnList) {
+		this.hiddenBtnList = hiddenBtnList;
+	}
 }

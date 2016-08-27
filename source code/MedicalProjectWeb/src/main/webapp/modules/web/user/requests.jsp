@@ -61,19 +61,15 @@
 <script id="requestListItemTmpl" type="x-tmpl-mustache">
 {{#medicalCaseList}}
 <tr data-mcid="{{medicalCaseId}}">
-	<!-- <td>{{patientId}}</td> -->
 	<td>{{patientName}}</td>
-	<!-- <td>{{#studys}}{{studyDate}}{{/studys}}</td> -->
-	<!-- <td>{{#studys}}{{studyDescription}}{{/studys}}</td> -->
-	<td></td>
-	<!-- <td>{{#studys}} {{#seriesList}} {{seriesNumber}} &nbsp; {{/seriesList}} {{/studys}}</td> -->
+	<td>{{totalImageCount}}</td>
 	<td>{{createTime}}</td>
-	<!-- <td>{{creatorUserName}}</td> -->
 	<td>{{medicalCaseStatus}}</td>
 	<td>
-		{{#canViewMedicalCase}}
-		{{#studys}}<a target="_blank" href='<c:url value="/modules/cornerstone/index.jsp?studyId={{id}}"/>' class="btn btn-xs btn-link">查看病例</a>{{/studys}}
-		{{/canViewMedicalCase}}
+		{{#canViewMedicalCase}} 
+		{{#studys}}<a target="_blank" href='<c:url value="/modules/cornerstone/index.jsp?studyId={{id}}"/>' class="btn btn-xs btn-link">查看报告</a>{{/studys}}
+		{{/canViewMedicalCase}}  
+		
 	</td>
 </tr>
 {{/medicalCaseList}}
@@ -119,8 +115,7 @@
 								<div class="col-sm-2">
 									<img src="/ftp/{{jpgFilePath}}" alt="" class="img-thumbnail case-img" />
 								</div>
-								{{/instanceList}}
-								--%>
+								{{/instanceList}} --%>
 								<p class="alert alert-warning">共{{instanceList.length}}个图像，点击查看病例可查看上传的病例</p>
 							</div>
 						</div>

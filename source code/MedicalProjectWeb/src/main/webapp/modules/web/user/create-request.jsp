@@ -70,6 +70,57 @@
 </div>
 </script>
 
+<script id="pacsBoxTmpl" type="x-tmpl-mustache">
+<div class="panel panel-default" id="pacsBox">
+	<div class="panel-heading">PACS 导入</div>
+	<div class="panel-body">
+		<div class="row">
+			
+			<div class="col-sm-12">
+	<form>
+		<div class="form-group">
+			<label for="serverUrlInput">PACS 服务器地址</label> <input
+				type="text" class="form-control" id="serverUrlInput"
+				placeholder="PACS 服务器地址">
+		</div>
+		<div class="form-group">
+			<label for="dateInput">日期</label> <input
+				type="text" class="form-control" id="dateInput"
+				placeholder="日期">
+		</div>
+<div class="form-group">
+			<label for="devTypeInput">设备类型</label> <input
+				type="text" class="form-control" id="devTypeInput"
+				placeholder="设备类型">
+		</div>
+<div class="form-group">
+			<label for="partsInput">检查部位</label> <input
+				type="text" class="form-control" id="partsInput"
+				placeholder="检查部位">
+		</div>
+		
+	</form>
+</div>
+			<div class="col-sm-12 result-wrap">
+				<div class="panel panel-success">
+  <div class="panel-heading">查询结果</div>
+  <div class="panel-body">
+    查询到3个病例 
+  </div>
+	</div>
+
+
+
+			</div>
+			<div class="col-sm-5  col-sm-offset-4">
+				<button class="btn btn-success btn-pacs-search" disabled>查询</button>
+				<button class="btn btn-success btn-pacs-import" disabled>导入</button>
+			</div>
+		</div>
+	</div>
+</div>
+</script>
+
 <script id="medicalCaseTmpl" type="x-tmpl-mustache">
 <div class="panel panel-primary case-wrap">
 	<div class="panel-heading">

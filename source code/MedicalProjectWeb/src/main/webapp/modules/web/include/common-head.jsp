@@ -10,8 +10,10 @@
 <link href='<c:url value="/modules/web/assets/libs/bootstrap-3.3.5/css/bootstrap.css"/>' rel="stylesheet">
 <link href='<c:url value="/modules/web/assets/css/fbstyles.css"/>' rel="stylesheet">
 <link href='<c:url value="/modules/web/assets/css/style.css"/>' rel="stylesheet">
+<link href='<c:url value="/modules/web/assets/libs/ajaxmask/ajaxmask.css"/>' rel="stylesheet" type="text/css"/>
+
 
 <script>
-var appContext = '/';
+var appContext = '${pageContext.request.contextPath}/';
 var isCurrentUploadComplete = null;
 </script>

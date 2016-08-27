@@ -3,25 +3,26 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>登录</title>
+		<title>读片哥</title>
 		<%@include file="/modules/web/include/common-head.jsp" %>
 		<style>
 		body {
-		  padding-top: 40px;
-		  padding-bottom: 40px;
-		  background-color: #eee;
+		  padding-top: 0px;
+		  padding-bottom: 0px;
+		  background-color: #ffe342;
 		}
 		</style>
 	</head>
 	<body>
 	<div class="container">
-
+	    
+        <div class="img-center"><img src="assets/img/logo.jpg" alt="" /></div>
 		<form class="form-signin" id="loginForm">
-			<h2 class="form-signin-heading">登录</h2>
+			<h2 class="form-signin-heading"></h2>
 			<label for="inputAccount" class="sr-only">帐号</label> 
 			<input name="account"
 				type="text" id="inputAccount" class="form-control"
-				placeholder="请输入邮箱或手机号" required autofocus> 
+				placeholder="请输入注册手机号" required autofocus> 
 			<label
 				for="inputPassword" class="sr-only">密码</label> 
 			<input name="password"

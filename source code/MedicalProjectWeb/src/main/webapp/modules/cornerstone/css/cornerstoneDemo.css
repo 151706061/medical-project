@@ -183,3 +183,21 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 .dropdown-menu {
   min-width: 80px;
 }
+
+body{
+	 -webkit-overflow-scrolling: touch;
+}
+#viewReportModal {
+}
+#viewReportModal .modal-content{
+	}
+@media only screen and (max-device-width: 480px) {
+	#viewReportModal .modal-content{
+	height:100%;
+	overflow-y: scroll;
+	}
+	#viewReportBtn{
+	color:#000;
+	}
+}
+

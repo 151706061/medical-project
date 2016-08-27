@@ -31,6 +31,13 @@ var CreateRequestModule = (function(){
 			
 			$('#case-container').html(rendered);
 		},
+		showPacsBox: function(){
+			var template = $('#pacsBoxTmpl').html();
+			Mustache.parse(template);  
+			var rendered = Mustache.render(template, {});
+			
+			$('#case-container').html(rendered);
+		},
 		clearOldUpload: function(successFn){
 			$.ajax({
 				url: appContext + 'web/request/clearOldUpload.do',
@@ -196,7 +203,7 @@ var CreateRequestModule = (function(){
 				$('#importMethodSelect> option:selected').attr('selected',false);
 				$('#importMethodSelect> option:eq(0)').attr('selected',true);*/
 			}else if( importMethodVal == 'pacs' ){
-				
+				CreateRequestModule.showPacsBox();
 			}
 		}
 	});
